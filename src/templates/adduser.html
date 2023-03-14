@@ -3,7 +3,7 @@
 {% block title %}Add a New User{% endblock %}
 
 {% block body %}
-<form action="/createuser" method="post">
+<form action="/createduser" method="get">
     <table>
         <thead>
             <tr>
@@ -18,7 +18,11 @@
                 <td><input type="text" name="first" required></td>
                 <td><input type="text" name="last" required></td>
             </tr>
-            <tr><input type="submit"></tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="submit"></td>
+            </tr>
         </tbody>
     </table>
 </form>
