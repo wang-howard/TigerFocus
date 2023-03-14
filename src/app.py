@@ -10,5 +10,4 @@ app.secret_key = '098098'
 
 db = SQLAlchemy(app)
 
-class People(db.Model):
-    
+
