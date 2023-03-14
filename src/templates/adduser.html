@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Add a New User{% endblock %}
+
+{% block body %}
+<form action="/createuser" method="post">
+    <table>
+        <thead>
+            <tr>
+                <td>User ID</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="text" name="userid" required></td>
+                <td><input type="text" name="first" required></td>
+                <td><input type="text" name="last" required></td>
+            </tr>
+            <tr><input type="submit"></tr>
+        </tbody>
+    </table>
+</form>
+{% endblock %}
