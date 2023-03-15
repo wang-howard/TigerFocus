@@ -65,7 +65,7 @@ def created_user():
         return redirect(url_for("index"), code=307)
     except Exception as ex:
         print(ex)
-        return render_template("error.html")
+        return render_template("error.html", link=(url_for('index')))
 
 if __name__ == "__main__":
     app.run()
