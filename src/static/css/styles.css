@@ -5,6 +5,7 @@ h1 {
   font-weight: 600;
   font-size: 37.5px;
   color: #fef9ee;
+  padding: 10px;
 }
 
 h2 {
@@ -12,6 +13,11 @@ h2 {
   font-weight: 700;
   font-size: 40px;
   color: #fef9ee;
+}
+
+hr {
+  color: #fef9ee;
+  width: 50%;
 }
 
 #welcome {
