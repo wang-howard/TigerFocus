@@ -20,6 +20,15 @@ hr {
   width: 50%;
 }
 
+.smallbutton {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 800;
+  background-color: #4e4e4e;
+  color: #fef9ee;
+  text-align: center;
+  border: 0px;
+}
+
 #welcome {
   position: absolute;
   font-family: "Anek Bangla", sans-serif;
