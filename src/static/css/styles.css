@@ -3,14 +3,14 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 600;
   font-size: 37.5px;
-  top: 10%;
+  top: 5%;
   right: 10%;
   left: 10%;
   width: 80%;
 }
 #assignments_window {
   position: absolute;
-  top: 20%;
+  top: 17%;
   right: 10%;
   left: 10%;
   width: 80%;
@@ -27,7 +27,7 @@
   font-weight: 400;
   color: #fef9ee;
   position: absolute;
-  top: 15%;
+  top: 17%;
   right: 70%;
   left: 10%;
   width: 200px;
