@@ -13,12 +13,11 @@ h2 {
   font-weight: 800;
   font-size: 40px;
   color: #fef9ee;
-  padding: 10px;
 }
 
 hr {
   color: #fef9ee;
-  width: 80%;
+  width: 95%;
 }
 
 .smallbutton {
@@ -30,8 +29,9 @@ hr {
   text-align: center;
   border: 0px;
   border-radius: 20px;
-  height: 143px;
+  height: 50px;
   margin-left: auto;
+  margin-right: 10px;
 }
 
 #assignments_header {
