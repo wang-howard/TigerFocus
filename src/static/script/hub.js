@@ -1,5 +1,3 @@
 function test() {
-  document
-    .getElementsByClassName("assignments_tab")
-    .setAttribute("color", "red");
+  document.getElementById("assignments_tab").style.color("red");
 }

@@ -3,8 +3,8 @@
 
 <h1>ui test hub</h1>
 
-<button class="assignments_tab" onclick="test()">assignments</button>
-<div class="assignments_window"></div>
+<div id="assignments_tab" onclick="test()">assignments</div>
+<div id="assignments_window"></div>
 
 <script src="{{url_for('static', filename='script/hub.js')}}"></script>
 {% endblock %}
