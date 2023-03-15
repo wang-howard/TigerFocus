@@ -17,7 +17,7 @@ h2 {
 
 hr {
   color: #fef9ee;
-  width: 50%;
+  width: 80%%;
 }
 
 .smallbutton {
@@ -27,6 +27,7 @@ hr {
   color: #fef9ee;
   text-align: center;
   border: 0px;
+  border-radius: 20px;
 }
 
 #welcome {
