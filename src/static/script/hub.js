@@ -3,6 +3,7 @@ function assignmentsTabClicked() {
   var tabsecond = document.getElementById("preloaded_tab");
   tabfirst.style.zIndex = 2;
   tabsecond.style.zindex = 1;
+  print("tab 1");
 }
 
 function preloadedTabClicked() {
@@ -10,4 +11,5 @@ function preloadedTabClicked() {
   var tabsecond = document.getElementById("assignments_tab");
   tabfirst.style.zIndex = 2;
   tabsecond.style.zindex = 1;
+  print("tab 2");
 }
