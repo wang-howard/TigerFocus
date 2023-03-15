@@ -1,0 +1,21 @@
+.assignments_window {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #919fc7;
+  border-radius: 0px 40px 40px 40px;
+}
+
+.assignments_tab {
+  position: absolute;
+  top: 16.5%;
+  right: 70%;
+  left: 10%;
+  width: 20%;
+  height: 25px;
+  background: #919fc7;
+  border-radius: 40px 40px 0px 0px;
+}
