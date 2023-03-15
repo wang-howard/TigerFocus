@@ -10,13 +10,14 @@
 }
 #assignments_window {
   position: absolute;
-  top: 17%;
+  top: 20%;
   right: 10%;
   left: 10%;
   width: 80%;
   height: 80%;
   background: #919fc7;
   border-radius: 0px 40px 40px 40px;
+  z-index: 3;
 }
 
 #assignments_tab {
@@ -27,7 +28,7 @@
   font-weight: 400;
   color: #fef9ee;
   position: absolute;
-  top: 17%;
+  top: 20%;
   right: 70%;
   left: 10%;
   width: 200px;

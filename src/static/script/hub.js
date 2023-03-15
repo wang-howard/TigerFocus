@@ -1,9 +1,13 @@
 function assignmentsTabClicked() {
-  var tab = document.getElementById("assignments_tab");
-  tab.style.zIndex++;
+  var tabfirst = document.getElementById("assignments_tab");
+  var tabsecond = document.getElementById("preloaded_tab");
+  tabfirst.style.zIndex = 2;
+  tabsecond.style.zindex = 1;
 }
 
 function preloadedTabClicked() {
-  var tab = document.getElementById("preloaded_tab");
-  tab.style.zIndex++;
+  var tabfirst = document.getElementById("preloaded_tab");
+  var tabsecond = document.getElementById("assignments_tab");
+  tabfirst.style.zIndex = 2;
+  tabsecond.style.zindex = 1;
 }
