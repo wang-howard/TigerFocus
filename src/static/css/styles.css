@@ -1,8 +1,9 @@
-#header {
+#welcome {
   position: absolute;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 600;
   font-size: 37.5px;
+  top: 10%;
   right: 10%;
   left: 10%;
   width: 80%;
