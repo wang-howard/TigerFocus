@@ -5,11 +5,12 @@ from psycopg2 import connect
 
 app = Flask(__name__)
 
+hostname = os.environ.get("DB_HOST")
 connect_db = connect(
     database="tigerfocus_4gqq",
     user="admin",
     password="LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6",
-    host="dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com",
+    host=hostname,
     port="5432")
 
 @app.route("/", methods=["GET", "POST"])
