@@ -35,6 +35,7 @@
   height: 45px;
   background: #919fc7;
   border-radius: 19.2px 19.2px 0px 0px;
+  z-index: 1;
 }
 
 #preloaded_tab {
@@ -52,4 +53,5 @@
   height: 45px;
   background: #abc787;
   border-radius: 19.2px 19.2px 0px 0px;
+  z-index: 1;
 }
