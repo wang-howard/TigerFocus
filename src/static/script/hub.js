@@ -1,3 +1,4 @@
 function test() {
-  document.getElementById("assignments_tab").style.color("red");
+  var tab = document.getElementById("assignments_tab");
+  tab.style.color("red");
 }
