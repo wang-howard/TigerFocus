@@ -22,6 +22,7 @@ hr {
 }
 
 .smallbutton {
+  padding: 10px;
   font-family: "Anek Bangla", sans-serif;
   font-weight: 800;
   background-color: #4e4e4e;
@@ -29,6 +30,13 @@ hr {
   text-align: center;
   border: 0px;
   border-radius: 20px;
+  height: 143px;
+  margin-left: auto;
+}
+
+#assignments_header {
+  display: flex;
+  align-items: center;
 }
 
 #welcome {
