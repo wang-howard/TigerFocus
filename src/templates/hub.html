@@ -3,8 +3,13 @@
 
 <h1>ui test hub</h1>
 
-<button id="assignments_tab" onclick="tabClicked()">assignments</button>
-<button id="preloaded_tab" onclick="tabClicked()">pre-loaded courses</button>
+<div id="header">Welcome back, netid</div>
+<button id="preloaded_tab" onclick="preloadedTabClicked()">
+  pre-loaded courses
+</button>
+<button id="assignments_tab" onclick="assignmentsTabClicked()">
+  assignments
+</button>
 <div id="assignments_window"></div>
 
 <script src="{{url_for('static', filename='script/hub.js')}}"></script>
