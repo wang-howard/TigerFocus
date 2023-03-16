@@ -10,6 +10,8 @@ h1 {
 
 h2 {
   font-family: "Anek Bangla", sans-serif;
+  position: absolute;
+  bottom: 0;
   font-weight: 800;
   font-size: 40px;
   color: #fef9ee;
