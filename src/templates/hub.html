@@ -1,8 +1,5 @@
-{% extends "base.html" %}
-
-{% block title %} UI TEST{% endblock %}
-
-{% block body%}
+{% extends "base.html" %} {% block title %} UI TEST{% endblock %} {% block
+body%}
 
 <div id="welcome">Welcome back, netid</div>
 
@@ -29,6 +26,17 @@
     </table>
   </div>
   <hr style="margin-top: 0px" />
+  <div>
+    <table>
+      <tr id="assignment_wrapper">
+        <td><button type="checkbox"></button></td>
+        <td><button></button></td>
+        <td>assignment name</td>
+        <td>due date</td>
+        <td><div>classchip</div></td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <script src="{{url_for('static', filename='script/hub.js')}}"></script>
