@@ -12,21 +12,17 @@ connect_db = psycopg2.connect(
     host=hostname,
     port="5432")
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
     try:
         with connect_db as conn:
-            print("Connecting to PostgreSQL database")
             with conn.cursor() as cur:
-                print("Creating cursor")
                 cur.execute("SELECT * FROM users")
                 data = cur.fetchall()
-            print("Cursor closed")
-        print("Database connection closed")
         return render_template("index.html", data=data)
     except Exception as ex:
         print(ex)
-        return render_template("error.html", link=(url_for('index')))
+        return render_template("error.html")
 
 @app.route("/hub")
 def hub():
@@ -34,7 +30,7 @@ def hub():
 
 @app.route("/adduser")
 def add_user():
-    return render_template("adduser.html")
+    return render_template("register.html")
 
 @app.route("/createduser", methods=["GET", "POST"])
 def created_user():
@@ -44,15 +40,11 @@ def created_user():
 
     try:
         with connect_db as conn:
-            print("Connecting to PostgreSQL database")
             with conn.cursor() as cur:
-                print("Creating cursor")
                 query = "INSERT INTO users(user_id, first_name, last_name)"
                 query += "VALUES(%s, %s, %s)"
                 cur.execute(query, (id, first, last))
-            print("Cursor closed")
-        print("Database connection closed")
-        return redirect(url_for("index"), code=307)
+        return redirect(url_for("index"))
     except Exception as ex:
         print(ex)
         return render_template("error.html")

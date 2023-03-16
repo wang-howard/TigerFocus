@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link href="static/css/styles.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/register.css') }}" rel="stylesheet">
 </head>
 <body class="d-flex align-items-center">
     <div class="container">
@@ -15,18 +15,18 @@
         <div class="col-lg-6 col-md-8 login-box">
             <div class="col-lg-12 login-title">Sign Up</div>
             <div class="col-lg-12 login-form">
-                <form>
+                <form action="/createduser" method="post">
+                    <div class="form-group">
+                        <label class="form-control-label">User ID</label>
+                        <input type="text" name="userid" class="form-control">
+                    </div>
                     <div class="form-group">
                         <label class="form-control-label">First Name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="first" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">Last Name</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-control-label">User ID</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="last" class="form-control">
                     </div>
                     <div class="col-12 login-btm login-button justify-content-center d-flex">
                         <button type="submit" class="btn btn-outline-primary">Register</button>
