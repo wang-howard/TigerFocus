@@ -13,6 +13,7 @@ h2 {
   font-weight: 700;
   font-size: 40px;
   color: #fef9ee;
+  margin-bottom: 0px;
 }
 
 hr {
@@ -31,11 +32,12 @@ hr {
   border-radius: 20px;
   height: 50px;
   width: 145px;
+  margin-bottom: 0px;
 }
 
 #assignments_header {
   margin-top: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   display: flex;
   align-items: center;
 }
