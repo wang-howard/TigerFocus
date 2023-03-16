@@ -1,12 +1,11 @@
-import os
+import psycopg2, os
 from flask import Flask, render_template, request, redirect, url_for
-from psycopg2 import connect
 
 
 app = Flask(__name__)
 
 hostname = os.environ.get("DB_HOST")
-connect_db = connect(
+connect_db = psycopg2.connect(
     database="tigerfocus_4gqq",
     user="admin",
     password="LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6",
