@@ -25,18 +25,8 @@ def index():
         print("Database connection closed")
         return render_template("index.html", data=data)
     except Exception as ex:
-        print('{} - connection will be reset'.format(ex))
-        # Close old connection 
-        if conn:
-            if cursor:
-                cursor.close()
-            conn.close()
-        conn = None
-        cursor = None
-        
-        # Reconnect 
-        conn = connect_db
-        cursor = conn.cursor()
+        print(ex)
+        return render_template("error.html", link=(url_for('index')))
 
 @app.route("/hub")
 def hub():
@@ -68,4 +58,4 @@ def created_user():
         return render_template("error.html", link=(url_for('index')))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5555, debug=True)
