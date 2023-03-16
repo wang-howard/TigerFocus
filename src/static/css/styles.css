@@ -34,7 +34,8 @@ hr {
 }
 
 #assignments_header {
-  margin-top: 30px;
+  margin-top: 15px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
 }
