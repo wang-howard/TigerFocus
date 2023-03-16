@@ -2,7 +2,8 @@ import os
 from flask import Flask, render_template, request, redirect, url_for
 from psycopg2 import connect
 
-app = Flask(__name__, template_folder="./templates")
+
+app = Flask(__name__)
 
 hostname = os.environ.get("DB_HOST")
 connect_db = connect(
@@ -55,7 +56,7 @@ def created_user():
         return redirect(url_for("index"), code=307)
     except Exception as ex:
         print(ex)
-        return render_template("error.html", link=(url_for('index')))
+        return render_template("error.html")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
