@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+#TigerFocus {
+    position: absolute;
+    width: 201.75px;
+    height: 70px;
+    left: 133px;
+    top: 37px;
+    
+    font-family: 'Anek Bangla';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 37.5px;
+    line-height: 70px;
+    /* identical to box height */
+    color: #F9AA5B;
+}
