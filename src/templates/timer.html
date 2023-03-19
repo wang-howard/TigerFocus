@@ -1,11 +1,16 @@
 {% extends "base.html" %} {% block title %} Timer UI TEST{% endblock %} {% block body%}
+<head>
 <link href="{{ url_for('static', filename='css/timerStyles.css') }}" rel="stylesheet"> 
 <div id="TigerFocusbanner">TigerFocus*</div>
 
 <div id="border"></div>
 
+</head>
 
+<body>
 <div id="screen"></div>
+<button type="button">Click Me!</button>
+</body>
 
 
 {% endblock %}
