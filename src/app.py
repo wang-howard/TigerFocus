@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-hostname = os.environ.get("DB_HOST")
+hostname = "dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com"
 connect_db = psycopg2.connect(
     database="tigerfocus_4gqq",
     user="admin",

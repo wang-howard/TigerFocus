@@ -21,6 +21,9 @@ hr {
   width: 95%;
 }
 
+.smallbutton:hover {
+  box-shadow: 0px 2px 2px #000000;
+}
 .smallbutton {
   font-family: "Anek Bangla", sans-serif;
   font-size: 20px;
@@ -111,6 +114,7 @@ hr {
   border-radius: 30px;
   height: 70px;
   width: 95%;
+  margin-left: 30px;
 }
 
 body {
