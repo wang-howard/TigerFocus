@@ -28,6 +28,10 @@ def index():
 def hub():
     return render_template("hub.html")
 
+@app.route("/timer")
+def timer():
+    return render_template("timer.html")
+
 @app.route("/adduser")
 def add_user():
     return render_template("register.html")
