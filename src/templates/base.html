@@ -17,8 +17,26 @@
     />
   </head>
   <body style="background: #fef9ee">
-    <div id="TigerFocusbanner">TigerFocus*</div>
-
+    <table>
+      <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
+        <td width="85%"><div id="TigerFocusbanner">TigerFocus*</div></td>
+        <td width="5%" align="center">
+          <button class="headerbutton" style="padding-right: 20px">
+            <a href="">about</a>
+          </button>
+        </td>
+        <td width="5%" align="center">
+          <button class="headerbutton" style="padding-right: 20px">
+            <a href="">feedback</a>
+          </button>
+        </td>
+        <td width="5%" align="center">
+          <button class="headerbutton">
+            <a href="/hub">hub</a>
+          </button>
+        </td>
+      </tr>
+    </table>
     <div id="border"></div>
     {% block body %} {% endblock %}
   </body>
