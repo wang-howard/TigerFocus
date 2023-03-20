@@ -3,18 +3,16 @@
 {% block title %}Select Existing User{% endblock %}
 
 {% block body %}
-<form action="/addcourse" method="post">
+<form action="/viewcourses" method="post">
     <table>
         <thead>
             <tr>
                 <td>User ID</td>
-                <td>First Name</td>
-                <td>Last Name</td>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><select name="select_user">
+                <td><select name="select_user" id="userid">
                     {% for id in userids %}
                         <option value="{{ id }}">{{ id }}</option>
                 </select></td>
