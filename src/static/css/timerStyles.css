@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+#TigerFocusbanner {
+    position: absolute;
+    width: 201.75px;
+    height: 70px;
+    left: 133px;
+    top: 37px;
+
+    font-family: 'Anek Bangla',sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 37.5px;
+    line-height: 70px;
+    color: #F9AA5B;
+}
+
+#border{
+position: absolute;
+width: 1257px;
+height: 2px;
+left: 87px;
+top: 103px;
+
+background: #4E4E4E;
+border-radius: 50px;
+}
+
+
+#screen {
+margin: auto;
+margin-top: 115px;
+width: 779.52px;
+height: 942.26px;
+left: 298px;
+top: 901.52px;
+
+background: #A6B5DE;
+border-radius: 40px;
+}
+
+#pomodoro {
+width: 300 px;
+height: 32.35px;
+left: 257px;
+top: 72.35px;
+background: #FEF9EE;
+box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+border-radius: 16.6673px;
+
+}
