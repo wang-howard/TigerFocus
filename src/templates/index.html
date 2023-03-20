@@ -7,6 +7,7 @@ body %}
       <th>User ID</th>
       <th>First Name</th>
       <th>Last Name</th>
+      <th>Course IDs</th>
     </tr>
   </thead>
   <tbody>
@@ -15,14 +16,16 @@ body %}
       <td>{{ row[0] }}</td>
       <td>{{ row[1] }}</td>
       <td>{{ row[2] }}</td>
+      <td>{{ row[3] }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 <hr />
-Click here to <a href="/adduser">sign up</a>
+<a href="/adduser">New User</a> <a href="/selectuser">Returning User</a>
 <br>
 <a href="/hub">ui test</a>
+<br>
 <a href="/timer">timer ui test</a>
 
 {% endblock %}

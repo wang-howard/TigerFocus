@@ -40,6 +40,8 @@ border-radius: 40px;
 }
 
 #pomodoro {
+margin: auto;
+margin-top: 115px;
 width: 300 px;
 height: 32.35px;
 left: 257px;

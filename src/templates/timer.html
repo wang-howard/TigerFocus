@@ -1,18 +1,15 @@
 {% extends "base.html" %} {% block title %} Timer UI TEST{% endblock %} {% block body%}
-<head>
+
 <link href="{{ url_for('static', filename='css/timerStyles.css') }}" rel="stylesheet"> 
 <div id="TigerFocusbanner">TigerFocus*</div>
 
 <div id="border"></div>
 
-</head>
-
-<body>
 <div id="screen"></div>
 <button id = "pomodoro"  > pomodoro </button>
 
 <div id="chronoExample">
-    <div class="values">00:00:00</div>
+    <div class="values">25:00</div>
     <div>
         <button class="startButton">Start</button>
         <button class="pauseButton" >Pause</button>
@@ -20,7 +17,7 @@
         <button class="resetButton">Reset</button>
     </div>
 </div>
-</body>
+
 
 
 {% endblock %}
