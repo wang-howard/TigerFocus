@@ -75,9 +75,16 @@ font-family: 'Anek Bangla';
 #timeContainer{
     margin: auto;
     margin-top: 10px;
+    margin-bottom: 80px;
     text-align: center;
     width: 320px;
     height: 120px;
     border-radius: 18px;
     background-color: #564B47;
+}
+
+#youtubevideo {
+  
+    margin-left: 50px;
+
 }
