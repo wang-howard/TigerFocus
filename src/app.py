@@ -50,4 +50,4 @@ def created_user():
         return render_template("error.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5001)
