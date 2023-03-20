@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Select Existing User{% endblock %}
+
+{% block body %}
+<form action="/addcourse" method="post">
+    <table>
+        <thead>
+            <tr>
+                <td>User ID</td>
+                <td>First Name</td>
+                <td>Last Name</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><select name="select_user">
+                    {% for id in userids %}
+                        <option value="{{ id }}">{{ id }}</option>
+                </select></td>
+                <td><input type="submit"></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{% endblock %}

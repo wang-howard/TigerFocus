@@ -54,7 +54,7 @@ def select_user():
             query = "SELECT PUID FROM user_info"
             cur.execute(query)
             ids = cur.fetchall()
-        return redirect(url_for("index"))
+        return render_template("selectuser.html", userids=ids)
     except Exception as ex:
         print(ex)
         return render_template("error.html")
