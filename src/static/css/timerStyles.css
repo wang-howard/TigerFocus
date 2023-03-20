@@ -40,14 +40,44 @@ border-radius: 40px;
 }
 
 #pomodoro {
-margin: auto;
-margin-top: 115px;
+margin-top: 15px;
+margin-right: 50px;
+margin-left: 105px;
 width: 300 px;
 height: 32.35px;
 left: 257px;
 top: 72.35px;
+
 background: #FEF9EE;
 box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
 border-radius: 16.6673px;
+font-family: 'Anek Bangla';
 
+}
+
+
+
+.timerBtn{
+    width: 80px;
+    height: 30px;
+    border: 3px solid;
+    border-radius: 12px;
+    background-color: #333333;
+    color: white;
+    cursor: pointer;
+    font-family: 'Anek Bangla';
+}
+#timeDisplay{
+    font-size: 75px;
+    color: #FEF9EE;
+    font-family: 'Anek Bangla';
+}
+#timeContainer{
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    width: 320px;
+    height: 120px;
+    border-radius: 18px;
+    background-color: #564B47;
 }

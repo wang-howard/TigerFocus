@@ -5,19 +5,24 @@
 
 <div id="border"></div>
 
-<div id="screen"></div>
+<div id="screen">
 <button id = "pomodoro"  > pomodoro </button>
+<button id = "pomodoro"  > short break </button>
+<button id = "pomodoro"  > long break </button>
 
-<div id="chronoExample">
-    <div class="values">25:00</div>
-    <div>
-        <button class="startButton">Start</button>
-        <button class="pauseButton" >Pause</button>
-        <button class="stopButton">Stop</button>
-        <button class="resetButton">Reset</button>
-    </div>
+<div id="timeContainer">
+    <div id="timeDisplay">00:00:00</div>
+    <button id="startBtn" class="timerBtn">Start</button>
+    <button id="pauseBtn" class="timerBtn">Pause</button>
+    <button id="resetBtn" class="timerBtn">Reset</button>
+</div>
+
+<iframe width="420" height="345" src="https://www.youtube.com/watch?v=Kz1QJ4-lerk&t=1797s">
+</iframe>
+
 </div>
 
 
+<script src="{{url_for('static', filename='script/timer.js')}}"></script>
 
 {% endblock %}
