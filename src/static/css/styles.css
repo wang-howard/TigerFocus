@@ -129,8 +129,8 @@ hr {
   position: absolute;
   opacity: 0;
   cursor: pointer;
-  height: 0;
-  width: 0;
+  height: 0px;
+  width: 0px;
 }
 
 .checkmark {
@@ -147,7 +147,31 @@ hr {
 }
 
 .checkbox_button input:checked ~ .checkmark {
-  background: #0db8de;
+  background: #d9d9d9;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_button input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_button .checkmark:after {
+  left: 13px;
+  top: 10px;
+  width: 5px;
+  height: 10px;
+  border: solid #4e4e4e;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 body {
