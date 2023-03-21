@@ -1,14 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
 
-h1 {
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 600;
-  font-size: 37.5px;
-  color: #fef9ee;
-  padding: 10px;
-}
-
-h2 {
+#current_assignments_title {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
   font-size: 40px;
@@ -16,13 +8,14 @@ h2 {
   margin-bottom: 0px;
 }
 
-hr {
+.window_hr {
   color: #fef9ee;
   width: 95%;
 }
 
 .smallbutton:hover {
-  box-shadow: 0px 2px 2px #000000;
+  background: #83736d;
+  box-shadow: 0px 2px 5px #000000;
 }
 
 #start {
@@ -92,6 +85,7 @@ hr {
   background: #919fc7;
   border-radius: 0px 40px 40px 40px;
   border: 3px solid #6c7896;
+  z-index: 2;
 }
 
 #assignments_tab {
@@ -109,7 +103,7 @@ hr {
   height: 39px;
   background: #919fc7;
   border-radius: 19.2px 19.2px 0px 0px;
-  z-index: 6;
+  z-index: 3;
   border-top: 3px solid #6c7896;
   border-left: 3px solid #6c7896;
   border-right: 3px solid #6c7896;
@@ -124,12 +118,16 @@ hr {
   color: #fef9ee;
   position: absolute;
   top: 30%;
-  right: 60%;
-  left: 20%;
+  right: 63%;
+  left: 23%;
   width: 200px;
   height: 38px;
   background: #abc787;
+  z-index: 1;
   border-radius: 19.2px 19.2px 0px 0px;
+  border-top: 3px solid #809564;
+  border-left: 3px solid #809564;
+  border-right: 3px solid #809564;
 }
 
 #assignment_wrapper {
