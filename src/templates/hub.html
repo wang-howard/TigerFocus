@@ -1,46 +1,63 @@
 {% extends "base.html" %} {% block title %} Hub UI TEST {% endblock %} {% block
 body%}
 
-<div id="welcome">Welcome back, netid</div>
+<div id="welcome_wrapper">
+<table>
+  <td width="88%"><div id="welcome">Welcome back, netid</div></td>
+  <td style="padding-right:80px" width="12%" align="left"><div><button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button></div></td>
+</table>
+</div>
 
-<button id="preloaded_tab" onclick="preloadedTabClicked()">
+
+<button id="preloaded_tab">
   pre-loaded courses
 </button>
-<button id="assignments_tab" onclick="assignmentsTabClicked()">
+<button id="assignments_tab">
   assignments
 </button>
 <div id="assignments_window">
   <div id="assignments_header">
-    <h2 style="padding-left: 30px">Current Assignments</h2>
+    <h2 id="current_assignments_title" style="padding-left: 30px">Current Assignments</h2>
     <div style="margin-left: auto; margin-right: 30px">
       <button class="smallbutton" style="margin-right: 15px">create new</button>
       <button class="smallbutton">edit courses</button>
     </div>
   </div>
-  <hr style="margin-top: 0px" />
+  <hr class="window_hr" style="margin-top: 0px" />
   <div>
     <table style="margin-left: 30px" id="table_header">
-      <td width="70%" align="center">Assignment</td>
-      <td width="10%" align="center">Due Date</td>
-      <td width="20%" align="right">Class</td>
+      <td></td>
+      <td></td>
+      <td width=600px" align="center">Assignment</td>
+      <td width="100px" align="left">Due Date</td>
+      <td width="100px" align="center">Class</td>
+      <td></td>
+      <td></td>
+      <td></td>
     </table>
   </div>
-  <hr style="margin-top: 0px" />
+  <hr class="window_hr" style="margin-top: 0px" />
   <div>
+
+    <!--TODO: for loop logic here for outputting users assignments -->
     <table id="assignment_wrapper">
       <tr>
-        <td width="40px;"align="center">
+        <td style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px"width="40px;"align="center">
           <label class="checkbox_button">
           <input type="checkbox"></input>
           <div class="checkmark"></div>
           </label>
         </td>
         <td align="left"><button class="status_button"></button></td>
-        <td align="left">assignment name</td>
-        <td align="center">due date</td>
-        <td align="center"><div>classchip</div></td>
+        <td align="left"><div class="assignment_text">assignmentname</div></td>
+        <td align="left"><div class="assignment_text">duedate</div></td>
+        <td align="left"><div class="class_chip">classchip</div></td>
+        <td width="5%"><button>edit</button></td>
+        <td width="5%"><button>copy</button></td>
+        <td style="padding-right: 10px" width="5%"><button>delete</button></td>
       </tr>
     </table>
+
   </div>
 </div>
 
