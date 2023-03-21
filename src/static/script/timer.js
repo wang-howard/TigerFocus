@@ -1,3 +1,4 @@
+
 ;(function () {
 
   // Opt into strict mode
@@ -9,7 +10,7 @@
   //
 
   // The timer duration
-  const duration = 10;
+  const duration = 1500;
 
   // The timer component
   let app;
@@ -84,7 +85,7 @@
     if (props.time < 1) {
       return `
         <p>
-          ⏰
+          Times up!
         </p>
         <p>
           <button id="reset" type="button">

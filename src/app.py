@@ -127,3 +127,30 @@ def timer():
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
+function template(props) {
+  // Get the paused state
+  const pausedState = props.paused ? "Start" : "Pause";
+
+  // If the timer is done, show a reset button
+  if (props.time < 1) {
+    return `
+      <div class="timer">
+        <p>Times up!</p>
+        <p>
+          <button id="reset" type="button">Reset</button>
+        </p>
+      </div>
+  }
+
+  // Otherwise, show the time remaining
+  return
+    <div class="timer">
+      <p class="time">${format(props.time)}</p>
+      <p>
+        <button id="${pausedState.toLowerCase()}" type="button">${pausedState}</button>
+        <button id="reset" type="button">Reset</button>
+      </p>
+    </div>
+
+}
+
