@@ -74,7 +74,7 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-.timerBtn {
+.button {
   width: 80px;
   height: 30px;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -85,7 +85,7 @@ a:hover {
   border-radius: 16.6673px;
   font-family: "Anek Bangla";
 }
-#timeDisplay {
+#body {
   font-size: 75px;
   color: #fef9ee;
   font-family: "Anek Bangla";
