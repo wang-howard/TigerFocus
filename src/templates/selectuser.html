@@ -1,26 +1,10 @@
 {% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block title %}Select Existing User{% endblock %}
 
 {% block body %}
 
-    <table>
-        <thead>
-            <tr>
-                <td>User ID</td>
-            </tr>
-        </thead>
-        <tbody>
-            <form action="/viewcourses" method="post" id="userid">
-                <tr>
-                    <td><select name="select_user" id="userid" form="userid">
-                            {% for id in userids %}
-                            <option value="{{ id[0] }}">{{ id[0] }}</option>
-                            {% endfor %}
-                    </select></td>
-                    <td><input type="submit"></td>
-                </tr>
-            </form>
-        </tbody>
-    </table>
+{{ wtf.quick_form(form) }}
+
 {% endblock %}
