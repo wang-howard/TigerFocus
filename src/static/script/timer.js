@@ -9,7 +9,7 @@
   //
 
   // The timer duration
-  const duration = 1500;
+  const duration = 10;
 
   // The timer component
   let app;
