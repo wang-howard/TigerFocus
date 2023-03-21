@@ -3,6 +3,16 @@ body%}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-container">
+      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <p>Some text. Some text. Some text.</p>
+      <p>Some text. Some text. Some text.</p>
+    </div>
+  </div>
+</div>
+
 <div id="welcome_wrapper">
 <table>
   <td width="88%"><div id="welcome">Welcome back, netid</div></td>
@@ -22,7 +32,7 @@ body%}
   <div id="assignments_header">
     <h2 id="current_assignments_title" style="margin-top: 40px; padding-left: 30px">Current Assignments</h2>
     <div style="margin-left: auto; margin-right: 30px">
-      <button class="smallbutton" style="margin-right: 15px">create new</button>
+      <button  onclick="document.getElementById('id01').style.display='block'" class="smallbutton" style="margin-right: 15px">create new</button>
       <button class="smallbutton">edit courses</button>
     </div>
   </div>
