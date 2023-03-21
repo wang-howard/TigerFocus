@@ -32,7 +32,7 @@ def index():
     try:
         with connect_db as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT * FROM user_info ORDER BY puid ASC")
+                cur.execute("SELECT * FROM user_info ORDER BY last_name ASC")
                 data = cur.fetchall()
         return render_template("index.html", data=data)
     except Exception as ex:
@@ -154,4 +154,4 @@ def timer():
     return render_template("timer.html")
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5555, debug=True)
