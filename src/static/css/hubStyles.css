@@ -215,6 +215,20 @@
   transform: rotate(45deg);
 }
 
+.action_button {
+  border: 0px;
+  width: 10px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 25px;
+  background: #00000000;
+  color: #4e4e4e;
+}
+
+.action_button:hover {
+  color: #7b7b7b;
+}
+
 body {
   background-color: #071014;
   background-image: -webkit-linear-gradient(160deg, #071014 0%, #0db8de 100%);
