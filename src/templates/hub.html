@@ -1,6 +1,8 @@
 {% extends "base.html" %} {% block title %} Hub UI TEST {% endblock %} {% block
 body%}
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <div id="welcome_wrapper">
 <table>
   <td width="88%"><div id="welcome">Welcome back, netid</div></td>
@@ -52,9 +54,9 @@ body%}
         <td align="left"><div class="assignment_text">assignmentname</div></td>
         <td align="left"><div class="assignment_text">duedate</div></td>
         <td align="left"><div class="class_chip">classchip</div></td>
-        <td width="5%"><button>edit</button></td>
-        <td width="5%"><button>copy</button></td>
-        <td style="padding-right: 10px" width="5%"><button>delete</button></td>
+        <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
+        <td width="5%"><button class="action_button"><i class="fa fa-trash"></i></button></td>
+        <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
       </tr>
     </table>
 
