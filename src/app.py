@@ -29,15 +29,11 @@ class SelectIDForm(FlaskForm):
 
 @app.route("/", methods=["GET"])
 def index():
-    try:
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                cur.execute("SELECT * FROM user_info ORDER BY last_name ASC")
-                data = cur.fetchall()
-        return render_template("index.html", data=data)
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex), 404
+    with connect_db as conn:
+        with conn.cursor() as cur:
+            cur.execute("SELECT * FROM user_info ORDER BY last_name ASC")
+            data = cur.fetchall()
+    return render_template("index.html", data=data)
 
 @app.route("/adduser")
 def add_user():
@@ -152,3 +148,6 @@ def hub():
 @app.route("/timer")
 def timer():
     return render_template("timer.html")
+
+if __name__ == "__main__":
+    app.run(port=5555, debug=True)
