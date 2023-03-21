@@ -68,6 +68,7 @@
   left: 10%;
   width: 80%;
 }
+
 #welcome {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 600;
@@ -79,6 +80,7 @@
   position: absolute;
   top: 35%;
   right: 10%;
+  top: 35%;
   left: 10%;
   width: 80%;
   height: 80%;
@@ -88,6 +90,14 @@
   z-index: 2;
 }
 
+#tabs_wrapper {
+  background: #fef9ee;
+  z-index: 8;
+  height: 38px;
+  width: 100%;
+  border-radius: 0px 40px 0px 0px;
+  border: 3px solid #fef9ee;
+}
 #assignments_tab {
   border: 0px;
   text-align: center;
@@ -96,14 +106,12 @@
   font-weight: 700;
   color: #fef9ee;
   position: absolute;
-  top: 30%;
-  right: 70%;
   left: 10%;
+  right: 70%;
   width: 200px;
   height: 39px;
   background: #919fc7;
   border-radius: 19.2px 19.2px 0px 0px;
-  z-index: 3;
   border-top: 3px solid #6c7896;
   border-left: 3px solid #6c7896;
   border-right: 3px solid #6c7896;
@@ -117,7 +125,6 @@
   font-weight: 700;
   color: #fef9ee;
   position: absolute;
-  top: 30%;
   right: 63%;
   left: 23%;
   width: 200px;

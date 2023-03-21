@@ -11,13 +11,15 @@ body%}
 </div>
 
 
-<button id="preloaded_tab">
-  pre-loaded courses
-</button>
-<button id="assignments_tab">
-  assignments
-</button>
 <div id="assignments_window">
+  <div id="tabs_wrapper">
+    <button id="preloaded_tab">
+      pre-loaded courses
+    </button>
+    <button id="assignments_tab">
+      assignments
+    </button>
+  </div>
   <div id="assignments_header">
     <h2 id="current_assignments_title" style="padding-left: 30px">Current Assignments</h2>
     <div style="margin-left: auto; margin-right: 30px">
@@ -62,6 +64,7 @@ body%}
 
   </div>
 </div>
+
 
 <script src="{{url_for('static', filename='script/hub.js')}}"></script>
 {% endblock %}
