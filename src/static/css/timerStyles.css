@@ -74,18 +74,16 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-
-
-.reset{
-    width: 80px;
-    height: 30px;
-    border: 3px solid rgba(0, 0, 0, 0.25);
-    background-color: #564B47;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
-    border-radius: 16.6673px;
-    font-family: 'Anek Bangla';
+.button {
+  width: 80px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
 }
 #body {
   font-size: 75px;
@@ -102,4 +100,3 @@ a:hover {
   border-radius: 18px;
   background-color: #564b47;
 }
-

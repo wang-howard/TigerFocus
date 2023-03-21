@@ -25,11 +25,26 @@ hr {
   box-shadow: 0px 2px 2px #000000;
 }
 
+#start {
+  text-decoration: none;
+  color: #fef9ee;
+}
+
+#start:visited {
+  text-decoration: none;
+  color: #fef9ee;
+}
+
+#start:hover {
+  color: #fef9ee;
+}
+
 .smallbutton {
   font-family: "Anek Bangla", sans-serif;
   font-size: 20px;
   font-weight: 800;
-  background-color: #4e4e4e;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
   color: #fef9ee;
   text-align: center;
   border-radius: 20px;
@@ -52,15 +67,18 @@ hr {
   font-size: 20px;
   font-weight: bold;
 }
-#welcome {
+
+#welcome_wrapper {
   position: absolute;
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 600;
-  font-size: 37.5px;
   top: 18%;
   right: 10%;
   left: 10%;
   width: 80%;
+}
+#welcome {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 37.5px;
   color: #4e4e4e;
 }
 
@@ -73,6 +91,7 @@ hr {
   height: 80%;
   background: #919fc7;
   border-radius: 0px 40px 40px 40px;
+  border: 3px solid #6c7896;
 }
 
 #assignments_tab {
@@ -87,9 +106,13 @@ hr {
   right: 70%;
   left: 10%;
   width: 200px;
-  height: 38px;
+  height: 39px;
   background: #919fc7;
   border-radius: 19.2px 19.2px 0px 0px;
+  z-index: 6;
+  border-top: 3px solid #6c7896;
+  border-left: 3px solid #6c7896;
+  border-right: 3px solid #6c7896;
 }
 
 #preloaded_tab {
@@ -115,6 +138,26 @@ hr {
   height: 70px;
   width: 95%;
   margin-left: 30px;
+}
+
+.class_chip {
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+  background-color: rgb(244, 144, 253);
+  width: 125px;
+  height: 40px;
+  border-radius: 30px;
+}
+.assignment_text {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
 }
 
 .status_button {
