@@ -84,7 +84,7 @@
     // If the timer is done, show a reset button
     if (props.time < 1) {
       return `
-        <p>
+        <p style : "font-size: 100px">
           Times up!
         </p>
         <p>
@@ -97,7 +97,7 @@
 
     // Otherwise, show the time remaining
     return `
-      <p>
+      <p style : "font-size: 100px">
         ${format(props.time)}
       </p>
       <p>
