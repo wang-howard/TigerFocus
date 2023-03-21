@@ -3,7 +3,7 @@
 {% block title %}Select Existing User{% endblock %}
 
 {% block body %}
-<form action="/viewcourses" method="post">
+
     <table>
         <thead>
             <tr>
@@ -11,14 +11,16 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><select name="select_user" id="userid">
-                    {% for id in userids %}
-                        <option value="{{ id }}">{{ id }}</option>
-                </select></td>
-                <td><input type="submit"></td>
-            </tr>
+            <form action="/viewcourses" method="post" id="userid">
+                <tr>
+                    <td><select name="select_user" id="userid" form="userid">
+                            {% for id in userids %}
+                            <option value="{{ id[0] }}">{{ id[0] }}</option>
+                            {% endfor %}
+                    </select></td>
+                    <td><input type="submit"></td>
+                </tr>
+            </form>
         </tbody>
     </table>
-</form>
 {% endblock %}
