@@ -47,6 +47,7 @@ class Course(db.Model):
     color = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assignments = db.relationship("Assignment", backref="course",
+                                  order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")
 
     def __repr__(self):
@@ -72,7 +73,6 @@ class SelectIDForm(FlaskForm):
 def index():
     try:
         users = User.query.all()
-        print(users)
         user_data = []
         if not users:
             users = []
@@ -117,7 +117,7 @@ def select_user():
         if form.validate_on_submit():
             session["user_id"] = form.user_id.data
             return redirect(url_for("view_courses"))
-        return render_template("selectuser.html", form=form)
+        return redirect(url_for("hub"))
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
@@ -194,6 +194,31 @@ def hub():
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
+@app.route("/addassignment", methods=["GET", "POST"])
+def add_assignment():
+    try:
+        course = request.form.get("course_code")
+        due = request.form.get("due_date")
+        title = request.form.get("title")
+        db_course = Course.query.filter_by(course_code=course).first()
+        course_id = db_course.id
+        assignment_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+            query = Assignment.query.filter_by(id=course_id).first()
+            if query == None:
+                break
+            else:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+        assignment = Assignment(id=assignment_id, title=title,
+                                due_date=due, status=False,
+                                course_id=course_id)
+        db.session.add(assignment)
+        db.session.commit()
+        return redirect(url_for("hub"))
+    except Exception as ex:
+        print(ex)
+        return render_template("error.html", message=ex)
+
 
 @app.route("/timer")
 def timer():

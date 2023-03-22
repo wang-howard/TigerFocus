@@ -12,13 +12,13 @@ body%}
 <!--MODAL: CREATE NEW -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
-    <form action="/viewcourses" method="post">
+    <form action="/addassignment" method="post">
       <div class="modal_window">
         <span class="close">&times;</span>
 
         <div>
           <h1>Pick Your Course</h1>
-          <select name="course" id="course_code">
+          <select name="course_code" id="course_code">
             {% for course in courses %}
             <option value="{{ course }}">{{ course }}</option>
             {% endfor %}
@@ -27,16 +27,15 @@ body%}
 
         <div>
           <h1>Due Date</h1>
-          <input type="datetime-local"/>
+          <input type="datetime-local" name="due_date" id="due_date"/>
         </div>
 
         <div>
           <h1>Assignment Title</h1>
-          <input type="text"/>
+          <input type="text" name="title" id="title"/>
         </div>
 
         <button type="submit">complete</button>
-
       </div>
     </form>
   </div>
@@ -118,7 +117,9 @@ body%}
           </div>
         </td>
         <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
-        <td width="5%"><button class="action_button"><i class="fa fa-trash"></i></button></td>
+        <td width="5%"><button class="action_button">
+          <i class="fa fa-trash"></i></button>
+        </td>
         <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
       </tr>
     </table>
