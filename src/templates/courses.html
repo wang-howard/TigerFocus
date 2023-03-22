@@ -9,12 +9,16 @@
   <thead>
     <tr>
         <th>Course Codes</th>
+        <th>Course Title</th>
+        <th>Course Color</th>
     </tr>
   </thead>
   <tbody>
-    {% for code in codes %}
+    {% for course in courses %}
     <tr>
-        <td>{{ code }}</td>
+        <td>{{ course.course_code }}</td>
+        <td>{{ course.course_name }}</td>
+        <td>{{ course.color }}</td>
     </tr>
     {% endfor %}
   </tbody>
