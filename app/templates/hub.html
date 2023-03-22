@@ -101,7 +101,7 @@ body%}
 
 
     <!--TODO: for loop logic here for outputting users assignments -->
-
+    {% for assignment in assignments %}
     <table id="assignment_wrapper">
       <tr>
         <td style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px"width="40px;"align="center">
@@ -111,14 +111,18 @@ body%}
           </label>
         </td>
         <td align="left"><button class="status_button"></button></td>
-        <td align="left"><div class="assignment_text">assignmentname</div></td>
-        <td align="left"><div class="assignment_text">duedate</div></td>
-        <td align="left"><div class="class_chip">classchip</div></td>
+        <td align="left"><div class="assignment_text">{{ assignment["title"] }}</div></td>
+        <td align="left"><div class="assignment_text">{{ assignment["due_date"] }}</div></td>
+        <td align="left">
+          <div class="class_chip" style="background-color: {{ assignment['color'] }}">{{ assignment["course_code"] }}
+          </div>
+        </td>
         <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
         <td width="5%"><button class="action_button"><i class="fa fa-trash"></i></button></td>
         <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
       </tr>
     </table>
+    {% endfor %}
 
   </div>
 </div>

@@ -23,16 +23,6 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 Bootstrap = Bootstrap(app)
 
-class Color(enum.Enum):
-    RED = "RED"
-    ORANGE = "ORANGE"
-    YELLOW = "YELLOW"
-    GREEN = "GREEN"
-    BLUE = "BLUE"
-    CYAN = "CYAN"
-    PINK = "PINK"
-    PURPLE = "PURPLE"
-
 class Role(enum.Enum):
     student = 0
     admin = 1
@@ -54,7 +44,7 @@ class Course(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     course_code = db.Column(db.String)
     course_name = db.Column(db.String)
-    color = db.Column(db.Enum(Color))
+    color = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assignments = db.relationship("Assignment", backref="course",
                                   lazy="dynamic")
@@ -186,10 +176,21 @@ def hub():
         user = User.query.filter_by(id=user_id).first()
         courses = user.courses
         course_codes = []
+        assignment_data = []
         for course in courses:
             course_codes.append(course.course_code)
+
+            color = course.color
+            code = course.course_code
+            for assignment in course.assignments:
+                assignment_data.append({"status": assignment.status,
+                                        "title": assignment.title,
+                                        "due_date": assignment.due_date,
+                                        "course_code":code,
+                                        "color": color})
         return render_template("hub.html", user_id=user_id,
-                               courses=course_codes)
+                               courses=course_codes,
+                               assignments=assignment_data)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
