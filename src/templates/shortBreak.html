@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block title %} Timer UI TEST{% endblock %} {% block body%}
+
+<link href="{{ url_for('static', filename='css/shortbreakStyles.css') }}" rel="stylesheet"> 
+
+
+<div id="screen">
+<button id = "pomodoro"  > pomodoro </button>
+<button id = "pomodoro"  > short break </button>
+<button id = "pomodoro"  > long break </button>
+
+
+   <div id="pomodoro-app">
+      <div id="timeContainer">
+        <div id="timer">
+          <div id="time" >
+            <span id="minutes">5</span>
+            <span id="colon">:</span>
+            <span id="seconds">00</span>
+          </div>
+        </div>
+    
+        <div id="buttons">
+          <button id="work">start</button>
+          <button id="stop">reset</button>
+        </div>
+      </div>
+    </div>
+    
+
+
+<p align="center" > <iframe width="700" height="400" src="https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"></p>
+</iframe>
+
+<div id = "taskrectangle"><h2 id = "h2font">Tasks ToDo</h2></div>
+</div>
+
+</div>
+
+
+<script src="{{url_for('static', filename='script/shortBreak.js')}}"></script>
+
+{% endblock %}
