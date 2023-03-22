@@ -116,8 +116,8 @@ def select_user():
         form.user_id.choices = user_ids
         if form.validate_on_submit():
             session["user_id"] = form.user_id.data
-            return redirect(url_for("view_courses"))
-        return redirect(url_for("hub"))
+            return redirect(url_for("hub"))
+        return render_template("selectuser.html", form=form)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
