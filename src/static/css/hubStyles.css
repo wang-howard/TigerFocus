@@ -44,6 +44,7 @@
   height: 50px;
   width: 145px;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 #assignments_header {
@@ -107,6 +108,7 @@
   height: auto;
   background: #6c7896;
   border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
 }
 
 #assignments_tab:hover {
@@ -121,11 +123,13 @@
   font-weight: 700;
   color: #fef9ee;
   position: absolute;
+  left: 250px;
   right: 60%;
   width: 200px;
   height: auto;
   background: #6c7896;
   border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
 }
 
 #preloaded_tab:hover {
@@ -183,6 +187,7 @@
   height: 35px;
   background: #d9d9d9;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .checkmark:hover {
