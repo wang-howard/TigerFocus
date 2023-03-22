@@ -134,3 +134,21 @@ a:hover {
   border-radius: 16.6673px;
   font-family: "Anek Bangla";
 }
+#taskrectangle
+{
+margin: auto;
+width: 421px;
+height: 180px;
+left: 295px;
+top: 559px;
+background: #FEF9EE;
+border-radius: 40px;
+}
+
+#h2font{
+ margin:auto;
+ font-family: "Anek Bangla";
+ color:#564b47; 
+ text-align: center;
+
+}
