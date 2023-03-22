@@ -5,12 +5,14 @@ RUN THESE COMMANDS ON STARTUP:
 """
 
 import os, enum, random
+from datetime import date, datetime
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
@@ -18,6 +20,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 Bootstrap = Bootstrap(app)
 
 class Color(enum.Enum):
@@ -65,6 +68,8 @@ class Assignment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     title = db.Column(db.String)
     due_date = db.Column(db.Time)
+    course = db.Column(db.String)
+    status = db.Column(db.Boolean)
     course_id = db.Column(db.Integer, db.ForeignKey("courses.id"))
 
     def __repr__(self):
@@ -122,7 +127,7 @@ def select_user():
         form.user_id.choices = user_ids
         if form.validate_on_submit():
             session["user_id"] = form.user_id.data
-            return redirect(url_for("hub"))
+            return redirect(url_for("view_courses"))
         return render_template("selectuser.html", form=form)
     except Exception as ex:
         print(ex)
@@ -162,7 +167,7 @@ def created_course():
             if query == None:
                 break
             else:
-                courseid = str(random.randint(0, 999999)).zfill(6)
+                course_id = str(random.randint(0, 999999)).zfill(6)
         new_course = Course(id=course_id, course_code=course_code,
                             course_name=course_name, color=course_color,
                             user_id=user_id)

@@ -12,29 +12,29 @@ body%}
 <!--MODAL: CREATE NEW -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
-   
-    <div class="modal_window">
-      <span class="close">&times;</span>
+    <form action="/addcourse" method="post">
+      <div class="modal_window">
+        <span class="close">&times;</span>
 
-      <div>
-        <h1>Pick Your Course</h1>
-        <input list="Current Courses"/>
+        <div>
+          <h1>Pick Your Course</h1>
+          <input list="Current Courses"/>
+        </div>
+
+        <div>
+          <h1>Due Date</h1>
+          <input type="date" />
+        </div>
+
+        <div>
+          <h1>Assignment Title</h1>
+          <input type="text"/>
+        </div>
+
+        <button type="submit">complete</button>
+
       </div>
-
-      <div>
-        <h1>Due Date</h1>
-        <input type="date" />
-      </div>
-
-      <div>
-        <h1>Assignment Title</h1>
-        <input type="text"/>
-      </div>
-
-      <button type="submit">complete</button>
-
-    </div>
-
+    </form>
   </div>
 </div>
 
