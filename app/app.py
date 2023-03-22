@@ -68,7 +68,6 @@ class Assignment(db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     title = db.Column(db.String)
     due_date = db.Column(db.Time)
-    course = db.Column(db.String)
     status = db.Column(db.Boolean)
     course_id = db.Column(db.Integer, db.ForeignKey("courses.id"))
 
