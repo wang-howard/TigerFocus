@@ -1,40 +1,92 @@
 """
-BEFORE RUNNING:
-    run the lines below in terminal
-    export DB_HOST=dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com
+RUN THESE COMMANDS ON STARTUP:
+    export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
     export SEC_KEY=tigerFocus098098
 """
 
-import psycopg2, os, uuid, random
-from flask import Flask, render_template, request, redirect, url_for, session
+import os, enum, random
+from flask import Flask, render_template, request, session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
-bootstrap = Bootstrap(app)
 
-connect_db = psycopg2.connect(
-    database="tigerfocus_4gqq",
-    user="admin",
-    password="LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6",
-    host=os.getenv("DB_HOST"),
-    port="5432")
+db = SQLAlchemy(app)
+Bootstrap = Bootstrap(app)
+
+class Color(enum.Enum):
+    RED = "RED"
+    ORANGE = "ORANGE"
+    YELLOW = "YELLOW"
+    GREEN = "GREEN"
+    BLUE = "BLUE"
+    CYAN = "CYAN"
+    PINK = "PINK"
+    PURPLE = "PURPLE"
+
+class Role(enum.Enum):
+    student = 0
+    admin = 1
+
+class User(db.Model):
+    __tablename__ = "users"
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    first_name = db.Column(db.String)
+    last_name = db.Column(db.String)
+    user_type = db.Column(db.Enum(Role))
+    courses = db.relationship('Course', backref="user", lazy="dynamic")
+
+    def __repr__(self):
+        return self.first_name + " " + self.last_name + " (" +\
+            str(self.id) + ")"
+
+class Course(db.Model):
+    __tablename__ = "courses"
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    course_code = db.Column(db.String)
+    course_name = db.Column(db.String)
+    color = db.Column(db.Enum(Color))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    assignments = db.relationship("Assignment", backref="course",
+                                  lazy="dynamic")
+
+    def __repr__(self):
+        return self.course_code + ": " + self.course_name + " (" +\
+            str(self.id) + ")"
+    
+class Assignment(db.Model):
+    __tablename__ = "assignments"
+    id = db.Column(db.Integer, primary_key=True, unique=True)
+    title = db.Column(db.String)
+    due_date = db.Column(db.Time)
+    course_id = db.Column(db.Integer, db.ForeignKey("courses.id"))
+
+    def __repr__(self):
+        return self.title + " (" + str(self.id) + ")"
 
 class SelectIDForm(FlaskForm):
-    userid = SelectField("Select PUID", coerce=int, validators=[DataRequired()])
+    user_id = SelectField("Select PUID", coerce=int, validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 @app.route("/", methods=["GET"])
 def index():
     try:
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                cur.execute("SELECT * FROM user_info ORDER BY last_name ASC")
-                data = cur.fetchall()
-        return render_template("index.html", data=data)
+        users = User.query.all()
+        print(users)
+        user_data = []
+        if not users:
+            users = []
+        else:
+            for user in users:
+                user_data.append([user.id, user.first_name,
+                                  user.last_name, user.user_type])
+        return render_template("index.html", data=user_data)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
@@ -45,16 +97,15 @@ def add_user():
 
 @app.route("/createduser", methods=["GET", "POST"])
 def created_user():
-    id = request.form.get("userid")
-    first = request.form.get("first")
-    last = request.form.get("last")
-
     try:
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                query = "INSERT INTO user_info(puid, first_name, last_name)"
-                query += "VALUES(%s, %s, %s)"
-                cur.execute(query, (id, first, last))
+        user_id = request.form.get("userid")
+        first = request.form.get("first")
+        last = request.form.get("last")
+
+        new_user = User(id=user_id, first_name=first, last_name=last,
+                        user_type=Role.student)
+        db.session.add(new_user)
+        db.session.commit()
         return redirect(url_for("index"))
     except Exception as ex:
         print(ex)
@@ -63,18 +114,14 @@ def created_user():
 @app.route("/selectuser", methods=["GET", "POST"])
 def select_user():
     try:
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                query = "SELECT puid FROM user_info ORDER BY puid ASC"
-                cur.execute(query)
-                ids = cur.fetchall()
-        users = []
-        for id in ids:
-            users.append(id[0])
+        users = User.query.all()
+        user_ids = []
+        for user in users:
+            user_ids.append(user.id)
         form = SelectIDForm()
-        form.userid.choices = users
+        form.user_id.choices = user_ids
         if form.validate_on_submit():
-            session["userid"] = form.userid.data
+            session["user_id"] = form.user_id.data
             return redirect(url_for("view_courses"))
         return render_template("selectuser.html", form=form)
     except Exception as ex:
@@ -83,24 +130,13 @@ def select_user():
 
 @app.route("/viewcourses", methods=["GET", "POST"])
 def view_courses():
-    userid = session["userid"]
+    user_id = session["user_id"]
     try:
-        course_codes = []
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                query = "SELECT courseids FROM user_info WHERE PUID=%s"
-                cur.execute(query, (userid,))
-                courseids = cur.fetchone()
-                if courseids and courseids[0]:
-                    for id in courseids[0]:
-                        query = "SELECT course_code FROM course WHERE courseid=%s"
-                        cur.execute(query, (id,))
-                        coursecode = cur.fetchone()
-                        course_codes.append(coursecode[0])
-                else:
-                    course_codes = []
-        return render_template("courses.html", userid=userid,
-                               codes=course_codes)
+        course_data = []
+        user = User.query.filter_by(id=user_id).first()
+        courses = user.courses
+        return render_template("courses.html", userid=user_id,
+                               courses=courses)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
@@ -115,31 +151,25 @@ def add_course():
 
 @app.route("/createdcourse", methods=["GET", "POST"])
 def created_course():
-    global course_counter
     try:
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")
         course_color = request.form.get("color")
-        userid = session["userid"]
-        courseid = str(random.randint(0, 999999)).zfill(6)
-        with connect_db as conn:
-            with conn.cursor() as cur:
-                while True:
-                    query = "SELECT courseid FROM course WHERE courseid=%s"
-                    cur.execute(query, (courseid,))
-                    result = cur.fetchone()
-                    if not result:
-                        break
-                    else:
-                        courseid = str(random.randint(0, 999999)).zfill(6)
-                query = "UPDATE user_info SET courseids = "
-                query += "array_append(courseids, %s) WHERE PUID=%s"
-                cur.execute(query, (courseid, userid))
-                query = "INSERT INTO course(courseid, course_code, "
-                query += "course_name, course_color) VALUES"
-                query += "(%s, %s, %s, %s)"
-                cur.execute(query, (courseid, course_code,
-                            course_name, course_color))
+        user_id = session["user_id"]
+        course_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+            query = Course.query.filter_by(id=course_id).first()
+            if query == None:
+                break
+            else:
+                courseid = str(random.randint(0, 999999)).zfill(6)
+        new_course = Course(id=course_id, course_code=course_code,
+                            course_name=course_name, color=course_color,
+                            user_id=user_id)
+        user = User.query.filter_by(id=user_id).first()
+        user.courses.append(new_course)
+        db.session.add(new_course)
+        db.session.commit()
         return redirect(url_for("view_courses"))
     except Exception as ex:
         print(ex)
@@ -161,6 +191,5 @@ def longBreak():
 def shortBreak():
     return render_template("shortBreak.html")
 
-
 if __name__ == "__main__":
-    app.run(port=5555, debug=True)
+    app.run(host="0.0.0.0", port="5554", debug=True)
