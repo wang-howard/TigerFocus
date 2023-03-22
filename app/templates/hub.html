@@ -12,18 +12,22 @@ body%}
 <!--MODAL: CREATE NEW -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
-    <form action="/addcourse" method="post">
+    <form action="/viewcourses" method="post">
       <div class="modal_window">
         <span class="close">&times;</span>
 
         <div>
           <h1>Pick Your Course</h1>
-          <input list="Current Courses"/>
+          <select name="course" id="course_code">
+            {% for course in courses %}
+            <option value="{{ course }}">{{ course }}</option>
+            {% endfor %}
+          </select>
         </div>
 
         <div>
           <h1>Due Date</h1>
-          <input type="date" />
+          <input type="datetime-local"/>
         </div>
 
         <div>
