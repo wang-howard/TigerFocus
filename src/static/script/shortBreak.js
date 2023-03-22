@@ -62,5 +62,5 @@ var short = {
     }
   };
   window.onload = function(){
-  pomodoro.init();
+  short.init();
   };
