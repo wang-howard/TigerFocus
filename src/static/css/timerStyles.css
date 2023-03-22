@@ -92,8 +92,8 @@ a:hover {
 }
 #timeContainer {
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 100px;
+  margin-top: 25px;
+  margin-bottom: 70px;
   text-align: center;
   width: 200px;
   height: 70px;
@@ -101,15 +101,12 @@ a:hover {
   background-color: #564b47;
 }
 
-#timer{ 
-  margin-top:40px;
+#time{
   color:#fef9ee; 
   font-size:50px; 
-}
-
-#time{
   margin-top:10px;
-  margin-bottom: 70px;
+  padding-top: 9px;
+  padding-bottom: 10px;
 }
 
 
