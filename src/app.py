@@ -153,5 +153,14 @@ def hub():
 def timer():
     return render_template("timer.html")
 
+@app.route("/longBreak")
+def longBreak():
+    return render_template("longBreak.html")
+
+@app.route("/shortBreak")
+def shortBreak():
+    return render_template("shortBreak.html")
+
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
