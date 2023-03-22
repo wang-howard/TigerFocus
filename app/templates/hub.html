@@ -58,7 +58,11 @@ body%}
 
 <div id="welcome_wrapper">
 <table>
-  <td width="88%"><div id="welcome">Welcome back, {{ user_id }}</div></td>
+  <td width="88%">
+    <div id="welcome">
+      Welcome back, {% if user_id %}{{ user_id }}{% else %}Stranger{% endif %}
+    </div>
+  </td>
   <td style="padding-right:80px" width="12%" align="left"><div><button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button></div></td>
 </table>
 </div>
