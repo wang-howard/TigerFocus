@@ -44,6 +44,7 @@
   height: 50px;
   width: 145px;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 #assignments_header {
@@ -68,6 +69,7 @@
   left: 10%;
   width: 80%;
 }
+
 #welcome {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 600;
@@ -77,15 +79,21 @@
 
 #assignments_window {
   position: absolute;
-  top: 35%;
+  top: 30%;
   right: 10%;
+  top: 40%;
   left: 10%;
   width: 80%;
   height: 80%;
   background: #919fc7;
-  border-radius: 0px 40px 40px 40px;
+  border-radius: 40px 40px 40px 40px;
   border: 3px solid #6c7896;
   z-index: 2;
+}
+
+#tabs {
+  margin-left: 30px;
+  margin-top: 10px;
 }
 
 #assignments_tab {
@@ -96,17 +104,15 @@
   font-weight: 700;
   color: #fef9ee;
   position: absolute;
-  top: 30%;
-  right: 70%;
-  left: 10%;
   width: 200px;
-  height: 39px;
-  background: #919fc7;
-  border-radius: 19.2px 19.2px 0px 0px;
-  z-index: 3;
-  border-top: 3px solid #6c7896;
-  border-left: 3px solid #6c7896;
-  border-right: 3px solid #6c7896;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#assignments_tab:hover {
+  background: #acbdeb;
 }
 
 #preloaded_tab {
@@ -117,17 +123,17 @@
   font-weight: 700;
   color: #fef9ee;
   position: absolute;
-  top: 30%;
-  right: 63%;
-  left: 23%;
+  left: 250px;
+  right: 60%;
   width: 200px;
-  height: 38px;
-  background: #abc787;
-  z-index: 1;
-  border-radius: 19.2px 19.2px 0px 0px;
-  border-top: 3px solid #809564;
-  border-left: 3px solid #809564;
-  border-right: 3px solid #809564;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#preloaded_tab:hover {
+  background: #acbdeb;
 }
 
 #assignment_wrapper {
@@ -181,6 +187,7 @@
   height: 35px;
   background: #d9d9d9;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .checkmark:hover {
