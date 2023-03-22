@@ -93,10 +93,47 @@ a:hover {
 #timeContainer {
   margin: auto;
   margin-top: 10px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
   text-align: center;
-  width: 320px;
-  height: 120px;
+  width: 200px;
+  height: 70px;
   border-radius: 18px;
   background-color: #564b47;
+}
+
+#timer{ 
+  margin-top:40px;
+  color:#fef9ee; 
+  font-size:50px; 
+}
+
+#time{
+  margin-top:10px;
+  margin-bottom: 70px;
+}
+
+
+
+#buttons button { 
+  width: 80px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
+}
+
+#buttons button#stop{
+  width: 80px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
 }
