@@ -2,14 +2,39 @@
 body%}
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/createNew.css') }}"
+    />
 
-<div id="id01" class="w3-modal">
-  <div class="w3-modal-content">
-    <div class="w3-container">
-      <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-      <p>Some text. Some text. Some text.</p>
-      <p>Some text. Some text. Some text.</p>
+
+<!--MODAL: CREATE NEW -->
+<div id="create_new_modal" class="modal">
+  <div class="modal_content">
+   
+    <div class="modal_window">
+      <span class="close">&times;</span>
+
+      <div>
+        <h1>Pick Your Course</h1>
+        <input list="Current Courses"/>
+      </div>
+
+      <div>
+        <h1>Due Date</h1>
+        <input type="date" />
+      </div>
+
+      <div>
+        <h1>Assignment Title</h1>
+        <input type="text"/>
+      </div>
+
+      <button type="submit">complete</button>
+
     </div>
+
   </div>
 </div>
 
@@ -32,7 +57,7 @@ body%}
   <div id="assignments_header">
     <h2 id="current_assignments_title" style="margin-top: 40px; padding-left: 30px">Current Assignments</h2>
     <div style="margin-left: auto; margin-right: 30px">
-      <button  onclick="document.getElementById('id01').style.display='block'" class="smallbutton" style="margin-right: 15px">create new</button>
+      <button id="create_new_button" class="smallbutton" style="margin-right: 15px">create new</button>
       <button class="smallbutton">edit courses</button>
     </div>
   </div>
