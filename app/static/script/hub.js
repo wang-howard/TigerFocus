@@ -14,10 +14,6 @@ create_btn.onclick = function () {
   create_modal.style.display = "block";
 };
 
-course_btn.onclick = function () {
-  create_modal.style.display = "block";
-};
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   create_modal.style.display = "none";
