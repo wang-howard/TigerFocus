@@ -174,6 +174,7 @@ def hub():
     user_id = session["user_id"]
     try:
         user = User.query.filter_by(id=user_id).first()
+        first = user.first_name
         courses = user.courses
         course_codes = []
         assignment_data = []
@@ -189,7 +190,7 @@ def hub():
                                         "due_date": assignment.due_date,
                                         "course_code":code,
                                         "color": color})
-        return render_template("hub.html", user_id=user_id,
+        return render_template("hub.html", first_name=first,
                                courses=course_codes,
                                assignments=assignment_data)
     except Exception as ex:

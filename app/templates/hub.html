@@ -1,6 +1,8 @@
-{% extends "base.html" %} {% block title %} Hub UI TEST {% endblock %} {% block
-body%}
+{% extends "base.html" %}
 
+{% block title %} Hub UI TEST {% endblock %}
+
+{% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
       rel="stylesheet"
@@ -90,7 +92,7 @@ body%}
 <table>
   <td width="88%">
     <div id="welcome">
-      Welcome back, {% if user_id %}{{ user_id }}{% else %}Stranger{% endif %}
+      Welcome back, {% if first_name %}{{ first_name }}{% else %}Stranger{% endif %}
     </div>
   </td>
   <td style="padding-right:80px" width="12%" align="left"><div><button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button></div></td>
