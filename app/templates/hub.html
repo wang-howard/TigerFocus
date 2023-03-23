@@ -20,7 +20,7 @@ body%}
           <h1>Pick Your Course</h1>
           <select name="course_code" id="course_code">
             {% for course in courses %}
-            <option value="{{ course }}">{{ course['course_code'] }}</option>
+            <option value="{{ course['course_code'] }}">{{ course['course_code'] }}</option>
             {% endfor %}
           </select>
         </div>

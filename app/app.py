@@ -180,7 +180,7 @@ def hub():
         for course in courses:
             color = course.color
             code = course.course_code
-            course_codes.append({"course_code":code,
+            course_codes.append({"course_code": code,
                                  "color": color })
             
             for assignment in course.assignments:
@@ -195,6 +195,7 @@ def hub():
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
+    
 @app.route("/addassignment", methods=["GET", "POST"])
 def add_assignment():
     try:
