@@ -155,3 +155,10 @@
   #videoframe{
     border-radius: 18px;
   }
+  
+  #beforeClick {
+    text-decoration: none;
+  }
+  #beforeClick:after {
+    text-decoration: none;
+  }

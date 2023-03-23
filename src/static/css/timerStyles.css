@@ -134,6 +134,7 @@ a:hover {
   border-radius: 16.6673px;
   font-family: "Anek Bangla";
 }
+
 #taskrectangle
 {
 margin: auto;
@@ -154,4 +155,10 @@ border-radius: 40px;
 }
 #videoframe{
   border-radius: 18px;
+}
+#beforeClick {
+  text-decoration: none;
+}
+#beforeClick {
+  text-decoration: none;
 }
