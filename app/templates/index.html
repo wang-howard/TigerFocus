@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block title %}Database Users{% endblock %} {% block
+body %}
+<h3>USERS</h3>
+<table>
+  <thead>
+    <tr>
+      <th align="left">User ID</th>
+      <th align="left">First Name</th>
+      <th align="left">Last Name</th>
+      <th align="left">User Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in data %}
+    <tr>
+      {% for obj in row %}
+      <td>{{ obj }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<hr />
+<a href="/adduser">New User</a> <a href="/selectuser">Returning User</a>
+<br />
+<a href="/timer">timer ui test</a>
+{% endblock %}

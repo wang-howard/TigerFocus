@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Assignments{% endblock %}
+
+{% block body %}
+<h1>Assignments</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Assignment Title</th>
+            <th>Due Date</th>
+            <th>Course</th>
+            <th>Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assignment in assignments %}
+        <tr>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock%}

@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+#current_assignments_title {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: #fef9ee;
+  margin-bottom: 0px;
+}
+
+.window_hr {
+  color: #fef9ee;
+  width: 95%;
+}
+
+.smallbutton:hover {
+  background: #83736d;
+  box-shadow: 0px 2px 5px #000000;
+}
+
+#start {
+  text-decoration: none;
+  color: #fef9ee;
+}
+
+#start:visited {
+  text-decoration: none;
+  color: #fef9ee;
+}
+
+#start:hover {
+  color: #fef9ee;
+}
+
+.smallbutton {
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: #fef9ee;
+  text-align: center;
+  border-radius: 20px;
+  height: 50px;
+  width: 145px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+#assignments_header {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
+
+#table_header {
+  color: #fef9ee;
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#welcome_wrapper {
+  position: absolute;
+  top: 18%;
+  right: 10%;
+  left: 10%;
+  width: 80%;
+}
+
+#welcome {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 37.5px;
+  color: #4e4e4e;
+}
+
+#assignments_window {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  top: 40%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #919fc7;
+  border-radius: 40px 40px 40px 40px;
+  border: 3px solid #6c7896;
+  overflow-y: scroll;
+}
+
+#tabs {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+#assignments_tab {
+  border: 0px;
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fef9ee;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#assignments_tab:hover {
+  background: #acbdeb;
+}
+
+#preloaded_tab {
+  border: 0px;
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fef9ee;
+  position: absolute;
+  left: 250px;
+  right: 60%;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#preloaded_tab:hover {
+  background: #acbdeb;
+}
+
+#assignment_wrapper {
+  background: #fef9ee;
+  border-radius: 30px;
+  height: 70px;
+  width: 95%;
+  margin-left: 30px;
+}
+
+.class_chip {
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 125px;
+  height: 40px;
+  border-radius: 30px;
+  text-transform: capitalize;
+}
+.assignment_text {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+}
+
+.status_button {
+  border: 0px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100px;
+  background: #807f7f;
+}
+
+.checkbox_button input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0px;
+  width: 0px;
+}
+
+.checkmark {
+  position: absolute;
+  border: 0px;
+  width: 35px;
+  height: 35px;
+  background: #d9d9d9;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.checkmark:hover {
+  background: #aaa7a7;
+}
+
+.checkbox_button input:checked ~ .checkmark {
+  background: #d9d9d9;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox_button input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox_button .checkmark:after {
+  left: 13px;
+  top: 10px;
+  width: 5px;
+  height: 10px;
+  border: solid #4e4e4e;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.action_button {
+  border: 0px;
+  width: 10px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 25px;
+  background: #00000000;
+  color: #4e4e4e;
+}
+
+.action_button:hover {
+  color: #7b7b7b;
+}
+
+body {
+  background-color: #071014;
+  background-image: -webkit-linear-gradient(160deg, #071014 0%, #0db8de 100%);
+  background-image: -moz-linear-gradient(160deg, #071014 0%, #0db8de 100%);
+  background-image: -o-linear-gradient(160deg, #071014 0%, #0db8de 100%);
+  background-image: linear-gradient(160deg, #071014 0%, #0db8de 100%);
+  font-family: "Arial", sans-serif;
+  height: 100vh;
+}

@@ -1,0 +1,160 @@
+{% extends "base.html" %} {% block title %} Hub UI TEST {% endblock %} {% block
+body%}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/createNew.css') }}"
+    />
+
+
+<!--MODAL: CREATE NEW -->
+<div id="create_new_modal" class="modal">
+  <div class="modal_content">
+    <form action="/addassignment" method="post">
+      <div class="modal_window">
+        <span class="close">&times;</span>
+
+        <div>
+          <h1>Pick Your Course</h1>
+          <select name="course_code" id="course_code">
+            {% for course in courses %}
+            <option value="{{ course['course_code'] }}">{{ course['course_code'] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div>
+          <h1>Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date"/>
+        </div>
+
+        <div>
+          <h1>Assignment Title</h1>
+          <input type="text" name="title" id="title"/>
+        </div>
+
+        <button type="submit">complete</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--MODAL: ADD COURSE -->
+<div id="add_course_modal" class="modal">
+  <div class="modal_content">
+    <form action="/viewcourses" method="post">
+      <div class="modal_window">
+        <span class="course_close">&times;</span>
+        <h1>Current Courses</h1>
+        <div class="courselist_window">
+        
+        <!--COURSE CHIP-->
+        <div>
+
+          {% for course in courses %}
+
+          <table>
+            <tr>
+              <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
+                <label class="checkbox_button">
+                <input type="checkbox"></input>
+                <div class="checkmark"></div>
+                </label>
+              </td>
+              <td>
+                <div class="class_chip" style="background-color: {{course['color']}}">{{ course['course_code'] }}
+                </div>
+              </td>
+              <td width="20%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
+            </tr>
+          </table>
+
+          {%endfor%}
+        </div>
+        </div>
+
+        <button style="position:absolute; top:350px; left:125px;"disabled >export selected to preloaded courses</button>
+        
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="welcome_wrapper">
+<table>
+  <td width="88%">
+    <div id="welcome">
+      Welcome back, {% if user_id %}{{ user_id }}{% else %}Stranger{% endif %}
+    </div>
+  </td>
+  <td style="padding-right:80px" width="12%" align="left"><div><button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button></div></td>
+</table>
+</div>
+  
+<div id="assignments_window" style="top: 35%">
+
+  <div id="tabs">
+    <button id="preloaded_tab">
+      pre-loaded courses
+    </button>
+    <button id="assignments_tab"><a id="start" href="/hub">assignments</a></button>
+  </div>
+
+  <div id="assignments_header">
+    <h2 id="current_assignments_title" style="margin-top: 40px; padding-left: 30px">Current Assignments</h2>
+    <div style="margin-left: auto; margin-right: 30px">
+      <button id="create_new_button" class="smallbutton" style="margin-right: 15px">create new</button>
+      <button id="add_course_button" class="smallbutton">edit courses</button>
+    </div>
+  </div>
+  <hr class="window_hr" style="margin-top: 0px" />
+  <div>
+    <table style="margin-left: 30px" id="table_header">
+      <td></td>
+      <td></td>
+      <td width=600px" align="center">Assignment</td>
+      <td width="100px" align="left">Due Date</td>
+      <td width="100px" align="center">Class</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </table>
+  </div>
+  <hr class="window_hr" style="margin-top: px" />
+  <div>
+
+    <!--TODO: for loop logic here for outputting users assignments -->
+    {% for assignment in assignments %}
+    <table id="assignment_wrapper" style="margin-bottom:5px">
+      <tr>
+        <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
+          <label class="checkbox_button">
+          <input type="checkbox"></input>
+          <div class="checkmark"></div>
+          </label>
+        </td>
+        <td width="5%" align="left"><button class="status_button"></button></td>
+        <td width="40%" align="left"><div class="assignment_text">{{ assignment["title"] }}</div></td>
+        <td width="20%" align="left"><div class="assignment_text">{{ assignment["due_date"] }}</div></td>
+        <td width="15%" align="left">
+          <div class="class_chip" style="background-color: {{ assignment['color'] }}">{{ assignment["course_code"] }}
+          </div>
+        </td>
+        <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
+        <td width="5%"><button class="action_button">
+          <i class="fa fa-trash"></i></button>
+        </td>
+        <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
+      </tr>
+    </table>
+
+    {% endfor %}
+
+  </div>
+</div>
+
+<script src="{{url_for('static', filename='script/hub.js')}}"></script>
+{% endblock %}
