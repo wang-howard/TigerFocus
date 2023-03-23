@@ -178,10 +178,11 @@ def hub():
         course_codes = []
         assignment_data = []
         for course in courses:
-            course_codes.append(course.course_code)
-
             color = course.color
             code = course.course_code
+            course_codes.append({"course_code":code,
+                                 "color": color })
+            
             for assignment in course.assignments:
                 assignment_data.append({"status": assignment.status,
                                         "title": assignment.title,
