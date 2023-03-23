@@ -45,13 +45,14 @@ body%}
 <!--MODAL: ADD COURSE -->
 <div id="add_course_modal" class="modal">
   <div class="modal_content">
-    <form action="/viewcourses" method="post">
+    
       <div class="modal_window">
         <span class="course_close">&times;</span>
         <h1>Current Courses</h1>
         <div class="courselist_window">
         
         <!--COURSE CHIP-->
+        <form action="/viewcourses" method="post">
         <div>
 
           {% for course in courses %}
@@ -74,12 +75,13 @@ body%}
 
           {%endfor%}
         </div>
+      </form>
         </div>
-
-        <button style="position:absolute; top:350px; left:125px;"disabled >export selected to preloaded courses</button>
-        
       </div>
-    </form>
+      <form action="/addcourse" method="post">
+     <button style="position:absolute; top:500px; left:500px;" >add new course</button>
+      </form>
+
   </div>
 </div>
 
