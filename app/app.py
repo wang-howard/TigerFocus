@@ -5,7 +5,6 @@ RUN THESE COMMANDS ON STARTUP:
 """
 
 import os, enum, random
-from datetime import date, datetime
 from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
@@ -25,7 +24,9 @@ Bootstrap = Bootstrap(app)
 
 class Role(enum.Enum):
     student = 0
-    admin = 1
+    faculty = 1
+    admin = 2
+
 
 class User(db.Model):
     __tablename__ = "users"
