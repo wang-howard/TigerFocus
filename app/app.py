@@ -5,7 +5,8 @@ RUN THESE COMMANDS ON STARTUP:
 """
 
 import os, enum, random
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, request, session
+from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField
@@ -24,7 +25,7 @@ Bootstrap = Bootstrap(app)
 
 class Role(enum.Enum):
     student = 0
-    faculty = 1
+    instructor = 1
     admin = 2
 
 
@@ -67,7 +68,8 @@ class Assignment(db.Model):
         return self.title + " (" + str(self.id) + ")"
 
 class SelectIDForm(FlaskForm):
-    user_id = SelectField("Select PUID", coerce=int, validators=[DataRequired()])
+    user_id = SelectField("Select PUID", coerce=int,
+                          validators=[DataRequired()])
     submit = SubmitField("Submit")
 
 @app.route("/", methods=["GET"])
@@ -176,21 +178,29 @@ def hub():
     try:
         user = User.query.filter_by(id=user_id).first()
         first = user.first_name
-        courses = user.courses
+        courses = list(user.courses)
+        
+        # create list of dict of course codes and their colors
         course_codes = []
-        assignment_data = []
+        course_ids = []
         for course in courses:
             color = course.color
             code = course.course_code
             course_codes.append({"course_code": code,
                                  "color": color })
+            course_ids.append(course.id)
             
-            for assignment in course.assignments:
-                assignment_data.append({"status": assignment.status,
-                                        "title": assignment.title,
-                                        "due_date": assignment.due_date,
-                                        "course_code":code,
-                                        "color": color})
+        assignments = Assignment.query.filter(Assignment.course_id.in_(course_ids)).order_by(Assignment.due_date).all()
+        # create list of dict of course information
+        assignment_data = []
+        for a in assignments:
+            course = Course.query.filter_by(id=a.course_id).first()
+            assignment_data.append({"status": a.status,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code":course.course_code,
+                                    "color": course.color})
+        print(assignment_data)
         return render_template("hub.html", first_name=first,
                                courses=course_codes,
                                assignments=assignment_data)
