@@ -31,7 +31,7 @@ class Role(enum.Enum):
 
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.String, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     user_type = db.Column(db.Enum(Role))
@@ -39,7 +39,7 @@ class User(db.Model):
 
     def __repr__(self):
         return self.first_name + " " + self.last_name + " (" +\
-            str(self.id) + ")"
+            self.id + ")"
 
 class Course(db.Model):
     __tablename__ = "courses"
@@ -47,7 +47,7 @@ class Course(db.Model):
     course_code = db.Column(db.String)
     course_name = db.Column(db.String)
     color = db.Column(db.String)
-    user_id = db.Column(db.String, db.ForeignKey("users.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     assignments = db.relationship("Assignment", backref="course",
                                   order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")
