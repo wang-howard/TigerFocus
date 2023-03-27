@@ -189,8 +189,10 @@ def hub():
             course_codes.append({"course_code": code,
                                  "color": color })
             course_ids.append(course.id)
-            
-        assignments = Assignment.query.filter(Assignment.course_id.in_(course_ids)).order_by(Assignment.due_date).all()
+        print(list())
+        assignments = Assignment.query.filter(Assignment.course_id\
+                        .in_(course_ids))\
+                        .order_by(Assignment.due_date).all()
         # create list of dict of course information
         assignment_data = []
         for a in assignments:
@@ -200,7 +202,6 @@ def hub():
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
-        print(assignment_data)
         return render_template("hub.html", first_name=first,
                                courses=course_codes,
                                assignments=assignment_data)
@@ -214,7 +215,10 @@ def add_assignment():
         course = request.form.get("course_code")
         due = request.form.get("due_date")
         title = request.form.get("title")
-        db_course = Course.query.filter_by(course_code=course).first()
+        user_id = session["user_id"]
+        db_course = Course.query\
+            .filter(Course.course_code==course)\
+            .filter(Course.user_id==user_id).first()
         course_id = db_course.id
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
