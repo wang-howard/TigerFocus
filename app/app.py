@@ -252,4 +252,4 @@ def shortBreak():
     return render_template("shortBreak.html")
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5554", debug=True)
+    app.run(host="0.0.0.0", port="5553", debug=True)

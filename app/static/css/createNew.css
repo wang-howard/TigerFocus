@@ -40,6 +40,15 @@
   font-weight: bold;
 }
 
+.coursenew_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .submitbutton {
   font-family: "Anek Bangla", sans-serif;
   font-size: 20px;
@@ -96,6 +105,13 @@
 
 .course_close:hover,
 .course_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.coursenew_close:hover,
+.coursenew_close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
