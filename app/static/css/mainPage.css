@@ -58,7 +58,23 @@ text-align: center;
 color: #4E4E4E;
 text-align: center;
 }
+#feature{
+width: 159px;
+height: 84px;
+left: 624px;
+top: 862px;
 
+font-family: 'Anek Bangla';
+font-style: normal;
+font-weight: 300;
+font-size: 45px;
+line-height: 84px;
+/* identical to box height */
+
+
+color: #4E4E4E;
+
+}
 .bold {
     font-weight: bold;
 }
