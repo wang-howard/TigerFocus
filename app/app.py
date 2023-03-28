@@ -251,5 +251,9 @@ def longBreak():
 def shortBreak():
     return render_template("shortBreak.html")
 
+@app.route("/mainPage")
+def mainPage():
+    return render_template("mainPage.html")
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5553", debug=True)

@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+#TigerFocusbanner {
+  height: 70px;
+
+  font-family: "Anek Bangla", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 37.5px;
+  line-height: 70px;
+  color: #f9aa5b;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #4e4e4e;
+}
+
+a:hover {
+  color: #747272;
+}
+
+.headerbutton {
+  border: 0px;
+  background-color: #33333300;
+  height: 26px;
+  font-family: "Anek Bangla", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22.5px;
+  line-height: 26px;
+  color: #4e4e4e;
+}
+
+#border {
+  position: absolute;
+  width: 1257px;
+  height: 2px;
+  left: 87px;
+  top: 103px;
+
+  background: #4e4e4e;
+  border-radius: 50px;
+}
