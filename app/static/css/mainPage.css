@@ -46,3 +46,19 @@ a:hover {
   background: #4e4e4e;
   border-radius: 50px;
 }
+#words{
+margin: auto;
+font-family: 'Anek Bangla';
+font-style: normal;
+font-weight: 600;
+font-size: 45px;
+line-height: 84px;
+text-align: center;
+
+color: #4E4E4E;
+text-align: center;
+}
+
+.bold {
+    font-weight: bold;
+}
