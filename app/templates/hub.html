@@ -18,8 +18,8 @@
       <div class="modal_window">
         <span class="close">&times;</span>
 
-        <div>
-          <h1>Pick Your Course</h1>
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Pick Your Course</h1>
           <select name="course_code" id="course_code">
             {% for course in courses %}
             <option value="{{ course['course_code'] }}">{{ course['course_code'] }}</option>
@@ -27,17 +27,19 @@
           </select>
         </div>
 
-        <div>
-          <h1>Due Date</h1>
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date"/>
         </div>
 
-        <div>
-          <h1>Assignment Title</h1>
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Assignment Title</h1>
           <input type="text" name="title" id="title"/>
         </div>
 
-        <button type="submit">complete</button>
+        <span style="float:right"><button class="submitbutton" type="submit">submit</button> </span>
+
+  
       </div>
     </form>
   </div>
@@ -50,9 +52,8 @@
     
       <div class="modal_window">
         <span class="course_close">&times;</span>
-        <h1>Current Courses</h1>
+        <div class="modal_input_wrapper"> <h1 id="input_title">Current Courses</h1></div>
         <div class="courselist_window">
-        
         <!--COURSE CHIP-->
         <form action="/viewcourses" method="post">
         <div>
@@ -79,6 +80,8 @@
         </div>
       </form>
         </div>
+
+        <button disabled style="position:absolute; top:350px; left:100px;" >export selected to preloaded</button>
         <form action="/addcourse" method="post">
           <button style="position:absolute; top:350px; left:300px;" >add new course</button>
            </form>
@@ -133,6 +136,7 @@
 
     <!--TODO: for loop logic here for outputting users assignments -->
     {% for assignment in assignments %}
+    <div id="assignment_element_{{assignment['id']}}">
     <table id="assignment_wrapper" style="margin-bottom:5px">
       <tr>
         <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
@@ -149,12 +153,13 @@
           </div>
         </td>
         <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
-        <td width="5%"><button class="action_button">
+        <td width="5%"><button  onclick = "deleteAssignment({{assignment['id']}})" class="action_button">
           <i class="fa fa-trash"></i></button>
         </td>
         <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
       </tr>
     </table>
+    </div>
 
     {% endfor %}
 

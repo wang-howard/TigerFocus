@@ -198,6 +198,7 @@ def hub():
         for a in assignments:
             course = Course.query.filter_by(id=a.course_id).first()
             assignment_data.append({"status": a.status,
+                                    "id": a.id,
                                     "title": a.title,
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,

@@ -77,6 +77,14 @@
   color: #4e4e4e;
 }
 
+#input_title {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: #4e4e4e;
+  text-align: center;
+}
+
 #assignments_window {
   position: absolute;
   top: 30%;
@@ -145,6 +153,7 @@
 
 .class_chip {
   text-align: center;
+  overflow-x: hidden;
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
   font-size: 20px;

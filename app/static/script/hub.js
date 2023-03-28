@@ -27,3 +27,8 @@ span.onclick = function () {
 course_span.onclick = function () {
   course_modal.style.display = "none";
 };
+
+function deleteAssignment(id) {
+  var assignment = document.getElementById("assignment_element_" + id);
+  assignment.remove();
+}
