@@ -178,15 +178,7 @@ def view_courses():
         print(ex)
         return render_template("error.html", message=ex)
 
-@app.route("/addcourse", methods=["GET", "POST"])
-def add_course():
-    try:
-        return render_template("addcourse.html")
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
-@app.route("/createdcourse", methods=["GET", "POST"])
+@app.route("/createcourse", methods=["GET", "POST"])
 def created_course():
     try:
         course_code = request.form.get("course_code")
@@ -244,13 +236,9 @@ def add_assignment():
 @app.route("/deleteassignment", methods=["GET", "POST"])
 def delete_assignment():
     try:
-        assignment = request.form.get("assignment_id")
-        netid = session["netid"]
-        db_assignment = Course.query\
-            .filter_by(assignment_id=assignment)\
-            .filter_by(user_netid=netid).first()
-        
-        db.session.delete(db_assignment)
+        id = request.form.get("assignment_id")
+        print(id)
+        Assignment.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for("hub"))
     except Exception as ex:

@@ -118,7 +118,7 @@ def new_user():
 
     user = User(netid=netid, first_name=first, last_name=last,
                 user_type=user_type)
-    db.session.add(new_user)
+    db.session.add(user)
     db.session.commit()
     return redirect(url_for("hub"))
 
@@ -160,67 +160,26 @@ def hub():
         print(ex)
         return render_template("error.html", message=ex)
 
-@app.route("/createduser", methods=["GET", "POST"])
-def created_user():
-    try:
-        user_id = request.form.get("userid")
-        first = request.form.get("first")
-        last = request.form.get("last")
-
-        new_user = User(netid=user_id, first_name=first, last_name=last,
-                        user_type=Role.student)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(url_for("index"))
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
-@app.route("/selectuser", methods=["GET", "POST"])
-def select_user():
-    try:
-        users = User.query.all()
-        user_ids = []
-        for user in users:
-            user_ids.append(user.id)
-        form = SelectIDForm()
-        form.user_id.choices = user_ids
-        if form.validate_on_submit():
-            session["user_id"] = form.user_id.data
-            return redirect(url_for("hub"))
-        return render_template("selectuser.html", form=form)
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
 @app.route("/viewcourses", methods=["GET", "POST"])
 def view_courses():
-    user_id = session["user_id"]
+    netid = session["netid"]
     try:
         course_data = []
-        user = User.query.filter_by(id=user_id).first()
+        user = User.query.filter_by(id=netid).first()
         courses = user.courses
-        return render_template("courses.html", userid=user_id,
+        return render_template("courses.html", userid=netid,
                                courses=courses)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
 
-@app.route("/addcourse", methods=["GET", "POST"])
-def add_course():
-    try:
-        return render_template("addcourse.html")
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
-@app.route("/createdcourse", methods=["GET", "POST"])
+@app.route("/createcourse", methods=["GET", "POST"])
 def created_course():
     try:
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")
         course_color = request.form.get("color")
-        user_id = session["user_id"]
+        netid = session["netid"]
         course_id = str(random.randint(0, 999999)).zfill(6)
         while True:
             query = Course.query.filter_by(id=course_id).first()
@@ -230,8 +189,8 @@ def created_course():
                 course_id = str(random.randint(0, 999999)).zfill(6)
         new_course = Course(id=course_id, course_code=course_code,
                             course_name=course_name, color=course_color,
-                            user_id=user_id)
-        user = User.query.filter_by(id=user_id).first()
+                            user_netid=netid)
+        user = User.query.filter_by(netid=netid).first()
         user.courses.append(new_course)
         db.session.add(new_course)
         db.session.commit()
@@ -247,14 +206,14 @@ def add_assignment():
         course = request.form.get("course_code")
         due = request.form.get("due_date")
         title = request.form.get("title")
-        user_id = session["user_id"]
+        netid = session["netid"]
         db_course = Course.query\
             .filter(Course.course_code==course)\
-            .filter(Course.user_id==user_id).first()
+            .filter(Course.user_netid==netid).first()
         course_id = db_course.id
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
-            query = Assignment.query.filter_by(id=course_id).first()
+            query = Assignment.query.filter_by(id=assignment_id).first()
             if query == None:
                 break
             else:
@@ -272,13 +231,9 @@ def add_assignment():
 @app.route("/deleteassignment", methods=["GET", "POST"])
 def delete_assignment():
     try:
-        assignment = request.form.get("assignment_id")
-        user_id = session["user_id"]
-        db_assignment = Course.query\
-            .filter(Course.assignment_id==assignment)\
-            .filter(Course.user_id==user_id).first()
-        
-        db.session.delete(db_assignment)
+        id = request.form.get("assignment_id")
+        print(id)
+        Assignment.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for("hub"))
     except Exception as ex:

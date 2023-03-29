@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} Hub UI TEST {% endblock %}
+{% block title %} TigerFocus Hub {% endblock %}
 
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -206,9 +206,11 @@
         <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
         
         <form action="/deleteassignment" method="post">
-        <td width="5%"><button id="assignment_id" value="{{assignment['id']}}" onclick = "deleteAssignment({{assignment['id']}})" class="action_button">
-          <i class="fa fa-trash"></i></button>
-        </td>
+          <td width="5%">
+            <input type="hidden" name="assignment_id" value="{{assignment['id']}}" >
+            <button onclick="window.location.href='/deleteassignment';" class="action_button">
+            <i class="fa fa-trash"></i></button>
+          </td>
         </form>
         
         <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
