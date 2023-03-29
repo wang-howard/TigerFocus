@@ -4,7 +4,7 @@ RUN THESE COMMANDS ON STARTUP:
     export SEC_KEY=tigerFocus098098
 """
 
-import os, enum, random
+import os, enum, random, urllib, re
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -22,12 +22,6 @@ app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 Bootstrap = Bootstrap(app)
-
-class Role(enum.Enum):
-    student = 0
-    instructor = 1
-    admin = 2
-
 
 class User(db.Model):
     __tablename__ = "users"
@@ -66,6 +60,11 @@ class Assignment(db.Model):
 
     def __repr__(self):
         return self.title + " (" + str(self.id) + ")"
+
+class Role(enum.Enum):
+    student = 0
+    instructor = 1
+    admin = 2
 
 class SelectIDForm(FlaskForm):
     user_id = SelectField("Select PUID", coerce=int,
