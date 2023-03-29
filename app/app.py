@@ -6,7 +6,7 @@ export SEC_KEY=tigerFocus098098
 """
 
 import os, enum, random
-import CASClient
+from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -93,8 +93,17 @@ def index():
 @app.route("/login", methods=["GET"])
 def login():
     try:
-        client = CASClient.CASClient()
-        netid = client.Authenticate()
+        if "netid" in session:
+            # already logged in
+            return redirect(url_for("hub"))
+            
+
+
+
+
+
+
+
         if netid is None:
             # if CAS login fails
             return render_template("error.html", message="fuck you")
