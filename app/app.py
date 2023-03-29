@@ -167,7 +167,8 @@ def created_course():
         user.courses.append(new_course)
         db.session.add(new_course)
         db.session.commit()
-        return redirect(url_for("view_courses"))
+        
+        return redirect(url_for("hub"))
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
@@ -238,6 +239,21 @@ def add_assignment():
         print(ex)
         return render_template("error.html", message=ex)
 
+@app.route("/deleteassignment", methods=["GET", "POST"])
+def delete_assignment():
+    try:
+        assignment = request.form.get("assignment_id")
+        user_id = session["user_id"]
+        db_assignment = Course.query\
+            .filter(Course.assignment_id==assignment)\
+            .filter(Course.user_id==user_id).first()
+        
+        db.session.delete(db_assignment)
+        db.session.commit()
+        return redirect(url_for("hub"))
+    except Exception as ex:
+        print(ex)
+        return render_template("error.html", message=ex)
 
 @app.route("/timer")
 def timer():

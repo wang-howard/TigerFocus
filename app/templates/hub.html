@@ -97,10 +97,10 @@
 </div>
 
 <!--MODAL: ADD COURSE -->
-<div id="add_coursenew_modal" class="modal">
+<div id="add_coursenew_modal" class="modal_within">
   <div class="modal_content">
     
-      <div class="modal_window">
+      <div class="modal_within_window">
         <span class="coursenew_close">&times;</span>
         <div class="modal_input_wrapper"> <h1 id="input_title">Add Course</h1></div>
 
@@ -204,9 +204,13 @@
           </div>
         </td>
         <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
-        <td width="5%"><button  onclick = "deleteAssignment({{assignment['id']}})" class="action_button">
+        
+        <form action="/deleteassignment" method="post">
+        <td width="5%"><button id="assignment_id" value="{{assignment['id']}}" onclick = "deleteAssignment({{assignment['id']}})" class="action_button">
           <i class="fa fa-trash"></i></button>
         </td>
+        </form>
+        
         <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
       </tr>
     </table>
