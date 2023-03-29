@@ -10,10 +10,6 @@ from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-from wtforms import SubmitField, SelectField
-from wtforms.validators import DataRequired
-from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -23,7 +19,13 @@ app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-Bootstrap = Bootstrap(app)
+
+cas_client = CASClient(
+    version=3,
+    service_url="http://tigerfocus.onrender.com/login?next=%2Fhub",
+    server_url="https://fed.princeton.edu/cas/"
+)
+
 
 """
 SQLAlchemy classes and enums
@@ -72,14 +74,6 @@ class Assignment(db.Model):
         return self.title + " (" + str(self.id) + ")"
 
 """
-Quick Flask Form
-"""
-class SelectIDForm(FlaskForm):
-    user_id = SelectField("Select PUID", coerce=int,
-                          validators=[DataRequired()])
-    submit = SubmitField("Submit")
-
-"""
 View Functions
 """
 @app.route("/", methods=["GET"])
@@ -96,24 +90,25 @@ def login():
         if "netid" in session:
             # already logged in
             return redirect(url_for("hub"))
-            
 
-
-
-
-
-
-
-        if netid is None:
-            # if CAS login fails
-            return render_template("error.html", message="fuck you")
-
-        query = User.query.filter_by(netid=netid).first()
-        if query is None:
-            return render_template("signup.html", netid=netid)
+        next = request.args.get("next")
+        ticket = request.args.get("ticket")
+        if not ticket:
+            # No ticket, request came from end user, send to CAS login
+            cas_login_url = cas_client.get_login_url()
+            print('CAS login URL: %s', cas_login_url)
+            return redirect(cas_login_url)
+        
+        print('ticket: %s', ticket)
+        print('next: %s', next)
+        user, _, _ = cas_client.verify_ticket(ticket)
+        if not user:
+            return render_template("error.html",
+                                   message="Failed to verify ticket")
         else:
-            session["netid"] = netid
-            return redirect(url_for("hub"))
+            # Login successfully, redirect according "next" query parameter.
+            session['netid'] = user
+            return redirect(next)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
