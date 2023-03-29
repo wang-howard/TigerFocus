@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} TigerFocus Sign Up {% endblock %}
+
+{% block body %}
+<h1>Sign up</h1>
+<form action="/newuser" method="post">
+    <table>
+        <thead>
+            <tr>
+                <th align="left">First Name</th>
+                <th align="left">Last Name</th>
+                <th align="left">User Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="hidden" name="netid" value="{{netid}}">
+                </td>
+                <td>
+                    <input type="text" name="first">
+                </td>
+                <td>
+                    <input type="text" name="last">
+                </td>
+                <td>
+                    <select name="user_type" id="user_type">
+                        <option value="Role.student">Student</option>
+                        <option value="Role.instructor">Instructor</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="Sign Up">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+{% endblock %}

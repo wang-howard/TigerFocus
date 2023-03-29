@@ -1,10 +1,12 @@
 """
 RUN THESE COMMANDS ON STARTUP:
-    export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
-    export SEC_KEY=tigerFocus098098
+export FLASK_APP=app/app.py
+export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
+export SEC_KEY=tigerFocus098098
 """
 
-import os, enum, random, urllib, re
+import os, enum, random
+import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -23,17 +25,25 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 Bootstrap = Bootstrap(app)
 
+"""
+SQLAlchemy classes and enums
+"""
+class Role(enum.Enum):
+    student = 0
+    instructor = 1
+    admin = 2
+
 class User(db.Model):
     __tablename__ = "users"
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    netid = db.Column(db.String, primary_key=True, unique=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     user_type = db.Column(db.Enum(Role))
-    courses = db.relationship('Course', backref="user", lazy="dynamic")
+    courses = db.relationship("Course", backref="user", lazy="dynamic")
 
     def __repr__(self):
         return self.first_name + " " + self.last_name + " (" +\
-            self.id + ")"
+            self.netid + ")"
 
 class Course(db.Model):
     __tablename__ = "courses"
@@ -41,7 +51,7 @@ class Course(db.Model):
     course_code = db.Column(db.String)
     course_name = db.Column(db.String)
     color = db.Column(db.String)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    user_netid = db.Column(db.String, db.ForeignKey("users.netid"))
     assignments = db.relationship("Assignment", backref="course",
                                   order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")
@@ -61,35 +71,94 @@ class Assignment(db.Model):
     def __repr__(self):
         return self.title + " (" + str(self.id) + ")"
 
-class Role(enum.Enum):
-    student = 0
-    instructor = 1
-    admin = 2
-
+"""
+Quick Flask Form
+"""
 class SelectIDForm(FlaskForm):
     user_id = SelectField("Select PUID", coerce=int,
                           validators=[DataRequired()])
     submit = SubmitField("Submit")
 
+"""
+View Functions
+"""
 @app.route("/", methods=["GET"])
 def index():
     try:
-        users = User.query.all()
-        user_data = []
-        if not users:
-            users = []
-        else:
-            for user in users:
-                user_data.append([user.id, user.first_name,
-                                  user.last_name, user.user_type])
-        return render_template("index.html", data=user_data)
+        return render_template("index.html")
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
 
-@app.route("/adduser")
-def add_user():
-    return render_template("register.html")
+@app.route("/login", methods=["GET"])
+def login():
+    try:
+        client = CASClient.CASClient()
+        netid = client.Authenticate()
+        if netid is None:
+            # if CAS login fails
+            return render_template("error.html", message="fuck you")
+
+        query = User.query.filter_by(netid=netid).first()
+        if query is None:
+            return render_template("signup.html", netid=netid)
+        else:
+            session["netid"] = netid
+            return redirect(url_for("hub"))
+    except Exception as ex:
+        print(ex)
+        return render_template("error.html", message=ex)
+
+@app.route("/newuser", methods=["POST"])
+def new_user():
+    netid = request.form.get("netid")
+    first = request.form.get("first")
+    last = request.form.get("last")
+    user_type = request.form.get("user_type")
+
+    user = User(netid=netid, first_name=first, last_name=last,
+                user_type=user_type)
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect(url_for("hub"))
+
+@app.route("/hub")
+def hub():
+    netid = session["user_id"]
+    try:
+        user = User.query.filter_by(netid=netid).first()
+        first = user.first_name
+        courses = list(user.courses)
+        
+        # create list of dict of course codes and their colors
+        course_codes = []
+        course_ids = []
+        for course in courses:
+            color = course.color
+            code = course.course_code
+            course_codes.append({"course_code": code,
+                                 "color": color })
+            course_ids.append(course.id)
+
+        # create list of dicts containing course information
+        assignments = Assignment.query.filter(Assignment.course_id\
+                        .in_(course_ids))\
+                        .order_by(Assignment.due_date).all()
+        assignment_data = []
+        for a in assignments:
+            course = Course.query.filter_by(id=a.course_id).first()
+            assignment_data.append({"status": a.status,
+                                    "id": a.netid,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code":course.course_code,
+                                    "color": course.color})
+        return render_template("hub.html", first_name=first,
+                               courses=course_codes,
+                               assignments=assignment_data)
+    except Exception as ex:
+        print(ex)
+        return render_template("error.html", message=ex)
 
 @app.route("/createduser", methods=["GET", "POST"])
 def created_user():
@@ -98,7 +167,7 @@ def created_user():
         first = request.form.get("first")
         last = request.form.get("last")
 
-        new_user = User(id=user_id, first_name=first, last_name=last,
+        new_user = User(netid=user_id, first_name=first, last_name=last,
                         user_type=Role.student)
         db.session.add(new_user)
         db.session.commit()
@@ -168,44 +237,6 @@ def created_course():
         db.session.commit()
         
         return redirect(url_for("hub"))
-    except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
-@app.route("/hub")
-def hub():
-    user_id = session["user_id"]
-    try:
-        user = User.query.filter_by(id=user_id).first()
-        first = user.first_name
-        courses = list(user.courses)
-        
-        # create list of dict of course codes and their colors
-        course_codes = []
-        course_ids = []
-        for course in courses:
-            color = course.color
-            code = course.course_code
-            course_codes.append({"course_code": code,
-                                 "color": color })
-            course_ids.append(course.id)
-        print(list())
-        assignments = Assignment.query.filter(Assignment.course_id\
-                        .in_(course_ids))\
-                        .order_by(Assignment.due_date).all()
-        # create list of dict of course information
-        assignment_data = []
-        for a in assignments:
-            course = Course.query.filter_by(id=a.course_id).first()
-            assignment_data.append({"status": a.status,
-                                    "id": a.id,
-                                    "title": a.title,
-                                    "due_date": a.due_date,
-                                    "course_code":course.course_code,
-                                    "color": course.color})
-        return render_template("hub.html", first_name=first,
-                               courses=course_codes,
-                               assignments=assignment_data)
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)

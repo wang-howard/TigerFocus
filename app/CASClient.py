@@ -12,9 +12,8 @@ class CASClient:
          netid = self.Validate(form['ticket'].value)
          if netid != None:
             return netid
-      # No valid ticket; redirect the browser to the login page to get one
-      login_url = self.cas_url + 'login' \
-         + '?service=' + urllib.quote(self.ServiceURL())
+         else:
+            return None
 
     def Validate(self, ticket):
         val_url = self.cas_url + "validate" + \
@@ -31,5 +30,4 @@ class CASClient:
             ret = re.sub(r'ticket=[^&]*&?', '', ret)
             ret = re.sub(r'\?&?$|&$', '', ret)
             return ret
-        else:
-            
+        return Exception("Missing REQUEST_URI environment variable")
