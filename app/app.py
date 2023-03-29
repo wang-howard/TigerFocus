@@ -22,7 +22,7 @@ migrate = Migrate(app, db)
 
 cas_client = CASClient(
     version=3,
-    service_url="http://tigerfocus.onrender.com/login?next=%2Fhub",
+    service_url="http://localhost:5553/login?next=%2Fhub",
     server_url="https://fed.princeton.edu/cas/"
 )
 
@@ -124,7 +124,7 @@ def new_user():
 
 @app.route("/hub")
 def hub():
-    netid = session["user_id"]
+    netid = session["netid"]
     try:
         user = User.query.filter_by(netid=netid).first()
         first = user.first_name
@@ -148,7 +148,7 @@ def hub():
         for a in assignments:
             course = Course.query.filter_by(id=a.course_id).first()
             assignment_data.append({"status": a.status,
-                                    "id": a.netid,
+                                    "id": a.id,
                                     "title": a.title,
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,

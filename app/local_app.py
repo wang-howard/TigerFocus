@@ -237,7 +237,6 @@ def add_assignment():
 def delete_assignment():
     try:
         id = request.form.get("assignment_id")
-        print(id)
         Assignment.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for("hub"))
