@@ -28,7 +28,7 @@ cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
 
 """
-SQLAlchemy classes and enums
+SQLAlchemy model classes
 """
 class User(db.Model):
     __tablename__ = "users"
