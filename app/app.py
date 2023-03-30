@@ -24,9 +24,12 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Princeton CAS Authentification client
-""" cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
+
+
+cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
-"""
+
+
 """
 SQLAlchemy classes and enums
 """
