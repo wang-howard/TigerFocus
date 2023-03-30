@@ -7,7 +7,7 @@ export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
 import sys, os, random
-from cas import CASClient
+#from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -24,8 +24,11 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Princeton CAS Authentification client
+
+
 cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
+
 
 """
 SQLAlchemy model classes
