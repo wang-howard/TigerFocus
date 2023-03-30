@@ -186,19 +186,6 @@ def hub():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@app.route("/viewcourses", methods=["GET", "POST"])
-def view_courses():
-    netid = session["netid"]
-    try:
-        course_data = []
-        user = User.query.filter_by(id=netid).first()
-        courses = user.courses
-        return render_template("courses.html", userid=netid,
-                               courses=courses)
-    except Exception as ex:
-        print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
-
 @app.route("/createcourse", methods=["GET", "POST"])
 def created_course():
     try:
