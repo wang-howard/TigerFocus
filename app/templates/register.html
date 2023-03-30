@@ -16,10 +16,7 @@
             <div class="col-lg-12 login-title">Sign Up</div>
             <div class="col-lg-12 login-form">
                 <form action="/newuser" method="post">
-                    <div class="form-group">
-                        <label class="form-control-label">Net ID</label>
-                        <input type="text" name="netid" class="form-control">
-                    </div>
+                    <input type="hidden" name="netid" value="{{netid}}">
                     <div class="form-group">
                         <label class="form-control-label">First Name</label>
                         <input type="text" name="first" class="form-control">

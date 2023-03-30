@@ -20,17 +20,14 @@ app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-cas_client = CASClient(
-    version=3,
-    service_url="http://tigerfocus.onrender.com/login?next=%2Fhub",
+cas_client = CASClient(version=3,
+    service_url="http://localhost:5553/login?next=process_login",
     server_url="https://fed.princeton.edu/cas/"
 )
-
 
 """
 SQLAlchemy classes and enums
 """
-
 class User(db.Model):
     __tablename__ = "users"
     netid = db.Column(db.String, primary_key=True, unique=True)
@@ -80,13 +77,9 @@ def index():
         print(ex)
         return render_template("error.html", message=ex)
 
-@app.route("/login", methods=["GET"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     try:
-        if "netid" in session:
-            # already logged in
-            return redirect(url_for("hub"))
-
         next = request.args.get("next")
         ticket = request.args.get("ticket")
         if not ticket:
@@ -103,8 +96,20 @@ def login():
                                    message="Failed to verify ticket")
         else:
             # Login successfully, redirect according "next" query parameter.
-            session['netid'] = user
-            return redirect(next)
+            session["netid"] = user
+            return redirect(url_for(next))
+    except Exception as ex:
+        print(ex)
+        return render_template("error.html", message=ex)
+
+@app.route("/processlogin", methods=["GET", "POST"])
+def process_login():
+    netid = session["netid"]
+    try:
+        if User.query.filter_by(netid=netid).first() is None:
+            return render_template("register.html", netid=netid)
+        else:
+            return redirect(url_for("hub"))
     except Exception as ex:
         print(ex)
         return render_template("error.html", message=ex)
