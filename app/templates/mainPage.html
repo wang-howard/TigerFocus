@@ -1,6 +1,4 @@
-{% extends "base.html" %}
 
-{% block title %} Hub UI TEST {% endblock %}
 
 {% block body %}
 
@@ -9,10 +7,10 @@
 <div id = "words"> <span id ="bold">TigerFocus*</span> helps Princeton University students achieve more through kahdkjhakjshdka
 </div>
 
-<button type="button" >Login with CAS</button>
+<p align="center" ><button id = "login">Login with CAS</button></p>
 
-<div id = "feature">feature</div>
-<ul>
+<div id = "feature">features</div>
+<ul id = "list">
     <li>
         pace your work sessions using the pomodoro method
     </li>
@@ -22,7 +20,6 @@
     </li>
     <li>unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard</li>
 </ul>
-
 
 <script src="{{url_for('static', filename='script/mainPage.js')}}"></script>
 
