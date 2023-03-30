@@ -1,26 +1,29 @@
 """
-RUN THESE COMMANDS ON STARTUP:
+SET THESE ENVIRONMENT VARIABLES ON STARTUP:
 export FLASK_APP=app/app.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
 export SEC_KEY=tigerFocus098098
 export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
-import os, random
+import sys, os, random
 from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
+# Flask app configuration
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 
+# Flask extensions
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
+# Princeton CAS Authentification client
 cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
 
@@ -70,14 +73,21 @@ View Functions
 """
 @app.route("/", methods=["GET"])
 def index():
+    """
+    Renders homepage
+    """
     try:
         return render_template("index.html")
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Redirects to CAS authentification, which returns a ticket to
+    validate. If successful, redirects to login prcoessing function.
+    """
     try:
         next = request.args.get("next")
         ticket = request.args.get("ticket")
@@ -98,11 +108,15 @@ def login():
             session["netid"] = user
             return redirect(url_for(next))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/processlogin", methods=["GET", "POST"])
 def process_login():
+    """
+    If user is in database, redirects to hub. Otherwise, redirects to
+    register page for name and role entry.
+    """
     netid = session["netid"]
     try:
         if User.query.filter_by(netid=netid).first() is None:
@@ -110,11 +124,15 @@ def process_login():
         else:
             return redirect(url_for("hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/newuser", methods=["POST"])
 def new_user():
+    """
+    Receives post form from register page and enters new user to
+    database, then redirects to user's hub.
+    """
     netid = request.form.get("netid")
     first = request.form.get("first")
     last = request.form.get("last")
@@ -128,6 +146,10 @@ def new_user():
 
 @app.route("/hub")
 def hub():
+    """
+    Main application hub displays each user's indiviudal assignment and
+    course information. Majority of functionality found in html/css/js.
+    """
     netid = session["netid"]
     try:
         user = User.query.filter_by(netid=netid).first()
@@ -161,7 +183,7 @@ def hub():
                                courses=course_codes,
                                assignments=assignment_data)
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/viewcourses", methods=["GET", "POST"])
@@ -174,7 +196,7 @@ def view_courses():
         return render_template("courses.html", userid=netid,
                                courses=courses)
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/createcourse", methods=["GET", "POST"])
@@ -201,7 +223,7 @@ def created_course():
         
         return redirect(url_for("hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
     
 @app.route("/addassignment", methods=["GET", "POST"])
@@ -229,7 +251,7 @@ def add_assignment():
         db.session.commit()
         return redirect(url_for("hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/deleteassignment", methods=["GET", "POST"])
@@ -241,7 +263,7 @@ def delete_assignment():
         db.session.commit()
         return redirect(url_for("hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @app.route("/timer")
