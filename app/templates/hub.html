@@ -134,15 +134,11 @@
 <div id="welcome_wrapper">
 <table>
   <td width="88%">
-    <div id="welcome">
-      Welcome back, {% if first_name %}{{ first_name }}{% else %}Stranger{% endif %}
-    </div>
+    <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
   </td>
   <td style="padding-right:80px" width="12%" align="left">
     <div>
-      <button class="smallbutton" onclick="render_template('timer.html')">
-        START SESSION
-      </button>
+      <button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button>
     </div>
   </td>
 </table>
