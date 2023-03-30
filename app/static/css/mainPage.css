@@ -111,11 +111,10 @@ color: #4E4E4E;
     background-color: antiquewhite;
 }
 .center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    border-radius: 18px;
+   
+    margin: 0 auto;
+
+
   }
 
   .centerlist {
