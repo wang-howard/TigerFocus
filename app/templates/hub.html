@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} TigerFocus Hub {% endblock %}
+{% block title %}TigerFocus Hub{% endblock %}
 
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,14 +22,9 @@
           <h1 id="input_title">Pick Your Course</h1>
           <select name="course_code" id="course_code">
             {% for course in courses %}
-            <option value="{{ course['course_code'] }}">{{ course['course_code'] }}</option>
+            <option value="{{course['course_code']}}">{{course['course_code']}}</option>
             {% endfor %}
           </select>
-        </div>
-
-        <div class="modal_input_wrapper">
-          <h1 id="input_title">Due Date</h1>
-          <input type="datetime-local" name="due_date" id="due_date"/>
         </div>
 
         <div class="modal_input_wrapper">
@@ -37,6 +32,10 @@
           <input type="text" name="title" id="title"/>
         </div>
 
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date"/>
+        </div>
         <span style="float:right"><button class="submitbutton" type="submit">submit</button> </span>
 
   
@@ -45,94 +44,90 @@
   </div>
 </div>
 
-
 <!--MODAL: CURRENT COURSES -->
 <div id="add_course_modal" class="modal">
   <div class="modal_content">
-    
-      <div class="modal_window">
-        <span class="course_close">&times;</span>
-        <div class="modal_input_wrapper"> <h1 id="input_title">Current Courses</h1></div>
-        <div class="courselist_window">
-        <!--COURSE CHIP-->
-        <form action="/viewcourses" method="post">
+    <div class="modal_window">
+      <span class="course_close">&times;</span>
+      <div class="modal_input_wrapper">
+        <h1 id="input_title">Current Courses</h1>
+      </div>
+      <div class="courselist_window">
+      <!--COURSE CHIP-->
         <div>
-
-          {% for course in courses %}
-
           <table>
+            {% for course in courses %}
             <tr>
               <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
                 <label class="checkbox_button">
-                <input type="checkbox"></input>
-                <div class="checkmark"></div>
+                  <input type="checkbox"></input>
+                  <div class="checkmark"></div>
                 </label>
               </td>
               <td>
-                <div class="class_chip" style="background-color: {{course['color']}}">{{ course['course_code'] }}
-                </div>
+                <div class="class_chip" style="background-color: {{course['color']}}">{{course['course_code']}}</div>
               </td>
-              <td width="20%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
+              <td width="20%">
+                <button class="action_button">
+                  <i class="fa fa-edit"></i>
+                </button>
+              </td>
             </tr>
+            {%endfor%}
           </table>
-
-          {%endfor%}
         </div>
-      </form>
-        </div>
-
-        <button disabled style="position:absolute; top:350px; left:100px;" >export selected to preloaded</button>
-
-        <button id ="add_coursenew_button" style="position:absolute; top:350px; left:300px;">add new course</button>
-     
       </div>
-      
+
+      <button disabled style="position:absolute; top:350px; left:100px;">
+        export selected to preloaded
+      </button>
+
+      <button id ="add_coursenew_button" style="position:absolute; top:350px; left:300px;">
+        add new course
+      </button>
+    </div>
   </div>
 </div>
 
 <!--MODAL: ADD COURSE -->
 <div id="add_coursenew_modal" class="modal_within">
   <div class="modal_content">
-    
-      <div class="modal_within_window">
-        <span class="coursenew_close">&times;</span>
-        <div class="modal_input_wrapper"> <h1 id="input_title">Add Course</h1></div>
+    <div class="modal_within_window">
+      <span class="coursenew_close">&times;</span>
 
-
-        <div class="col-lg-12 login-form">
-          <form action="/createcourse" method="post">
-              <div class="form-group">
-                  <label class="form-control-label">Course Code</label>
-                  <input type="text" name="course_code" class="form-control">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label">Course Name</label>
-                  <input type="text" name="course_name" class="form-control">
-              </div>
-              <div class="form-group">
-                  <label class="form-control-label">Color</label>
-                  <select name="color" id="course_color">
-                      <option value="RED">Red</option>
-                      <option value="ORANGE">Orange</option>
-                      <option value="YELLOW">Yellow</option>
-                      <option value="GREEN">Green</option>
-                      <option value="BLUE">Blue</option>
-                      <option value="CYAN">Cyan</option>
-                      <option value="PINK">Pink</option>
-                      <option value="PURPLE">Purple</option>
-                  </select>
-              </div>
-              <div class="col-12 login-btm login-button justify-content-center d-flex">
-                  <button type="submit" class="btn btn-outline-primary">Add Course</button>
-              </div>
-          </form>
+      <div class="modal_input_wrapper">
+        <h1 id="input_title">Add Course</h1>
       </div>
-    
 
-       
-     
+      <div class="col-lg-12 login-form">
+        <form action="/createcourse" method="post">
+          <div class="form-group">
+            <label class="form-control-label">Course Code</label>
+            <input type="text" name="course_code" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Course Name</label>
+            <input type="text" name="course_name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Color</label>
+            <select name="color" id="course_color">
+                <option value="RED">Red</option>
+                <option value="ORANGE">Orange</option>
+                <option value="YELLOW">Yellow</option>
+                <option value="GREEN">Green</option>
+                <option value="BLUE">Blue</option>
+                <option value="CYAN">Cyan</option>
+                <option value="PINK">Pink</option>
+                <option value="PURPLE">Purple</option>
+            </select>
+          </div>
+          <div class="col-12 login-btm login-button justify-content-center d-flex">
+              <button type="submit" class="btn btn-outline-primary">Add Course</button>
+          </div>
+        </form>
       </div>
-      
+    </div>
   </div>
 </div>
 
@@ -143,17 +138,24 @@
       Welcome back, {% if first_name %}{{ first_name }}{% else %}Stranger{% endif %}
     </div>
   </td>
-  <td style="padding-right:80px" width="12%" align="left"><div><button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button></div></td>
+  <td style="padding-right:80px" width="12%" align="left">
+    <div>
+      <button class="smallbutton" onclick="render_template('timer.html')">
+        START SESSION
+      </button>
+    </div>
+  </td>
 </table>
 </div>
   
 <div id="assignments_window" style="top: 35%">
-
   <div id="tabs">
     <button id="preloaded_tab">
       pre-loaded courses
     </button>
-    <button id="assignments_tab"><a id="start" href="/hub">assignments</a></button>
+    <button id="assignments_tab">
+      <a id="start" href="/hub">assignments</a>
+    </button>
   </div>
 
   <div id="assignments_header">
@@ -163,7 +165,8 @@
       <button id="add_course_button" class="smallbutton">edit courses</button>
     </div>
   </div>
-  <hr class="window_hr" style="margin-top: 0px" />
+
+  <hr class="window_hr" style="margin-top: 0px"/>
   <div>
     <table style="margin-left: 30px" id="table_header">
       <td></td>
@@ -176,44 +179,52 @@
       <td></td>
     </table>
   </div>
+
   <hr class="window_hr" style="margin-top: px" />
   <div>
-
-    <!--TODO: for loop logic here for outputting users assignments -->
     {% for assignment in assignments %}
     <div id="assignment_element_{{assignment['id']}}">
-    <table id="assignment_wrapper" style="margin-bottom:5px">
-      <tr>
-        <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
-          <label class="checkbox_button">
-          <input type="checkbox"></input>
-          <div class="checkmark"></div>
-          </label>
-        </td>
-        <td width="5%" align="left"><button class="status_button"></button></td>
-        <td width="40%" align="left"><div class="assignment_text">{{ assignment["title"] }}</div></td>
-        <td width="20%" align="left"><div class="assignment_text">{{ assignment["due_date"] }}</div></td>
-        <td width="15%" align="left">
-          <div class="class_chip" style="background-color: {{ assignment['color'] }}">{{ assignment["course_code"] }}
-          </div>
-        </td>
-        <td width="5%"><button class="action_button"><i class="fa fa-edit"></i></button></td>
-        
-        <form action="/deleteassignment" method="post">
-          <td width="5%">
-            <input type="hidden" name="assignment_id" value="{{assignment['id']}}" >
-            <button onclick="window.location.href='/deleteassignment';" class="action_button">
-            <i class="fa fa-trash"></i></button>
+      <table id="assignment_wrapper" style="margin-bottom:5px">
+        <tr>
+          <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
+            <label class="checkbox_button">
+              <input type="checkbox"></input>
+              <div class="checkmark"></div>
+            </label>
           </td>
-        </form>
-        
-        <td style="padding-right: 15px" width="5%" ><button class="action_button"> <i class="fa fa-copy"></i></button></td>
-      </tr>
-    </table>
+          <td width="5%" align="left">
+            <button class="status_button"></button>
+          </td>
+          <td width="40%" align="left">
+            <div class="assignment_text">{{ assignment["title"] }}</div>
+          </td>
+          <td width="20%" align="left">
+            <div class="assignment_text">{{ assignment["due_date"] }}</div>
+          </td>
+          <td width="15%" align="left">
+            <div class="class_chip" style="background-color: {{ assignment['color'] }}">
+              {{ assignment["course_code"] }}
+            </div>
+          </td>
+          <td width="5%">
+            <button class="action_button"><i class="fa fa-edit"></i></button>
+          </td>
+          
+          <form action="/deleteassignment" method="post">
+            <td width="5%">
+              <input type="hidden" name="assignment_id" value="{{assignment['id']}}" >
+              <button onclick="window.location.href='/deleteassignment';" class="action_button">
+              <i class="fa fa-trash"></i></button>
+            </td>
+          </form>
+          
+          <td style="padding-right: 15px" width="5%" >
+            <button class="action_button"> <i class="fa fa-copy"></i></button>
+          </td>
+        </tr>
+      </table>
     </div>
-
     {% endfor %}
-
   </div>
 </div>
 
