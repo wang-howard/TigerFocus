@@ -3,9 +3,10 @@ RUN THESE COMMANDS ON STARTUP:
 export FLASK_APP=app/app.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
 export SEC_KEY=tigerFocus098098
+export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
-import os, enum, random
+import os, random
 from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
@@ -20,10 +21,8 @@ app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-cas_client = CASClient(version=3,
-    service_url="http://tigerfocus.onrender.com/login?next=process_login",
-    server_url="https://fed.princeton.edu/cas/"
-)
+cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
+                       server_url="https://fed.princeton.edu/cas/")
 
 """
 SQLAlchemy classes and enums

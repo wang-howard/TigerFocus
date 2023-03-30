@@ -1,18 +1,25 @@
+import os
 from flask import Flask, render_template
-from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from config import config
+from cas import CASClient
 
-bootstrap = Bootstrap()
+from config import Config
+
 db = SQLAlchemy()
 
-def create_app(config_name):
-    app = Flask(__name__)
-    app.config.from_object(config[config_name])
-    config[config_name].init_app(app)
+cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
+                       server_url="https://fed.princeton.edu/cas/")
 
-    bootstrap.init_app(app)
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    # Flask SQLAlchemy extension
     db.init_app(app)
+
+    # register blueprints
+    from .main import bp as main_bp
+    app.register_blueprint(main_bp)
 
     # attach routes and custom error pages here
 

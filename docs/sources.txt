@@ -4,3 +4,4 @@ https://djangocas.dev/blog/python-cas-flask-example/
 https://csguide.cs.princeton.edu/publishing/cas
 https://sp2016.princeton.edu/oit/eis/iam/authentication/CAS/CAS%20Developer%20KB.aspx
 https://www.cs.princeton.edu/courses/archive/spr23/cos333/datasources.html
+https://www.digitalocean.com/community/tutorials/how-to-structure-a-large-flask-application-with-flask-blueprints-and-flask-sqlalchemy
