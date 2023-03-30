@@ -48,6 +48,7 @@ a:hover {
 }
 #words{
 margin: auto;
+margin-top: 90px;
 font-family: 'Anek Bangla';
 font-style: normal;
 font-weight: 600;
@@ -99,9 +100,28 @@ margin: auto;
 font-family: 'Helvetica';
 font-style: normal;
 font-weight: 300;
-font-size: 35px;
+font-size: 20px;
 line-height: 40px;
 
 color: #4E4E4E;
 
 }
+
+#background{
+    background-color: antiquewhite;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 18px;
+  }
+
+  .centerlist {
+    
+    display: block;
+    text-align: center;
+
+   
+  }

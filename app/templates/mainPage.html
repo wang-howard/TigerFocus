@@ -3,8 +3,8 @@
 {% block body %}
 
 <link href="{{ url_for('static', filename='css/mainPage.css') }}" rel="stylesheet">
-
-<table>
+<head id = "background">
+<table >
     <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
       <td width="85%">
         <a href="/" id="TigerFocusbanner">TigerFocus*</a>
@@ -14,25 +14,28 @@
           <a href="">about</a>
         </button>
       </td>
-    </table>
- 
-<div id = "words"> <span id ="bold">TigerFocus*</span> helps Princeton University students achieve more through kahdkjhakjshdka
+</table>
+</head>
+
+<body id = "background">
+    <div id="border"></div>
+<div id = "words"> TigerFocus* helps Princeton University students achieve more.
 </div>
 
 <p align="center" ><button id = "login">Login with CAS</button></p>
-
+<img src="https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/Pomodoro%20technique.png" width="800" height="400" class="center">
 <div id = "feature">features</div>
 <ul id = "list">
-    <li>
+    <li class = "centerlist">
         pace your work sessions using the pomodoro method
     </li>
-    <li>enter your flow state with ambient lo-fi music and artwork</li>
-    <li>
+    <li class = "centerlist">enter your flow state with ambient lo-fi music and artwork</li>
+    <li class = "centerlist">
         track your progress and hit your daily focus goal
     </li>
-    <li>unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard</li>
+    <li class = "centerlist">unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard</li>
 </ul>
-
+</body>
 <script src="{{url_for('static', filename='script/mainPage.js')}}"></script>
 
 {% endblock %}
