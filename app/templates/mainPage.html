@@ -1,41 +1,43 @@
-
-
 {% block body %}
-
 <link href="{{ url_for('static', filename='css/mainPage.css') }}" rel="stylesheet">
-<head id = "background">
+<head id="background">
 <table >
-    <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
-      <td width="85%">
-        <a href="/" id="TigerFocusbanner">TigerFocus*</a>
-      </td>
-      <td width="5%" align="center">
-        <button class="headerbutton" style="padding-right: 20px">
-          <a href="">about</a>
-        </button>
-      </td>
+  <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
+    <td width="85%">
+      <a href="/" id="TigerFocusbanner">TigerFocus*</a>
+    </td>
+    <td width="5%" align="center">
+      <button class="headerbutton" style="padding-right: 20px">
+        <a href="">about</a>
+      </button>
+    </td>
 </table>
 </head>
 
 <body id = "background">
-    <div id="border"></div>
-<div id = "words"> TigerFocus* helps Princeton University students achieve more.
-</div>
+  <div id="border"></div>
+  <div id = "words">
+    TigerFocus* helps Princeton University students achieve more.
+  </div>
 
-<p align="center" ><button id = "login">Login with CAS</button></p>
-<img src="https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/Pomodoro%20technique.png" width="800" height="400" class="center">
-<div id = "feature">features</div>
-<ul id = "list">
-    <li class = "centerlist">
-        pace your work sessions using the pomodoro method
+  <p align="center"><button id="login">Login with CAS</button></p>
+  <img src="https://abilitynet.org.uk/sites/abilitynet.org.uk/files/admin/Pomodoro%20technique.png" width="800" height="400" class="center">
+  <div id="feature">features</div>
+  <ul id="list">
+    <li class="centerlist">
+      pace your work sessions using the pomodoro method
     </li>
-    <li class = "centerlist">enter your flow state with ambient lo-fi music and artwork</li>
-    <li class = "centerlist">
-        track your progress and hit your daily focus goal
+    <li class="centerlist">
+      enter your flow state with ambient lo-fi music and artwork
     </li>
-    <li class = "centerlist">unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard</li>
-</ul>
+    <li class="centerlist">
+      track your progress and hit your daily focus goal
+    </li>
+    <li class="centerlist">
+      unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard
+    </li>
+  </ul>
 </body>
-<script src="{{url_for('static', filename='script/mainPage.js')}}"></script>
 
+<script src="{{url_for('static', filename='script/mainPage.js')}}"></script>
 {% endblock %}
