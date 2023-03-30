@@ -21,7 +21,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 cas_client = CASClient(version=3,
-    service_url="http://localhost:5553/login?next=process_login",
+    service_url="http://tigerfocus.onrender.com/login?next=process_login",
     server_url="https://fed.princeton.edu/cas/"
 )
 
