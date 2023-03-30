@@ -15,10 +15,10 @@
         <div class="col-lg-6 col-md-8 login-box">
             <div class="col-lg-12 login-title">Sign Up</div>
             <div class="col-lg-12 login-form">
-                <form action="/createduser" method="post">
+                <form action="/newuser" method="post">
                     <div class="form-group">
-                        <label class="form-control-label">User ID</label>
-                        <input type="text" name="userid" class="form-control">
+                        <label class="form-control-label">Net ID</label>
+                        <input type="text" name="netid" class="form-control">
                     </div>
                     <div class="form-group">
                         <label class="form-control-label">First Name</label>
@@ -27,6 +27,14 @@
                     <div class="form-group">
                         <label class="form-control-label">Last Name</label>
                         <input type="text" name="last" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">User Type</label>
+                        <select name="user_type" id="user_type">
+                            <option value="student">Student</option>
+                            <option value="instructor">Instructor</option>
+                            <option value="admin">Administrator</option>
+                        </select>
                     </div>
                     <div class="col-12 login-btm login-button justify-content-center d-flex">
                         <button type="submit" class="btn btn-outline-primary">Register</button>

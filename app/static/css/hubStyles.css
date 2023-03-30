@@ -162,7 +162,7 @@
   width: 125px;
   height: 40px;
   border-radius: 30px;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .assignment_text {
   font-family: "Anek Bangla", sans-serif;
