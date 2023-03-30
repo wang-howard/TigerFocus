@@ -1,4 +1,3 @@
-
 var pomodoro = {
   started : false,
   minutes : 0,

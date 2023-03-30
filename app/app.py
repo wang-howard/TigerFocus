@@ -255,15 +255,28 @@ def delete_assignment():
 
 @app.route("/timer")
 def timer():
-    return render_template("timer.html")
+    id = "pomodoro-app"
+    link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+    script = url_for('static', filename='script/timer.js')
 
-@app.route("/longBreak")
-def longBreak():
-    return render_template("longBreak.html")
+    return render_template("timer.html", id=id, mins=25, source=link,
+                           script=script)
 
 @app.route("/shortBreak")
 def shortBreak():
-    return render_template("shortBreak.html")
+    id = "short-app"
+    link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
+    script = url_for('static', filename='script/shortBreak.js')
+    return render_template("timer.html", id=id, mins=5, source=link,
+                           script=script)
+
+@app.route("/longBreak")
+def longBreak():
+    id = "long-app"
+    link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
+    script = url_for('static', filename='script/shortBreak.js')
+    return render_template("timer.html", id=id, mins=15, source=link,
+                           script=script)
 
 @app.route("/mainPage")
 def mainPage():
