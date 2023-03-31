@@ -3,7 +3,7 @@ SET THESE ENVIRONMENT VARIABLES ON STARTUP:
 export FLASK_APP=app/app.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
 export SEC_KEY=tigerFocus098098
-export SERVICE_URL=http://localhost:5553/login?next=process_login
+export SERVICE_URL=http://localhost:5553/login?next=.process_login
 """
 
 import sys, os, random
@@ -16,19 +16,16 @@ from flask_migrate import Migrate
 # Flask app configuration
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SECRET_KEY"] = os.getenv("SEC_KEY")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 # Flask extensions
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Princeton CAS Authentification client
-
-
 cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
-
 
 """
 SQLAlchemy model classes
@@ -277,7 +274,7 @@ def shortBreak():
 def longBreak():
     id = "long-app"
     link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
-    script = url_for('static', filename='script/shortBreak.js')
+    script = url_for('static', filename='script/longBreak.js')
     return render_template("timer.html", id=id, mins=15, source=link,
                            script=script)
 
