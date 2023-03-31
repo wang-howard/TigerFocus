@@ -216,6 +216,33 @@ def created_course():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
     
+@app.route("/editcourse", methods=["GET", "POST"])
+def edit_course():
+    try:
+        course_code = request.form.get("course_code")
+        course_name = request.form.get("course_name")
+        course_color = request.form.get("color")
+        netid = session["netid"]
+        course_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+            query = Course.query.filter_by(id=course_id).first()
+            if query == None:
+                break
+            else:
+                course_id = str(random.randint(0, 999999)).zfill(6)
+        new_course = Course(id=course_id, course_code=course_code,
+                            course_name=course_name, color=course_color,
+                            user_netid=netid)
+        user = User.query.filter_by(netid=netid).first()
+        user.courses.append(new_course)
+        db.session.add(new_course)
+        db.session.commit()
+        
+        return redirect(url_for("hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+    
 @app.route("/addassignment", methods=["GET", "POST"])
 def add_assignment():
     try:
