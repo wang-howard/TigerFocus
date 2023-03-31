@@ -1,21 +1,28 @@
+import sys, random
 from flask import render_template, redirect, url_for
 from flask import session, request
 from app import cas_client
-
 from . import bp
 from .. import db
 from ..models import User, Course, Assignment
 
 @bp.route("/", methods=["GET"])
 def index():
+    """
+    Renders homepage
+    """
     try:
         return render_template("index.html")
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Redirects to CAS authentification, which returns a ticket to
+    validate. If successful, redirects to login prcoessing function.
+    """
     try:
         next = request.args.get("next")
         ticket = request.args.get("ticket")
@@ -36,23 +43,31 @@ def login():
             session["netid"] = user
             return redirect(url_for(next))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/processlogin", methods=["GET", "POST"])
 def process_login():
+    """
+    If user is in database, redirects to hub. Otherwise, redirects to
+    register page for name and role entry.
+    """
     netid = session["netid"]
     try:
         if User.query.filter_by(netid=netid).first() is None:
             return render_template("register.html", netid=netid)
         else:
-            return redirect(url_for("hub"))
+            return redirect(url_for(".hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/newuser", methods=["POST"])
 def new_user():
+    """
+    Receives post form from register page and enters new user to
+    database, then redirects to user's hub.
+    """
     netid = request.form.get("netid")
     first = request.form.get("first")
     last = request.form.get("last")
@@ -62,10 +77,14 @@ def new_user():
                 user_type=user_type)
     db.session.add(user)
     db.session.commit()
-    return redirect(url_for("hub"))
+    return redirect(url_for(".hub"))
 
 @bp.route("/hub")
 def hub():
+    """
+    Main application hub displays each user's indiviudal assignment and
+    course information. Majority of functionality found in html/css/js.
+    """
     netid = session["netid"]
     try:
         user = User.query.filter_by(netid=netid).first()
@@ -99,20 +118,7 @@ def hub():
                                courses=course_codes,
                                assignments=assignment_data)
     except Exception as ex:
-        print(ex)
-        return render_template("error.html", message=ex)
-
-@bp.route("/viewcourses", methods=["GET", "POST"])
-def view_courses():
-    netid = session["netid"]
-    try:
-        course_data = []
-        user = User.query.filter_by(id=netid).first()
-        courses = user.courses
-        return render_template("courses.html", userid=netid,
-                               courses=courses)
-    except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/createcourse", methods=["GET", "POST"])
@@ -137,9 +143,9 @@ def created_course():
         db.session.add(new_course)
         db.session.commit()
         
-        return redirect(url_for("hub"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
     
 @bp.route("/addassignment", methods=["GET", "POST"])
@@ -165,9 +171,9 @@ def add_assignment():
                                 course_id=course_id)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for("hub"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/deleteassignment", methods=["GET", "POST"])
@@ -177,22 +183,35 @@ def delete_assignment():
         print(id)
         Assignment.query.filter_by(id=id).delete()
         db.session.commit()
-        return redirect(url_for("hub"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
-        print(ex)
+        print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/timer")
 def timer():
-    return render_template("timer.html")
+    id = "pomodoro-app"
+    link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+    script = url_for('static', filename='script/timer.js')
 
-@bp.route("/longBreak")
-def longBreak():
-    return render_template("longBreak.html")
+    return render_template("timer.html", id=id, mins=25, source=link,
+                           script=script)
 
 @bp.route("/shortBreak")
 def shortBreak():
-    return render_template("shortBreak.html")
+    id = "short-app"
+    link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
+    script = url_for('static', filename='script/shortBreak.js')
+    return render_template("timer.html", id=id, mins=5, source=link,
+                           script=script)
+
+@bp.route("/longBreak")
+def longBreak():
+    id = "long-app"
+    link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
+    script = url_for('static', filename='script/longBreak.js')
+    return render_template("timer.html", id=id, mins=15, source=link,
+                           script=script)
 
 @bp.route("/mainPage")
 def mainPage():
