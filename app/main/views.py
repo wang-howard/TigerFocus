@@ -190,28 +190,31 @@ def delete_assignment():
 
 @bp.route("/timer")
 def timer():
+    style = url_for('static', filename='css/timerStyles.css')
     id = "pomodoro-app"
     link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
     script = url_for('static', filename='script/timer.js')
 
-    return render_template("timer.html", id=id, mins=25, source=link,
-                           script=script)
+    return render_template("timer.html", style=style, id=id, mins=25,
+                           source=link, script=script)
 
 @bp.route("/shortBreak")
 def shortBreak():
     id = "short-app"
     link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
+    style = url_for('static', filename='css/shortbreakStyles.css')
     script = url_for('static', filename='script/shortBreak.js')
-    return render_template("timer.html", id=id, mins=5, source=link,
-                           script=script)
+    return render_template("timer.html", style=style, id=id, mins=25,
+                           source=link, script=script)
 
 @bp.route("/longBreak")
 def longBreak():
+    style = url_for('static', filename='css/longbreakStyles.css')
     id = "long-app"
     link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
     script = url_for('static', filename='script/longBreak.js')
-    return render_template("timer.html", id=id, mins=15, source=link,
-                           script=script)
+    return render_template("timer.html", style=style, id=id, mins=25,
+                           source=link, script=script)
 
 @bp.route("/mainPage")
 def mainPage():
