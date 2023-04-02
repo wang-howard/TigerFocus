@@ -7,7 +7,7 @@ export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
 import sys, os, random
-from cas import CASClient
+from app.cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy

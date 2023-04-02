@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-from cas import CASClient
+from app.cas import CASClient
 
 from config import Config
 
