@@ -16,6 +16,9 @@ var course_span = document.getElementsByClassName("course_close")[0];
 var coursenew_span = document.getElementsByClassName("coursenew_close")[0];
 var editcourse_span = document.getElementsByClassName("editcourse_close")[0];
 
+// var list = {};
+// var checked_list = {};
+
 // When the user clicks on the button, open the modal
 create_btn.onclick = function () {
   create_modal.style.display = "block";
@@ -47,5 +50,30 @@ coursenew_span.onclick = function () {
 };
 
 editcourse_span.onclick = function () {
-  editcourse_modal.style.display = "none";
+  editcourse_modal.style.displasy = "none";
 };
+
+
+  function startSession() {
+    const checkboxes = document.querySelectorAll('.assignment_checkbox');
+    const selectedAssignments = [];
+  
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        var assignmentId = checkbox.data-id;
+        selectedAssignments.push(assignmentId);
+      }
+    });
+  
+    if (selectedAssignments.length === 0) {
+      alert('Please select at least one assignment to start a session');
+    } else {
+      const assignmentsParagraph = document.createElement('p');
+      assignmentsParagraph.textContent = `Selected Assignments: ${selectedAssignments.join(', ')}`;
+      const sessionDiv = document.querySelector('#session_div');
+      sessionDiv.appendChild(assignmentsParagraph);
+    }
+  }
+  
+
+  

@@ -19,7 +19,7 @@
   </td>
   <td style="padding-right:80px" width="12%" align="left">
     <div>
-      <button class="smallbutton"><a id="start" href="/timer">START SESSION</a></button>
+      <button class="smallbutton" onclick = "startSession()" ><a id="start" href="/timer">START SESSION</a></button>
     </div>
   </td>
 </table>
@@ -65,10 +65,11 @@
         <tr>
           <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
             <label class="checkbox_button">
-              <input type="checkbox"></input>
+              <input type="checkbox" class = "assignment_checkbox" data-id = "{{assignment['id']}}"></input>
               <div class="checkmark"></div>
             </label>
           </td>
+        </form>
           <td width="5%" align="left">
             <button class="status_button"></button>
           </td>

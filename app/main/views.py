@@ -194,9 +194,10 @@ def timer():
     id = "pomodoro-app"
     link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
     script = url_for('static', filename='script/timer.js')
+    assignments = request.args.get('assignments')
 
     return render_template("timer.html", style=style, id=id, mins=25,
-                           source=link, script=script)
+                           source=link, script=script, assignments=assignments)
 
 @bp.route("/shortBreak")
 def shortBreak():
