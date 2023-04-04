@@ -8,7 +8,7 @@ export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
 import sys, os, random
-from cas import CASClient
+from app.cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -192,6 +192,33 @@ def hub():
 
 @app.route("/createcourse", methods=["GET", "POST"])
 def created_course():
+    try:
+        course_code = request.form.get("course_code")
+        course_name = request.form.get("course_name")
+        course_color = request.form.get("color")
+        netid = session["netid"]
+        course_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+            query = Course.query.filter_by(id=course_id).first()
+            if query == None:
+                break
+            else:
+                course_id = str(random.randint(0, 999999)).zfill(6)
+        new_course = Course(id=course_id, course_code=course_code,
+                            course_name=course_name, color=course_color,
+                            user_netid=netid)
+        user = User.query.filter_by(netid=netid).first()
+        user.courses.append(new_course)
+        db.session.add(new_course)
+        db.session.commit()
+        
+        return redirect(url_for("hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+    
+@app.route("/editcourse", methods=["GET", "POST"])
+def edit_course():
     try:
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")

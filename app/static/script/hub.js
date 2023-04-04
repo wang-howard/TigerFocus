@@ -2,16 +2,19 @@
 var create_modal = document.getElementById("create_new_modal");
 var course_modal = document.getElementById("add_course_modal");
 var coursenew_modal = document.getElementById("add_coursenew_modal");
+var editcourse_modal = document.getElementById("edit_course_modal");
 
 // Get the button that opens the modal
 var create_btn = document.getElementById("create_new_button");
 var course_btn = document.getElementById("add_course_button");
 var coursenew_btn = document.getElementById("add_coursenew_button");
+var editcourse_btn = document.getElementById("edit_course_button");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var course_span = document.getElementsByClassName("course_close")[0];
 var coursenew_span = document.getElementsByClassName("coursenew_close")[0];
+var editcourse_span = document.getElementsByClassName("editcourse_close")[0];
 
 // When the user clicks on the button, open the modal
 create_btn.onclick = function () {
@@ -24,6 +27,10 @@ course_btn.onclick = function () {
 
 coursenew_btn.onclick = function () {
   coursenew_modal.style.display = "block";
+};
+
+editcourse_btn.onclick = function () {
+  editcourse_modal.style.display = "block";
 };
 
 // When the user clicks on <span> (x), close the modal
@@ -39,7 +46,6 @@ coursenew_span.onclick = function () {
   coursenew_modal.style.display = "none";
 };
 
-function deleteAssignment(id) {
-  var assignment = document.getElementById("assignment_element_" + id);
-  assignment.remove();
-}
+editcourse_span.onclick = function () {
+  editcourse_modal.style.display = "none";
+};
