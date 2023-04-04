@@ -1,3 +1,10 @@
+"""
+Initializes TigerFocus app, db, and cas_client to be used by various
+files within app/. The single fuction create_app() creates the Flask
+app, initializes the SQLAlchemy object and returns the app. db and
+cas_client global variables are imported by other files.
+"""
+
 import os
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
@@ -20,7 +27,5 @@ def create_app(config_class=Config):
     # register blueprints
     from .main import bp as main_bp
     app.register_blueprint(main_bp)
-
-    # attach routes and custom error pages here
 
     return app

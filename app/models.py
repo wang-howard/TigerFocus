@@ -1,3 +1,8 @@
+"""
+This file contains the Flask-SQLAlchemy models created to connect and
+interface with the PostgresSQL database. Models represents the 
+"""
+
 from app import db
 
 class User(db.Model):

@@ -1,3 +1,9 @@
+"""
+File contains all view functions to route and reroute client requests
+for the flask App. This file represents the bulk of the application,
+including processing requests and interfacing with the database.
+"""
+
 import sys, random
 from flask import render_template, redirect, url_for
 from flask import session, request

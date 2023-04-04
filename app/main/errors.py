@@ -1,3 +1,7 @@
+"""
+Error handler file for Flask app.
+"""
+
 from flask import render_template
 from . import bp
 
