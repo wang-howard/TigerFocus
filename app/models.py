@@ -4,8 +4,10 @@ interface with the PostgresSQL database. Models represents the
 """
 
 from app import db
+from flask_login import UserMixin
+from . import login_manager
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = "users"
     netid = db.Column(db.String, primary_key=True, unique=True)
     first_name = db.Column(db.String)
@@ -42,3 +44,7 @@ class Assignment(db.Model):
 
     def __repr__(self):
         return self.title + " (" + str(self.id) + ")"
+
+@login_manager.user_loader
+def load_user(netid):
+    return User.query.get(netid)
