@@ -19,7 +19,7 @@ cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
 
 def create_app(config_class=Config):
     app = Flask(__name__)
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     # Flask SQLAlchemy extension
     db.init_app(app)
