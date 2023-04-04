@@ -2,12 +2,13 @@
 SET THESE ENVIRONMENT VARIABLES ON STARTUP:
 export FLASK_APP=app/app.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
-export SEC_KEY=tigerFocus098098
+
+
 export SERVICE_URL=http://localhost:5553/login?next=process_login
 """
 
 import sys, os, random
-#from cas import CASClient
+from cas import CASClient
 from flask import Flask, request, session
 from flask import render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
