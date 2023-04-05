@@ -4,10 +4,10 @@ application either using "flask run" with the FLASK_APP env variable set
 or "python tigerfocus.py" in terminal.
 
 SET THESE ENVIRONMENT VARIABLES ON STARTUP:
-export FLASK_APP=app/app.py
+export FLASK_APP=tigerfocus.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
 export SEC_KEY=tigerFocus098098
-export SERVICE_URL=http://localhost:5553/login?next=.process_login
+export SERVICE_URL=http://localhost:5553/login?next=main.hub
 """
 
 from flask_migrate import Migrate

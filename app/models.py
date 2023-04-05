@@ -18,6 +18,9 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return self.first_name + " " + self.last_name + " (" +\
             self.netid + ")"
+    
+    def get_id(self):
+        return str(self.netid)
 
 class Course(db.Model):
     __tablename__ = "courses"
