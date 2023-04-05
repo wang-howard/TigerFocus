@@ -5,11 +5,15 @@
       <div class="modal_window">
         <span class="close">&times;</span>
 
+        
+
         <div class="modal_input_wrapper">
           <h1 id="input_title">Pick Your Course</h1>
           <select name="course_code" id="course_code">
             {% for course in courses %}
-            <option value="{{course['course_code']}}">{{course['course_code']}}</option>
+            <option value="{{course['course_code']}}">{{course['course_code']}}
+              <input hidden type="number" name="course_key" value="course['id']" >
+            </option>
             {% endfor %}
           </select>
         </div>

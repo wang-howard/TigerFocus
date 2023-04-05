@@ -117,6 +117,7 @@ def hub():
         for a in assignments:
             course = Course.query.filter_by(id=a.course_id).first()
             assignment_data.append({"status": a.status,
+                                    "course_key": a.course_key,
                                     "id": a.id,
                                     "title": a.title,
                                     "due_date": a.due_date,
@@ -183,7 +184,6 @@ def edit_course():
 def delete_course():
     try:
         id = request.form.get("course_del_id")
-        print(id)
         Course.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for(".hub"))

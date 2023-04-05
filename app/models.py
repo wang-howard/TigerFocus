@@ -37,6 +37,7 @@ class Course(db.Model):
 class Assignment(db.Model):
     __tablename__ = "assignments"
     id = db.Column(db.Integer, primary_key=True, unique=True)
+    course_key = db.Column(db.Integer, primary_key=True, unique=True)
     title = db.Column(db.String)
     due_date = db.Column(db.DateTime)
     status = db.Column(db.Boolean)
