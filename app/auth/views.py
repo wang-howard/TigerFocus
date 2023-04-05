@@ -32,11 +32,11 @@ def login():
                                    message="Failed to verify ticket")
         
         # Login successfully, redirect according to "next" parameter
-        login_user(User.query.get(netid))
         session["netid"] = netid
         if User.query.get(netid) is None:
             return render_template("register.html", netid=netid)
         else:
+            login_user(User.query.get(netid))
             return redirect(url_for(next))
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -58,6 +58,7 @@ def new_user():
                     user_type=user_type)
         db.session.add(user)
         db.session.commit()
+        login_user(User.query.get(netid))
         return redirect(url_for("main.hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
