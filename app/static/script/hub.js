@@ -78,24 +78,16 @@ edit_assignment_span.onclick = function () {
 };
 
 function startSession() {
-  const checkboxes = document.querySelectorAll(".assignment_checkbox");
-  const selectedAssignments = [];
-
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      var assignmentId = checkbox.data - id;
-      selectedAssignments.push(assignmentId);
-    }
-  });
-
-  if (selectedAssignments.length === 0) {
-    alert("Please select at least one assignment to start a session");
-  } else {
-    const assignmentsParagraph = document.createElement("p");
-    assignmentsParagraph.textContent = `Selected Assignments: ${selectedAssignments.join(
-      ", "
-    )}`;
-    const sessionDiv = document.querySelector("#session_div");
-    sessionDiv.appendChild(assignmentsParagraph);
-  }
+  // get all the checked checkboxes
+  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
+  
+  // get the title of the first checked assignment
+  const selectedAssignmentTitle = checkboxes.length > 0 ? checkboxes[0].parentNode.parentNode.parentNode.querySelector('.assignment_text').textContent : 'nothing here';
+  
+  // transfer the title to the timer HTML page
+  const selectedAssignmentTitleParagraph = document.getElementById('selected_assignment_title');
+  selectedAssignmentTitleParagraph.textContent = selectedAssignmentTitle;
+  
+  // redirect to the timer HTML page
+  window.location.href = "/timer";
 }
