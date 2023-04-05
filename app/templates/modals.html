@@ -12,7 +12,6 @@
           <select name="course_code" id="course_code">
             {% for course in courses %}
             <option value="{{course['course_code']}}">{{course['course_code']}}
-              <input hidden type="number" name="course_key" value="course['id']" >
             </option>
             {% endfor %}
           </select>

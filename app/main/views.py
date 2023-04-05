@@ -57,7 +57,6 @@ def hub():
         for a in assignments:
             course = Course.query.filter_by(id=a.course_id).first()
             assignment_data.append({"status": a.status,
-                                    "course_key": a.course_key,
                                     "id": a.id,
                                     "title": a.title,
                                     "due_date": a.due_date,
@@ -125,8 +124,8 @@ def edit_course():
 @bp.route("/deletecourse", methods=["GET", "POST"])
 def delete_course():
     try:
-        key = request.form.get("course_key")
         id = request.form.get("course_del_id")
+
         Course.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for(".hub"))
@@ -146,6 +145,7 @@ def add_assignment():
             .filter(Course.course_code==course)\
             .filter(Course.user_netid==netid).first()
         course_id = db_course.id
+
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
             query = Assignment.query.filter_by(id=assignment_id).first()
