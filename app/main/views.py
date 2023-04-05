@@ -125,7 +125,12 @@ def edit_course():
 def delete_course():
     try:
         id = request.form.get("course_del_id")
+        course = Course.query.get(id)
 
+        assignments = list(course.assignments)
+        for assignment in assignments:
+            db.session.delete(assignment)
+                 
         Course.query.filter_by(id=id).delete()
         db.session.commit()
         return redirect(url_for(".hub"))

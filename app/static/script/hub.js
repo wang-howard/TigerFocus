@@ -83,7 +83,7 @@ function startSession() {
 
   checkboxes.forEach((checkbox) => {
     if (checkbox.checked) {
-      var assignmentId = checkbox.data - id;
+      var assignmentId = "hello";
       selectedAssignments.push(assignmentId);
     }
   });
