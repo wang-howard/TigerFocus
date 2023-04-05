@@ -3,12 +3,21 @@ var create_modal = document.getElementById("create_new_modal");
 var course_modal = document.getElementById("add_course_modal");
 var coursenew_modal = document.getElementById("add_coursenew_modal");
 var editcourse_modal = document.getElementById("edit_course_modal");
+var edit_course = document.getElementsByName("edited_course_id")[0];
 
 // Get the button that opens the modal
 var create_btn = document.getElementById("create_new_button");
 var course_btn = document.getElementById("add_course_button");
 var coursenew_btn = document.getElementById("add_coursenew_button");
-var editcourse_btn = document.getElementById("edit_course_button");
+var editcourse_btn = document.getElementsByName("edit_course_button");
+
+editcourse_btn.forEach(
+  (element) =>
+    (element.onclick = function () {
+      editcourse_modal.style.display = "block";
+      edit_course.value = element.value;
+    })
+);
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -32,10 +41,6 @@ coursenew_btn.onclick = function () {
   coursenew_modal.style.display = "block";
 };
 
-editcourse_btn.onclick = function () {
-  editcourse_modal.style.display = "block";
-};
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
   create_modal.style.display = "none";
@@ -50,30 +55,28 @@ coursenew_span.onclick = function () {
 };
 
 editcourse_span.onclick = function () {
-  editcourse_modal.style.displasy = "none";
+  editcourse_modal.style.display = "none";
 };
 
+function startSession() {
+  const checkboxes = document.querySelectorAll(".assignment_checkbox");
+  const selectedAssignments = [];
 
-  function startSession() {
-    const checkboxes = document.querySelectorAll('.assignment_checkbox');
-    const selectedAssignments = [];
-  
-    checkboxes.forEach((checkbox) => {
-      if (checkbox.checked) {
-        var assignmentId = checkbox.data-id;
-        selectedAssignments.push(assignmentId);
-      }
-    });
-  
-    if (selectedAssignments.length === 0) {
-      alert('Please select at least one assignment to start a session');
-    } else {
-      const assignmentsParagraph = document.createElement('p');
-      assignmentsParagraph.textContent = `Selected Assignments: ${selectedAssignments.join(', ')}`;
-      const sessionDiv = document.querySelector('#session_div');
-      sessionDiv.appendChild(assignmentsParagraph);
+  checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      var assignmentId = checkbox.data - id;
+      selectedAssignments.push(assignmentId);
     }
-  }
-  
+  });
 
-  
+  if (selectedAssignments.length === 0) {
+    alert("Please select at least one assignment to start a session");
+  } else {
+    const assignmentsParagraph = document.createElement("p");
+    assignmentsParagraph.textContent = `Selected Assignments: ${selectedAssignments.join(
+      ", "
+    )}`;
+    const sessionDiv = document.querySelector("#session_div");
+    sessionDiv.appendChild(assignmentsParagraph);
+  }
+}

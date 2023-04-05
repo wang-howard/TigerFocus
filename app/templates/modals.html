@@ -54,9 +54,8 @@
               <td>
                 <div class="class_chip" style="background-color: {{course['color']}}">{{course['course_code']}}</div>
               </td>
-
               <td width="20%">
-                <button id="edit_course_button" class="action_button">
+                <button name="edit_course_button" class="action_button" value="{{course['id']}}">
                   <i class="fa fa-edit"></i>
                 </button>
               </td>
@@ -132,7 +131,8 @@
       </div>
 
       <div class="col-lg-12 login-form">
-        <form action="/createcourse" method="post">
+        <form action="/editcourse" method="post">
+          <input hidden type="number" name="edited_course_id" >
           <div class="form-group">
             <label class="form-control-label">Course Code</label>
             <input type="text" name="course_code" class="form-control">

@@ -103,8 +103,10 @@ def hub():
         for course in courses:
             color = course.color
             code = course.course_code
+            id = course.id
             course_codes.append({"course_code": code,
-                                 "color": color })
+                                 "color": color ,
+                                 "id": id })
             course_ids.append(course.id)
 
         # create list of dicts containing course information
@@ -150,6 +152,32 @@ def created_course():
         db.session.commit()
         
         return redirect(url_for(".hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+    
+@bp.route("/editcourse", methods=["GET", "POST"])
+def edit_course():
+    try:
+        course_id = request.form.get("edited_course_id")
+        course_code = request.form.get("course_code")
+        course_name = request.form.get("course_name")
+        course_color = request.form.get("color")
+        netid = session["netid"]
+
+        print(course_code)
+
+        
+        edited_course = Course.query.filter_by(id=course_id).first()
+        edited_course.course_code = course_code,
+        edited_course.course_name = course_name,
+        edited_course.color = course_color,
+        edited_course.user_netid = netid
+        
+        db.session.commit()
+        
+        return redirect(url_for(".hub"))
+        
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
