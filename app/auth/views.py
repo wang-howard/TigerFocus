@@ -1,3 +1,8 @@
+"""
+View functions that pertain specifically to user authentification,
+login, and logout.
+"""
+
 import sys
 from flask import request, session, render_template, redirect, url_for
 from flask_login import login_user, logout_user, login_required
