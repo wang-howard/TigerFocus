@@ -43,8 +43,10 @@ def hub():
         for course in courses:
             color = course.color
             code = course.course_code
+            id = course.id
             course_codes.append({"course_code": code,
-                                 "color": color })
+                                 "color": color ,
+                                 "id": id })
             course_ids.append(course.id)
 
         # create list of dicts containing course information
@@ -95,6 +97,29 @@ def created_course():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
     
+@bp.route("/editcourse", methods=["GET", "POST"])
+def edit_course():
+    try:
+        course_id = request.form.get("edited_course_id")
+        course_code = request.form.get("course_code")
+        course_name = request.form.get("course_name")
+        course_color = request.form.get("color")
+        netid = session["netid"]
+        
+        edited_course = Course.query.filter_by(id=course_id).first()
+        edited_course.course_code = course_code
+        edited_course.course_name = course_name
+        edited_course.color = course_color
+        edited_course.user_netid = netid
+        
+        db.session.commit()
+        
+        return redirect(url_for(".hub"))
+        
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+    
 @bp.route("/addassignment", methods=["GET", "POST"])
 @login_required
 def add_assignment():
@@ -124,6 +149,27 @@ def add_assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
+@bp.route("/editassignment", methods=["GET", "POST"])
+def edit_assignment():
+    try:
+        assignment_id = request.form.get("edited_assignment_id")
+        due = request.form.get("due_date")
+        title = request.form.get("title")
+        netid = session["netid"]
+
+        edited_assignment = Assignment.query.filter_by(id=assignment_id).first()
+        edited_assignment.due_date = due
+        edited_assignment.title = title
+        edited_assignment.user_netid = netid
+
+        db.session.commit()
+
+        return redirect(url_for(".hub"))
+
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
 @bp.route("/deleteassignment", methods=["GET", "POST"])
 def delete_assignment():
     try:
@@ -142,9 +188,10 @@ def timer():
     id = "pomodoro-app"
     link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
     script = url_for('static', filename='script/timer.js')
+    assignments = request.args.get('assignments')
 
     return render_template("timer.html", style=style, id=id, mins=25,
-                           source=link, script=script)
+                           source=link, script=script, assignments=assignments)
 
 @bp.route("/shortBreak")
 def shortBreak():

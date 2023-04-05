@@ -31,6 +31,33 @@
   </div>
 </div>
 
+
+<!--MODAL: EDIT ASSIGNMENT -->
+<div id="edit_assignment_modal" class="modal">
+  <div class="modal_content">
+    <form action="/editassignment" method="post">
+      <div class="modal_window">
+        <span class="edit_assignment_close">&times;</span>
+        
+        <input hidden type="number" name="edited_assignment_id" >
+        
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Assignment Title</h1>
+          <input type="text" name="title" id="title"/>
+        </div>
+
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date"/>
+        </div>
+        <span style="float:right"><button class="action-button" type="submit">update assignment</button> </span>
+  
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <!--MODAL: CURRENT COURSES -->
 <div id="add_course_modal" class="modal">
   <div class="modal_content">
@@ -54,9 +81,8 @@
               <td>
                 <div class="class_chip" style="background-color: {{course['color']}}">{{course['course_code']}}</div>
               </td>
-
               <td width="20%">
-                <button id="edit_course_button" class="action_button">
+                <button name="edit_course_button" class="action_button" value="{{course['id']}}">
                   <i class="fa fa-edit"></i>
                 </button>
               </td>
@@ -120,7 +146,6 @@
 </div>
 
 
-
 <!--MODAL: EDIT COURSE -->
 <div id="edit_course_modal" class="modal_within">
   <div class="modal_content">
@@ -132,7 +157,8 @@
       </div>
 
       <div class="col-lg-12 login-form">
-        <form action="/createcourse" method="post">
+        <form action="/editcourse" method="post">
+          <input hidden type="number" name="edited_course_id" >
           <div class="form-group">
             <label class="form-control-label">Course Code</label>
             <input type="text" name="course_code" class="form-control">

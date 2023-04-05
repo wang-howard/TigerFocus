@@ -71,6 +71,15 @@
   font-weight: bold;
 }
 
+.edit_assignment_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .submitbutton {
   font-family: "Anek Bangla", sans-serif;
   font-size: 20px;
@@ -153,6 +162,13 @@
 
 .editcourse_close:hover,
 .editcourse_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit_assignment_close:hover,
+.edit_assignment_close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
