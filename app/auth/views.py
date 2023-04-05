@@ -23,7 +23,7 @@ def login():
         print('next: %s', next)
         user, _, _ = cas_client.verify_ticket(ticket)
         if not user:
-            return render_template("error.html",
+            return render_template("main.error.html",
                                    message="Failed to verify ticket")
         else:
             # Login successfully, redirect according "next" query parameter.
@@ -31,7 +31,7 @@ def login():
             return redirect(url_for(next))
     except Exception as ex:
         print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
+        return render_template("main.error.html", message=ex)
 
 @auth.route("/processlogin", methods=["GET", "POST"])
 def process_login():
@@ -44,10 +44,10 @@ def process_login():
         if User.query.filter_by(netid=netid).first() is None:
             return render_template("register.html", netid=netid)
         else:
-            return redirect(url_for(".hub"))
+            return redirect(url_for("main.hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
+        return render_template("main.error.html", message=ex)
 
 @auth.route("/newuser", methods=["POST"])
 def new_user():
