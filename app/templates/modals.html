@@ -31,6 +31,33 @@
   </div>
 </div>
 
+
+<!--MODAL: EDIT ASSIGNMENT -->
+<div id="edit_assignment_modal" class="modal">
+  <div class="modal_content">
+    <form action="/editassignment" method="post">
+      <div class="modal_window">
+        <span class="edit_assignment_close">&times;</span>
+        
+        <input hidden type="number" name="edited_assignment_id" >
+        
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Assignment Title</h1>
+          <input type="text" name="title" id="title"/>
+        </div>
+
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date"/>
+        </div>
+        <span style="float:right"><button class="submitbutton" type="submit">submit</button> </span>
+  
+      </div>
+    </form>
+  </div>
+</div>
+
+
 <!--MODAL: CURRENT COURSES -->
 <div id="add_course_modal" class="modal">
   <div class="modal_content">
@@ -117,7 +144,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!--MODAL: EDIT COURSE -->

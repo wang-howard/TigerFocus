@@ -85,7 +85,9 @@
             </div>
           </td>
           <td width="5%">
-            <button class="action_button"><i class="fa fa-edit"></i></button>
+            <button name="edit_assignment_button" class="action_button" value="{{assignment['id']}}">
+              <i class="fa fa-edit"></i>
+            </button>
           </td>
           
           <form action="/deleteassignment" method="post">

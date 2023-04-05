@@ -164,14 +164,11 @@ def edit_course():
         course_name = request.form.get("course_name")
         course_color = request.form.get("color")
         netid = session["netid"]
-
-        print(course_code)
-
         
         edited_course = Course.query.filter_by(id=course_id).first()
-        edited_course.course_code = course_code,
-        edited_course.course_name = course_name,
-        edited_course.color = course_color,
+        edited_course.course_code = course_code
+        edited_course.course_name = course_name
+        edited_course.color = course_color
         edited_course.user_netid = netid
         
         db.session.commit()
@@ -206,6 +203,27 @@ def add_assignment():
         db.session.add(assignment)
         db.session.commit()
         return redirect(url_for(".hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+    
+@bp.route("/editassignment", methods=["GET", "POST"])
+def edit_assignment():
+    try:
+        assignment_id = request.form.get("edited_assignment_id")
+        due = request.form.get("due_date")
+        title = request.form.get("title")
+        netid = session["netid"]
+        
+        edited_assignment = Assignment.query.filter_by(id=assignment_id).first()
+        edited_assignment.due_date = due
+        edited_assignment.title = title
+        edited_assignment.user_netid = netid
+        
+        db.session.commit()
+        
+        return redirect(url_for(".hub"))
+        
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
