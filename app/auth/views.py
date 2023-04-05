@@ -43,7 +43,6 @@ def login():
         return render_template("error.html", message=ex)
 
 @auth.route("/newuser", methods=["POST"])
-@login_required
 def new_user():
     """
     Receives post form from register page and enters new user to
