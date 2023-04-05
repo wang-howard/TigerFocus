@@ -206,7 +206,7 @@ def add_assignment():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
-    
+
 @bp.route("/editassignment", methods=["GET", "POST"])
 def edit_assignment():
     try:
@@ -214,16 +214,16 @@ def edit_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
         netid = session["netid"]
-        
+
         edited_assignment = Assignment.query.filter_by(id=assignment_id).first()
         edited_assignment.due_date = due
         edited_assignment.title = title
         edited_assignment.user_netid = netid
-        
+
         db.session.commit()
-        
+
         return redirect(url_for(".hub"))
-        
+
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
