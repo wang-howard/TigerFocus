@@ -1,6 +1,6 @@
 import sys
 from flask import request, session, render_template, redirect, url_for
-from flask_login import login_user, login_required
+from flask_login import login_user, logout_user, login_required
 from . import auth
 from .. import db, cas_client
 from ..models import User
@@ -44,13 +44,31 @@ def new_user():
     Receives post form from register page and enters new user to
     database, then redirects to user's hub.
     """
-    netid = request.form.get("netid")
-    first = request.form.get("first")
-    last = request.form.get("last")
-    user_type = request.form.get("user_type")
+    try:
+        netid = request.form.get("netid")
+        first = request.form.get("first")
+        last = request.form.get("last")
+        user_type = request.form.get("user_type")
 
-    user = User(netid=netid, first_name=first, last_name=last,
-                user_type=user_type)
-    db.session.add(user)
-    db.session.commit()
-    return redirect(url_for("main.hub"))
+        user = User(netid=netid, first_name=first, last_name=last,
+                    user_type=user_type)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for("main.hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
+@auth.route("/logout")
+def logout():
+    redirect_url = url_for("auth.logout_callback", _external=True)
+    cas_logout_url = cas_client.get_logout_url(redirect_url)
+
+    return redirect(cas_logout_url)
+
+@auth.route('/logout_callback')
+def logout_callback():
+    # redirect from CAS logout request after CAS logout successfully
+    session.pop('netid', None)
+    logout_user()
+    return redirect(url_for("main.index"))
