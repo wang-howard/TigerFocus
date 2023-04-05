@@ -86,6 +86,16 @@
                   <i class="fa fa-edit"></i>
                 </button>
               </td>
+
+              <td>
+              <form action="/deletecourse" method="post">
+                <td width="5%">
+                  <input type="hidden" name="course_del_id" value="{{course['id']}}" >
+                  <button onclick="window.location.href='/deletecourse';" class="action_button">
+                  <i class="fa fa-trash"></i></button>
+                </td>
+              </form>
+            </td>
             </tr>
             {%endfor%}
           </table>

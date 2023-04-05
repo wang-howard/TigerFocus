@@ -178,6 +178,18 @@ def edit_course():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
+
+@bp.route("/deletecourse", methods=["GET", "POST"])
+def delete_course():
+    try:
+        id = request.form.get("course_del_id")
+        print(id)
+        Course.query.filter_by(id=id).delete()
+        db.session.commit()
+        return redirect(url_for(".hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
     
 @bp.route("/addassignment", methods=["GET", "POST"])
 def add_assignment():
