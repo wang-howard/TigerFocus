@@ -78,39 +78,23 @@ edit_assignment_span.onclick = function () {
 };
 
 function startSession() {
-<<<<<<< HEAD
-  const checkboxes = document.querySelectorAll(".assignment_checkbox");
-  const selectedAssignments = [];
-
-  checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
-      var assignmentId = "hello";
-      selectedAssignments.push(assignmentId);
-    }
-  });
-
-  if (selectedAssignments.length === 0) {
-    alert("Please select at least one assignment to start a session");
-  } else {
-    const assignmentsParagraph = document.createElement("p");
-    assignmentsParagraph.textContent = `Selected Assignments: ${selectedAssignments.join(
-      ", "
-    )}`;
-    const sessionDiv = document.querySelector("#session_div");
-    sessionDiv.appendChild(assignmentsParagraph);
-  }
-=======
   // get all the checked checkboxes
-  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
-  
+  const checkboxes = document.querySelectorAll(".assignment_checkbox:checked");
+
   // get the title of the first checked assignment
-  const selectedAssignmentTitle = checkboxes.length > 0 ? checkboxes[0].parentNode.parentNode.parentNode.querySelector('.assignment_text').textContent : 'nothing here';
-  
+  const selectedAssignmentTitle =
+    checkboxes.length > 0
+      ? checkboxes[0].parentNode.parentNode.parentNode.querySelector(
+          ".assignment_text"
+        ).textContent
+      : "nothing here";
+
   // transfer the title to the timer HTML page
-  const selectedAssignmentTitleParagraph = document.getElementById('selected_assignment_title');
+  const selectedAssignmentTitleParagraph = document.getElementById(
+    "selected_assignment_title"
+  );
   selectedAssignmentTitleParagraph.textContent = selectedAssignmentTitle;
-  
+
   // redirect to the timer HTML page
   window.location.href = "/timer";
->>>>>>> c5a630ac119f5ad58dcb19c89a9d616c9b99688f
 }
