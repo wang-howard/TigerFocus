@@ -125,6 +125,7 @@ def edit_course():
 @bp.route("/deletecourse", methods=["GET", "POST"])
 def delete_course():
     try:
+        key = request.form.get("course_key")
         id = request.form.get("course_del_id")
         Course.query.filter_by(id=id).delete()
         db.session.commit()
