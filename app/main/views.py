@@ -98,6 +98,7 @@ def created_course():
         return render_template("error.html", message=ex)
     
 @bp.route("/editcourse", methods=["GET", "POST"])
+@login_required
 def edit_course():
     try:
         course_id = request.form.get("edited_course_id")
@@ -150,6 +151,7 @@ def add_assignment():
         return render_template("error.html", message=ex)
 
 @bp.route("/editassignment", methods=["GET", "POST"])
+@login_required
 def edit_assignment():
     try:
         assignment_id = request.form.get("edited_assignment_id")
@@ -171,6 +173,7 @@ def edit_assignment():
         return render_template("error.html", message=ex)
 
 @bp.route("/deleteassignment", methods=["GET", "POST"])
+@login_required
 def delete_assignment():
     try:
         id = request.form.get("assignment_id")
