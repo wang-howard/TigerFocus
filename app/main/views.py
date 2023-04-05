@@ -120,6 +120,23 @@ def edit_course():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
+
+@bp.route("/deletecourse", methods=["GET", "POST"])
+def delete_course():
+    try:
+        id = request.form.get("course_del_id")
+        course = Course.query.get(id)
+
+        assignments = list(course.assignments)
+        for assignment in assignments:
+            db.session.delete(assignment)
+                 
+        Course.query.filter_by(id=id).delete()
+        db.session.commit()
+        return redirect(url_for(".hub"))
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
     
 @bp.route("/addassignment", methods=["GET", "POST"])
 @login_required
@@ -133,6 +150,7 @@ def add_assignment():
             .filter(Course.course_code==course)\
             .filter(Course.user_netid==netid).first()
         course_id = db_course.id
+
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
             query = Assignment.query.filter_by(id=assignment_id).first()

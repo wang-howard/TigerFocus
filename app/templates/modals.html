@@ -4,12 +4,13 @@
     <form action="/addassignment" method="post">
       <div class="modal_window">
         <span class="close">&times;</span>
-
+        
         <div class="modal_input_wrapper">
           <h1 id="input_title">Pick Your Course</h1>
           <select name="course_code" id="course_code">
             {% for course in courses %}
-            <option value="{{course['course_code']}}">{{course['course_code']}}</option>
+            <option value="{{course['course_code']}}">{{course['course_code']}}
+            </option>
             {% endfor %}
           </select>
         </div>
@@ -86,6 +87,16 @@
                   <i class="fa fa-edit"></i>
                 </button>
               </td>
+
+              <td>
+              <form action="/deletecourse" method="post">
+                <td width="5%">
+                  <input type="hidden" name="course_del_id" value="{{course['id']}}" >
+                  <button onclick="window.location.href='/deletecourse';" class="action_button">
+                  <i class="fa fa-trash"></i></button>
+                </td>
+              </form>
+            </td>
             </tr>
             {%endfor%}
           </table>
