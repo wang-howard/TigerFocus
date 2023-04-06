@@ -203,6 +203,16 @@ def delete_assignment():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
+    
+@bp.route("/preloaded")
+def preloaded():
+    
+    netid = session["netid"]
+  
+    user = User.query.filter_by(netid=netid).first()
+    first = user.first_name
+    return render_template("preloaded.html", first_name= first)
+
 
 @bp.route("/timer")
 def timer():
