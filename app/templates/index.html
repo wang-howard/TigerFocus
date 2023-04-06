@@ -1,30 +1,32 @@
 {% block body %}
-<link href="{{ url_for('static', filename='css/mainPage.css') }}" rel="stylesheet">
+<link href="{{url_for('static', filename='css/mainPage.css')}}" rel="stylesheet">
 <head id="background">
-<table >
-  <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
-    <td width="85%">
-      <a href="/" id="TigerFocusbanner">TigerFocus*</a>
-    </td>
-    <td width="5%" align="center">
-      <button class="headerbutton" style="padding-right: 20px">
-        <a href="">about</a>
-      </button>
-    </td>
-</table>
+  <table>
+    <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
+      <td width="85%">
+        <a href="/" id="TigerFocusbanner">TigerFocus*</a>
+      </td>
+      <td width="5%" align="center">
+        <button class="headerbutton" style="padding-right: 20px">
+          <a href="">about</a>
+        </button>
+      </td>
+  </table>
 </head>
 
-<body id = "background">
+<body id="background">
   <div id="border"></div>
-  <div id = "words">
+  <div id="words">
     TigerFocus* helps Princeton University students achieve more.
   </div>
 
-<p align="center" ><button id = "login">Login with CAS</button></p>
-<p align="center"  ><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTWF18daQXRPYBewM_XjvC120mhE81OOSrm5NP0EveM8Hpqi1GeIKZLd8PyFDELte4BbaG5YXLqO-12/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></p>
-<div id = "feature">features</div>
-<ul id = "list">
-    <li class = "centerlist">
+  <p align="center"><button id = "login">Login with CAS</button></p>
+  <p align="center">
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTWF18daQXRPYBewM_XjvC120mhE81OOSrm5NP0EveM8Hpqi1GeIKZLd8PyFDELte4BbaG5YXLqO-12/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </p>
+  <div id="feature">features</div>
+  <ul id="list">
+    <li class="centerlist">
         pace your work sessions using the pomodoro method
     </li>
     <li class="centerlist">
