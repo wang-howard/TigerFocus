@@ -180,7 +180,6 @@
 }
 
 .checkbox_button input {
-  position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0px;
@@ -188,7 +187,6 @@
 }
 
 .checkmark {
-  position: absolute;
   border: 0px;
   width: 35px;
   height: 35px;
@@ -207,7 +205,6 @@
 
 .checkmark:after {
   content: "";
-  position: absolute;
   display: none;
 }
 
