@@ -173,3 +173,25 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+#assignmentbar{
+  width: 1007.16px;
+  height: 61.6px;
+  left: 116.17px;
+  top: 227.72px;
+  margin: auto;
+  background: #FFFFFF;
+  border-radius: 26.4px;
+
+}
+
+#assignmentcourse{
+
+margin-left: 30px;
+width: 118.8px;
+height: 40.59px;
+left: 198.6px;
+top: 237.57px;
+background: #919FC7;
+border-radius: 29.7px;
+}
