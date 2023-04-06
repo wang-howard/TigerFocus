@@ -67,7 +67,8 @@ def hub():
                                assignments=assignment_data)
     except Exception as ex:
         print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
+        assignments = []
+        return render_template("error.html", message=ex, assignments=assignments )
 
 @bp.route("/createcourse", methods=["GET", "POST"])
 @login_required
@@ -209,10 +210,10 @@ def timer():
     id = "pomodoro-app"
     link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
     script = url_for('static', filename='script/timer.js')
-    assignments = request.args.get('assignments')
+    selected_assignments = request.args.get('selected_assignments')
 
     return render_template("timer.html", style=style, id=id, mins=25,
-                           source=link, script=script, assignments=assignments)
+                           source=link, script=script, selected_assignments=selected_assignments)
 
 @bp.route("/shortBreak")
 def shortBreak():
