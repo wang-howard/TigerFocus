@@ -58,10 +58,11 @@
   </div>
 
   <hr class="window_hr" style="margin-top: 0px;" />
-  <div>
+  <div style="overflow-y: scroll; height: 375px;">
     {% for assignment in assignments %}
     <div id="assignment_element_{{assignment['id']}}">
       <table id="assignment_wrapper" style="margin-bottom:5px">
+
         <tr>
           <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
             <label class="checkbox_button">

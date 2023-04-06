@@ -1,41 +1,45 @@
-{% extends "base.html" %}
-
-{% block title %}TigerFocus{% endblock %}
-
 {% block body %}
+<link href="{{url_for('static', filename='css/mainPage.css')}}" rel="stylesheet">
+<head id="background">
+  <table>
+    <tr style="width: 80%; position: absolute; left: 133px; top: 37px">
+      <td width="85%">
+        <a href="/" id="TigerFocusbanner">TigerFocus*</a>
+      </td>
+      <td width="5%" align="center">
+        <button class="headerbutton" style="padding-right: 20px">
+          <a href="">about</a>
+        </button>
+      </td>
+  </table>
+</head>
 
-<link href="{{ url_for('static', filename='css/mainPage.css') }}" rel="stylesheet"> 
-
-<div id="words">
-    <span id="bold">TigerFocus*</span> helps Princeton University 
-    students achieve more through organization and effective study
-    methods
-</div>
-<p align="center"  ><iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTWF18daQXRPYBewM_XjvC120mhE81OOSrm5NP0EveM8Hpqi1GeIKZLd8PyFDELte4BbaG5YXLqO-12/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe></p>
-<form action="/login" method="get">
-  <div align="center">
-    <button id="login">Login with CAS</button>
+<body id="background">
+  <div id="border"></div>
+  <div id="words">
+    TigerFocus* helps Princeton University students achieve more.
   </div>
-</form>
 
-<div id="feature">features</div>
-<ul id = "list" align="center">
-  <li>
-    pace your work sessions using the pomodoro method
-  </li>
-  <li>
-    enter your flow state with ambient lo-fi music and artwork
-  </li>
-  <li>
-    track your progress and hit your daily focus goal
-  </li>
-  <li>
-    unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard
-  </li>
-</ul>
+  <p align="center"><button id = "login">Login with CAS</button></p>
+  <p align="center">
+    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTWF18daQXRPYBewM_XjvC120mhE81OOSrm5NP0EveM8Hpqi1GeIKZLd8PyFDELte4BbaG5YXLqO-12/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  </p>
+  <div id="feature">features</div>
+  <ul id="list">
+    <li class="centerlist">
+        pace your work sessions using the pomodoro method
+    </li>
+    <li class="centerlist">
+      enter your flow state with ambient lo-fi music and artwork
+    </li>
+    <li class="centerlist">
+      track your progress and hit your daily focus goal
+    </li>
+    <li class="centerlist">
+      unlock badges, keep up a daily streak, and see how you rank against other students on the leaderboard
+    </li>
+  </ul>
+</body>
 
-<!--
 <script src="{{url_for('static', filename='script/mainPage.js')}}"></script>
--->
-
 {% endblock %}
