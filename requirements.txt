@@ -11,6 +11,7 @@ dominate==2.7.0
 filelock==3.10.7
 Flask==2.2.3
 Flask-Bootstrap==3.3.7.1
+Flask-Login==0.6.2
 Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.3
 Flask-WTF==1.1.1
