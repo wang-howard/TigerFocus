@@ -78,23 +78,22 @@ edit_assignment_span.onclick = function () {
 };
 
 function startSession() {
-  // get all the checked checkboxes
-  const checkboxes = document.querySelectorAll(".assignment_checkbox:checked");
+  // get all checked checkboxes
+  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
 
-  // get the title of the first checked assignment
-  const selectedAssignmentTitle =
-    checkboxes.length > 0
-      ? checkboxes[0].parentNode.parentNode.parentNode.querySelector(
-          ".assignment_text"
-        ).textContent
-      : "nothing here";
+  // create an array to store the titles of the checked assignments
+  const selectedAssignments = [];
 
-  // transfer the title to the timer HTML page
-  const selectedAssignmentTitleParagraph = document.getElementById(
-    "selected_assignment_title"
-  );
-  selectedAssignmentTitleParagraph.textContent = selectedAssignmentTitle;
+  // iterate over each checked checkbox and add its corresponding assignment title to the array
+  checkboxes.forEach((checkbox) => {
+    const assignmentId = checkbox.getAttribute('value');
+    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
+    selectedAssignments.push(assignmentTitle);
+  });
 
-  // redirect to the timer HTML page
-  window.location.href = "/timer";
+  // log the selected assignments
+  console.log('Selected Assignments:', selectedAssignments);
+
+  // redirect to the destination HTML file and pass the selected assignments as a query parameter
+  window.location.href = `timer.html?selected_assignments=${encodeURIComponent(selectedAssignments.join(','))}`;
 }

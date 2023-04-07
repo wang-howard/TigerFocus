@@ -97,6 +97,18 @@
   border: 3px solid #6c7896;
 }
 
+#preloaded_window {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #abc787;
+  border-radius: 40px 40px 40px 40px;
+  border: 3px solid #798d5f;
+}
+
 #tabs {
   margin-left: 30px;
   margin-top: 10px;
@@ -121,6 +133,25 @@
   background: #acbdeb;
 }
 
+#pre_assignments_tab {
+  border: 0px;
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fef9ee;
+  position: absolute;
+  width: 200px;
+  height: auto;
+  background: #798d5f;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#pre_assignments_tab:hover {
+  background: #bbda93;
+}
+
 #preloaded_tab {
   border: 0px;
   text-align: center;
@@ -137,9 +168,29 @@
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
-
 #preloaded_tab:hover {
   background: #acbdeb;
+}
+
+#pre_preloaded_tab {
+  border: 0px;
+  text-align: center;
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fef9ee;
+  position: absolute;
+  left: 250px;
+  right: 60%;
+  width: 200px;
+  height: auto;
+  background: #798d5f;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#pre_preloaded_tab:hover {
+  background: #bbda93;
 }
 
 #assignment_wrapper {
