@@ -33,11 +33,13 @@
 
   <div id = "taskrectangle"><h2 id = "h2font">Tasks ToDo</h2>
     <div>
-      <p>Selected assignments: <p id="selected_assignments"></p></p>
+      <form method="POST" action="/start_session">
+      <p>Selected Assignments: {{ selected_assignments }}</p>
     </div>
   </div>
   <button id="stop"><a href="/hub">End Session </a> </button>
 </div>
 
 <script src="{{script}}"></script>
+
 {% endblock %}
