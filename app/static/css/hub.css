@@ -113,7 +113,7 @@ hr {
 #table_header {
   color: #fef9ee;
   text-align: center;
-  font-family: "Anek Bangla", sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: bold;
 }
@@ -130,11 +130,10 @@ hr {
 
 
 
-
 #pre_assignments_tab {
   border: 0px;
   text-align: center;
-  font-family: "Anek Bangla", sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: 700;
   color: #fef9ee;
