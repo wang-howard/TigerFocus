@@ -12,7 +12,7 @@ from app import cas_client
 from . import bp
 from .. import db
 from ..models import User, Course, Assignment
-
+import urllib 
 @bp.route("/", methods=["GET"])
 def index():
     """
@@ -240,6 +240,36 @@ def longBreak():
     script = url_for('static', filename='script/longBreak.js')
     return render_template("timer.html", style=style, id=id, mins=25,
                            source=link, script=script)
+
+
+@bp.route('/start', methods=['POST'])
+@login_required
+def start_session():
+    try:
+        # get all checked checkboxes
+        checkboxes = request.form.getlist('assignment_checkbox')
+
+        # create an array to store the titles of the checked assignments
+        selected_assignments = []
+
+        # iterate over each checked checkbox and add its corresponding assignment title to the array
+        for checkbox in checkboxes:
+            assignment_id = checkbox
+            assignment_title = request.form.get(f'assignment_title_{assignment_id}')
+            selected_assignments.append(assignment_title)
+
+        # populate the hidden input field with the selected assignments
+        selected_assignments_str = ','.join(selected_assignments)
+        selected_assignments_element = request.form.get('selected_assignments')
+        selected_assignments_element.value = selected_assignments_str
+
+        # redirect the user to the timer.html page with the selected assignments as a query parameter
+        selected_assignments_query_param = urllib.parse.quote(selected_assignments_str)
+        return redirect(f'timer.html?selected_assignments={selected_assignments_query_param}')
+
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
 
 @bp.route("/mainPage")
 def mainPage():

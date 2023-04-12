@@ -77,43 +77,4 @@ edit_assignment_span.onclick = function () {
   edit_assignment_modal.style.display = "none";
 };
 
-function startSession() {
-  // get all checked checkboxe
-  console.log('Start Session button clicked');
-  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
 
-  // create an array to store the titles of the checked assignments
-  const selectedAssignments = [];
-
-  // iterate over each checked checkbox and add its corresponding assignment title to the array
-  checkboxes.forEach((checkbox) => {
-    const assignmentId = checkbox.getAttribute('value');
-    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
-    selectedAssignments.push(assignmentTitle);
-  });
-
-  // log the selected assignments
-  console.log('Selected Assignments:', selectedAssignments);
-
-  // populate the hidden input field with the selected assignments
-  const hiddenInput = document.getElementById('selected_assignments');
-  hiddenInput.value = selectedAssignments.join(',');
-
-  // create a paragraph element to display the selected assignments
-  const selectedAssignmentsElement = document.createElement('p');
-  selectedAssignmentsElement.innerHTML = `Selected Assignments: ${selectedAssignments.join(', ')}`;
-
-  // append the paragraph element to the body of the document
-  document.body.appendChild(selectedAssignmentsElement);
-
-  // test: log the value of the hidden input field
-  console.log('Hidden Input Value:', hiddenInput.value);
-
-  // test: submit the form manually
-  // const form = document.getElementById('start_session_form');
-  // form.submit();
-}
-
-// test: call startSession() function
-const startSessionButton = document.querySelector('.smallbutton');
-startSessionButton.addEventListener('click', startSession);
