@@ -88,7 +88,7 @@ function startSession() {
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute('value');
-    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
+    const assignmentTitle = document.querySelector('#assignment_element_${assignmentId} .assignment_text').innerText;
     selectedAssignments.push(assignmentTitle);
   });
 
@@ -101,7 +101,7 @@ function startSession() {
 
   // create a paragraph element to display the selected assignments
   const selectedAssignmentsElement = document.createElement('p');
-  selectedAssignmentsElement.innerHTML = `Selected Assignments: ${selectedAssignments.join(', ')}`;
+  selectedAssignmentsElement.innerHTML = 'Selected Assignments: ${selectedAssignments.join(', ')}';
 
   // append the paragraph element to the body of the document
   document.body.appendChild(selectedAssignmentsElement);
@@ -115,5 +115,5 @@ function startSession() {
 }
 
 // test: call startSession() function
-const startSessionButton = document.querySelector('.smallbutton');
+const startSessionButton = document.querySelector('.small-button');
 startSessionButton.addEventListener('click', startSession);

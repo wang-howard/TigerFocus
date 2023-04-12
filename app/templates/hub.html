@@ -2,50 +2,54 @@
 
 {% block title %}TigerFocus Hub{% endblock %}
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/hubStyles.css')}}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/createNew.css') }}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/hub.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/createNew.css')}}">
 {% endblock %}
 
 {% block body %}
-
 {% include "modals.html" %}
 
-<div id="welcome_wrapper">
+<div id="welcome-wrapper">
   <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
-
   <div>
     <form method="POST" action="/start_session">
-      <button type="button" class="smallbutton" onclick="startSession()"><a id = "start" href = "\timer">START SESSION</a></button>
+      <button class="small-button" onclick="startSession()">
+        <a href="\timer">START SESSION</a>
+      </button>
       <input type="hidden" name="selected_assignments" id="selected_assignments">
     </form>
   </div>
 </div>
   
-<div id="assignments_window" style="top: 35%">
+<div id="assignments-window">
   <div id="tabs">
-    <button id="preloaded_tab" >
-      <a id="start" href="/preloaded">pre-loaded courses</a>
-    </button>
-    <button id="assignments_tab">
-      <a id="start" href="/hub">assignments</a>
-    </button>
-  </div>
-
-  <div id="assignments_header">
-    <h2 id="current_assignments_title" style="margin-top: 40px; padding-left: 30px">Current Assignments</h2>
-    <div style="margin-left: auto; margin-right: 30px">
-      <button id="create_new_button" class="smallbutton" style="margin-right: 15px">create new</button>
-      <button id="add_course_button" class="smallbutton">edit courses</button>
+    <div>
+      <button id="assignments-tab">
+        <a style="color: #fef9ee;" href="/hub">assignments</a>
+      </button>
+    </div>
+    <div>
+      <button id="preloaded-tab">
+        <a style="color: #fef9ee;" href="/preloaded">pre-loaded courses</a>
+      </button>
     </div>
   </div>
 
-  <hr class="window_hr" style="margin-top: 0px"/>
+  <div id="assignments-header">
+    <div id="current-assignments-title">Current Assignments</div>
+    <div id="edit-button-wrapper">
+      <button class="small-button" id="create_new_button">create new</button>
+      <button class="small-button" id="add_course_button">edit courses</button>
+    </div>
+  </div>
+
+  <hr>
   <div>
     <table style="margin-left: 30px" id="table_header">
       <td></td>
       <td></td>
-      <td width=600px" align="center">Assignment</td>
+      <td width=600px align="center">Assignment</td>
       <td width="100px" align="left">Due Date</td>
       <td width="100px" align="center">Class</td>
       <td></td>
@@ -53,13 +57,12 @@
       <td></td>
     </table>
   </div>
+  <hr>
 
-  <hr class="window_hr" style="margin-top: 0px;" />
-  <div style="overflow-y: scroll; height: 375px;">
+  <div style="overflow-y: scroll; height: 90%;">
     {% for assignment in assignments %}
     <div id="assignment_element_{{assignment['id']}}">
       <table id="assignment_wrapper" style="margin-bottom:5px">
-
         <tr>
           <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
             <label class="checkbox_button">

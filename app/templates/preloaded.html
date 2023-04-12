@@ -2,11 +2,15 @@
 
 {% block title %}Preloaded Courses{% endblock %}
 
-{% block body %}
+{% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
 
-<div id="welcome_wrapper">
+{% endblock %}
+
+{% block body %}
+<div id="welcome-wrapper">
   <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
 </div>
 

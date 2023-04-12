@@ -19,14 +19,12 @@ a:hover {color: #747272;}
   font-weight: 600;
   line-height: 32px;
 
-  position: absolute;
-  width: 90%;
-  top: 37px;
-
   display: flex;
+  width: 90vw;
   justify-content: space-between;
   align-items: end;
   border-bottom: 2px solid;
+  margin-top: 36px;
 }
 
 #menu {
