@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+body {
+  background: #fef9ee;
+  font-family: "Anek Bangla", sans-serif;
+}
+
+a {text-decoration: none;}
+a:visited {text-decoration: none; color: #4e4e4e;}
+a:hover {color: #747272;}
+
+#page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#banner {
+  font-weight: 600;
+  line-height: 32px;
+
+  display: flex;
+  width: 90vw;
+  justify-content: space-between;
+  align-items: end;
+  border-bottom: 2px solid;
+  margin-top: 36px;
+}
+
+#menu {
+  display: flex;
+  gap: 8px;
+}
+
+#menu-button {
+  border: 0px;
+  background-color: #33333300;
+  height: 24px;
+  font-weight: 300;
+  font-size: 22.5px;
+  line-height: 24px;
+  color: #4e4e4e;
+}
+
+#hook {
+  color: #4E4E4E;
+  width: 80%;
+  margin-top: 90px;
+  font-weight: 600;
+  font-size: 45px;
+  line-height: 84px;
+  text-align: center;
+  text-align: center;
+}
+
+#login-button {
+  margin: auto;
+  width: 275.2px;
+  height: 55.2px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
+  font-size: 24px;
+}
+
+#iframe {
+  width: 90vw;
+  height: 60vh;
+}
+
+#feature {
+  margin: auto;
+  width: 159px;
+  height: 84px;
+  left: 624px;
+  top: 862px;
+  font-weight: 300;
+  font-size: 45px;
+  line-height: 84px;
+  color: #4E4E4E;
+}
+
+ul {
+  margin: auto;
+  font-family: "Helvetica";
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 40px;
+  list-style-type: none;
+  color: #4E4E4E;
+}
+
+li {
+  display: block;
+  text-align: center;
+}

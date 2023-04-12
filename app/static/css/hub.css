@@ -1,39 +1,98 @@
 @import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
 
-#current_assignments_title {
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 700;
-  font-size: 40px;
-  color: #fef9ee;
-  margin-bottom: 0px;
-}
+a {text-decoration: none; color: #fef9ee;}
+a:visited {text-decoration: none; color: #fef9ee;}
+a:hover {color: #fef9ee;}
 
-.window_hr {
+hr {
   color: #fef9ee;
+  margin-top: 0px;
   width: 95%;
 }
 
-.smallbutton:hover {
-  background: #83736d;
-  box-shadow: 0px 2px 5px #000000;
+#welcome-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px;
 }
 
-#start {
-  text-decoration: none;
+#welcome {
+  font-weight: 600;
+  font-size: 37.5px;
+  color: #4e4e4e;
+}
+
+#assignments-window {
+  display: flex;
+  flex-direction: column;
+  background: #919fc7;
+  border-radius: 40px;
+  border: 3px solid #6c7896;
+}
+
+#tabs {
+  display: flex;
+  gap: 16px;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+#assignments-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+#assignments-tab:hover {
+  background: #acbdeb;
+}
+
+#preloaded-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+#preloaded_tab:hover {
+  background: #acbdeb;
+}
+
+#assignments-header {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+}
+
+#current-assignments-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 40px;
   color: #fef9ee;
 }
 
-#start:visited {
-  text-decoration: none;
-  color: #fef9ee;
+#edit-button-wrapper {
+  display: flex;
+  gap: 8px;
 }
 
-#start:hover {
-  color: #fef9ee;
-}
-
-.smallbutton {
-  font-family: "Anek Bangla", sans-serif;
+.small-button {
+  font-family: inherit;
   font-size: 20px;
   font-weight: 800;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -46,97 +105,35 @@
   margin-bottom: 0px;
   cursor: pointer;
 }
-
-#assignments_header {
-  margin-top: 15px;
-  margin-bottom: 0px;
-  display: flex;
-  align-items: center;
+.small-button:hover {
+  background: #83736d;
+  box-shadow: 0px 2px 5px #000000;
 }
 
 #table_header {
   color: #fef9ee;
   text-align: center;
-  font-family: "Anek Bangla", sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: bold;
 }
 
-#welcome_wrapper {
-  position: absolute;
-  top: 18%;
-  right: 10%;
-  left: 10%;
-  width: 80%;
-}
-
-#welcome {
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 600;
-  font-size: 37.5px;
-  color: #4e4e4e;
-}
-
-#input_title {
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  color: #4e4e4e;
-  text-align: center;
-}
-
-#assignments_window {
-  position: absolute;
-  top: 30%;
-  right: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background: #919fc7;
-  border-radius: 40px 40px 40px 40px;
-  border: 3px solid #6c7896;
-}
-
-#preloaded_window {
-  position: absolute;
-  top: 30%;
-  right: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background: #abc787;
-  border-radius: 40px 40px 40px 40px;
-  border: 3px solid #798d5f;
-}
-
-#tabs {
+#assignment_wrapper {
+  background: #fef9ee;
+  border-radius: 30px;
+  height: 70px;
+  width: 95%;
   margin-left: 30px;
-  margin-top: 10px;
 }
 
-#assignments_tab {
-  border: 0px;
-  text-align: center;
-  font-family: "Anek Bangla", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fef9ee;
-  position: absolute;
-  width: 200px;
-  height: auto;
-  background: #6c7896;
-  border-radius: 19.2px 19.2px 19.2px 19.2px;
-  cursor: pointer;
-}
 
-#assignments_tab:hover {
-  background: #acbdeb;
-}
+
+
 
 #pre_assignments_tab {
   border: 0px;
   text-align: center;
-  font-family: "Anek Bangla", sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: 700;
   color: #fef9ee;
@@ -147,29 +144,8 @@
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
-
 #pre_assignments_tab:hover {
   background: #bbda93;
-}
-
-#preloaded_tab {
-  border: 0px;
-  text-align: center;
-  font-family: "Anek Bangla", sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fef9ee;
-  position: absolute;
-  left: 250px;
-  right: 60%;
-  width: 200px;
-  height: auto;
-  background: #6c7896;
-  border-radius: 19.2px 19.2px 19.2px 19.2px;
-  cursor: pointer;
-}
-#preloaded_tab:hover {
-  background: #acbdeb;
 }
 
 #pre_preloaded_tab {
@@ -188,17 +164,28 @@
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
-
 #pre_preloaded_tab:hover {
   background: #bbda93;
 }
 
-#assignment_wrapper {
-  background: #fef9ee;
-  border-radius: 30px;
-  height: 70px;
-  width: 95%;
-  margin-left: 30px;
+#input_title {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: #4e4e4e;
+  text-align: center;
+}
+
+#preloaded_window {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background: #abc787;
+  border-radius: 40px 40px 40px 40px;
+  border: 3px solid #798d5f;
 }
 
 .class_chip {
@@ -286,17 +273,6 @@
   background: #00000000;
   color: #4e4e4e;
 }
-
 .action_button:hover {
   color: #7b7b7b;
-}
-
-body {
-  background-color: #071014;
-  background-image: -webkit-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: -moz-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: -o-linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  background-image: linear-gradient(160deg, #071014 0%, #0db8de 100%);
-  font-family: "Arial", sans-serif;
-  height: 100vh;
 }

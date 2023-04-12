@@ -10,7 +10,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from app.cas import CASClient
-
 from config import Config
 
 db = SQLAlchemy()
@@ -19,8 +18,6 @@ login_manager.login_view = "auth.login"
 
 cas_client = CASClient(version=3, service_url=os.getenv("SERVICE_URL"),
                        server_url="https://fed.princeton.edu/cas/")
-
-
 
 def create_app(config_class=Config):
     app = Flask(__name__)

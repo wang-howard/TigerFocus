@@ -2,24 +2,17 @@
 
 {% block title %}Preloaded Courses{% endblock %}
 
-{% block body %}
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='css/createNew.css') }}"
-/>
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
 
-<div id="welcome_wrapper">
-  <table>
-    <td width="88%">
-      <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
-    </td>
-  </table>
-  </div>
+{% endblock %}
+
+{% block body %}
+<div id="welcome-wrapper">
+  <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+</div>
 
 <div id="preloaded_window" style="top: 35%">
   <div id="tabs">
@@ -51,13 +44,10 @@
   <hr class="window_hr" style="margin-top: 0px" />
   <div>
     <table style="margin-left: 30px" id="table_header">
-      <td></td>
-      <td width=200px" align="center">Course</td>
+      <td width=200px" align="center" style="padding-left:100px;">Course</td>
       <td width="100px" align="center">Created by</td>
       <td width=200px" align="left">Staff Certified</td>
       <td width="200px" align="center">Last Updated</td>
-      <td></td>
-      <td></td>
     </table>
   </div>
   

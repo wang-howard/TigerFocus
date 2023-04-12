@@ -1,0 +1,197 @@
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal_within {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.course_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.coursenew_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.editcourse_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.edit_assignment_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.submitbutton {
+  font-family: "Anek Bangla", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: #fef9ee;
+  text-align: center;
+  border-radius: 20px;
+  height: 50px;
+  width: 100px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.modal_window {
+  width: 500px;
+  height: 400px;
+  background: #fef9ee;
+  border-radius: 30px;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 5px 10px #00000080;
+}
+
+.modal_within_window {
+  width: 500px;
+  height: 400px;
+  background: #fef9ee;
+  border-radius: 30px;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.courselist_window {
+  width: 300px;
+  height: 250px;
+  background: #ffffff;
+  border-radius: 30px;
+  border: 3px solid #6c7896;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+}
+
+.modal_input_wrapper {
+  margin: auto;
+  width: 50%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.course_close:hover,
+.course_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.coursenew_close:hover,
+.coursenew_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.editcourse_close:hover,
+.editcourse_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.edit_assignment_close:hover,
+.edit_assignment_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#assignmentbar{
+  width: 1007.16px;
+  height: 61.6px;
+  left: 116.17px;
+  top: 227.72px;
+  margin: auto;
+  background: #FFFFFF;
+  border-radius: 26.4px;
+
+}
+
+#assignmentcourse{
+
+margin-left: 30px;
+width: 118.8px;
+height: 40.59px;
+left: 198.6px;
+top: 237.57px;
+background: #919FC7;
+border-radius: 29.7px;
+}
