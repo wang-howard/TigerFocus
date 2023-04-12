@@ -48,13 +48,12 @@ class Assignment(db.Model):
     def __repr__(self):
         return self.title + " (" + str(self.id) + ")"
 
-class Preloaded(db.Model):
-    __tablename__ = "preloaded_courses"
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    author = db.Column(db.String)
-    show_author = db.Column(db.Boolean)
-    staff_cert = db.Column(db.Boolean)
-    
+# class Preloaded(db.Model):
+#     __tablename__ = "preloaded_courses"
+#     id = db.Column(db.Integer, primary_key=True, unique=True)
+#     author = db.Column(db.String)
+#     show_author = db.Column(db.Boolean)
+#     staff_cert = db.Column(db.Boolean)
 
 @login_manager.user_loader
 def load_user(netid):

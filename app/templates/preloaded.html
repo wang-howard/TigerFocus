@@ -3,23 +3,12 @@
 {% block title %}Preloaded Courses{% endblock %}
 
 {% block body %}
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='css/createNew.css') }}"
-/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}"/>
 
 <div id="welcome_wrapper">
-  <table>
-    <td width="88%">
-      <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
-    </td>
-  </table>
-  </div>
+  <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+</div>
 
 <div id="preloaded_window" style="top: 35%">
   <div id="tabs">

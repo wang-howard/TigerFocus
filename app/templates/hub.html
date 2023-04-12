@@ -4,27 +4,19 @@
 
 {% block body %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='css/createNew.css') }}"
-    />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}"/>
 
 {% include "modals.html" %}
 
 <div id="welcome_wrapper">
-<table>
-  <td width="88%">
-    <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
-  </td>
-  <td style="padding-right:80px" width="12%" align="left">
-    <div>
-      <form method="POST" action="/start_session">
-        <button type="button" class="smallbutton" onclick="startSession()"><a id = "start" href = "\timer">START SESSION</a></button>
-        <input type="hidden" name="selected_assignments" id="selected_assignments">
-    </div>
-  </td>
-</table>
+  <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+
+  <div>
+    <form method="POST" action="/start_session">
+      <button type="button" class="smallbutton" onclick="startSession()"><a id = "start" href = "\timer">START SESSION</a></button>
+      <input type="hidden" name="selected_assignments" id="selected_assignments">
+    </form>
+  </div>
 </div>
   
 <div id="assignments_window" style="top: 35%">
