@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TigerFocus*</title>
-  <link href="{{url_for('static', filename='css/index.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 </head>
 <body>
   <div id="page">
@@ -14,7 +14,7 @@
         <a href="/" style="color: #f9aa5b; font-size: 37.5px;">TigerFocus*</a>
       </div>
       <div style="padding-right: 8px;">
-        <a id="about" href="">about</a>
+        <a id="menu-button" href="">about</a>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
         <button id="login-button">Login with CAS</button>
       </form>
     </div>
-    
+
     <p align="center" style="margin: 16px;">
       <iframe id="iframe" src="https://docs.google.com/presentation/d/e/2PACX-1vTWF18daQXRPYBewM_XjvC120mhE81OOSrm5NP0EveM8Hpqi1GeIKZLd8PyFDELte4BbaG5YXLqO-12/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
     </p>
@@ -41,7 +41,6 @@
     </ul>
   </div>
 </body>
-  
+
 <script src="{{url_for('static', filename='script/index.js')}}"></script>
 </html>
-

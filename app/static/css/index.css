@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
 
 body {
-  background-color: antiquewhite;
+  background: #fef9ee;
   font-family: "Anek Bangla", sans-serif;
 }
 
@@ -29,7 +29,12 @@ a:hover {color: #747272;}
   border-bottom: 2px solid;
 }
 
-#about {
+#menu {
+  display: flex;
+  gap: 8px;
+}
+
+#menu-button {
   border: 0px;
   background-color: #33333300;
   height: 24px;
