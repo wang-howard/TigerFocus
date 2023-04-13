@@ -23,4 +23,4 @@ def make_shell_context():
     return dict(db=db, User=User, Course=Course, Assignment=Assignment)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5553", debug=True)
+    app.run(host="0.0.0.0", port="5554", debug=True)
