@@ -14,6 +14,21 @@ var course_btn = document.getElementById("add_course_button");
 var coursenew_btn = document.getElementById("add_coursenew_button");
 var editcourse_btn = document.getElementsByName("edit_course_button");
 var edit_assignment_btn = document.getElementsByName("edit_assignment_button");
+var status_btn = document.getElementsByName("status_button");
+
+status_btn.forEach((element) => {
+  let isClicked = false;
+  element.addEventListener("click", function () {
+    if (isClicked) {
+      element.style.background = "#D96A6A";
+      element.value = false;
+    } else {
+      element.style.background = "#FFBC79";
+      element.value = true;
+    }
+    isClicked = !isClicked;
+  });
+});
 
 editcourse_btn.forEach(
   (element) =>
@@ -79,29 +94,26 @@ edit_assignment_span.onclick = function () {
 
 function startSession() {
   // get all checked checkboxes
-  console.log('Start Session button clicked');
-  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
+  console.log("Start Session button clicked");
+  const checkboxes = document.querySelectorAll(".assignment_checkbox:checked");
 
   // create an array to store the titles of the checked assignments
   const selectedAssignments = [];
 
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
-    const assignmentId = checkbox.getAttribute('value');
-    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
+    const assignmentId = checkbox.getAttribute("value");
+    const assignmentTitle = document.querySelector(
+      `#assignment_element_${assignmentId} .assignment_text`
+    ).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 
   // log the selected assignments
-  console.log('Selected Assignments:', selectedAssignments);
+  console.log("Selected Assignments:", selectedAssignments);
 
-
-  const hiddenInput = document.getElementById('selected_assignments');
+  const hiddenInput = document.getElementById("selected_assignments");
   hiddenInput.value = selectedAssignments;
 
-  console.log('Hidden Input Value:', hiddenInput.value);
-
-
-
-
+  console.log("Hidden Input Value:", hiddenInput.value);
 }
