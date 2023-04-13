@@ -20,13 +20,18 @@
 
 <div id="preloaded-window">
   <div id="tabs">
-    <button id="pre_assignments_tab">
-      <a id="start" style="color: #fef9ee;" href="/hub">assignments</a>
-    </button>
-    <button id="pre_preloaded_tab">
-      <a id="start" style="color: #fef9ee;" href="/preloaded">pre-loaded courses</a>
-    </button>
+    <div>
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="pre_assignments_tab">
+        assignments
+      </button>
+    </div>
+    <div>
+      <button style="color: #fef9ee;"  onclick="window.location.href='/preloaded';" id="pre_preloaded_tab">
+       pre-loaded courses
+      </button>
+    </div>
   </div>
+
 
   <div id="assignments-header">
     <div id="current-assignments-title">Pre-Loaded Courses</div>
@@ -37,7 +42,7 @@
   <table>
     <td>
       <div style="margin-left: 30px">
-        <input style="border-radius: 20px; height: 30px;" size="30" type="text" placeholder="  search for course...">
+        <input class="searchbar" size="30" type="text" placeholder="  search for course...">
       </div>
     </td>
     <td align="right" style="padding-right: 30px">
@@ -66,7 +71,7 @@
 
     <!-- for loop goes here-->
     <div id="assignment_element_xxx">
-      <table id="assignment_wrapper" style="margin-bottom:5px">
+      <table class="assignment_wrapper" style="margin-bottom:5px">
         <tr>
           <td width="5%"style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
             <label class="checkbox_button">

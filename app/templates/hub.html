@@ -33,13 +33,13 @@
 <div id="assignments-window">
   <div id="tabs">
     <div>
-      <button id="assignments-tab">
-        <a style="color: #fef9ee;" href="/hub">assignments</a>
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="assignments-tab">
+        assignments
       </button>
     </div>
     <div>
-      <button id="preloaded-tab">
-        <a style="color: #fef9ee;" href="/preloaded">pre-loaded courses</a>
+      <button style="color: #fef9ee;"  onclick="window.location.href='/preloaded';" id="preloaded-tab">
+       pre-loaded courses
       </button>
     </div>
   </div>
@@ -69,7 +69,7 @@
   <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">
     {% for assignment in assignments %}
     <div id="assignment_element_{{assignment['id']}}">
-      <table id="assignment_wrapper" style="margin-bottom:5px">
+      <table class="assignment_wrapper" id="assignment_wrapper_{{assignment['id']}}" style="margin-bottom:5px">
         <tr>
           <td width="5%"style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
             <label class="checkbox_button">
@@ -81,7 +81,7 @@
 
      
           <td width="5%" align="left">
-            <button name="status_button" class="status_button" value="true"> </button>
+            <button id="{{assignment['id']}}" name="status_button" class="status_button" value="true"></button>
           </td>
 
 

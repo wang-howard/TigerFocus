@@ -20,10 +20,18 @@ status_btn.forEach((element) => {
   let isClicked = false;
   element.addEventListener("click", function () {
     if (isClicked) {
-      element.style.background = "#D96A6A";
+      element.style.background = "#94AC74";
+      var id = element.id;
+      var str = "assignment_wrapper_" + id;
+      var wrapper_div = document.getElementById(str);
+      wrapper_div.style.opacity = 0.5;
       element.value = false;
     } else {
       element.style.background = "#FFBC79";
+      var id = element.id;
+      var str = "assignment_wrapper_" + id;
+      var wrapper_div = document.getElementById(str);
+      wrapper_div.style.opacity = 1;
       element.value = true;
     }
     isClicked = !isClicked;
