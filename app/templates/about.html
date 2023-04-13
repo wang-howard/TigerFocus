@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}TigerFocus Hub{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
+
+{% endblock %}
+{% block body %}
+<body>
+<h1 id = "mission"> Our Mission </h1>
+<div>
+<p id = "para">Our mission is to provide Princeton students with a highly effective and intuitive Pomodoro and task management app that helps them optimize their productivity and achieve their academic goals. We strive to create a tool that simplifies the process of managing tasks, enhances focus, and encourages a healthy work-life balance. Our app is designed to empower students with the tools they need to stay organized, manage their time efficiently, and ultimately succeed in their academic pursuits.</p>
+</div>
+
+<div class="row">
+    <div class="column">
+        <img src="https://images.squarespace-cdn.com/content/v1/5b42abfbcef3726dde332af3/1642974737813-1X2KDJS980I22Z5VI8G9/Frame+134.jpeg?format=1000w" alt="Girl in a jacket" id = "pic">
+        <p class = "name">Jad Bendarkawi</p>
+    </div>
+    <div class="column">
+      <img src="https://images.sidearmdev.com/crop?url=https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/princeton.sidearmsports.com/images/2021/3/26/2021_HowardWang_Headshot_web.jpg&width=180&height=270&type=webp" id = "pic">
+      <p class = "name">Howard Wang</p>
+    </div>
+    <div class="column">
+      <img src="https://media.licdn.com/dms/image/C5603AQGnoh5mLoepfA/profile-displayphoto-shrink_400_400/0/1655998206218?e=1686787200&v=beta&t=UTtzTebWo6p3G-P003fO23_ASWniDObLUZtpXaLjLd0" id = "pic">
+      <p class = "name">Ashley Ponce</p>
+    </div>
+  </div>
+
+</body>
+{% endblock %}
