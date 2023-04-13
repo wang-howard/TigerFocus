@@ -77,4 +77,31 @@ edit_assignment_span.onclick = function () {
   edit_assignment_modal.style.display = "none";
 };
 
+function startSession() {
+  // get all checked checkboxes
+  console.log('Start Session button clicked');
+  const checkboxes = document.querySelectorAll('.assignment_checkbox:checked');
 
+  // create an array to store the titles of the checked assignments
+  const selectedAssignments = [];
+
+  // iterate over each checked checkbox and add its corresponding assignment title to the array
+  checkboxes.forEach((checkbox) => {
+    const assignmentId = checkbox.getAttribute('value');
+    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
+    selectedAssignments.push(assignmentTitle);
+  });
+
+  // log the selected assignments
+  console.log('Selected Assignments:', selectedAssignments);
+
+
+  const hiddenInput = document.getElementById('selected_assignments');
+  hiddenInput.value = selectedAssignments;
+
+  console.log('Hidden Input Value:', hiddenInput.value);
+
+
+
+
+}

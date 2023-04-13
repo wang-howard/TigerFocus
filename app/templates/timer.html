@@ -34,29 +34,12 @@
   </p>
 
   <div id = "taskrectangle"><h2 id = "h2font">Tasks ToDo</h2>
+    
+    <li>{{assignments}}</li>
+   
   </div>
   <button id="stop"><a href="/hub">End Session </a> </button>
 </div>
-<script>
-// get the selected assignments from the query parameter in the URL
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const selectedAssignments = urlParams.get('selected_assignments');
-
-// check if there are any selected assignments
-  if (!selectedAssignments) {
-  // display an error message and prevent the user from accessing the timer page
-    const errorMessage = document.createElement('p');
-    errorMessage.innerText = 'No assignments selected. Please go back and select at least one assignment to start the session.';
-    document.body.appendChild(errorMessage);
-    throw new Error('No assignments selected');
-}
-
-// continue with the timer page initialization
-// ...
-
-
-  </script>
 
 
 <script src="{{script}}"></script>

@@ -247,25 +247,18 @@ def longBreak():
 def start_session():
     try:
         # get all checked checkboxes
-        checkboxes = request.form.getlist('assignment_checkbox')
+        checkboxes = request.form.get('selected_assignments')
+        style = url_for('static', filename='css/timerStyles.css')
+        id = "pomodoro-app"
+        link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+        script = url_for('static', filename='script/timer.js')
 
         # create an array to store the titles of the checked assignments
-        selected_assignments = []
-
-        # iterate over each checked checkbox and add its corresponding assignment title to the array
-        for checkbox in checkboxes:
-            assignment_id = checkbox
-            assignment_title = request.form.get(f'assignment_title_{assignment_id}')
-            selected_assignments.append(assignment_title)
-
-        # populate the hidden input field with the selected assignments
-        selected_assignments_str = ','.join(selected_assignments)
-        selected_assignments_element = request.form.get('selected_assignments')
-        selected_assignments_element.value = selected_assignments_str
-
+        
         # redirect the user to the timer.html page with the selected assignments as a query parameter
-        selected_assignments_query_param = urllib.parse.quote(selected_assignments_str)
-        return redirect(f'timer.html?selected_assignments={selected_assignments_query_param}')
+        #selected_assignments_query_param = urllib.parse.quote(selected_assignments_str)
+        return render_template("timer.html", assignments = checkboxes, style=style, id=id, mins=25,
+                           source=link, script=script )
 
     except Exception as ex:
         print(ex, file=sys.stderr)
