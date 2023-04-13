@@ -18,7 +18,7 @@
   <td style="padding-right:80px" width="12%" align="left">
     <div>
       <form action = "\start" method="post">
-        <button type="submit" class="smallbutton" onclick="startSession()">
+        <button type="submit" class="small-button" onclick="startSession()">
           START SESSION
         </button>
         <input type="hidden" id="selected_assignments" name="selected_assignments" value="">
@@ -31,12 +31,16 @@
   
 <div id="assignments-window">
   <div id="tabs">
-    <button id="preloaded_tab" >
-      <a id="start" href="/preloaded">pre-loaded courses</a>
-    </button>
-    <button id="assignments_tab">
-      <a id="start" href="/hub">assignments</a>
-    </button>
+    <div>
+      <button id="assignments-tab">
+        <a style="color: #fef9ee;" href="/hub">assignments</a>
+      </button>
+    </div>
+    <div>
+      <button id="preloaded-tab">
+        <a style="color: #fef9ee;" href="/preloaded">pre-loaded courses</a>
+      </button>
+    </div>
   </div>
 
   <div id="assignments-header">
