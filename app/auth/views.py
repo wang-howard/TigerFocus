@@ -68,7 +68,6 @@ def new_user():
 def logout():
     redirect_url = url_for("auth.logout_callback", _external=True)
     cas_logout_url = cas_client.get_logout_url(redirect_url)
-
     return redirect(cas_logout_url)
 
 @auth.route('/logout_callback')
