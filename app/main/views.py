@@ -223,6 +223,11 @@ def timer():
     return render_template("timer.html", style=style, id=id, mins=25,
                            source=link, script=script )
 
+@bp.route("/about")
+def about():
+    
+    return render_template("about.html" )
+
 @bp.route("/shortBreak")
 def shortBreak():
     id = "short-app"

@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='css/hub.css')}}">
 <link rel="stylesheet" href="{{url_for('static', filename='css/createNew.css')}}">
+
 {% endblock %}
 
 {% block body %}
@@ -12,13 +13,13 @@
 
 <div id="welcome_wrapper">
 <table>
-  <td width="88%">
+  <td width="88%" style="padding-top:50px; padding-left:30px">
     <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
   </td>
-  <td style="padding-right:80px" width="12%" align="left">
+  <td style="padding-right:30px; padding-top:50px;" width="12%" align="left">
     <div>
       <form action = "\start" method="post">
-        <button type="submit" class="small-button" onclick="startSession()">
+        <button type="submit" style="height: auto; padding:3px; width:200px" class="small-button" onclick="startSession()">
           START SESSION
         </button>
         <input type="hidden" id="selected_assignments" name="selected_assignments" value="">
@@ -32,13 +33,13 @@
 <div id="assignments-window">
   <div id="tabs">
     <div>
-      <button id="assignments-tab">
-        <a style="color: #fef9ee;" href="/hub">assignments</a>
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="assignments-tab">
+        assignments
       </button>
     </div>
     <div>
-      <button id="preloaded-tab">
-        <a style="color: #fef9ee;" href="/preloaded">pre-loaded courses</a>
+      <button style="color: #fef9ee;"  onclick="window.location.href='/preloaded';" id="preloaded-tab">
+       pre-loaded courses
       </button>
     </div>
   </div>
@@ -46,7 +47,7 @@
   <div id="assignments-header">
     <div id="current-assignments-title">Current Assignments</div>
     <div id="edit-button-wrapper">
-      <button class="small-button" id="create_new_button">create new</button>
+      <button class="small-button" id="create_new_button">new task</button>
       <button class="small-button" id="add_course_button">edit courses</button>
     </div>
   </div>
@@ -54,52 +55,55 @@
   <hr>
   <div>
     <table style="margin-left: 30px" id="table_header">
-      <td></td>
-      <td></td>
-      <td width=600px align="center">Assignment</td>
-      <td width="100px" align="left">Due Date</td>
-      <td width="100px" align="center">Class</td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td width="70px"></td>
+      <td width="60px"></td>
+      <td align= "left" width="250px">Assignment</td>
+      <td align= "left" width="130px">Due Date</td>
+      <td width="100px">Class</td>
+      <td width="50px"></td>
+      <td width="50px"></td>
     </table>
   </div>
   <hr>
 
-  <div style="overflow-y: scroll; height: 90%;">
+  <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">
     {% for assignment in assignments %}
     <div id="assignment_element_{{assignment['id']}}">
-      <table id="assignment_wrapper" style="margin-bottom:5px">
+      <table class="assignment_wrapper" id="assignment_wrapper_{{assignment['id']}}" style="margin-bottom:5px">
         <tr>
-          <td width="5%"style="padding-left: 30px; padding-bottom: 36px; padding-right: 50px" align="center">
+          <td width="5%"style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
             <label class="checkbox_button">
               <input type="checkbox" class = "assignment_checkbox" value = "{{assignment['id']}}"></input>
               <div class="checkmark"></div>
             </label>
           </td>
         </form>
+
+     
           <td width="5%" align="left">
-            <button class="status_button"></button>
+            <button id="{{assignment['id']}}" name="status_button" class="status_button" value="true"></button>
           </td>
-          <td width="40%" align="left">
+
+
+          <td style="padding-left:30px;" width="40%" align="left">
             <div class="assignment_text">{{ assignment["title"] }}</div>
           </td>
-          <td width="20%" align="left">
+          <td width="40%" align="left">
             <div class="assignment_text">{{ assignment["due_date"] }}</div>
           </td>
-          <td width="15%" align="left">
+          <td style="padding-left:10px;" width="15%" align="left">
             <div class="class_chip" style="background-color: {{assignment['color']}}">
               {{assignment["course_code"]}}
             </div>
           </td>
-          <td width="5%">
+          <td style="padding-left:20px;" width="5%">
             <button name="edit_assignment_button" class="action_button" value="{{assignment['id']}}">
               <i class="fa fa-edit"></i>
             </button>
           </td>
           
           <form action="/deleteassignment" method="post">
-            <td width="5%">
+            <td  style="padding-right:30px;" width="5%">
               <input type="hidden" name="assignment_id" value="{{assignment['id']}}" >
               <button onclick="window.location.href='/deleteassignment';" class="action_button">
               <i class="fa fa-trash"></i></button>

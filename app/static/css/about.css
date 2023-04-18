@@ -1,0 +1,73 @@
+#mission{
+margin: auto;
+text-align: center;
+width: 910px;
+height: 127px;
+left: 265px;
+top: 252px;
+
+font-family: 'Anek Bangla';
+font-style: normal;
+font-weight: 600;
+font-size: 60px;
+line-height: 112px;
+text-align: center;
+
+color: #4E4E4E;
+}
+
+#para{
+margin: auto;
+text-align: center;
+width: 910px;
+height: 127px;
+left: 265px;
+top: 379px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 40px;
+padding-bottom: 80px;
+
+color: #4E4E4E;
+}
+
+#pic{
+margin: auto;
+width: 250px;
+height: 300px;
+border-radius: 250px;
+
+}
+
+.row 
+{
+    display: flex;
+}
+  
+.column 
+{
+    flex: 33.33%;
+    padding: 5px;
+}
+
+.name{
+width: 272px;
+height: 35px;
+left: 169px;
+top: 1379px;
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 34px;
+color: #000000;
+text-align: center;
+}
+
+.team{
+text-align: center;
+
+}

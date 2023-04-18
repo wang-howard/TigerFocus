@@ -1,8 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
 
-a {text-decoration: none; color: #fef9ee;}
-a:visited {text-decoration: none; color: #fef9ee;}
-a:hover {color: #fef9ee;}
+a {
+  text-decoration: none;
+  color: #fef9ee;
+}
+a:visited {
+  text-decoration: none;
+  color: #fef9ee;
+}
+a:hover {
+  color: #fef9ee;
+}
 
 hr {
   color: #fef9ee;
@@ -50,6 +58,7 @@ hr {
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
+
 #assignments-tab:hover {
   background: #acbdeb;
 }
@@ -66,7 +75,8 @@ hr {
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
-#preloaded_tab:hover {
+
+#preloaded-tab:hover {
   background: #acbdeb;
 }
 
@@ -107,7 +117,6 @@ hr {
 }
 .small-button:hover {
   background: #83736d;
-  box-shadow: 0px 2px 5px #000000;
 }
 
 #table_header {
@@ -118,7 +127,7 @@ hr {
   font-weight: bold;
 }
 
-#assignment_wrapper {
+.assignment_wrapper {
   background: #fef9ee;
   border-radius: 30px;
   height: 70px;
@@ -126,23 +135,17 @@ hr {
   margin-left: 30px;
 }
 
-
-
-
-
 #pre_assignments_tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
   font-size: 20px;
   font-weight: 700;
-  color: #fef9ee;
-  position: absolute;
   width: 200px;
   height: auto;
-  background: #798d5f;
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
+  background: #798d5f;
 }
 #pre_assignments_tab:hover {
   background: #bbda93;
@@ -151,18 +154,14 @@ hr {
 #pre_preloaded_tab {
   border: 0px;
   text-align: center;
-  font-family: "Anek Bangla", sans-serif;
+  font-family: inherit;
   font-size: 20px;
   font-weight: 700;
-  color: #fef9ee;
-  position: absolute;
-  left: 250px;
-  right: 60%;
   width: 200px;
   height: auto;
-  background: #798d5f;
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
+  background: #798d5f;
 }
 #pre_preloaded_tab:hover {
   background: #bbda93;
@@ -176,15 +175,11 @@ hr {
   text-align: center;
 }
 
-#preloaded_window {
-  position: absolute;
-  top: 30%;
-  right: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
+#preloaded-window {
+  display: flex;
+  flex-direction: column;
   background: #abc787;
-  border-radius: 40px 40px 40px 40px;
+  border-radius: 40px;
   border: 3px solid #798d5f;
 }
 
@@ -213,8 +208,10 @@ hr {
   border: 0px;
   width: 20px;
   height: 20px;
-  border-radius: 100px;
+  padding-bottom: 7px;
+  border-radius: 100%;
   background: #807f7f;
+  cursor: pointer;
 }
 
 .checkbox_button input {
@@ -242,7 +239,7 @@ hr {
 }
 
 .checkmark:after {
-  content: "";
+  content: "X";
   display: none;
 }
 
@@ -253,15 +250,11 @@ hr {
 
 /* Style the checkmark/indicator */
 .checkbox_button .checkmark:after {
-  left: 13px;
-  top: 10px;
-  width: 5px;
-  height: 10px;
-  border: solid #4e4e4e;
-  border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  padding-bottom: 100px;
+  width: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .action_button {
@@ -275,4 +268,10 @@ hr {
 }
 .action_button:hover {
   color: #7b7b7b;
+}
+
+.searchbar {
+  border: 3px solid rgb(164, 160, 160);
+  border-radius: 20px;
+  height: 30px;
 }
