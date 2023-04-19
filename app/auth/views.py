@@ -66,12 +66,18 @@ def new_user():
 
 @auth.route("/logout")
 def logout():
+    """
+    Deletes current user session and logs user out of CAS
+    """
     redirect_url = url_for("auth.logout_callback", _external=True)
     cas_logout_url = cas_client.get_logout_url(redirect_url)
     return redirect(cas_logout_url)
 
 @auth.route('/logout_callback')
 def logout_callback():
+    """
+    Redirects user to index page after successful logout
+    """
     # redirect from CAS logout request after CAS logout successfully
     session.pop('netid', None)
     logout_user()

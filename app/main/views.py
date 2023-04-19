@@ -146,8 +146,8 @@ def add_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
         netid = session["netid"]
-        db_course = Course.query\
-            .filter(Course.course_code==course)\
+        db_course = Course.query \
+            .filter(Course.course_code==course) \
             .filter(Course.user_netid==netid).first()
         course_id = db_course.id
 
