@@ -269,6 +269,16 @@ def start_session():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
+@bp.route("/admincourse")
+def admincourse():
+
+    netid = session["netid"]
+  
+    user = User.query.filter_by(netid=netid).first()
+    first = user.first_name
+
+    return render_template("admincourse.html", first_name = first)
+
 @bp.route("/mainPage")
 def mainPage():
     return render_template("mainPage.html")
