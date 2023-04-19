@@ -106,7 +106,7 @@ a:hover {
   font-size:50px; 
   margin-top:10px;
   padding-top: 9px;
-  padding-bottom: 10px;
+  
 }
 
 
@@ -161,4 +161,16 @@ border-radius: 40px;
 }
 #beforeClick {
   text-decoration: none;
+}
+
+#center {
+  text-align: center;
+  font-family: 'Anek Bangla';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22.5px;
+  line-height: 42px;
+
+  color: #000000;
+
 }
