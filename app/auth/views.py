@@ -5,7 +5,7 @@ login, and logout.
 
 import sys
 from flask import request, session, render_template, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user
 from . import auth
 from .. import db, cas_client
 from ..models import User
