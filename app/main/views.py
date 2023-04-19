@@ -270,10 +270,9 @@ def start_session():
         return render_template("error.html", message=ex)
 
 @bp.route("/admincourse")
+@login_required
 def admincourse():
-
     netid = session["netid"]
-  
     user = User.query.filter_by(netid=netid).first()
     first = user.first_name
 

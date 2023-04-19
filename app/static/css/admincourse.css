@@ -1,5 +1,66 @@
-#welcome {
+#admin-window {
+    display: flex;
+    flex-direction: column;
+    background: #7A7A7A;
+    border-radius: 40px;
+    border: 3px solid #5a5a5a;
+  }
+
+
+#admin_assignments_tab {
+    border: 0px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    width: 200px;
+    height: auto;
+    border-radius: 19.2px 19.2px 19.2px 19.2px;
+    cursor: pointer;
+    background: #4E4E4E;
+  }
+  #admin_assignments_tab:hover {
+    background: #9a9a9a;
+  }
+  
+  #admin_preloaded_tab {
+    border: 0px;
+    text-align: center;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 700;
+    width: 200px;
+    height: auto;
+    border-radius: 19.2px 19.2px 19.2px 19.2px;
+    cursor: pointer;
+    background: #4E4E4E;
+  }
+  #admin_tab:hover {
+    background: #9a9a9a;
+  }
+  
+  #input_title {
+    font-family: "Anek Bangla", sans-serif;
     font-weight: 600;
-    font-size: 37.5px;
+    font-size: 30px;
     color: #4e4e4e;
+    text-align: center;
+  }
+
+.adminsmall-button {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 800;
+    border: 3px solid rgba(0, 0, 0, 0.25);
+    background-color:#4E4E4E;
+    color: #fef9ee;
+    text-align: center;
+    border-radius: 20px;
+    height: 40px;
+    width: 145px;
+    margin-bottom: 0px;
+    cursor: pointer;
+  }
+  .adminsmall-button:hover {
+    background:  #9a9a9a;
   }
