@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}TigerFocus Hub{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/assignment.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
+
+{% endblock %}
+{% block body %}
+
+<div id="welcome_wrapper">
+    <table>
+      <td width="88%" style="padding-top:50px; padding-left:30px">
+        <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+      </td>
+    </table>
+  </div>
+  
+  <div id="admin-window">
+    <div id="tabs">
+      <div>
+        <button style="color: #fef9ee;" onclick="window.location.href='/admincourse';" id="admin_assignments_tab">
+          your hub
+        </button>
+      </div>
+      
+    </div>
+  
+  
+    <div id="assignments-header">
+      <div id="admincurrent-assignments-title">Current Assignments: </div>
+    </div>
+  
+    <hr>
+  
+  
+  
+    <div>
+      <table style="margin-left: 30px" id="admintable_header">
+        <td width="350px" align="center">assignment</td>
+        <td width="350px" align="center">due date</td>
+        <td align="right" style="padding-right: 30px">
+            <button style="width:175px" type="submit" class="adminsmall-button">
+              add new
+              </button>
+          </td>
+      </table>
+    </div>
+  
+    <hr>
+    
+  
+    <!-- INSERT AJAX + COURSES HERE -->
+    <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">
+  
+      <!-- for loop goes here-->
+      <div id="assignment_element_xxx">
+        <table class="adminassignment_wrapper" style="margin-bottom:5px">
+          <tr>
+            <td  width="350px" align="center">
+                <div id = "shift">coursename</div>
+            </td>
+            <td  width="250px" align="center">
+              <div id = "shift2">date</div>
+            </td>
+            <td>
+            <button id = "shift2" name="edit_assignment_button" class="action_button" value="" >
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td>
+            <button id = "shift2" onclick="window.location.href='/deleteassignment';" class="action_button">
+                <i class="fa fa-trash"></i></button>
+            </td>
+       
+            
+          </tr>
+        </table>
+      </div>
+  
+    </div>
+  </div>
+  
+
+{% endblock %}

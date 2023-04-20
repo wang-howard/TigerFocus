@@ -278,6 +278,15 @@ def admincourse():
 
     return render_template("admincourse.html", first_name = first)
 
+@bp.route("/assignment")
+@login_required
+def assignment():
+    netid = session["netid"]
+    user = User.query.filter_by(netid=netid).first()
+    first = user.first_name
+
+    return render_template("assignment.html", first_name = first)
+
 @bp.route("/mainPage")
 def mainPage():
     return render_template("mainPage.html")
