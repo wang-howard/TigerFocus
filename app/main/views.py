@@ -156,9 +156,9 @@ def export_course():
         course_name = course.course_name
         assignments = course.assignments
 
-        exported_course = Public_Course(id=id, author = first, show_author = True,
-                                 staff_cert = is_staff, course_code=course_code,
-                                 course_name=course_name, assignments = assignments)
+        exported_course = Public_Course(id=id, author=first, show_author=True,
+                                 staff_cert=is_staff, course_code=course_code,
+                                 course_name=course_name, assignments=assignments)
         
         db.session.add(exported_course)
         db.session.commit()
