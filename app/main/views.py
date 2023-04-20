@@ -185,11 +185,19 @@ def import_courses():
         user = User.query.filter_by(netid=netid).first()
 
         for id in course_list:
-            print(id)
+        
             course = Public_Course.query.get(id)
             course_code = course.course_code
             course_name = course.course_name
             assignments = course.assignments
+
+            new_id = str(random.randint(0, 999999)).zfill(6)
+            while True:
+                query = Course.query.filter_by(id=new_id).first()
+                if query is None:
+                    break
+                else:
+                    new_id = str(random.randint(0, 999999)).zfill(6)
 
             assignments = list(course.assignments)
             for assignment in assignments:
@@ -203,16 +211,9 @@ def import_courses():
 
                 import_assignment = Assignment(id=assignment_id, title=assignment.title,
                                         due_date=assignment.due_date, status=False,
-                                        course_id=assignment.course_id)
+                                        course_id=new_id)
                 db.session.add(import_assignment)
-
-            new_id = str(random.randint(0, 999999)).zfill(6)
-            while True:
-                query = Course.query.filter_by(id=new_id).first()
-                if query is None:
-                    break
-                else:
-                    new_id = str(random.randint(0, 999999)).zfill(6)
+           
             new_course = Course(id=new_id, course_code=course_code,
                                 course_name=course_name, color="#FFC78F",
                                 user_netid=netid)
