@@ -7,7 +7,7 @@ SET THESE ENVIRONMENT VARIABLES ON STARTUP:
 export FLASK_APP=tigerfocus.py
 export DB_URI=postgresql://admin:LbAGfF63trlyTzUF8ZgKvxO01k1pmsi6@dpg-cg57dujhp8u9l205a1jg-a.ohio-postgres.render.com/tigerfocus_4gqq
 export SEC_KEY=tigerFocus098098
-export SERVICE_URL=http://localhost:5554/login?next=main.hub
+export SERVICE_URL=http://localhost:5553/login?next=main.hub
 """
 
 from flask_migrate import Migrate
@@ -22,4 +22,4 @@ def make_shell_context():
     return dict(db=db, User=User, Course=Course, Assignment=Assignment)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5554", debug=True)
+    app.run(host="0.0.0.0", port="5553", debug=True)

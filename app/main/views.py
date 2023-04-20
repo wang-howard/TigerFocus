@@ -11,7 +11,7 @@ from flask_login import login_required
 from app import cas_client
 from . import bp
 from .. import db
-from ..models import User, Course, Assignment, Public_Course
+from ..models import User, Course, Assignment, Public_Course, Public_Assignment
 import urllib 
 @bp.route("/", methods=["GET"])
 def index():
@@ -144,7 +144,7 @@ def export_course():
     try:
         netid = session["netid"]
         user = User.query.filter_by(netid=netid).first()
-        first = user.first_name
+        #first = user.first_name
 
         is_staff = True
         if user.user_type == "student":
@@ -156,11 +156,73 @@ def export_course():
         course_name = course.course_name
         assignments = course.assignments
 
-        exported_course = Public_Course(id=id, author=first, show_author=True,
-                                 staff_cert=is_staff, course_code=course_code,
-                                 course_name=course_name, assignments=assignments)
+        assignments = list(course.assignments)
+        for assignment in assignments:
+            public_assignment = Public_Assignment(id=assignment.id, title=assignment.title,
+                                due_date=assignment.due_date,course_id=assignment.course_id)
+            db.session.add(public_assignment)
+
+        exported_course = Public_Course(id=id, author = netid, show_author = True,
+                                 staff_cert = is_staff, course_code=course_code,
+                                 course_name=course_name)
         
         db.session.add(exported_course)
+        db.session.commit()
+        return redirect(url_for(".hub"))
+    except Exception as ex:
+            print(ex, file=sys.stderr)
+            return render_template("error.html", message=ex)
+    
+@bp.route("/importcourses", methods=["GET", "POST"])
+@login_required
+def import_courses():
+    try:
+        
+        course_ids = request.form.get('selected_courses')
+
+        course_list = course_ids.split(",")
+        netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
+
+        for id in course_list:
+        
+            course = Public_Course.query.get(id)
+            course_code = course.course_code
+            course_name = course.course_name
+            assignments = course.assignments
+
+            new_id = str(random.randint(0, 999999)).zfill(6)
+            while True:
+                query = Course.query.filter_by(id=new_id).first()
+                if query is None:
+                    break
+                else:
+                    new_id = str(random.randint(0, 999999)).zfill(6)
+            
+            new_course = Course(id=new_id, course_code=course_code,
+                                course_name=course_name, color="#FFC78F",
+                                user_netid=netid)
+            user.courses.append(new_course)
+            db.session.add(new_course)
+            # commit so new_course exists before assignments are added to it
+            db.session.commit()
+
+            assignments = list(course.assignments)
+            for a in assignments:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+                while True:
+                    query = Assignment.query.filter_by(id=assignment_id).first()
+                    if query is None:
+                        break
+                    else:
+                        assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+                import_assignment = Assignment(id=assignment_id, title=a.title,
+                                        due_date=a.due_date, status=False,
+                                        course_id=new_id)
+                print(import_assignment)
+                db.session.add(import_assignment)
+        
         db.session.commit()
         return redirect(url_for(".hub"))
     except Exception as ex:
@@ -236,10 +298,32 @@ def delete_assignment():
 def preloaded():
     
     netid = session["netid"]
-  
     user = User.query.filter_by(netid=netid).first()
     first = user.first_name
-    return render_template("preloaded.html", first_name= first)
+    courses = Public_Course.query.all()
+
+    # create list of dict of course codes and their colors
+    course_codes = []
+    course_ids = []
+    
+    for course in courses:
+        id = course.id
+        author = course.author
+        show_author = course.show_author
+        staff_cert = course.staff_cert
+        course_code = course.course_code
+        course_name = course.course_name
+        
+        course_codes.append({"course_code": course_code,
+                             "course_name": course_name ,
+                             "author": author ,
+                             "show_author": show_author ,
+                             "staff_cert": staff_cert ,
+                             "id": id })
+        course_ids.append(course.id)
+    
+
+    return render_template("preloaded.html", first_name=first, courses=course_codes)
 
 
 @bp.route("/timer")
