@@ -64,3 +64,24 @@
   .adminsmall-button:hover {
     background:  #9a9a9a;
   }
+
+  #view{
+    box-sizing: border-box;
+    width: 130px;
+    height: 35px;
+    background: #FEF9EE;
+    border: 1px solid #000000;
+    border-radius: 40px;
+  }
+  .adminassignment_wrapper {
+    background: #fef9ee;
+    border-radius: 30px;
+    height: 70px;
+    width: 98%;
+    margin-left: 10px;
+  }
+  #shift{
+    padding-left: 15px;
+  }
+
+  
