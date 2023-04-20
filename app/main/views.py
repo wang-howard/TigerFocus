@@ -172,6 +172,58 @@ def export_course():
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
+    
+@bp.route("/importcourses", methods=["GET", "POST"])
+@login_required
+def import_courses():
+    try:
+        
+        course_ids = request.form.get('selected_courses')
+
+        course_list = course_ids.split(",")
+        netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
+
+        for id in course_list:
+            print(id)
+            course = Public_Course.query.get(id)
+            course_code = course.course_code
+            course_name = course.course_name
+            assignments = course.assignments
+
+            assignments = list(course.assignments)
+            for assignment in assignments:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+                while True:
+                    query = Assignment.query.filter_by(id=assignment_id).first()
+                    if query == None:
+                        break
+                    else:
+                        assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+                import_assignment = Assignment(id=assignment_id, title=assignment.title,
+                                        due_date=assignment.due_date, status=False,
+                                        course_id=assignment.course_id)
+                db.session.add(import_assignment)
+
+            new_id = str(random.randint(0, 999999)).zfill(6)
+            while True:
+                query = Course.query.filter_by(id=new_id).first()
+                if query is None:
+                    break
+                else:
+                    new_id = str(random.randint(0, 999999)).zfill(6)
+            new_course = Course(id=new_id, course_code=course_code,
+                                course_name=course_name, color="#FFC78F",
+                                user_netid=netid)
+            user.courses.append(new_course)
+            db.session.add(new_course)
+        
+        db.session.commit()
+        return redirect(url_for(".hub"))
+    except Exception as ex:
+            print(ex, file=sys.stderr)
+            return render_template("error.html", message=ex)
 
 @bp.route("/addassignment", methods=["GET", "POST"])
 @login_required
