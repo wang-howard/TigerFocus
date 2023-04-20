@@ -11,7 +11,7 @@ from flask_login import login_required
 from app import cas_client
 from . import bp
 from .. import db
-from ..models import User, Course, Assignment
+from ..models import User, Course, Assignment, Public_Course
 import urllib 
 @bp.route("/", methods=["GET"])
 def index():
@@ -137,7 +137,36 @@ def delete_course():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
-    
+
+@bp.route("/exportcourse", methods=["GET", "POST"])
+@login_required
+def export_course():
+    try:
+        netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
+        first = user.first_name
+
+        is_staff = True
+        if user.user_type == "student":
+            is_staff = False
+
+        id = request.form.get("export_course")
+        course = Course.query.get(id)
+        course_code = course.course_code
+        course_name = course.course_name
+        assignments = course.assignments
+
+        exported_course = Public_Course(id=id, author = first, show_author = True,
+                                 staff_cert = is_staff, course_code=course_code,
+                                 course_name=course_name, assignments = assignments)
+        
+        db.session.add(exported_course)
+        db.session.commit()
+        return redirect(url_for(".hub"))
+    except Exception as ex:
+            print(ex, file=sys.stderr)
+            return render_template("error.html", message=ex)
+
 @bp.route("/addassignment", methods=["GET", "POST"])
 @login_required
 def add_assignment():
