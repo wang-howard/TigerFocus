@@ -204,6 +204,8 @@ def import_courses():
                                 user_netid=netid)
             user.courses.append(new_course)
             db.session.add(new_course)
+            # commit so new_course exists before assignments are added to it
+            db.session.commit()
 
             assignments = list(course.assignments)
             for a in assignments:
