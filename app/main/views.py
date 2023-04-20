@@ -198,27 +198,28 @@ def import_courses():
                     break
                 else:
                     new_id = str(random.randint(0, 999999)).zfill(6)
-
-            assignments = list(course.assignments)
-            for assignment in assignments:
-                assignment_id = str(random.randint(0, 999999)).zfill(6)
-                while True:
-                    query = Assignment.query.filter_by(id=assignment_id).first()
-                    if query == None:
-                        break
-                    else:
-                        assignment_id = str(random.randint(0, 999999)).zfill(6)
-
-                import_assignment = Assignment(id=assignment_id, title=assignment.title,
-                                        due_date=assignment.due_date, status=False,
-                                        course_id=new_id)
-                db.session.add(import_assignment)
-           
+            
             new_course = Course(id=new_id, course_code=course_code,
                                 course_name=course_name, color="#FFC78F",
                                 user_netid=netid)
             user.courses.append(new_course)
             db.session.add(new_course)
+
+            assignments = list(course.assignments)
+            for a in assignments:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+                while True:
+                    query = Assignment.query.filter_by(id=assignment_id).first()
+                    if query is None:
+                        break
+                    else:
+                        assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+                import_assignment = Assignment(id=assignment_id, title=a.title,
+                                        due_date=a.due_date, status=False,
+                                        course_id=new_id)
+                print(import_assignment)
+                db.session.add(import_assignment)
         
         db.session.commit()
         return redirect(url_for(".hub"))
