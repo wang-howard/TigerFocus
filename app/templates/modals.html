@@ -1,3 +1,4 @@
+
 <!--MODAL: CREATE NEW -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
@@ -246,6 +247,59 @@
             class="col-12 login-btm login-button justify-content-center d-flex"
           >
             <button type="submit" class="small-button">update course</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: ADMIN ADD COURSE -->
+<div id="admincourse_modal" class="modal">
+  <div class="modal_content">
+    <div class="modal_within_window">
+      <span class="admincourse_close">&times;</span>
+
+      <div class="modal_input_wrapper">
+        <h1 id="input_title">Add Course</h1>
+      </div>
+
+      <div class="col-lg-12 login-form">
+        <form action="/createcourse" method="post">
+          <div class="form-group">
+            <label class="form-control-label">Course Code</label>
+            <input
+              class="searchbar"
+              type="text"
+              name="course_code"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Course Name</label>
+            <input
+              class="searchbar"
+              type="text"
+              name="course_name"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label">Color</label>
+            <select name="color" id="course_color">
+              <option value="#EA9C9C">Red</option>
+              <option value="#FFC78F">Orange</option>
+              <option value="#F8DE9D">Yellow</option>
+              <option value="#A6DCA8">Green</option>
+              <option value="#ACCEED">Blue</option>
+              <option value="#BDB4D9">Purple</option>
+              <option value="#F4CAEB">Pink</option>
+            </select>
+          </div>
+          <div
+            class="col-12 login-btm login-button justify-content-center d-flex"
+          >
+            <button type="submit" class="small-button">add course</button>
           </div>
         </form>
       </div>

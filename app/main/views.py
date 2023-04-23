@@ -77,7 +77,9 @@ def created_course():
     Receives form response with course information and creates Course
     object to commit to database.
     """
+    netid = session["netid"]
     try:
+       
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")
         course_color = request.form.get("color")
@@ -97,7 +99,11 @@ def created_course():
         db.session.add(new_course)
         db.session.commit()
         
-        return redirect(url_for(".hub"))
+        if user.user_type == "student": 
+            return redirect(url_for(".hub"))
+        else:
+            return redirect(url_for(".admincourse"))
+
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -397,19 +403,63 @@ def start_session():
 @login_required
 def admincourse():
     netid = session["netid"]
-    user = User.query.filter_by(netid=netid).first()
-    first = user.first_name
+    try:
+        user = User.query.filter_by(netid=netid).first()
+        first = user.first_name
+        courses = list(user.courses)
+            
+            # create list of dict of course codes and their colors
+        course_codes = []
+        course_ids = []
 
-    return render_template("admincourse.html", first_name = first)
+        for course in courses:
+            color = course.color
+            code = course.course_code
+            id = course.id
+            course_name = course.course_name
+            course_codes.append({"course_code": code,
+                                    "color": color ,
+                                    "id": id, "course_name": course_name})
+            course_ids.append(course.id)
+        return render_template("admincourse.html", first_name=first,
+                                courses=course_codes)
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex )
 
-@bp.route("/assignment")
+
+@bp.route("/assignment", methods=["GET", "POST"])
 @login_required
 def assignment():
-    netid = session["netid"]
-    user = User.query.filter_by(netid=netid).first()
-    first = user.first_name
 
-    return render_template("assignment.html", first_name = first)
+    netid = session["netid"]
+
+    try:
+
+        user = User.query.filter_by(netid=netid).first()
+        first = user.first_name
+        id = request.form.get("courseid")
+
+        assignments = Assignment.query.filter_by(course_id=id)\
+                            .order_by(Assignment.due_date).all()
+        assignment_data = []
+        course_code = ""
+        for a in assignments:
+            course = Course.query.filter_by(id=a.course_id).first()
+            course_code = course.course_code
+            assignment_data.append({"status": a.status,
+                                    "id": a.id,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code":course.course_code,
+                                    "color": course.color})
+        return render_template("assignment.html", first_name=first,
+                                assignments=assignment_data, course_code = course_code )
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex ) 
+
+
 
 @bp.route("/mainPage")
 def mainPage():

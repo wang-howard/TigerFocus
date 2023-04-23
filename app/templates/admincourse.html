@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{url_for('static', filename='css/admincourse.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
-
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}"/>
 {% endblock %}
 {% block body %}
+{% include "modals.html" %}
 
 <div id="welcome_wrapper">
     <table>
@@ -47,7 +48,7 @@
         </div>
       </td>
       <td align="right" style="padding-right: 30px">
-        <button style="width:175px" type="submit" class="adminsmall-button">
+        <button id = "admincourse_button" style="width:175px" type="submit" class="adminsmall-button">
           add courses
           </button>
       </td>
@@ -55,62 +56,60 @@
   
     <hr>
   
+  <!-- INSERT AJAX + COURSES HERE -->
+  <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">   
     <div>
-      <table style="margin-left: 30px" id="table_header">
-        <td width="195px" align="left">course name</td>
-        <td width="145px" align="left">created by</td>
-        <td width="120px" align="left">course code</td>
-        <td width="175px" align="left">select to make public</td>
+      <table style="margin-left: 30px; margin-right: 30px; border-collapse:collapse;">
+
+        <tr id="table_header">
+          <th align="center">course code</th>
+          <th align="left">course name</th>
+          <th>select to make public</th>
+        </tr>
+
+        {%for course in courses%}
+        <div id="course_element_xxx">
+        <tr  style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
+      
+          <td width="33%"align="center">
+            <div class="class_chip" style="background-color: rgb(155, 160, 217)">
+             {{course["course_code"]}}
+            </div>
+          </td>
+
+          <td width="33%" align="left">
+            <div class="assignment_text"> {{course["course_name"]}}</div>
+          </td>
+
+          <td width="33%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
+            <label class="checkbox_button">
+              <input type="checkbox" class = "course_checkbox" value = ""></input>
+              <div class="checkmark"></div>
+            </label>
+          </td>
+          <td>
+            <form action="/assignment" method = "post">
+            <button class = "view" >view assignments</button> 
+            <input hidden name = "courseid" value="{{course['id']}}">
+          </form> 
+         </td>
+         <td>
+         <button name="edit_assignment_button" class="action_button" value="" >
+             <i class="fa fa-edit"></i>
+           </button>
+         </td>
+         <td>
+         <button onclick="window.location.href='/deleteassignment';" class="action_button">
+             <i class="fa fa-trash"></i></button>
+         </td>
+        </tr>
+        <tr><td height="2px"></td></tr>
+      </div>
+      {%endfor%}
+      </div>
+
       </table>
     </div>
-  
-    <hr>
-    
-  
-    <!-- INSERT AJAX + COURSES HERE -->
-    <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">
-  
-      <!-- for loop goes here-->
-      <div id="assignment_element_xxx">
-        <table class="adminassignment_wrapper" style="margin-bottom:5px">
-          <tr>
-            <td  width="200px" align="left">
-                <div id = "shift">coursename</div>
-            </td>
-            <td  width="150px" align="left">
-              <div id = "shift">username</div>
-            </td>
-            <td width="150px" align="left">
-                <div class="class_chip" style="background-color: pink">
-                  code
-                </div>
-            </td>
-            <td width="5%"style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
-                <label class="checkbox_button">
-                  <input type="checkbox" class = "assignment_checkbox" value = ""></input>
-                  <div class="checkmark"></div>
-                </label>
-              </td>
-            </form>
-            <td>
-               <button class = "view" onclick="window.location.href='/assignment';">view assignments</button>  
-            </td>
-            <td>
-            <button name="edit_assignment_button" class="action_button" value="" >
-                <i class="fa fa-edit"></i>
-              </button>
-            </td>
-            <td>
-            <button onclick="window.location.href='/deleteassignment';" class="action_button">
-                <i class="fa fa-trash"></i></button>
-            </td>
-       
-            
-          </tr>
-        </table>
-      </div>
-  
-    </div>
   </div>
-  
+<script src="{{url_for('static', filename='script/admincourse.js')}}"></script>
 {% endblock %}
