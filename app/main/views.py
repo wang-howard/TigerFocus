@@ -13,6 +13,7 @@ from . import bp
 from .. import db
 from ..models import User, Course, Assignment, Public_Course, Public_Assignment
 import urllib 
+import json
 @bp.route("/", methods=["GET"])
 def index():
     """
@@ -367,11 +368,6 @@ def start_session():
         id = "pomodoro-app"
         link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
         script = url_for('static', filename='script/timer.js')
-
-        # create an array to store the titles of the checked assignments
-        
-        # redirect the user to the timer.html page with the selected assignments as a query parameter
-        #selected_assignments_query_param = urllib.parse.quote(selected_assignments_str)
         return render_template("timer.html", assignments = checkboxes, style=style, id=id, mins=25,
                            source=link, script=script )
 

@@ -21,9 +21,11 @@
 <div id="preloaded-window">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="pre_assignments_tab">
+    
+      <button style="color: #fef9ee;" onclick="window.location.href='{% if user_type == Student %}/hub{% else %}/admincourse{% endif %}';" id="pre_assignments_tab">
         my hub
       </button>
+      
     </div>
     <div>
       <button style="color: #fef9ee;"  onclick="window.location.href='/preloaded';" id="pre_preloaded_tab">
