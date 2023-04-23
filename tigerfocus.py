@@ -12,14 +12,15 @@ export SERVICE_URL=http://localhost:5553/login?next=main.hub
 
 from flask_migrate import Migrate
 from app import create_app, db
-from app.models import User, Course, Assignment
+from app.models import User, Course, Assignment, Public_Course, Public_Assignment
 
 app = create_app()
 migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Course=Course, Assignment=Assignment)
+    return dict(db=db, User=User, Course=Course, Assignment=Assignment,
+                Public_Course=Public_Course, Public_Assignment=Public_Assignment)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5553", debug=True)

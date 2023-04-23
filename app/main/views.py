@@ -73,6 +73,10 @@ def hub():
 @bp.route("/createcourse", methods=["GET", "POST"])
 @login_required
 def created_course():
+    """
+    Receives form response with course information and creates Course
+    object to commit to database.
+    """
     try:
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")
@@ -101,6 +105,10 @@ def created_course():
 @bp.route("/editcourse", methods=["GET", "POST"])
 @login_required
 def edit_course():
+    """
+    Receives form response with course information and change requests
+    and updates course object with new values
+    """
     try:
         course_id = request.form.get("edited_course_id")
         course_code = request.form.get("course_code")
@@ -115,15 +123,18 @@ def edit_course():
         edited_course.user_netid = netid
         
         db.session.commit()
-        
         return redirect(url_for(".hub"))
-        
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
 @bp.route("/deletecourse", methods=["GET", "POST"])
+@login_required
 def delete_course():
+    """
+    Receives course ID from form response and search database to remove
+    target course from courses database as well as linked assignments
+    """
     try:
         id = request.form.get("course_del_id")
         course = Course.query.get(id)
@@ -159,13 +170,19 @@ def export_course():
 
         assignments = list(course.assignments)
         for assignment in assignments:
-            public_assignment = Public_Assignment(id=assignment.id, title=assignment.title,
-                                due_date=assignment.due_date,course_id=assignment.course_id)
+            public_assignment = Public_Assignment(
+                                        id=assignment.id,
+                                        title=assignment.title,
+                                        due_date=assignment.due_date,
+                                        course_id=assignment.course_id)
             db.session.add(public_assignment)
 
-        exported_course = Public_Course(id=id, author = netid, show_author = True,
-                                 staff_cert = is_staff, course_code=course_code,
-                                 course_name=course_name)
+        exported_course = Public_Course(id=id,
+                                        author = netid,
+                                        show_author = True,
+                                        staff_cert = is_staff,
+                                        course_code=course_code,
+                                        course_name=course_name)
         
         db.session.add(exported_course)
         db.session.commit()
@@ -178,7 +195,6 @@ def export_course():
 @login_required
 def import_courses():
     try:
-        
         course_ids = request.form.get('selected_courses')
 
         course_list = course_ids.split(",")
@@ -186,7 +202,6 @@ def import_courses():
         user = User.query.filter_by(netid=netid).first()
 
         for id in course_list:
-        
             course = Public_Course.query.get(id)
             course_code = course.course_code
             course_name = course.course_name
@@ -199,28 +214,32 @@ def import_courses():
                     break
                 else:
                     new_id = str(random.randint(0, 999999)).zfill(6)
-
-            assignments = list(course.assignments)
-            for assignment in assignments:
-                assignment_id = str(random.randint(0, 999999)).zfill(6)
-                while True:
-                    query = Assignment.query.filter_by(id=assignment_id).first()
-                    if query == None:
-                        break
-                    else:
-                        assignment_id = str(random.randint(0, 999999)).zfill(6)
-
-                import_assignment = Assignment(id=assignment_id, title=assignment.title,
-                                        due_date=assignment.due_date, status=False,
-                                        course_id=new_id)
-                db.session.add(import_assignment)
-           
+            
             new_course = Course(id=new_id, course_code=course_code,
                                 course_name=course_name, color="#FFC78F",
                                 user_netid=netid)
             user.courses.append(new_course)
             db.session.add(new_course)
-        
+            # commit so new_course exists before assignments are added to it
+            db.session.commit()
+
+            assignments = list(course.assignments)
+            for a in assignments:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+                while True:
+                    query = Assignment.query.filter_by(id=assignment_id).first()
+                    if query is None:
+                        break
+                    else:
+                        assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+                import_assignment = Assignment(id=assignment_id,
+                                               title=a.title,
+                                               due_date=a.due_date,
+                                               status=False,
+                                               course_id=new_id)
+                db.session.add(import_assignment)
+
         db.session.commit()
         return redirect(url_for(".hub"))
     except Exception as ex:
@@ -294,7 +313,6 @@ def delete_assignment():
     
 @bp.route("/preloaded")
 def preloaded():
-    
     netid = session["netid"]
     user = User.query.filter_by(netid=netid).first()
     first = user.first_name
