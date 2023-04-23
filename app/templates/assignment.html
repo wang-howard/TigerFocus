@@ -13,8 +13,13 @@ style %}
   type="text/css"
   href="{{ url_for('static', filename='css/hub.css') }}"
 />
-
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', filename='css/createNew.css') }}"
+/>
 {% endblock %} {% block body %}
+{% include "modals.html" %}
 
 <div id="welcome_wrapper">
   <table>
@@ -42,8 +47,22 @@ style %}
   </div>
 
   <hr />
+  <div>
+    <button style="width: 175px; float:right; margin-right:30px; margin-bottom:10px" type="submit" class="adminsmall-button">
+      add new
+    </button>
+  </div>
 
-  <!-- INSERT AJAX + COURSES HERE -->
+  <hr />
+
+  
+
+
+  {% if assignments == [] %}
+
+  <div style="width:900px; padding: 30px"> click "add new" to add assignments to this course </div>
+
+  {% else %}
   <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">   
     <div>
       <table style="margin-left: 30px; margin-right: 30px; border-collapse:collapse;">
@@ -51,24 +70,19 @@ style %}
         <tr id="table_header" style = "color: black;">
           <th align="center">course name</th>
           <th align="center">date</th>
-          <th align="right" style="padding-right: 30px">
-            <button style="width: 175px" type="submit" class="adminsmall-button">
-              add new
-            </button>
-          </th>
+          <th></th>
         </tr>
         {%for a in assignments%}
-        <div id="course_element_{{a['id']}}">
+        <div id="assignment_element_{{a['id']}}">
         <tr  style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
-          <td width="33%" align="center">
+          <td width="50%" align="center">
             <div >{{a['title']}}</div>
           </td>
-          <td width="33%" align="center">
+          <td width="50%" align="center">
             <div >{{a['due_date']}}</div>
           </td>
           <td>
             <button
-              id="shift2"
               name="edit_assignment_button"
               class="action_button"
               value=""
@@ -76,15 +90,15 @@ style %}
               <i class="fa fa-edit"></i>
             </button>
           </td>
-          <td>
-            <button
-              id="shift2"
-              onclick="window.location.href='/deleteassignment';"
-              class="action_button"
-            >
-              <i class="fa fa-trash"></i>
-            </button>
-          </td>
+
+          <form action="/deleteassignment" method="post">
+            <td  style="padding-right:30px;" width="5%">
+              <input type="hidden" name="assignment_id" value="{{a['id']}}" >
+              <button onclick="window.location.href='/deleteassignment';" class="action_button">
+              <i class="fa fa-trash"></i></button>
+            </td>
+          </form>
+      
         </tr>
         <tr><td height="2px"></td></tr>
       </div>
@@ -94,5 +108,8 @@ style %}
     </div>
   </div>
 </div>
+{%endif%}
+
+<script src="{{url_for('static', filename='script/hub.js')}}"></script>
 
 {% endblock %}
