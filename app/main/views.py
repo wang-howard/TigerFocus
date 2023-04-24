@@ -282,6 +282,51 @@ def add_assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
+@bp.route("/adminaddassignment", methods=["GET", "POST"])
+@login_required
+def admin_add_assignment():
+    try:
+        course_id = request.form.get("current_id")
+
+        course = Course.query.filter_by(id=course_id).first()
+        course_code = course.course_code
+        
+        due = request.form.get("due_date")
+        title = request.form.get("title")
+        netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
+        first = user.first_name
+
+        assignment_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+            query = Assignment.query.filter_by(id=assignment_id).first()
+            if query == None:
+                break
+            else:
+                assignment_id = str(random.randint(0, 999999)).zfill(6)
+        assignment = Assignment(id=assignment_id, title=title,
+                                due_date=due, status=False,
+                                course_id=course_id)
+        db.session.add(assignment)
+        db.session.commit()
+
+        assignmentlist = Assignment.query.filter_by(course_id=course_id)\
+                                .order_by(Assignment.due_date).all()
+        assignment_data = []
+        for a in assignmentlist:
+            assignment_data.append({"status": a.status,
+                                    "id": a.id,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code":course.course_code,
+                                    "color": course.color})
+            
+        return render_template("assignment.html", first_name=first,
+                                assignments=assignment_data, course_code = course_code )
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
 @bp.route("/editassignment", methods=["GET", "POST"])
 @login_required
 def edit_assignment():
@@ -475,7 +520,7 @@ def assignment():
                                     "course_code":course.course_code,
                                     "color": course.color})
         return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, course_code = course_code )
+                                assignments=assignment_data, course_code = course_code, id=id)
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex ) 

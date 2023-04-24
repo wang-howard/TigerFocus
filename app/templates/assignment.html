@@ -48,9 +48,10 @@ style %}
 
   <hr />
   <div>
-    <button style="width: 175px; float:right; margin-right:30px; margin-bottom:10px" type="submit" class="adminsmall-button">
+    <button style="width: 175px; float:right; margin-right:30px; margin-bottom:10px" id="admin_create_new_button" type="submit" class="adminsmall-button">
       add new
     </button>
+    <input hidden value="{{id}}" id="current_course_id">
   </div>
 
   <hr />
@@ -110,6 +111,6 @@ style %}
 </div>
 {%endif%}
 
-<script src="{{url_for('static', filename='script/hub.js')}}"></script>
+<script src="{{url_for('static', filename='script/adminassignment.js')}}"></script>
 
 {% endblock %}
