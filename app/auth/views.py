@@ -6,7 +6,7 @@ login, and logout.
 import sys
 from flask import request, session, render_template, redirect, url_for
 from flask_login import login_user, logout_user
-from req_lib import ReqLib
+from .req_lib import ReqLib
 from . import auth
 from .. import db, cas_client
 from ..models import User
@@ -43,7 +43,7 @@ def login():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@auth.route("/newuser", methods=["POST"])
+@auth.route("/newuser", methods=["GET", "POST"])
 def new_user():
     """
     Uses netid retrieved from CAS authentification to make a request to
@@ -61,7 +61,7 @@ def new_user():
     universityid (PUID number)
     """
     try:
-        netid = session[netid]
+        netid = session["netid"]
         req_lib = ReqLib()
 
         req = req_lib.getJSON(req_lib.configs.USERS, uid=netid)

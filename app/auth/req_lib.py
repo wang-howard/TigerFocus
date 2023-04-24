@@ -6,7 +6,7 @@ Taken from: https://github.com/vr2amesh/COS333-API-Code-Examples/blob/master/Act
 
 import requests
 import json
-from configs import Configs
+from .configs import Configs
 
 class ReqLib:
     def __init__(self):
