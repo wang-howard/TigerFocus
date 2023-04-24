@@ -6,6 +6,7 @@ login, and logout.
 import sys
 from flask import request, session, render_template, redirect, url_for
 from flask_login import login_user, logout_user
+from req_lib import ReqLib
 from . import auth
 from .. import db, cas_client
 from ..models import User
@@ -34,7 +35,7 @@ def login():
         # Login successfully, redirect according to "next" parameter
         session["netid"] = netid
         if User.query.get(netid) is None:
-            return render_template("register.html", netid=netid)
+            return redirect(url_for(".new_user"))
         else:
             login_user(User.query.get(netid))
             return redirect(url_for(next))
@@ -45,15 +46,30 @@ def login():
 @auth.route("/newuser", methods=["POST"])
 def new_user():
     """
-    Receives post form from register page and enters new user to
-    database, then redirects to user's hub.
+    Uses netid retrieved from CAS authentification to make a request to
+    the Princeton ActiveDirectory API for information on a member of the
+    Princeton community. Returns with:
+
+    department (which department the user belongs to)
+    displayname (Full name of the user)
+    dn
+    eduPersonPrimaryAffiliation (student or faculty)
+    mail (user's email address)
+    pustatus (is the user a undergraduate, graduate, or faculty?)
+    sn (surname)
+    uid (NetID)
+    universityid (PUID number)
     """
     try:
-        netid = request.form.get("netid")
-        first = request.form.get("first")
-        last = request.form.get("last")
-        user_type = request.form.get("user_type")
+        netid = session[netid]
+        req_lib = ReqLib()
 
+        req = req_lib.getJSON(req_lib.configs.USERS, uid=netid)
+        info = req[0] # req returns as a list containing only one dict
+        first, last = info["displayname"].split(" ")
+        status = info["pustatus"]
+        user_type = "instructor" if status == "faculty" else "student"
+        
         user = User(netid=netid, first_name=first, last_name=last,
                     user_type=user_type)
         db.session.add(user)
@@ -67,7 +83,7 @@ def new_user():
 @auth.route("/logout")
 def logout():
     """
-    Deletes current user session and logs user out of CAS
+    Deletes current user session and logs out of CAS
     """
     redirect_url = url_for("auth.logout_callback", _external=True)
     cas_logout_url = cas_client.get_logout_url(redirect_url)
