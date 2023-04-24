@@ -1,5 +1,6 @@
-{% extends "base.html" %} {% block title %}TigerFocus Hub{% endblock %} {% block
-style %}
+{% extends "base.html" %}
+{% block title %}TigerFocus Hub{% endblock %}
+{% block style %}
 <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -18,7 +19,9 @@ style %}
   type="text/css"
   href="{{ url_for('static', filename='css/createNew.css') }}"
 />
-{% endblock %} {% block body %}
+{% endblock %}
+
+{% block body %}
 {% include "modals.html" %}
 
 <div id="welcome_wrapper">
@@ -32,11 +35,7 @@ style %}
 <div id="admin-window">
   <div id="tabs">
     <div>
-      <button
-        style="color: #fef9ee"
-        onclick="window.location.href='/admincourse';"
-        id="admin_assignments_tab"
-      >
+      <button style="color: #fef9ee" onclick="window.location.href='/admincourse';" id="admin_assignments_tab">
         my hub
       </button>
     </div>
@@ -46,7 +45,7 @@ style %}
     <div id="admincurrent-assignments-title">Current Assignments: {{course_code}}</div>
   </div>
 
-  <hr />
+  <hr/>
   <div>
     <button style="width: 175px; float:right; margin-right:30px; margin-bottom:10px" id="admin_create_new_button" type="submit" class="adminsmall-button">
       add new
@@ -54,10 +53,7 @@ style %}
     <input hidden value="{{id}}" id="current_course_id">
   </div>
 
-  <hr />
-
-  
-
+  <hr/>
 
   {% if assignments == [] %}
 
@@ -73,21 +69,17 @@ style %}
           <th align="center">date</th>
           <th></th>
         </tr>
-        {%for a in assignments%}
+        {% for a in assignments %}
         <div id="assignment_element_{{a['id']}}">
         <tr  style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
           <td width="50%" align="center">
             <div >{{a['title']}}</div>
           </td>
           <td width="50%" align="center">
-            <div >{{a['due_date']}}</div>
+            <div >{{a["due_date"]}}</div>
           </td>
           <td>
-            <button
-              name="edit_assignment_button"
-              class="action_button"
-              value=""
-            >
+            <button name="edit_assignment_button" class="action_button" value="">
               <i class="fa fa-edit"></i>
             </button>
           </td>

@@ -162,7 +162,6 @@ def export_course():
     try:
         netid = session["netid"]
         user = User.query.filter_by(netid=netid).first()
-        #first = user.first_name
 
         is_staff = True
         if user.user_type == "student":
@@ -282,9 +281,9 @@ def add_assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/adminaddassignment", methods=["GET", "POST"])
+@bp.route("/instructoraddassignment", methods=["GET", "POST"])
 @login_required
-def admin_add_assignment():
+def instructor_add_assignment():
     try:
         course_id = request.form.get("current_id")
 
@@ -310,8 +309,9 @@ def admin_add_assignment():
         db.session.add(assignment)
         db.session.commit()
 
-        assignmentlist = Assignment.query.filter_by(course_id=course_id)\
-                                .order_by(Assignment.due_date).all()
+        assignmentlist = Assignment.query\
+            .filter_by(course_id=course_id)\
+            .order_by(Assignment.due_date).all()
         assignment_data = []
         for a in assignmentlist:
             assignment_data.append({"status": a.status,
@@ -322,7 +322,8 @@ def admin_add_assignment():
                                     "color": course.color})
             
         return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, course_code = course_code )
+                                assignments=assignment_data, 
+                                course_code = course_code )
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -414,61 +415,9 @@ def preloaded():
 
     return render_template("preloaded.html", first_name=first, courses=course_codes)
 
-
-@bp.route("/timer")
-def timer():
-    style = url_for('static', filename='css/timerStyles.css')
-    id = "pomodoro-app"
-    link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
-    script = url_for('static', filename='script/timer.js')
-
-    return render_template("timer.html", style=style, id=id, mins=25,
-                           source=link, script=script )
-
-@bp.route("/about")
-def about():
-    
-    return render_template("about.html" )
-
-@bp.route("/shortBreak")
-def shortBreak():
-    id = "short-app"
-    link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
-    style = url_for('static', filename='css/shortbreakStyles.css')
-    script = url_for('static', filename='script/shortBreak.js')
-    return render_template("timer.html", style=style, id=id, mins=5,
-                           source=link, script=script)
-
-@bp.route("/longBreak")
-def longBreak():
-    style = url_for('static', filename='css/longbreakStyles.css')
-    id = "long-app"
-    link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
-    script = url_for('static', filename='script/longBreak.js')
-    return render_template("timer.html", style=style, id=id, mins=15,
-                           source=link, script=script)
-
-
-@bp.route('/start', methods=['POST'])
+@bp.route("/instructorhub")
 @login_required
-def start_session():
-    try:
-        # get all checked checkboxes
-        checkboxes = request.form.get('selected_assignments')
-        style = url_for('static', filename='css/timerStyles.css')
-        id = "pomodoro-app"
-        link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
-        script = url_for('static', filename='script/timer.js')
-        return render_template("timer.html", assignments = checkboxes, style=style, id=id, mins=25,
-                           source=link, script=script )
-
-    except Exception as ex:
-        print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
-
-@bp.route("/admincourse")
-@login_required
-def admincourse():
+def instructor_hub():
     netid = session["netid"]
     try:
         user = User.query.filter_by(netid=netid).first()
@@ -488,21 +437,17 @@ def admincourse():
                                     "color": color ,
                                     "id": id, "course_name": course_name})
             course_ids.append(course.id)
-        return render_template("admincourse.html", first_name=first,
+        return render_template("instructorhub.html", first_name=first,
                                 courses=course_codes)
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex )
 
-
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
 def assignment():
-
     netid = session["netid"]
-
     try:
-
         user = User.query.filter_by(netid=netid).first()
         first = user.first_name
         id = request.form.get("courseid")
@@ -517,20 +462,65 @@ def assignment():
                                     "id": a.id,
                                     "title": a.title,
                                     "due_date": a.due_date,
-                                    "course_code":course.course_code,
+                                    "course_code": course.course_code,
                                     "color": course.color})
-        return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, course_code = course_code, id=id)
+        return render_template("assignment.html",
+                               first_name=first,
+                               assignments=assignment_data, 
+                               course_code=course_code,
+                               id=id)
     except Exception as ex:
         print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex ) 
+        return render_template("error.html", message=ex)
 
+@bp.route("/about")
+def about():
+    return render_template("about.html")
 
+@bp.route("/timer")
+def timer():
+    style = url_for("static", filename="css/timerStyles.css")
+    id = "pomodoro-app"
+    link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+    script = url_for("static", filename="script/timer.js")
 
-@bp.route("/mainPage")
-def mainPage():
-    return render_template("mainPage.html")
-from flask import Flask, request, render_template
+    return render_template("timer.html", style=style, id=id, mins=25,
+                           source=link, script=script )
 
-app = Flask(__name__)
+@bp.route("/shortBreak")
+def shortBreak():
+    id = "short-app"
+    link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
+    style = url_for("static", filename="css/shortbreakStyles.css")
+    script = url_for("static", filename="script/shortBreak.js")
+    return render_template("timer.html", style=style, id=id, mins=5,
+                           source=link, script=script)
 
+@bp.route("/longBreak")
+def longBreak():
+    style = url_for("static", filename="css/longbreakStyles.css")
+    id = "long-app"
+    link = "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1"
+    script = url_for("static", filename="script/longBreak.js")
+    return render_template("timer.html", style=style, id=id, mins=15,
+                           source=link, script=script)
+
+@bp.route("/start", methods=["POST"])
+@login_required
+def start_session():
+    try:
+        # get all checked checkboxes
+        checkboxes = request.form.get("selected_assignments")
+        style = url_for("static", filename="css/timerStyles.css")
+        id = "pomodoro-app"
+        link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+        script = url_for("static", filename="script/timer.js")
+        return render_template("timer.html",
+                               assignments=checkboxes,
+                               style=style,
+                               id=id, mins=25,
+                               source=link, script=script)
+
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)

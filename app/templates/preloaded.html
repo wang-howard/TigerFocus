@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
-
 {% endblock %}
 
 {% block body %}
@@ -21,11 +20,9 @@
 <div id="preloaded-window">
   <div id="tabs">
     <div>
-    
       <button style="color: #fef9ee;" onclick="window.location.href='{% if user_type == Student %}/hub{% else %}/admincourse{% endif %}';" id="pre_assignments_tab">
         my hub
       </button>
-      
     </div>
     <div>
       <button style="color: #fef9ee;"  onclick="window.location.href='/preloaded';" id="pre_preloaded_tab">
@@ -34,13 +31,11 @@
     </div>
   </div>
 
-
   <div id="assignments-header">
     <div id="current-assignments-title">Public Courses</div>
   </div>
 
   <hr>
-
   <table>
     <td>
       <div style="margin-left: 30px">
@@ -58,12 +53,10 @@
   </table>
 
   <hr>
-
   <!-- INSERT AJAX + COURSES HERE -->
   <div style="overflow-y: scroll; height: 90%; max-height:525px; width:900px;">   
     <div>
       <table style="margin-left: 30px; margin-right: 30px; border-collapse:collapse;">
-
         <tr id="table_header">
           <th></th>
           <th align="left">Course Code</th>
@@ -75,7 +68,7 @@
 
         {% for course in courses %}
         <div id="course_element_{{course['id']}}">
-        <tr  style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
+        <tr style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
           <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
             <label class="checkbox_button">
               <input type="checkbox" class = "course_checkbox" value = "{{course['id']}}"></input>
@@ -113,18 +106,14 @@
            datetime
           </td>
         </tr>
-        <tr><td height="2px"></td></tr>
-      </div>
+        <tr>
+          <td height="2px"></td>
+        </tr>
         {%endfor%}
-      </div>
-
       </table>
     </div>
-   
   </div>
 </div>
 
 <script src="{{url_for('static', filename='script/preloaded.js')}}"></script>
-
 {% endblock %}
-
