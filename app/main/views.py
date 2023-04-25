@@ -102,7 +102,7 @@ def created_course():
         if user.user_type == "student": 
             return redirect(url_for(".hub"))
         else:
-            return redirect(url_for(".admincourse"))
+            return redirect(url_for(".instructorhub"))
 
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -285,11 +285,10 @@ def add_assignment():
 @login_required
 def instructor_add_assignment():
     try:
-        course_id = request.form.get("current_id")
-
+        
+        course_id = request.form.get("current_id")        
         course = Course.query.filter_by(id=course_id).first()
         course_code = course.course_code
-        
         due = request.form.get("due_date")
         title = request.form.get("title")
         netid = session["netid"]
@@ -303,12 +302,13 @@ def instructor_add_assignment():
                 break
             else:
                 assignment_id = str(random.randint(0, 999999)).zfill(6)
-        assignment = Assignment(id=assignment_id, title=title,
+        new_assignment = Assignment(id=assignment_id, title=title,
                                 due_date=due, status=False,
                                 course_id=course_id)
-        db.session.add(assignment)
+        db.session.add(new_assignment)
         db.session.commit()
 
+        #data for re-rendering
         assignmentlist = Assignment.query\
             .filter_by(course_id=course_id)\
             .order_by(Assignment.due_date).all()
@@ -320,10 +320,11 @@ def instructor_add_assignment():
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
-            
+        
+       
         return render_template("assignment.html", first_name=first,
                                 assignments=assignment_data, 
-                                course_code = course_code )
+                                course_code=course_code)
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -413,7 +414,7 @@ def preloaded():
         course_ids.append(course.id)
     
 
-    return render_template("preloaded.html", first_name=first, courses=course_codes)
+    return render_template("preloaded.html", first_name=first, courses=course_codes, user_type = user.user_type)
 
 @bp.route("/instructorhub")
 @login_required

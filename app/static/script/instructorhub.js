@@ -4,6 +4,6 @@ var course_span = document.getElementsByClassName("admincourse_close")[0];
 course_create_btn.onclick = function () {
   course_create_modal.style.display = "block";
 };
-span.onclick = function () {
+course_span.onclick = function () {
   course_create_modal.style.display = "none";
 };
