@@ -292,11 +292,16 @@ def instructor_export_courses():
 @login_required
 def import_courses():
     try:
+        
         course_ids = request.form.get('selected_courses')
+        # when nothing is selected to be imported this is where we catch
+        if course_ids == '':
+            return redirect(url_for(".preloaded"))
 
         course_list = course_ids.split(",")
         netid = session["netid"]
         user = User.query.get(netid)
+
 
         for id in course_list:
             course = Public_Course.query.get(id)
