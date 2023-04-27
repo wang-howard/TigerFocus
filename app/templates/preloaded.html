@@ -5,7 +5,7 @@
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}"/>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/hub.css') }}"/>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}"/>
 {% endblock %}
 
 {% block body %}
@@ -20,7 +20,7 @@
 <div id="preloaded-window">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/userview';" id="pre_assignments_tab">
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="pre_assignments_tab">
         my hub
       </button>
     </div>

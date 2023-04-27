@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}TigerFocus Hub{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/studenthub.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/createNew.css')}}" />
+{% endblock %}
+
+{% block body %}
+{% include "modals.html" %}
+
+<div id="welcome_wrapper">
+  <table>
+    <td width="88%" style="padding-top: 50px; padding-left: 30px;">
+      <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+    </td>
+    <td style="padding-right: 30px; padding-top: 50px;" width="12%" align="left">
+      <div>
+        <form action="\start" method="post">
+          <button type="submit" style="height: auto; padding: 3px; width: 200px;" class="small-button" onclick="startSession()">
+            START SESSION
+          </button>
+          <input type="hidden" id="selected_assignments" name="selected_assignments" value="" />
+        </form>
+      </div>
+    </td>
+  </table>
+</div>
+
+<div id="assignments-window">
+  <div id="tabs">
+    <div>
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="assignments-tab">
+        my hub
+      </button>
+    </div>
+    <div>
+      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="preloaded-tab">
+        public courses
+      </button>
+    </div>
+  </div>
+
+  <div id="assignments-header">
+    <div id="current-assignments-title">Current Assignments</div>
+    <div id="edit-button-wrapper">
+      <button class="small-button" id="create_new_button">new task</button>
+      <button class="small-button" id="add_course_button">edit courses</button>
+    </div>
+  </div>
+
+  <hr />
+  <div>
+    <table style="margin-left: 30px;" id="table_header">
+      <td width="70px"></td>
+      <td width="60px"></td>
+      <td align="left" width="250px">Assignment</td>
+      <td align="left" width="130px">Due Date</td>
+      <td width="100px">Class</td>
+      <td width="50px"></td>
+      <td width="50px"></td>
+    </table>
+  </div>
+  <hr />
+
+  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
+    {% for assignment in assignments %}
+    <div id="assignment_element_{{assignment['id']}}">
+      <table class="assignment_wrapper" id="assignment_wrapper_{{assignment['id']}}" style="margin-bottom: 5px;">
+        <tr>
+          <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
+            <label class="checkbox_button">
+              <input type="checkbox" class="assignment_checkbox" value="{{assignment['id']}}" />
+              <div class="checkmark"></div>
+            </label>
+          </td>
+
+          <td width="5%" align="left">
+            <button id="{{assignment['id']}}" name="status_button" class="status_button" value="true"></button>
+          </td>
+
+          <td style="padding-left: 30px;" width="40%" align="left">
+            <div class="assignment_text">{{ assignment["title"] }}</div>
+          </td>
+          <td width="40%" align="left">
+            <div class="assignment_text">{{ assignment["due_date"] }}</div>
+          </td>
+          <td style="padding-left: 10px;" width="15%" align="left">
+            <div class="class_chip" style="background-color: {{assignment['color']}}">
+              {{assignment["course_code"]}}
+            </div>
+          </td>
+          <td style="padding-left: 20px;" width="5%">
+            <button name="edit_assignment_button" class="action_button" value="{{assignment['id']}}">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
+
+          <form action="/deleteassignment" method="post">
+            <td style="padding-right: 30px;" width="5%">
+              <input type="hidden" name="assignment_id" value="{{assignment['id']}}" />
+              <button onclick="window.location.href='/deleteassignment';" class="action_button">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </form>
+        </tr>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script src="{{url_for('static', filename='script/hub.js')}}"></script>
+{% endblock %}

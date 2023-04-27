@@ -55,7 +55,7 @@ a:hover {
   left: 298px;
   top: 901.52px;
 
-  background: #ABC787;
+  background: #abc787;
   border-radius: 40px;
 }
 
@@ -86,7 +86,7 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-#body{
+#body {
   font-size: 75px;
   color: #fef9ee;
   font-family: "Anek Bangla";
@@ -103,15 +103,15 @@ a:hover {
   background-color: #564b47;
 }
 
-#time{
-  color:#fef9ee; 
-  font-size:50px; 
-  margin-top:10px;
+#time {
+  color: #fef9ee;
+  font-size: 50px;
+  margin-top: 10px;
   padding-top: 9px;
   padding-bottom: 10px;
 }
 
-#buttons button { 
+#buttons button {
   width: 80px;
   height: 30px;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -123,7 +123,7 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-#buttons button#stop{
+#buttons button#stop {
   width: 80px;
   height: 30px;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -135,26 +135,24 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-#taskrectangle
-{
-margin: auto;
-width: 421px;
-height: 180px;
-left: 295px;
-top: 559px;
-background: #FEF9EE;
-border-radius: 40px;
+#taskrectangle {
+  margin: auto;
+  width: 421px;
+  height: 180px;
+  left: 295px;
+  top: 559px;
+  background: #fef9ee;
+  border-radius: 40px;
 }
 
-#h2font{
-  margin:auto;
+#h2font {
+  margin: auto;
   font-family: "Anek Bangla";
-  color:#564b47; 
+  color: #564b47;
   text-align: center;
-
 }
 
-#videoframe{
+#videoframe {
   border-radius: 18px;
 }
 

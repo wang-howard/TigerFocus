@@ -1,7 +1,12 @@
-{% extends "base.html" %} {% block title %}Pomodoro Timer{% endblock %} {% block
-style %}
+{% extends "base.html" %}
+
+{% block title %}Pomodoro Timer{% endblock %}
+
+{% block style %}
 <link rel="stylesheet" href="{{style}}" />
-{% endblock %} {% block body%}
+{% endblock %}
+
+{% block body%}
 <div id="screen">
   <button id="pomodoro"><a href="/timer">pomodoro</a></button>
   <button id="pomodoro"><a href="/shortBreak">short break</a></button>
@@ -34,7 +39,7 @@ style %}
     <p id="center">{{assignments}}</p>
   </div>
   <div>
-    <button class="stop" onclick="window.location.href='/userview';">
+    <button class="stop" onclick="window.location.href='/hub';">
       End Session
     </button>
   </div>
