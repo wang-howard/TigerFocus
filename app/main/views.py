@@ -33,7 +33,7 @@ def hub():
     """
     netid = session["netid"]
     try:
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
         first = user.first_name
         courses = list(user.courses)
         
@@ -57,7 +57,7 @@ def hub():
                         .order_by(Assignment.due_date).all()
         assignment_data = []
         for a in assignments:
-            course = Course.query.filter_by(id=a.course_id).first()
+            course = Course.query.get(a.course_id)
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
@@ -98,7 +98,7 @@ def created_course():
         netid = session["netid"]
         course_id = str(random.randint(0, 999999)).zfill(6)
         while True:
-            query = Course.query.filter_by(id=course_id).first()
+            query = Course.query.get(course_id)
             if query == None:
                 break
             else:
@@ -106,7 +106,7 @@ def created_course():
         new_course = Course(id=course_id, course_code=course_code,
                             course_name=course_name, color=course_color,
                             user_netid=netid)
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
         user.courses.append(new_course)
         db.session.add(new_course)
         db.session.commit()
@@ -126,10 +126,10 @@ def edit_course():
     """
     netid = session["netid"]
     try:
-        user = User.query.filter_by(netid=netid).first()
-        if user.user_type == "Student":
+        user = User.query.get(netid)
+        if user.user_type == "student":
             course_id = request.form.get("edited_course_id")
-        else:
+        elif user.user_type == "instructor":
             course_id = request.form.get("instructor_edited_course_id")
     
         course_code = request.form.get("course_code")
@@ -137,7 +137,7 @@ def edit_course():
         course_color = request.form.get("color")
         
         
-        edited_course = Course.query.filter_by(id=course_id).first()
+        edited_course = Course.query.get(course_id)
         edited_course.course_code = course_code
         edited_course.course_name = course_name
         edited_course.color = course_color
@@ -158,7 +158,7 @@ def delete_course():
     """
     try:
         id = request.form.get("course_del_id")
-        course = Course.query.filter_by(id=id).first()
+        course = Course.query.get(id)
         assignments = list(course.assignments)
         for assignment in assignments:
             db.session.delete(assignment)
@@ -175,7 +175,7 @@ def delete_course():
 def export_course():
     try:
         netid = session["netid"]
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
 
         is_staff = True
         if user.user_type == "student":
@@ -189,7 +189,7 @@ def export_course():
 
         new_course_id = str(random.randint(0, 999999)).zfill(6)
         while True:
-                query = Course.query.filter_by(id=new_course_id).first()
+                query = Course.query.get(new_course_id)
                 if query is None:
                     break
                 else:
@@ -198,15 +198,13 @@ def export_course():
 
         assignments = list(course.assignments)
         for assignment in assignments:
-             
             new_assignment_id = str(random.randint(0, 999999)).zfill(6)
-
             while True:
-                    query = Assignment.query.filter_by(id=new_assignment_id).first()
-                    if query == None:
-                        break
-                    else:   
-                        new_assignment_id = str(random.randint(0, 999999)).zfill(6)
+                query = Assignment.query.get(new_assignment_id)
+                if query == None:
+                    break
+                else:   
+                    new_assignment_id = str(random.randint(0, 999999)).zfill(6)
 
             public_assignment = Public_Assignment(
                                         id=new_assignment_id,
@@ -236,7 +234,7 @@ def instructor_export_courses():
         course_ids = request.form.get('selected_courses')
         course_list = course_ids.split(",")
         netid = session["netid"]
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
 
         for id in course_list:
             is_staff = True
@@ -250,7 +248,7 @@ def instructor_export_courses():
 
             new_course_id = str(random.randint(0, 999999)).zfill(6)
             while True:
-                query = Course.query.filter_by(id=new_course_id).first()
+                query = Course.query.get(new_course_id)
                 if query is None:
                     break
                 else:
@@ -262,7 +260,7 @@ def instructor_export_courses():
                 new_assignment_id = str(random.randint(0, 999999)).zfill(6)
 
                 while True:
-                    query = Assignment.query.filter_by(id=new_assignment_id).first()
+                    query = Assignment.query.get(new_assignment_id)
                     if query == None:
                         break
                     else:   
@@ -298,7 +296,7 @@ def import_courses():
 
         course_list = course_ids.split(",")
         netid = session["netid"]
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
 
         for id in course_list:
             course = Public_Course.query.get(id)
@@ -308,7 +306,7 @@ def import_courses():
 
             new_id = str(random.randint(0, 999999)).zfill(6)
             while True:
-                query = Course.query.filter_by(id=new_id).first()
+                query = Course.query.get(new_id)
                 if query is None:
                     break
                 else:
@@ -326,7 +324,7 @@ def import_courses():
             for a in assignments:
                 assignment_id = str(random.randint(0, 999999)).zfill(6)
                 while True:
-                    query = Assignment.query.filter_by(id=assignment_id).first()
+                    query = Assignment.query.get(assignment_id)
                     if query is None:
                         break
                     else:
@@ -360,7 +358,7 @@ def add_assignment():
 
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
-            query = Assignment.query.filter_by(id=assignment_id).first()
+            query = Assignment.query.get(assignment_id)
             if query == None:
                 break
             else:
@@ -386,7 +384,7 @@ def instructor_add_assignment():
 
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
-            query = Assignment.query.filter_by(id=assignment_id).first()
+            query = Assignment.query.get(assignment_id)
             if query == None:
                 break
             else:
@@ -412,9 +410,9 @@ def edit_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
         netid = session["netid"]
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
 
-        edited_assignment = Assignment.query.filter_by(id=assignment_id).first()
+        edited_assignment = Assignment.query.get(assignment_id)
         edited_assignment.due_date = due
         edited_assignment.title = title
         edited_assignment.user_netid = netid
@@ -439,7 +437,7 @@ def delete_assignment():
     try:
      
         id = request.form.get("assignment_id")
-        assignment = Assignment.query.filter_by(id=id).first()
+        assignment = Assignment.query.get(id)
         course_id = assignment.course_id
         Assignment.query.filter_by(id=id).delete()
 
@@ -454,7 +452,7 @@ def delete_assignment():
 @bp.route("/preloaded")
 def preloaded():
     netid = session["netid"]
-    user = User.query.filter_by(netid=netid).first()
+    user = User.query.get(netid)
     first = user.first_name
     courses = Public_Course.query.all()
 
@@ -488,7 +486,7 @@ def preloaded():
 def assignment():
     netid = session["netid"]
     try:
-        user = User.query.filter_by(netid=netid).first()
+        user = User.query.get(netid)
         first = user.first_name
         id = request.args.get("courseid")
         
@@ -496,7 +494,7 @@ def assignment():
                             .order_by(Assignment.due_date).all()
         
         assignment_data = []
-        course = Course.query.filter_by(id=id).first()
+        course = Course.query.get(id)
         course_code = course.course_code
         for a in assignments:
             assignment_data.append({"status": a.status,
