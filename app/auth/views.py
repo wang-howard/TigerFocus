@@ -89,7 +89,7 @@ def role_redirect():
     netid = session["netid"]
     user = User.query.filter_by(netid=netid).first()
     if user.user_type == "student":
-        return redirect(url_for("main.hub"))
+        return redirect(url_for("main.userview"))
     elif user.user_type == "instructor":
         return redirect(url_for("main.userview"))
 
