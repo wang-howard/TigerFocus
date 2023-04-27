@@ -178,16 +178,35 @@ def export_course():
         course_name = course.course_name
         assignments = course.assignments
 
+        new_course_id = str(random.randint(0, 999999)).zfill(6)
+        while True:
+                query = Course.query.filter_by(id=new_course_id).first()
+                if query is None:
+                    break
+                else:
+                    new_course_id = str(random.randint(0, 999999)).zfill(6)
+
+
         assignments = list(course.assignments)
         for assignment in assignments:
+             
+            new_assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+            while True:
+                    query = Assignment.query.filter_by(id=new_assignment_id).first()
+                    if query == None:
+                        break
+                    else:   
+                        new_assignment_id = str(random.randint(0, 999999)).zfill(6)
+
             public_assignment = Public_Assignment(
-                                        id=assignment.id,
+                                        id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
                                         course_id=assignment.course_id)
             db.session.add(public_assignment)
 
-        exported_course = Public_Course(id=id,
+        exported_course = Public_Course(id=new_course_id,
                                         author = netid,
                                         show_author = True,
                                         staff_cert = is_staff,
@@ -220,16 +239,34 @@ def instructor_export_courses():
             course_name = course.course_name
             assignments = course.assignments
 
+            new_course_id = str(random.randint(0, 999999)).zfill(6)
+            while True:
+                query = Course.query.filter_by(id=new_course_id).first()
+                if query is None:
+                    break
+                else:
+                    new_course_id = str(random.randint(0, 999999)).zfill(6)
+
             assignments = list(course.assignments)
             for assignment in assignments:
+
+                new_assignment_id = str(random.randint(0, 999999)).zfill(6)
+
+                while True:
+                    query = Assignment.query.filter_by(id=new_assignment_id).first()
+                    if query == None:
+                        break
+                    else:   
+                        new_assignment_id = str(random.randint(0, 999999)).zfill(6)
+
                 public_assignment = Public_Assignment(
-                                            id=assignment.id,
+                                            id=new_assignment_id,
                                             title=assignment.title,
                                             due_date=assignment.due_date,
                                             course_id=assignment.course_id)
                 db.session.add(public_assignment)
 
-            exported_course = Public_Course(id=id,
+            exported_course = Public_Course(id=new_course_id,
                                             author = netid,
                                             show_author = True,
                                             staff_cert = is_staff,
