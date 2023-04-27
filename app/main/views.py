@@ -307,34 +307,12 @@ def edit_assignment():
 @bp.route("/deleteassignment", methods=["GET", "POST"])
 @login_required
 def delete_assignment():
-
-    netid = session["netid"]
     try:
-        user = User.query.filter_by(netid=netid).first()
         id = request.form.get("assignment_id")
-        assignment = Assignment.query.filter_by(id=id).first()
-        print(assignment)
-        course = Course.query.filter_by(id=assignment.course_id).first()
-        course_code = course.course_code
+        print(id)
         Assignment.query.filter_by(id=id).delete()
         db.session.commit()
-        
-        if user.user_type == "student": 
-            return redirect(url_for(".hub"))
-        else:
-            first = user.first_name
-            assignments = Assignment.query.filter_by(course_id=course.id)\
-                                .order_by(Assignment.due_date).all()
-            assignment_data = []
-            for a in assignments:
-                assignment_data.append({"status": a.status,
-                                        "id": a.id,
-                                        "title": a.title,
-                                        "due_date": a.due_date,
-                                        "course_code":course.course_code,
-                                        "color": course.color})
-            return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, course_code = course_code )
+        return redirect(url_for(".hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -461,13 +439,14 @@ def assignment():
         user = User.query.filter_by(netid=netid).first()
         first = user.first_name
         id = request.form.get("courseid")
-        
+
         assignments = Assignment.query.filter_by(course_id=id)\
                             .order_by(Assignment.due_date).all()
         assignment_data = []
-        course = Course.query.filter_by(id=id).first()
-        course_code = course.course_code
+        course_code = ""
         for a in assignments:
+            course = Course.query.filter_by(id=a.course_id).first()
+            course_code = course.course_code
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
