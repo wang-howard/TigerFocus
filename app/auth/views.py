@@ -80,20 +80,6 @@ def new_user():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@auth.route("/roleredirect")
-def role_redirect():
-    """
-    After login, redirects a user to the appropriate page depending on
-    their role
-    """
-    netid = session["netid"]
-    user = User.query.filter_by(netid=netid).first()
-    if user.user_type == "student":
-        return redirect(url_for("main.userview"))
-    elif user.user_type == "instructor":
-        return redirect(url_for("main.userview"))
-
-
 @auth.route("/logout")
 def logout():
     """

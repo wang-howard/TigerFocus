@@ -64,13 +64,23 @@ def hub():
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
-        return render_template("hub.html", first_name=first,
-                               courses=course_data,
-                               assignments=assignment_data)
+
+        if user.user_type == "student":
+            return render_template("studenthub.html",
+                                   first_name=first,
+                                   courses=course_data,
+                                   assignments=assignment_data)
+        elif user.user_type == "instructor":
+            return render_template("instructorhub.html",
+                                   first_name=first,
+                                   courses=course_data,
+                                   assignments=assignment_data)
+        else:
+            return render_template("error.html",
+                                   message = "undefined user type")
     except Exception as ex:
         print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex )
-
+        return render_template("error.html", message=ex)
 
 @bp.route("/createcourse", methods=["GET", "POST"])
 @login_required
@@ -134,7 +144,7 @@ def edit_course():
         edited_course.user_netid = netid
         
         db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -155,7 +165,7 @@ def delete_course():
                  
         Course.query.filter_by(id=id).delete()
         db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -207,14 +217,14 @@ def export_course():
 
         exported_course = Public_Course(id=new_course_id,
                                         author = netid,
-                                        show_author = True,
-                                        staff_cert = is_staff,
+                                        show_author=True,
+                                        staff_cert=is_staff,
                                         course_code=course_code,
                                         course_name=course_name)
         
         db.session.add(exported_course)
         db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
@@ -259,10 +269,10 @@ def instructor_export_courses():
                         new_assignment_id = str(random.randint(0, 999999)).zfill(6)
 
                 public_assignment = Public_Assignment(
-                                            id=new_assignment_id,
-                                            title=assignment.title,
-                                            due_date=assignment.due_date,
-                                            course_id=assignment.course_id)
+                                        id=new_assignment_id,
+                                        title=assignment.title,
+                                        due_date=assignment.due_date,
+                                        course_id=assignment.course_id)
                 db.session.add(public_assignment)
 
             exported_course = Public_Course(id=new_course_id,
@@ -274,7 +284,7 @@ def instructor_export_courses():
             
             db.session.add(exported_course)
             db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
@@ -330,7 +340,7 @@ def import_courses():
                 db.session.add(import_assignment)
 
         db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
@@ -360,7 +370,7 @@ def add_assignment():
                                 course_id=course_id)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -413,7 +423,7 @@ def edit_assignment():
         db.session.commit()
 
         if(user.user_type == "Student"):
-            return redirect(url_for(".userview"))
+            return redirect(url_for(".hub"))
         else:
             return redirect(url_for(".assignment", courseid=course_id))
 
