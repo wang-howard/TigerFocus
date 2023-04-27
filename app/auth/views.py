@@ -75,7 +75,7 @@ def new_user():
         db.session.add(user)
         db.session.commit()
         login_user(User.query.get(netid))
-        return redirect(url_for("main.hub"))
+        return redirect(url_for("main.userview"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
