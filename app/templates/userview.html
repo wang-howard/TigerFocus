@@ -1,7 +1,0 @@
-{% if user_type == "student" %}
-  {%include "studenthub.html"%}
-{% elif user_type == "instructor" %}
-  {%include "instructorhub.html"%}
-{% else %}
-  {% include error.html %}
-{% endif %}
