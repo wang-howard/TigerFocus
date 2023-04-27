@@ -66,7 +66,9 @@ def new_user():
 
         req = req_lib.getJSON(req_lib.configs.USERS, uid=netid)
         info = req[0] # req returns as a list containing only one dict
-        first, last = info["displayname"].split(" ")
+        name_data = info["displayname"].split(" ")
+        first = name_data[0]
+        last = name_data[-1]
         status = info["pustatus"]
         user_type = "instructor" if status == "faculty" else "student"
         
@@ -75,7 +77,7 @@ def new_user():
         db.session.add(user)
         db.session.commit()
         login_user(User.query.get(netid))
-        return redirect(url_for("main.userview"))
+        return redirect(url_for("main.hub"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
