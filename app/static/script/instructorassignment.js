@@ -27,3 +27,7 @@ edit_assignment_btn.forEach(
       edit_assignment.value = element.value;
     })
 );
+
+edit_assignment_span.onclick = function () {
+  edit_assignment_modal.style.display = "none";
+};

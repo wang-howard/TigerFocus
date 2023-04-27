@@ -94,6 +94,15 @@
   font-weight: bold;
 }
 
+.instructoreditcourse_close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
 .edit_assignment_close {
   color: #aaa;
   float: right;
@@ -192,6 +201,13 @@
 
 .editcourse_close:hover,
 .editcourse_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.instructoreditcourse_close:hover,
+.instructoreditcourse_close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

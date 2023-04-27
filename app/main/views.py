@@ -115,12 +115,18 @@ def edit_course():
     Receives form response with course information and change requests
     and updates course object with new values
     """
+    netid = session["netid"]
     try:
-        course_id = request.form.get("edited_course_id")
+        user = User.query.filter_by(netid=netid).first()
+        if user.user_type == "Student":
+            course_id = request.form.get("edited_course_id")
+        else:
+            course_id = request.form.get("instructor_edited_course_id")
+    
         course_code = request.form.get("course_code")
         course_name = request.form.get("course_name")
         course_color = request.form.get("color")
-        netid = session["netid"]
+        
         
         edited_course = Course.query.filter_by(id=course_id).first()
         edited_course.course_code = course_code
@@ -194,6 +200,49 @@ def export_course():
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
+
+@bp.route("/instructorexportcourses", methods=["GET", "POST"])
+@login_required
+def instructor_export_courses():
+    try:
+        course_ids = request.form.get('selected_courses')
+        course_list = course_ids.split(",")
+        netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
+
+        for id in course_list:
+            is_staff = True
+            if user.user_type == "student":
+                is_staff = False
+
+            course = Course.query.get(id)
+            course_code = course.course_code
+            course_name = course.course_name
+            assignments = course.assignments
+
+            assignments = list(course.assignments)
+            for assignment in assignments:
+                public_assignment = Public_Assignment(
+                                            id=assignment.id,
+                                            title=assignment.title,
+                                            due_date=assignment.due_date,
+                                            course_id=assignment.course_id)
+                db.session.add(public_assignment)
+
+            exported_course = Public_Course(id=id,
+                                            author = netid,
+                                            show_author = True,
+                                            staff_cert = is_staff,
+                                            course_code=course_code,
+                                            course_name=course_name)
+            
+            db.session.add(exported_course)
+            db.session.commit()
+        return redirect(url_for(".userview"))
+    except Exception as ex:
+            print(ex, file=sys.stderr)
+            return render_template("error.html", message=ex)
+    
     
 @bp.route("/importcourses", methods=["GET", "POST"])
 @login_required
