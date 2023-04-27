@@ -211,11 +211,11 @@
         <form action="/createcourse" method="post">
           <div class="form-group">
             <label class="form-control-label">Course Code</label>
-            <input class="searchbar" type="text" name="course_code" class="form-control" />
+            <input class="searchbar" type="text" name="course_code" class="form-control" required/>
           </div>
           <div class="form-group">
             <label class="form-control-label">Course Name</label>
-            <input class="searchbar" type="text" name="course_name" class="form-control" />
+            <input class="searchbar" type="text" name="course_name" class="form-control" required/>
           </div>
 
           <input hidden name="color" value="#FFC78F" />
@@ -246,14 +246,14 @@
           <input hidden type="number" name="instructor_edited_course_id" />
           <div class="form-group">
             <label class="form-control-label">Course Code</label>
-            <input class="searchbar" type="text" name="course_code" class="form-control" />
+            <input class="searchbar" type="text" name="course_code" class="form-control" required/>
           </div>
 
           <input hidden name="color" value="#FFC78F" />
 
           <div class="form-group">
             <label class="form-control-label">Course Name</label>
-            <input class="searchbar" type="text" name="course_name" class="form-control" />
+            <input class="searchbar" type="text" name="course_name" class="form-control" required/>
           </div>
           <div class="col-12 login-btm login-button justify-content-center d-flex">
             <button type="submit" class="small-button">update course</button>
@@ -274,12 +274,12 @@
         <input hidden name="current_id" id="current_id" />
         <div class="modal_input_wrapper">
           <h1 id="input_title">Assignment Title</h1>
-          <input class="searchbar" type="text" name="title" id="title" />
+          <input class="searchbar" type="text" name="title" id="title" required/>
         </div>
 
         <div class="modal_input_wrapper">
           <h1 id="input_title">Due Date</h1>
-          <input type="datetime-local" name="due_date" id="due_date" />
+          <input type="datetime-local" name="due_date" id="due_date" required/>
         </div>
         <div style="padding-left: 375px;">
           <button class="submitbutton" type="submit">create</button>
