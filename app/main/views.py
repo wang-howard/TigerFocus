@@ -12,8 +12,7 @@ from app import cas_client
 from . import bp
 from .. import db
 from ..models import User, Course, Assignment, Public_Course, Public_Assignment
-import urllib 
-import json
+
 @bp.route("/", methods=["GET"])
 def index():
     """
@@ -25,9 +24,9 @@ def index():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/userview")
+@bp.route("/hub")
 @login_required
-def userview():
+def hub():
     """
     Main application hub displays each user's indiviudal assignment and
     course information. Majority of functionality found in html/css/js.
@@ -65,7 +64,7 @@ def userview():
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
-        return render_template("userview.html", first_name=first,
+        return render_template("hub.html", first_name=first,
                                courses=course_data,
                                assignments=assignment_data)
     except Exception as ex:
@@ -102,7 +101,7 @@ def created_course():
         db.session.add(new_course)
         db.session.commit()
         
-        return redirect(url_for(".userview"))
+        return redirect(url_for(".hub"))
 
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -462,15 +461,17 @@ def preloaded():
         course_name = course.course_name
         
         course_codes.append({"course_code": course_code,
-                             "course_name": course_name ,
-                             "author": author ,
-                             "show_author": show_author ,
-                             "staff_cert": staff_cert ,
-                             "id": id })
+                             "course_name": course_name,
+                             "author": author,
+                             "show_author": show_author,
+                             "staff_cert": staff_cert,
+                             "id": id})
         course_ids.append(course.id)
-    
 
-    return render_template("preloaded.html", first_name=first, courses=course_codes, user_type = user.user_type)
+    return render_template("preloaded.html",
+                           first_name=first, 
+                           courses=course_codes,
+                           user_type=user.user_type)
 
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
@@ -550,7 +551,6 @@ def start_session():
                                style=style,
                                id=id, mins=25,
                                source=link, script=script)
-
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
