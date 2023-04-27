@@ -1,9 +1,15 @@
-{% extends "base.html" %} {% block title %}TigerFocus Hub{% endblock %} {% block style %}
+{% extends "base.html" %}
+
+{% block title %}TigerFocus Hub{% endblock %}
+
+{% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="{{url_for('static', filename='css/hub.css')}}" />
 <link rel="stylesheet" href="{{url_for('static', filename='css/createNew.css')}}" />
+{% endblock %}
 
-{% endblock %} {% block body %} {% include "modals.html" %}
+{% block body %}
+{% include "modals.html" %}
 
 <div id="welcome_wrapper">
   <table>

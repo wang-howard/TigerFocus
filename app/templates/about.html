@@ -1,32 +1,33 @@
 {% extends "base.html" %}
 
-{% block title %}TigerFocus Hub{% endblock %}
+{% block title %}About{% endblock %}
+
 {% block style %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}" />
 {% endblock %}
-{% block body %}
-<body>
-<h1 id = "mission"> Our Mission </h1>
-<div>
-<p id = "para">Our mission is to help Princeton students reach their studying goals by providing a platform for academic concentration. This app provides a space to harness your concentration by allowing its users to use the Pomodoro method while also allowing them to have a task manager. </p>
-</div>
-<h2 class = "team" >meet the team</h2>
-<div class="row">
-    <div class="column">
-        <img src="https://images.squarespace-cdn.com/content/v1/5b42abfbcef3726dde332af3/1642974737813-1X2KDJS980I22Z5VI8G9/Frame+134.jpeg?format=1000w" alt="Girl in a jacket" id = "pic">
-        <p class = "name">Jad Bendarkawi</p>
-    </div>
-    <div class="column">
-      <img src="https://images.sidearmdev.com/crop?url=https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/princeton.sidearmsports.com/images/2021/3/26/2021_HowardWang_Headshot_web.jpg&width=180&height=270&type=webp" id = "pic">
-      <p class = "name">Howard Wang</p>
-    </div>
-    <div class="column">
-      <img src="https://media.licdn.com/dms/image/C5603AQGnoh5mLoepfA/profile-displayphoto-shrink_400_400/0/1655998206218?e=1686787200&v=beta&t=UTtzTebWo6p3G-P003fO23_ASWniDObLUZtpXaLjLd0" id = "pic">
-      <p class = "name">Ashley Ponce</p>
-    </div>
-  </div>
 
-</body>
+{% block body %}
+<h1 id="mission">Our Mission</h1>
+<div>
+  <p id="para">
+    Our mission is to help Princeton students reach their studying goals by providing a platform for academic concentration. This app provides a space to harness your concentration by allowing its users to use the Pomodoro method while
+    also allowing them to have a task manager.
+  </p>
+</div>
+<h2 class="team">meet the team</h2>
+<div class="row">
+  <div class="column">
+    <img src="https://images.squarespace-cdn.com/content/v1/5b42abfbcef3726dde332af3/1642974737813-1X2KDJS980I22Z5VI8G9/Frame+134.jpeg?format=1000w" alt="Jad" id="pic" />
+    <p class="name">Jad Bendarkawi</p>
+  </div>
+  <div class="column">
+    <img src="https://images.sidearmdev.com/crop?url=https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/princeton.sidearmsports.com/images/2021/3/26/2021_HowardWang_Headshot_web.jpg&width=180&height=270&type=webp" id="pic" />
+    <p class="name">Howard Wang</p>
+  </div>
+  <div class="column">
+    <img src="https://media.licdn.com/dms/image/C5603AQGnoh5mLoepfA/profile-displayphoto-shrink_400_400/0/1655998206218?e=1686787200&v=beta&t=UTtzTebWo6p3G-P003fO23_ASWniDObLUZtpXaLjLd0" id="pic" />
+    <p class="name">Ashley Ponce</p>
+  </div>
+</div>
 {% endblock %}
