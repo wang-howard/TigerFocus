@@ -86,7 +86,7 @@ a:hover {
   border-radius: 16.6673px;
   font-family: "Anek Bangla";
 }
-#body{
+#body {
   margin: auto;
   font-size: 75px;
   color: #fef9ee;
@@ -102,16 +102,14 @@ a:hover {
   background-color: #564b47;
 }
 
-#time{
-  color:#fef9ee; 
-  font-size:50px; 
+#time {
+  color: #fef9ee;
+  font-size: 50px;
   text-align: center;
-  margin: auto; 
+  margin: auto;
 }
 
-
-
-#buttons button { 
+#buttons button {
   width: 80px;
   height: 30px;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -123,7 +121,7 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-#buttons button#stop{
+#buttons button#stop {
   width: 80px;
   height: 30px;
   border: 3px solid rgba(0, 0, 0, 0.25);
@@ -135,25 +133,23 @@ a:hover {
   font-family: "Anek Bangla";
 }
 
-#taskrectangle
-{
-margin: auto;
-width: 421px;
-height: 180px;
-left: 295px;
-top: 559px;
-background: #FEF9EE;
-border-radius: 40px;
+#taskrectangle {
+  margin: auto;
+  width: 421px;
+  height: 180px;
+  left: 295px;
+  top: 559px;
+  background: #fef9ee;
+  border-radius: 40px;
 }
 
-#h2font{
- margin:auto;
- font-family: "Anek Bangla";
- color:#564b47; 
- text-align: center;
-
+#h2font {
+  margin: auto;
+  font-family: "Anek Bangla";
+  color: #564b47;
+  text-align: center;
 }
-#videoframe{
+#videoframe {
   border-radius: 18px;
 }
 #beforeClick {
@@ -165,25 +161,23 @@ border-radius: 40px;
 
 #center {
   text-align: center;
-  font-family: 'Anek Bangla';
+  font-family: "Anek Bangla";
   font-style: normal;
   font-weight: 700;
   font-size: 22.5px;
   line-height: 42px;
 
   color: #000000;
-
 }
 
-.stop{
-width: 150px;
-height:30px;
-margin: auto;
-background: #4E4E4E;
-box-shadow: 0px 3.3792px 3.3792px rgba(0, 0, 0, 0.25);
-border-radius: 25.344px;
-font-family: 'Anek Bangla';
-font-size: 20px;
-color: #FEF9EE;
-
+.stop {
+  width: 150px;
+  height: 30px;
+  margin: auto;
+  background: #4e4e4e;
+  box-shadow: 0px 3.3792px 3.3792px rgba(0, 0, 0, 0.25);
+  border-radius: 25.344px;
+  font-family: "Anek Bangla";
+  font-size: 20px;
+  color: #fef9ee;
 }
