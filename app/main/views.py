@@ -397,7 +397,6 @@ def instructor_add_assignment():
 
        
         return redirect(url_for(".assignment", courseid=course_id))
-
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -433,18 +432,23 @@ def edit_assignment():
 @bp.route("/deleteassignment", methods=["GET", "POST"])
 @login_required
 def delete_assignment():
-
     try:
-     
         id = request.form.get("assignment_id")
         assignment = Assignment.query.get(id)
         course_id = assignment.course_id
         Assignment.query.filter_by(id=id).delete()
 
         db.session.commit()
-        
-        return redirect(url_for(".assignment", courseid=course_id))
-       
+
+        user = User.query.get(session["netid"])
+        if user.user_type == "student":
+            return redirect(url_for(".hub"))
+        elif user.user_type == "instructor":
+            return redirect(url_for(".assignment", courseid=course_id))
+        else:
+            return render_template("error.html",
+                                   message="User type error when \
+                                    deleting assignment")
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
