@@ -1,4 +1,3 @@
-
 <!--MODAL: CREATE NEW -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
@@ -254,10 +253,10 @@
   </div>
 </div>
 
-<!--MODAL: ADMIN ADD COURSE -->
+<!--MODAL: INSTRUCTOR ADD COURSE -->
 <div id="admincourse_modal" class="modal">
   <div class="modal_content">
-    <div class="modal_within_window">
+    <div style="height: 300px" class="modal_window">
       <span class="admincourse_close">&times;</span>
 
       <div class="modal_input_wrapper">
@@ -284,25 +283,88 @@
               class="form-control"
             />
           </div>
-          <div class="form-group">
-            <label class="form-control-label">Color</label>
-            <select name="color" id="course_color">
-              <option value="#EA9C9C">Red</option>
-              <option value="#FFC78F">Orange</option>
-              <option value="#F8DE9D">Yellow</option>
-              <option value="#A6DCA8">Green</option>
-              <option value="#ACCEED">Blue</option>
-              <option value="#BDB4D9">Purple</option>
-              <option value="#F4CAEB">Pink</option>
-            </select>
-          </div>
+
+          <input hidden name="color" value="#FFC78F" />
+
           <div
             class="col-12 login-btm login-button justify-content-center d-flex"
           >
-            <button type="submit" class="small-button">add course</button>
+            <button style="margin-top: 10px" type="submit" class="small-button">
+              add course
+            </button>
           </div>
         </form>
       </div>
     </div>
+  </div>
+</div>
+
+<!--MODAL: INSTRUCTOR EDIT COURSE -->
+<div id="instructor_edit_course_modal" class="modal">
+  <div class="modal_content">
+    <div style="height: 300px" class="modal_window">
+      <span class="instructoreditcourse_close">&times;</span>
+
+      <div class="modal_input_wrapper">
+        <h1 id="input_title">Edit Course</h1>
+      </div>
+
+      <div class="col-lg-12 login-form">
+        <form action="/editcourse" method="post">
+          <input hidden type="number" name="instructor_edited_course_id" />
+          <div class="form-group">
+            <label class="form-control-label">Course Code</label>
+            <input
+              class="searchbar"
+              type="text"
+              name="course_code"
+              class="form-control"
+            />
+          </div>
+
+          <input hidden name="color" value="#FFC78F" />
+
+          <div class="form-group">
+            <label class="form-control-label">Course Name</label>
+            <input
+              class="searchbar"
+              type="text"
+              name="course_name"
+              class="form-control"
+            />
+          </div>
+          <div
+            class="col-12 login-btm login-button justify-content-center d-flex"
+          >
+            <button type="submit" class="small-button">update course</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: INSTRUCTOR CREATE NEW -->
+<div id="admin_create_new_modal" class="modal">
+  <div class="modal_content">
+    <form action="/instructoraddassignment" method="post">
+      <div style="height: 325px" class="modal_window">
+        <span class="admin_create_close">&times;</span>
+
+        <input hidden name="current_id" id="current_id" />
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Assignment Title</h1>
+          <input class="searchbar" type="text" name="title" id="title" />
+        </div>
+
+        <div class="modal_input_wrapper">
+          <h1 id="input_title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date" />
+        </div>
+        <div style="padding-left: 375px">
+          <button class="submitbutton" type="submit">create</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
