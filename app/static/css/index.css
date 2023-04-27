@@ -5,9 +5,16 @@ body {
   font-family: "Anek Bangla", sans-serif;
 }
 
-a {text-decoration: none;}
-a:visited {text-decoration: none; color: #4e4e4e;}
-a:hover {color: #747272;}
+a {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+  color: #4e4e4e;
+}
+a:hover {
+  color: #747272;
+}
 
 #page {
   display: flex;
@@ -43,7 +50,7 @@ a:hover {color: #747272;}
 }
 
 #hook {
-  color: #4E4E4E;
+  color: #4e4e4e;
   width: 80%;
   margin-top: 90px;
   font-weight: 600;
@@ -72,7 +79,7 @@ a:hover {color: #747272;}
   font-weight: 300;
   font-size: 45px;
   line-height: 84px;
-  color: #4E4E4E;
+  color: #4e4e4e;
 }
 
 #list-wrapper {
@@ -86,6 +93,6 @@ a:hover {color: #747272;}
   font-weight: 300;
   font-size: 20px;
   list-style-type: none;
-  color: #4E4E4E;
+  color: #4e4e4e;
   text-align: center;
 }
