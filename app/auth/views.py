@@ -91,7 +91,7 @@ def role_redirect():
     if user.user_type == "student":
         return redirect(url_for("main.hub"))
     elif user.user_type == "instructor":
-        return redirect(url_for("main.instructor_hub"))
+        return redirect(url_for("main.userview"))
 
 
 @auth.route("/logout")

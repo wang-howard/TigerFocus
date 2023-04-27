@@ -22,7 +22,7 @@
 <div id="admin-window">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/instructorhub';" id="admin_assignments_tab">
+      <button style="color: #fef9ee;" onclick="window.location.href='/userview';" id="admin_assignments_tab">
         my hub
       </button>
     </div>
@@ -79,7 +79,7 @@
               </label>
             </td>
             <td>
-              <form action="/assignment" method = "post">
+              <form action="/assignment" method = "get">
                 <button class = "view" >view assignments</button> 
                 <input hidden name = "courseid" value="{{course['id']}}">
               </form> 
@@ -90,8 +90,12 @@
               </button>
             </td>
             <td>
-              <button onclick="window.location.href='/deleteassignment';" class="action_button">
-                <i class="fa fa-trash"></i></button>
+              <form action="/deletecourse" method = "post">
+                <button class="action_button">
+                  <input hidden name = "course_del_id" value="{{course['id']}}">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form> 
             </td>
           </tr>
           <tr>

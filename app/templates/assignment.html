@@ -35,7 +35,7 @@
 <div id="admin-window">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee" onclick="window.location.href='/instructorhub';" id="admin_assignments_tab">
+      <button style="color: #fef9ee" onclick="window.location.href='/userview';" id="admin_assignments_tab">
         my hub
       </button>
     </div>
@@ -79,7 +79,7 @@
             <div >{{a["due_date"]}}</div>
           </td>
           <td>
-            <button name="edit_assignment_button" class="action_button" value="">
+            <button name="edit_assignment_button" class="action_button" value="{{a['id']}}">
               <i class="fa fa-edit"></i>
             </button>
           </td>

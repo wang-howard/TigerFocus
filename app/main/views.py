@@ -25,9 +25,9 @@ def index():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/hub")
+@bp.route("/userview")
 @login_required
-def hub():
+def userview():
     """
     Main application hub displays each user's indiviudal assignment and
     course information. Majority of functionality found in html/css/js.
@@ -39,13 +39,15 @@ def hub():
         courses = list(user.courses)
         
         # create list of dict of course codes and their colors
-        course_codes = []
+        course_data = []
         course_ids = []
         for course in courses:
             color = course.color
             code = course.course_code
             id = course.id
-            course_codes.append({"course_code": code,
+            name = course.course_name
+            course_data.append({"course_code": code,
+                                 "course_name": name,
                                  "color": color ,
                                  "id": id })
             course_ids.append(course.id)
@@ -63,12 +65,13 @@ def hub():
                                     "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
-        return render_template("hub.html", first_name=first,
-                               courses=course_codes,
+        return render_template("userview.html", first_name=first,
+                               courses=course_data,
                                assignments=assignment_data)
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex )
+
 
 @bp.route("/createcourse", methods=["GET", "POST"])
 @login_required
@@ -99,10 +102,7 @@ def created_course():
         db.session.add(new_course)
         db.session.commit()
         
-        if user.user_type == "student": 
-            return redirect(url_for(".hub"))
-        else:
-            return redirect(url_for(".instructorhub"))
+        return redirect(url_for(".userview"))
 
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -129,7 +129,7 @@ def edit_course():
         edited_course.user_netid = netid
         
         db.session.commit()
-        return redirect(url_for(".hub"))
+        return redirect(url_for(".userview"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -143,15 +143,14 @@ def delete_course():
     """
     try:
         id = request.form.get("course_del_id")
-        course = Course.query.get(id)
-
+        course = Course.query.filter_by(id=id).first()
         assignments = list(course.assignments)
         for assignment in assignments:
             db.session.delete(assignment)
                  
         Course.query.filter_by(id=id).delete()
         db.session.commit()
-        return redirect(url_for(".hub"))
+        return redirect(url_for(".userview"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -191,7 +190,7 @@ def export_course():
         
         db.session.add(exported_course)
         db.session.commit()
-        return redirect(url_for(".hub"))
+        return redirect(url_for(".userview"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
@@ -246,7 +245,7 @@ def import_courses():
                 db.session.add(import_assignment)
 
         db.session.commit()
-        return redirect(url_for(".hub"))
+        return redirect(url_for(".userview"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
@@ -276,7 +275,7 @@ def add_assignment():
                                 course_id=course_id)
         db.session.add(assignment)
         db.session.commit()
-        return redirect(url_for(".hub"))
+        return redirect(url_for(".userview"))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -287,13 +286,8 @@ def instructor_add_assignment():
     try:
         
         course_id = request.form.get("current_id")        
-        course = Course.query.filter_by(id=course_id).first()
-        course_code = course.course_code
         due = request.form.get("due_date")
         title = request.form.get("title")
-        netid = session["netid"]
-        user = User.query.filter_by(netid=netid).first()
-        first = user.first_name
 
         assignment_id = str(random.randint(0, 999999)).zfill(6)
         while True:
@@ -308,23 +302,9 @@ def instructor_add_assignment():
         db.session.add(new_assignment)
         db.session.commit()
 
-        #data for re-rendering
-        assignmentlist = Assignment.query\
-            .filter_by(course_id=course_id)\
-            .order_by(Assignment.due_date).all()
-        assignment_data = []
-        for a in assignmentlist:
-            assignment_data.append({"status": a.status,
-                                    "id": a.id,
-                                    "title": a.title,
-                                    "due_date": a.due_date,
-                                    "course_code":course.course_code,
-                                    "color": course.color})
-        
        
-        return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, 
-                                course_code=course_code)
+        return redirect(url_for(".assignment", courseid=course_id))
+
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -337,15 +317,21 @@ def edit_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
         netid = session["netid"]
+        user = User.query.filter_by(netid=netid).first()
 
         edited_assignment = Assignment.query.filter_by(id=assignment_id).first()
         edited_assignment.due_date = due
         edited_assignment.title = title
         edited_assignment.user_netid = netid
+        course_id = edited_assignment.course_id
 
         db.session.commit()
 
-        return redirect(url_for(".hub"))
+        if(user.user_type == "Student"):
+            return redirect(url_for(".userview"))
+        else:
+            return redirect(url_for(".assignment", courseid=course_id))
+
 
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -355,33 +341,17 @@ def edit_assignment():
 @login_required
 def delete_assignment():
 
-    netid = session["netid"]
     try:
-        user = User.query.filter_by(netid=netid).first()
+     
         id = request.form.get("assignment_id")
         assignment = Assignment.query.filter_by(id=id).first()
-        print(assignment)
-        course = Course.query.filter_by(id=assignment.course_id).first()
-        course_code = course.course_code
+        course_id = assignment.course_id
         Assignment.query.filter_by(id=id).delete()
+
         db.session.commit()
         
-        if user.user_type == "student": 
-            return redirect(url_for(".hub"))
-        else:
-            first = user.first_name
-            assignments = Assignment.query.filter_by(course_id=course.id)\
-                                .order_by(Assignment.due_date).all()
-            assignment_data = []
-            for a in assignments:
-                assignment_data.append({"status": a.status,
-                                        "id": a.id,
-                                        "title": a.title,
-                                        "due_date": a.due_date,
-                                        "course_code":course.course_code,
-                                        "color": course.color})
-            return render_template("assignment.html", first_name=first,
-                                assignments=assignment_data, course_code = course_code )
+        return redirect(url_for(".assignment", courseid=course_id))
+       
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -416,34 +386,6 @@ def preloaded():
 
     return render_template("preloaded.html", first_name=first, courses=course_codes, user_type = user.user_type)
 
-@bp.route("/instructorhub")
-@login_required
-def instructor_hub():
-    netid = session["netid"]
-    try:
-        user = User.query.filter_by(netid=netid).first()
-        first = user.first_name
-        courses = list(user.courses)
-            
-            # create list of dict of course codes and their colors
-        course_codes = []
-        course_ids = []
-
-        for course in courses:
-            color = course.color
-            code = course.course_code
-            id = course.id
-            course_name = course.course_name
-            course_codes.append({"course_code": code,
-                                    "color": color ,
-                                    "id": id, "course_name": course_name})
-            course_ids.append(course.id)
-        return render_template("instructorhub.html", first_name=first,
-                                courses=course_codes)
-    except Exception as ex:
-        print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex )
-
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
 def assignment():
@@ -451,10 +393,11 @@ def assignment():
     try:
         user = User.query.filter_by(netid=netid).first()
         first = user.first_name
-        id = request.form.get("courseid")
+        id = request.args.get("courseid")
         
         assignments = Assignment.query.filter_by(course_id=id)\
                             .order_by(Assignment.due_date).all()
+        
         assignment_data = []
         course = Course.query.filter_by(id=id).first()
         course_code = course.course_code
