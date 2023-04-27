@@ -10,7 +10,9 @@ course_span.onclick = function () {
 
 var editcourse_modal = document.getElementById("instructor_edit_course_modal");
 var edit_course = document.getElementsByName("instructor_edited_course_id")[0];
-var editcourse_btn = document.getElementsByName("edit_course_button");
+var editcourse_btn = document.getElementsByName(
+  "instructor_edit_course_button"
+);
 var editcourse_span = document.getElementsByClassName(
   "instructoreditcourse_close"
 )[0];
