@@ -1,0 +1,53 @@
+<tr id="table_header">
+  <th></th>
+  <th align="left">Course Code</th>
+  <th align="left">Course Name</th>
+  <th align="left">Author</th>
+  <th>Staff Certified</th>
+  <th>Last Updated</th>
+</tr>
+
+{% for course in courses %}
+<div id="course_element_{{course['id']}}">
+<tr style="padding-bottom: 5px; border-radius: 10px; background:#fef9ee;">
+  <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px" align="center">
+    <label class="checkbox_button">
+      <input type="checkbox" class = "course_checkbox" value = "{{course['id']}}"></input>
+      <div class="checkmark"></div>
+    </label>
+  </td>
+  <td width="20%"align="left">
+    <div class="class_chip" style="background-color: rgb(155, 160, 217)">
+      {{course['course_code']}}
+    </div>
+  </td>
+
+  <td width="35%" align="left">
+    <div class="assignment_text">{{course['course_name']}}</div>
+  </td>
+  
+  <td width="10%"align="center">
+    <div class="assignment_text">
+      {% if course['show_author']%}
+      {{course['author']}}
+      {% endif %}
+    </div>
+  </td>
+ 
+  
+  <td width="5%"align="center">
+    {% if course['staff_cert']%}
+    <i style="color:#ACCEED; font-size:30px" class="fa fa-certificate"></i>
+    {%else%}
+    <i style="color:#fef9ee; font-size:30px" class="fa fa-certificate"></i>
+    {%endif%}
+  </td>
+ 
+  <td  width="20%"align="center">
+   datetime
+  </td>
+</tr>
+<tr>
+  <td height="2px"></td>
+</tr>
+{%endfor%}

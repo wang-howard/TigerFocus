@@ -458,7 +458,19 @@ def preloaded():
     netid = session["netid"]
     user = User.query.get(netid)
     first = user.first_name
-    courses = Public_Course.query.all()
+    
+    return render_template("preloaded.html",
+                           first_name=first, 
+                           user_type=user.user_type)
+
+
+@bp.route("/searchpreloaded")
+def searchpreloaded():
+    title = request.args.get('title')
+    code = request.args.get('code')
+    title = "%{}%".format(title)
+    code = "%{}%".format(code)
+    courses = Public_Course.query.filter(Public_Course.course_name.ilike(title)).filter(Public_Course.course_code.ilike(code))
 
     # create list of dict of course codes and their colors
     course_codes = []
@@ -480,10 +492,9 @@ def preloaded():
                              "id": id})
         course_ids.append(course.id)
 
-    return render_template("preloaded.html",
-                           first_name=first, 
-                           courses=course_codes,
-                           user_type=user.user_type)
+    return render_template("searchpreloaded.html",
+                           courses=course_codes)
+
 
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
