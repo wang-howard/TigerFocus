@@ -471,8 +471,8 @@ def searchpreloaded():
     title = "%{}%".format(title)
     code = "%{}%".format(code)
     courses = Public_Course.query.filter(Public_Course.course_name.ilike(title)).filter(Public_Course.course_code.ilike(code))
-    print(courses)
-    # create list of dict of course codes and their colors
+
+    # create list of dict of course codes
     course_codes = []
     course_ids = []
 
