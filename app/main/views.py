@@ -263,7 +263,7 @@ def instructor_export_courses():
                     query = Public_Assignment.query.get(new_assignment_id)
                     if query == None:
                         break
-                    else:   
+                    else:
                         new_assignment_id = str(random.randint(0, 999999)).zfill(6)
 
                 public_assignment = Public_Assignment(
@@ -279,20 +279,18 @@ def instructor_export_courses():
                                             staff_cert = is_staff,
                                             course_code=course_code,
                                             course_name=course_name)
-            
+
             db.session.add(exported_course)
             db.session.commit()
         return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
-    
-    
+
 @bp.route("/importcourses", methods=["GET", "POST"])
 @login_required
 def import_courses():
     try:
-        
         course_ids = request.form.get('selected_courses')
         # when nothing is selected to be imported this is where we catch
         if course_ids == '':
@@ -301,7 +299,6 @@ def import_courses():
         course_list = course_ids.split(",")
         netid = session["netid"]
         user = User.query.get(netid)
-
 
         for id in course_list:
             course = Public_Course.query.get(id)
@@ -322,6 +319,7 @@ def import_courses():
                                 user_netid=netid)
             user.courses.append(new_course)
             db.session.add(new_course)
+
             # commit so new_course exists before assignments are added to it
             db.session.commit()
 
@@ -400,7 +398,6 @@ def instructor_add_assignment():
         db.session.add(new_assignment)
         db.session.commit()
 
-       
         return redirect(url_for(".assignment", courseid=course_id))
     except Exception as ex:
         print(ex, file=sys.stderr)
@@ -428,8 +425,6 @@ def edit_assignment():
             return redirect(url_for(".hub"))
         else:
             return redirect(url_for(".assignment", courseid=course_id))
-
-
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -457,7 +452,7 @@ def delete_assignment():
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
-    
+
 @bp.route("/preloaded")
 def preloaded():
     netid = session["netid"]
@@ -468,7 +463,7 @@ def preloaded():
     # create list of dict of course codes and their colors
     course_codes = []
     course_ids = []
-    
+
     for course in courses:
         id = course.id
         author = course.author
@@ -476,7 +471,7 @@ def preloaded():
         staff_cert = course.staff_cert
         course_code = course.course_code
         course_name = course.course_name
-        
+
         course_codes.append({"course_code": course_code,
                              "course_name": course_name,
                              "author": author,
@@ -521,9 +516,24 @@ def assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/about")
-def about():
-    return render_template("about.html")
+@bp.route("/start", methods=["POST"])
+@login_required
+def start_session():
+    try:
+        # get all checked checkboxes
+        checkboxes = request.form.get("selected_assignments")
+        style = url_for("static", filename="css/timerStyles.css")
+        id = "pomodoro-app"
+        link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
+        script = url_for("static", filename="script/timer.js")
+        return render_template("timer.html",
+                               assignments=checkboxes,
+                               style=style,
+                               id=id, mins=25,
+                               source=link, script=script)
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
 
 @bp.route("/timer")
 def timer():
@@ -553,21 +563,6 @@ def longBreak():
     return render_template("timer.html", style=style, id=id, mins=15,
                            source=link, script=script)
 
-@bp.route("/start", methods=["POST"])
-@login_required
-def start_session():
-    try:
-        # get all checked checkboxes
-        checkboxes = request.form.get("selected_assignments")
-        style = url_for("static", filename="css/timerStyles.css")
-        id = "pomodoro-app"
-        link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
-        script = url_for("static", filename="script/timer.js")
-        return render_template("timer.html",
-                               assignments=checkboxes,
-                               style=style,
-                               id=id, mins=25,
-                               source=link, script=script)
-    except Exception as ex:
-        print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
+@bp.route("/about")
+def about():
+    return render_template("about.html")
