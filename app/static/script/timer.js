@@ -1,3 +1,11 @@
+var setTime = 25;
+var screen = document.getElementById("screen")
+var timer = document.getElementById("minutes")
+var videoframe = document.getElementById("videoframe")
+var pd_btn = document.getElementsByName("pd")
+var sb_btn = document.getElementsByName("sb")
+var lb_btn = document.getElementsByName("lb")
+
 var pomodoro = {
   started : false,
   minutes : 0,
@@ -19,6 +27,7 @@ var pomodoro = {
     document.querySelector('#stop').onclick = function(){
       self.stopTimer.apply(self);
     };
+    
   },
   resetVariables : function(mins, secs, started){
     this.minutes = mins;
@@ -26,10 +35,10 @@ var pomodoro = {
     this.started = started; 
   },
   startWork: function() {
-    this.resetVariables(25, 0, true);
+    this.resetVariables(setTime, 0, true);
   },
   stopTimer : function(){
-    this.resetVariables(25, 0, false);
+    this.resetVariables(setTime, 0, false);
     this.updateDom();
   },
   toDoubleDigit : function(num){
@@ -61,6 +70,31 @@ var pomodoro = {
     this.started = false;
   }
 };
+
 window.onload = function(){
 pomodoro.init();
 };
+
+
+function pd_button_clicked() {
+  timer.textContent = 25
+  setTime = 25
+  screen.style.background = "#a6b5de"
+  document.querySelector('#stop').click()
+}
+
+function sb_button_clicked() {
+  timer.textContent = 5
+  setTime = 5
+  screen.style.background = "#ABC787"
+  document.querySelector('#stop').click()
+
+}
+
+function lb_button_clicked() {
+  timer.textContent = 10
+  setTime = 10
+  screen.style.background = "#D9C1B9"
+  document.querySelector('#stop').click()
+
+}

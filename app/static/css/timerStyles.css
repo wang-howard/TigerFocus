@@ -97,7 +97,7 @@ a:hover {
   margin-bottom: 70px;
   text-align: center;
   width: 200px;
-  height: 70px;
+  height: 90px;
   border-radius: 18px;
   background-color: #564b47;
 }
@@ -112,6 +112,7 @@ a:hover {
 #buttons button {
   width: 80px;
   height: 30px;
+  margin-top: 10px;
   border: 3px solid rgba(0, 0, 0, 0.25);
   background-color: #564b47;
   color: white;
@@ -170,14 +171,16 @@ a:hover {
   color: #000000;
 }
 
-.stop {
+.end {
   width: 150px;
-  height: 30px;
-  margin: auto;
+  height: 50px;
+  margin-top: 10px;
+  margin-left: 40%;
+
   background: #4e4e4e;
-  box-shadow: 0px 3.3792px 3.3792px rgba(0, 0, 0, 0.25);
   border-radius: 25.344px;
   font-family: "Anek Bangla";
   font-size: 20px;
   color: #fef9ee;
+  padding-top: 0px;
 }
