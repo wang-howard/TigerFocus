@@ -37,7 +37,7 @@ def hub():
         first = user.first_name
         courses = list(user.courses)
         
-        # create list of dict of course codes and their colors
+        # create list of dict of course info and their colors
         course_data = []
         course_ids = []
         for course in courses:
@@ -47,8 +47,8 @@ def hub():
             name = course.course_name
             course_data.append({"course_code": code,
                                  "course_name": name,
-                                 "color": color ,
-                                 "id": id })
+                                 "color": color,
+                                 "id": id})
             course_ids.append(course.id)
 
         # create list of dicts containing course information
@@ -248,7 +248,7 @@ def instructor_export_courses():
 
             new_course_id = str(random.randint(0, 999999)).zfill(6)
             while True:
-                query = Course.query.get(new_course_id)
+                query = Public_Course.query.get(new_course_id)
                 if query is None:
                     break
                 else:
@@ -260,7 +260,7 @@ def instructor_export_courses():
                 new_assignment_id = str(random.randint(0, 999999)).zfill(6)
 
                 while True:
-                    query = Assignment.query.get(new_assignment_id)
+                    query = Public_Assignment.query.get(new_assignment_id)
                     if query == None:
                         break
                     else:   
