@@ -336,7 +336,7 @@ def import_courses():
                 import_assignment = Assignment(id=assignment_id,
                                                title=a.title,
                                                due_date=a.due_date,
-                                               status=False,
+                                               status=None,
                                                course_id=new_id)
                 db.session.add(import_assignment)
 
@@ -367,7 +367,7 @@ def add_assignment():
             else:
                 assignment_id = str(random.randint(0, 999999)).zfill(6)
         assignment = Assignment(id=assignment_id, title=title,
-                                due_date=due, status=False,
+                                due_date=due, status=None,
                                 course_id=course_id)
         db.session.add(assignment)
         db.session.commit()
@@ -449,6 +449,29 @@ def delete_assignment():
             return render_template("error.html",
                                    message="User type error when \
                                     deleting assignment")
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
+@bp.route("/statusassignment", methods=["GET", "POST"])
+@login_required
+def status_assignment():
+    try:
+        status = request.form.get("status")
+        id = request.form.get("id")
+        assignment = Assignment.query.filter_by(id=id).first()
+        print(status)
+        if status == "FALSE":
+            assignment.status = False
+        elif status == "TRUE":
+            assignment.status = True
+        else:
+            assignment.status = None
+        
+        db.session.commit()
+
+        return redirect(url_for(".hub"))
+      
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)

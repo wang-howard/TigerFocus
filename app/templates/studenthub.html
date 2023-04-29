@@ -102,11 +102,16 @@ style %}
 
   <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px">
     {% for assignment in assignments %}
+
     <div id="assignment_element_{{assignment['id']}}">
       <table
         class="assignment_wrapper"
         id="assignment_wrapper_{{assignment['id']}}"
-        style="margin-bottom: 5px"
+        style="margin-bottom: 5px;
+
+        {% if assignment['status'] == false %}
+        opacity: 0.5;
+        {%endif%}"
       >
         <tr>
           <td
@@ -129,20 +134,52 @@ style %}
           </td>
 
           <td width="5%" align="left">
-            <button
-              id="{{assignment['id']}}"
-              name="status_button"
-              class="status_button"
-              value="true"
-            ></button>
+            <form action="/statusassignment" method="post">
+              {% if assignment['status'] == true %}
+              <button class="action_button_half">
+                <i class="fa fa-battery-half"></i>
+              </button>
+              <input hidden name="status" value="FALSE" />
+              <input hidden name="id" value="{{assignment['id']}}" />
+
+              {% elif assignment['status'] == false %}
+              <button class="action_button_full">
+                <i class="fa fa-battery-full"></i>
+              </button>
+              <input hidden name="status" value="NONE" />
+              <input hidden name="id" value="{{assignment['id']}}" />
+
+              {% else %}
+              <button class="action_button_empty">
+                <i class="fa fa-battery-empty"></i>
+              </button>
+              <input hidden name="status" value="TRUE" />
+              <input hidden name="id" value="{{assignment['id']}}" />
+
+              {% endif %}
+            </form>
           </td>
 
+          {% if assignment['status'] == false %}
+          <td style="padding-left: 30px" width="40%" align="left">
+              <div class="assignment_text"><s>{{ assignment["title"] }}</s></div>
+              <td width="40%" align="left">
+                <div class="assignment_text">
+                  <s>{{ assignment["due_date"] }}</s>
+                </div>
+              </td>
+           
+          </td>
+
+          {% else %}
           <td style="padding-left: 30px" width="40%" align="left">
             <div class="assignment_text">{{ assignment["title"] }}</div>
           </td>
           <td width="40%" align="left">
             <div class="assignment_text">{{ assignment["due_date"] }}</div>
           </td>
+          {% endif %}
+
           <td style="padding-left: 10px" width="15%" align="left">
             <div
               class="class_chip"
