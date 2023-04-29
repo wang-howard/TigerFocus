@@ -28,7 +28,7 @@
   </table>
 </div>
 
-<div id="admin-window">
+<div id="admin-window" style="width: 900px">
   <div id="tabs">
     <div>
       <button
@@ -84,7 +84,15 @@
   </div>
   <hr />
 
-  <!-- INSERT AJAX + COURSES HERE -->
+  {% if courses == [] %}
+
+  <div style="padding: 30px; color: #fef9ee" class="assignment_text">
+    Click "add courses" to add courses!
+  </div>
+
+  {%else%}
+
+  <!-- INSERT COURSES HERE -->
   <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px">
     <div>
       <table
@@ -168,6 +176,7 @@
       </table>
     </div>
   </div>
+  {% endif %}
 </div>
 <script src="{{url_for('static', filename='script/instructorhub.js')}}"></script>
 {% endblock %}
