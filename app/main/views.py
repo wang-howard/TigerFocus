@@ -279,11 +279,11 @@ def instructor_export_courses():
                                         id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
-                                        course_id=assignment.course_id)
+                                        course_id=new_course_id)
                 db.session.add(public_assignment)
 
             db.session.commit()
-            
+
         return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
