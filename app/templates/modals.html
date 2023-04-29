@@ -89,7 +89,11 @@
               style="padding-left: 10px; padding-right: 10px"
               align="center"
             >
-              <form action="/exportcourse" method="post">
+              <form
+                action="/exportcourse"
+                method="post"
+                onsubmit="return confirm('Proceeding will make this course publicly available to all users. Would you like to continue?');"
+              >
                 <button
                   name="export_course"
                   id="export_course"

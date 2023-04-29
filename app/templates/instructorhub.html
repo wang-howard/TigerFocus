@@ -65,7 +65,11 @@
       add courses
     </button>
 
-    <form action="\instructorexportcourses" method="post">
+    <form
+      action="\instructorexportcourses"
+      method="post"
+      onsubmit="return confirm('Proceeding will make the selected courses publicly available to all users. Would you like to continue?');"
+    >
       <button
         style="width: 175px; float: right"
         type="submit"

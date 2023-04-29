@@ -195,6 +195,14 @@ def export_course():
                 else:
                     new_course_id = str(random.randint(0, 999999)).zfill(6)
 
+        exported_course = Public_Course(id=new_course_id,
+                                        author = netid,
+                                        show_author=True,
+                                        staff_cert=is_staff,
+                                        course_code=course_code,
+                                        course_name=course_name)
+
+        db.session.add(exported_course)
 
         assignments = list(course.assignments)
         for assignment in assignments:
@@ -210,17 +218,9 @@ def export_course():
                                         id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
-                                        course_id=assignment.course_id)
+                                        course_id=new_course_id)
             db.session.add(public_assignment)
-
-        exported_course = Public_Course(id=new_course_id,
-                                        author = netid,
-                                        show_author=True,
-                                        staff_cert=is_staff,
-                                        course_code=course_code,
-                                        course_name=course_name)
         
-        db.session.add(exported_course)
         db.session.commit()
         return redirect(url_for(".hub"))
     except Exception as ex:
