@@ -4,29 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TigerFocus*</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}" />
+    <title>TigerFocus</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/index.css')}}"
+    />
   </head>
   <body>
     <div id="page">
       <div id="banner">
-        <div style="padding-left: 8px;">
-          <a href="/" style="color: #f9aa5b; font-size: 37.5px;">TigerFocus*</a>
+        <div style="padding-left: 8px">
+          <a href="/" style="color: #f9aa5b; font-size: 37.5px">TigerFocus</a>
         </div>
-        <div style="padding-right: 8px;">
+        <div style="padding-right: 8px">
           <a id="menu-button" href="\about">about</a>
         </div>
       </div>
       <div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <b>Something went wrong. Please contact system administrator.</b>
-        <br>
+        <br />
         Error message: {{ message }}
-        <br>
+        <br />
         Click <a href="/">here</a> to return to the home page.
       </div>
     </div>

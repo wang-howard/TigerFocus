@@ -282,6 +282,45 @@ th:last-child {
   color: #7b7b7b;
 }
 
+.action_button_full {
+  border: 0px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  font-size: 25px;
+  background: #00000000;
+  color: #94ac74;
+}
+.action_button_full:hover {
+  color: #c7e69e;
+}
+
+.action_button_half {
+  border: 0px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  font-size: 25px;
+  background: #00000000;
+  color: #ffbc79;
+}
+.action_button_half:hover {
+  color: #fccea0;
+}
+
+.action_button_empty {
+  border: 0px;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  font-size: 25px;
+  background: #00000000;
+  color: #ac7474;
+}
+.action_button_empty:hover {
+  color: #e79d9d;
+}
+
 .searchbar {
   border: 3px solid rgb(164, 160, 160);
   border-radius: 20px;
