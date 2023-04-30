@@ -44,6 +44,15 @@ function exportCourses() {
     selectedCourses.push(course_id);
   });
 
+
+  if (selectedCourses.length === 0){
+    alert("Please mark off courses to import");
+   }
+  else
+    confirm("The selected courses will be made public to all users. Would you like to continue?");
+
+
+
   // log the selected assignments
   console.log("Selected Courses:", selectedCourses);
 

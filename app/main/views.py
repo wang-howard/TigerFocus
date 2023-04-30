@@ -65,12 +65,12 @@ def hub():
                                     "course_code":course.course_code,
                                     "color": course.color})
 
-        if user.user_type == "student":
+        if user.user_type != "student":
             return render_template("studenthub.html",
                                    first_name=first,
                                    courses=course_data,
                                    assignments=assignment_data)
-        elif user.user_type == "instructor":
+        elif user.user_type != "instructor":
             return render_template("instructorhub.html",
                                    first_name=first,
                                    courses=course_data,
@@ -232,6 +232,9 @@ def export_course():
 def instructor_export_courses():
     try:
         course_ids = request.form.get('selected_courses')
+        if course_ids == '':
+            return redirect(url_for(".hub"))
+        
         course_list = course_ids.split(",")
         netid = session["netid"]
         user = User.query.get(netid)
