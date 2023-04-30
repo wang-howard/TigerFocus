@@ -162,10 +162,10 @@ style %}
 
           {% if assignment['status'] == false %}
           <td style="padding-left: 30px" width="40%" align="left">
-              <div class="assignment_text"><s>{{ assignment["title"] }}</s></div>
+              <div class="assignment_text">{{ assignment["title"] }}</div>
               <td width="40%" align="left">
                 <div class="assignment_text">
-                  <s>{{ assignment["due_date"] }}</s>
+                  {{ assignment["due_date"] }}
                 </div>
               </td>
            
