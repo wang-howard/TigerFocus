@@ -32,7 +32,7 @@
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <div style="padding-left: 375px">
-          <button class="submitbutton" type="submit">Create</button>
+          <button class="modal_btn" type="submit">Create</button>
         </div>
       </div>
     </form>
@@ -64,7 +64,7 @@
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <span style="padding-top: 30px; padding-right: 30px; float: right"
-          ><button class="small-button" type="submit">update</button>
+          ><button class="modal_btn" type="submit">update</button>
         </span>
       </div>
     </form>
@@ -147,8 +147,8 @@
       </div>
 
       <button
-        id="add_coursenew_button"
-        style="position: absolute; top: 350px; left: 200px; height: 30px; font-size:16px; background-color: #564B47;border-radius:10px;color:beige;"
+        id="add_coursenew_button" class = "modal_btn"
+      
       >
         add new course
       </button>
@@ -166,9 +166,9 @@
         <h1 id="input_title">Add Course</h1>
       </div>
 
-      <div class="col-lg-12 login-form">
+      <div >
         <form action="/createcourse" method="post">
-          <div class="form-group">
+          <div class="form-group" style="padding-bottom: 10px;" >
             <label class="form-control-label">Course Code</label>
             <input
               class="searchbar"
@@ -203,7 +203,7 @@
           <div
             class="col-12 login-btm login-button justify-content-center d-flex"
           >
-            <button type="submit" class="small-button">add course</button>
+            <button type="submit" class="modal_btn">add course</button>
           </div>
         </form>
       </div>
@@ -251,7 +251,7 @@
             </select>
           </div>
           <div>
-            <button type="submit" class="small-button">update course</button>
+            <button type="submit" class="modal_btn">update course</button>
           </div>
         </form>
       </div>
@@ -295,7 +295,7 @@
           <input hidden name="color" value="#FFC78F" />
 
           <div>
-            <button style="margin-top: 10px" type="submit" class="small-button">
+            <button style="margin-top: 10px" type="submit" class="modal_btn">
               add course
             </button>
           </div>
@@ -344,7 +344,7 @@
           <div
             class="col-12 login-btm login-button justify-content-center d-flex"
           >
-            <button type="submit" class="small-button">update course</button>
+            <button type="submit" class="modal_btn">update course</button>
           </div>
         </form>
       </div>
@@ -376,7 +376,7 @@
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <div style="padding-left: 375px">
-          <button class="submitbutton" type="submit">create</button>
+          <button class="modal_btn" type="submit">create</button>
         </div>
       </div>
     </form>
