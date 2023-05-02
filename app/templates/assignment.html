@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}TigerFocus Hub{% endblock %}
+{% block title %}{{course_code}} Assignments{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -92,5 +92,4 @@
 {%endif%}
 
 <script src="{{url_for('static', filename='script/instructorassignment.js')}}"></script>
-
 {% endblock %}

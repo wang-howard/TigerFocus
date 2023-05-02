@@ -13,112 +13,112 @@
 {% include "modals.html" %}
 
 <div id="welcome_wrapper">
-    <table>
-        <td width="88%" style="padding-top: 50px; padding-left: 30px;">
-            <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
-        </td>
-    </table>
+  <table>
+    <td width="88%" style="padding-top: 50px; padding-left: 30px;">
+      <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+    </td>
+  </table>
 </div>
 
 <div id="admin-window" style="width: 900px;">
-    <div id="tabs">
-        <div>
-            <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="admin_assignments_tab">
-                my hub
-            </button>
+  <div id="tabs">
+    <div>
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="admin_assignments_tab">
+        my hub
+      </button>
+    </div>
+    <div>
+      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="admin_assignments_tab">
+        public courses
+      </button>
+    </div>
+  </div>
+
+  <div id="assignments-header">
+    <div id="current-assignments-title">Current Courses</div>
+  </div>
+
+  <hr />
+  <div style="padding-bottom: 10px; padding-right: 30px;">
+    <button id="admincourse_button" style="width: 175px; float: right; margin-left: 10px;" type="submit" class="adminsmall-button">
+      add courses
+    </button>
+
+    <form action="/instructorexportcourse" method="post">
+      <button style="width: 175px; float: right;" type="submit" class="adminsmall-button" onclick="exportCourses()">
+        make public
+      </button>
+      <input type="hidden" id="selected_courses" name="selected_courses" value="" />
+    </form>
+  </div>
+  <hr />
+
+  {% if courses == [] %}
+
+  <div style="padding: 30px; color: #fef9ee;" class="assignment_text">
+    Click "add courses" to add courses!
+  </div>
+
+  {%else%}
+
+  <!-- INSERT COURSES HERE -->
+  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
+    <div>
+      <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
+        <tr id="table_header">
+          <th align="center">course code</th>
+          <th align="left">course name</th>
+          <th>select to make public</th>
+        </tr>
+
+        {%for course in courses%}
+        <div id="course_element_xxx">
+          <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
+            <td width="33%" align="center">
+              <div class="class_chip" style="background-color: rgb(155, 160, 217);">
+                {{course["course_code"]}}
+              </div>
+            </td>
+
+            <td width="33%" align="left">
+              <div class="assignment_text">{{course["course_name"]}}</div>
+            </td>
+
+            <td width="33%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
+              <label class="checkbox_button">
+                <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
+                <div class="checkmark"></div>
+              </label>
+            </td>
+            <td>
+              <form action="/assignment" method="get">
+                <button class="view">view assignments</button>
+                <input hidden name="courseid" value="{{course['id']}}" />
+              </form>
+            </td>
+            <td>
+              <button name="instructor_edit_course_button" class="action_button" value="{{course['id']}}">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+            <td>
+              <form action="/deletecourse" method="post">
+                <button class="action_button">
+                  <input hidden name="course_del_id" value="{{course['id']}}" />
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td height="2px"></td>
+          </tr>
         </div>
-        <div>
-            <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="admin_assignments_tab">
-                public courses
-            </button>
-        </div>
+        {%endfor%}
+      </table>
     </div>
-
-    <div id="assignments-header">
-        <div id="current-assignments-title">Current Courses</div>
-    </div>
-
-    <hr />
-    <div style="padding-bottom: 10px; padding-right: 30px;">
-        <button id="admincourse_button" style="width: 175px; float: right; margin-left: 10px;" type="submit" class="adminsmall-button">
-            add courses
-        </button>
-
-        <form action="/instructorexportcourse" method="post">
-            <button style="width: 175px; float: right;" type="submit" class="adminsmall-button" onclick="exportCourses()">
-                make public
-            </button>
-            <input type="hidden" id="selected_courses" name="selected_courses" value="" />
-        </form>
-    </div>
-    <hr />
-
-    {% if courses == [] %}
-
-    <div style="padding: 30px; color: #fef9ee;" class="assignment_text">
-        Click "add courses" to add courses!
-    </div>
-
-    {%else%}
-
-    <!-- INSERT COURSES HERE -->
-    <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
-        <div>
-            <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
-                <tr id="table_header">
-                    <th align="center">course code</th>
-                    <th align="left">course name</th>
-                    <th>select to make public</th>
-                </tr>
-
-                {%for course in courses%}
-                <div id="course_element_xxx">
-                    <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
-                        <td width="33%" align="center">
-                            <div class="class_chip" style="background-color: rgb(155, 160, 217);">
-                                {{course["course_code"]}}
-                            </div>
-                        </td>
-
-                        <td width="33%" align="left">
-                            <div class="assignment_text">{{course["course_name"]}}</div>
-                        </td>
-
-                        <td width="33%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
-                            <label class="checkbox_button">
-                                <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
-                                <div class="checkmark"></div>
-                            </label>
-                        </td>
-                        <td>
-                            <form action="/assignment" method="get">
-                                <button class="view">view assignments</button>
-                                <input hidden name="courseid" value="{{course['id']}}" />
-                            </form>
-                        </td>
-                        <td>
-                            <button name="instructor_edit_course_button" class="action_button" value="{{course['id']}}">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <form action="/deletecourse" method="post">
-                                <button class="action_button">
-                                    <input hidden name="course_del_id" value="{{course['id']}}" />
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="2px"></td>
-                    </tr>
-                </div>
-                {%endfor%}
-            </table>
-        </div>
-    </div>
-    {% endif %}
+  </div>
+  {% endif %}
 </div>
 <script src="{{url_for('static', filename='script/instructorhub.js')}}"></script>
 {% endblock %}
