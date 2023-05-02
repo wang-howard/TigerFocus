@@ -227,9 +227,9 @@ def export_course():
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
 
-@bp.route("/instructorexportcourses", methods=["GET", "POST"])
+@bp.route("/instructorexportcourse", methods=["GET", "POST"])
 @login_required
-def instructor_export_courses():
+def instructor_export_course():
     try:
         course_ids = request.form.get('selected_courses')
         if course_ids == '':
@@ -464,8 +464,7 @@ def status_assignment():
     try:
         status = request.form.get("status")
         id = request.form.get("id")
-        assignment = Assignment.query.filter_by(id=id).first()
-        print(status)
+        assignment = Assignment.query.get(id)
         if status == "FALSE":
             assignment.status = False
         elif status == "TRUE":
