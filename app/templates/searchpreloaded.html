@@ -22,9 +22,15 @@
     </label>
   </td>
   <td width="20%"align="left">
-    <div class="class_chip" style="background-color: rgb(155, 160, 217)">
-      {{course['course_code']}}
-    </div>
+    <form action="/preloadedassignment" method="get">
+      <button class="view">
+        <div class="class_chip" style="background-color: rgb(155, 160, 217)">
+        {{course['course_code']}}
+      </div>
+      <input hidden name="courseid" value="{{course['id']}}" />
+    </button>
+    </form>
+    
   </td>
 
   <td width="35%" align="left">

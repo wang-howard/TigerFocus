@@ -555,6 +555,39 @@ def assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
+@bp.route("/preloadedassignment", methods=["GET", "POST"])
+@login_required
+def preloadedassignment():
+    netid = session["netid"]
+    try:
+        user = User.query.get(netid)
+        first = user.first_name
+        id = request.args.get("courseid")
+        print(id)
+
+        
+        assignments = Public_Assignment.query.filter_by(course_id=id)\
+                            .order_by(Public_Assignment.due_date).all()
+        
+        assignment_data = []
+        course = Public_Course.query.get(id)
+        course_code = course.course_code
+        author = course.author
+        for a in assignments:
+            assignment_data.append({
+                                    "id": a.id,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code": course.course_code})
+        return render_template("preloadedassignment.html",
+                               author=author,
+                               assignments=assignment_data, 
+                               course_code=course_code,
+                               id=id)
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
 @bp.route("/start", methods=["POST"])
 @login_required
 def start_session():
