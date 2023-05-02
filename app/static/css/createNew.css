@@ -143,6 +143,7 @@
 .modal_within_window {
   width: 500px;
   height: 400px;
+  
   background: #fef9ee;
   border-radius: 30px;
   position: absolute;
