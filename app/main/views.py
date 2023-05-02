@@ -195,6 +195,14 @@ def export_course():
                 else:
                     new_course_id = str(random.randint(0, 999999)).zfill(6)
 
+        exported_course = Public_Course(id=new_course_id,
+                                        author = netid,
+                                        show_author=True,
+                                        staff_cert=is_staff,
+                                        course_code=course_code,
+                                        course_name=course_name)
+
+        db.session.add(exported_course)
 
         assignments = list(course.assignments)
         for assignment in assignments:
@@ -210,17 +218,9 @@ def export_course():
                                         id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
-                                        course_id=assignment.course_id)
+                                        course_id=new_course_id)
             db.session.add(public_assignment)
-
-        exported_course = Public_Course(id=new_course_id,
-                                        author = netid,
-                                        show_author=True,
-                                        staff_cert=is_staff,
-                                        course_code=course_code,
-                                        course_name=course_name)
         
-        db.session.add(exported_course)
         db.session.commit()
         return redirect(url_for(".hub"))
     except Exception as ex:
@@ -232,6 +232,9 @@ def export_course():
 def instructor_export_courses():
     try:
         course_ids = request.form.get('selected_courses')
+        if course_ids == '':
+            return redirect(url_for(".hub"))
+        
         course_list = course_ids.split(",")
         netid = session["netid"]
         user = User.query.get(netid)
@@ -254,6 +257,15 @@ def instructor_export_courses():
                 else:
                     new_course_id = str(random.randint(0, 999999)).zfill(6)
 
+            exported_course = Public_Course(id=new_course_id,
+                                            author = netid,
+                                            show_author = True,
+                                            staff_cert = is_staff,
+                                            course_code=course_code,
+                                            course_name=course_name)
+
+            db.session.add(exported_course)
+
             assignments = list(course.assignments)
             for assignment in assignments:
 
@@ -270,18 +282,11 @@ def instructor_export_courses():
                                         id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
-                                        course_id=assignment.course_id)
+                                        course_id=new_course_id)
                 db.session.add(public_assignment)
 
-            exported_course = Public_Course(id=new_course_id,
-                                            author = netid,
-                                            show_author = True,
-                                            staff_cert = is_staff,
-                                            course_code=course_code,
-                                            course_name=course_name)
-
-            db.session.add(exported_course)
             db.session.commit()
+
         return redirect(url_for(".hub"))
     except Exception as ex:
             print(ex, file=sys.stderr)
@@ -336,7 +341,7 @@ def import_courses():
                 import_assignment = Assignment(id=assignment_id,
                                                title=a.title,
                                                due_date=a.due_date,
-                                               status=False,
+                                               status=None,
                                                course_id=new_id)
                 db.session.add(import_assignment)
 
@@ -367,7 +372,7 @@ def add_assignment():
             else:
                 assignment_id = str(random.randint(0, 999999)).zfill(6)
         assignment = Assignment(id=assignment_id, title=title,
-                                due_date=due, status=False,
+                                due_date=due, status=None,
                                 course_id=course_id)
         db.session.add(assignment)
         db.session.commit()
@@ -453,14 +458,49 @@ def delete_assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
+@bp.route("/statusassignment", methods=["GET", "POST"])
+@login_required
+def status_assignment():
+    try:
+        status = request.form.get("status")
+        id = request.form.get("id")
+        assignment = Assignment.query.filter_by(id=id).first()
+        print(status)
+        if status == "FALSE":
+            assignment.status = False
+        elif status == "TRUE":
+            assignment.status = True
+        else:
+            assignment.status = None
+        
+        db.session.commit()
+
+        return redirect(url_for(".hub"))
+      
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
 @bp.route("/preloaded")
 def preloaded():
     netid = session["netid"]
     user = User.query.get(netid)
     first = user.first_name
-    courses = Public_Course.query.all()
+    
+    return render_template("preloaded.html",
+                           first_name=first, 
+                           user_type=user.user_type)
 
-    # create list of dict of course codes and their colors
+
+@bp.route("/searchpreloaded")
+def searchpreloaded():
+    title = request.args.get('title')
+    code = request.args.get('code')
+    title = "%{}%".format(title)
+    code = "%{}%".format(code)
+    courses = Public_Course.query.filter(Public_Course.course_name.ilike(title)).filter(Public_Course.course_code.ilike(code))
+
+    # create list of dict of course codes
     course_codes = []
     course_ids = []
 
@@ -480,10 +520,9 @@ def preloaded():
                              "id": id})
         course_ids.append(course.id)
 
-    return render_template("preloaded.html",
-                           first_name=first, 
-                           courses=course_codes,
-                           user_type=user.user_type)
+    return render_template("searchpreloaded.html",
+                           courses=course_codes)
+
 
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
@@ -509,6 +548,39 @@ def assignment():
                                     "color": course.color})
         return render_template("assignment.html",
                                first_name=first,
+                               assignments=assignment_data, 
+                               course_code=course_code,
+                               id=id)
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
+
+@bp.route("/preloadedassignment", methods=["GET", "POST"])
+@login_required
+def preloadedassignment():
+    netid = session["netid"]
+    try:
+        user = User.query.get(netid)
+        first = user.first_name
+        id = request.args.get("courseid")
+        print(id)
+
+        
+        assignments = Public_Assignment.query.filter_by(course_id=id)\
+                            .order_by(Public_Assignment.due_date).all()
+        
+        assignment_data = []
+        course = Public_Course.query.get(id)
+        course_code = course.course_code
+        author = course.author
+        for a in assignments:
+            assignment_data.append({
+                                    "id": a.id,
+                                    "title": a.title,
+                                    "due_date": a.due_date,
+                                    "course_code": course.course_code})
+        return render_template("preloadedassignment.html",
+                               author=author,
                                assignments=assignment_data, 
                                course_code=course_code,
                                id=id)

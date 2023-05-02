@@ -196,6 +196,26 @@ hr {
   border-radius: 30px;
   text-transform: uppercase;
 }
+.preclass_chip {
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 125px;
+  height: 40px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  border-color: rgb(155, 160, 217);
+  background-color: rgb(155, 160, 217)
+}
+.preclass_chip:hover
+{
+  background: #d9d9d9;
+  border-color: rgb(155, 160, 217);
+}
 .assignment_text {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
@@ -280,6 +300,66 @@ th:last-child {
 }
 .action_button:hover {
   color: #7b7b7b;
+}
+
+.action_button_full {
+ 
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 75px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color: #94ac74;
+  border: none;
+}
+.action_button_full:hover {
+  background: #c7e69e;
+}
+
+.action_button_half {
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 100px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color:#eabbd2;
+  border: none;
+  
+}
+.action_button_half:hover {
+  background-color: #e8c7d7;
+}
+
+.action_button_empty {
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 120px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color:#d8d8d8;
+  border: none;
+
+}
+.action_button_empty:hover {
+  background-color: #f1eeee;
 }
 
 .searchbar {
