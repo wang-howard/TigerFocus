@@ -303,42 +303,63 @@ th:last-child {
 }
 
 .action_button_full {
-  border: 0px;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  font-size: 25px;
-  background: #00000000;
-  color: #94ac74;
+ 
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 75px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color: #94ac74;
+  border: none;
 }
 .action_button_full:hover {
-  color: #c7e69e;
+  background: #c7e69e;
 }
 
 .action_button_half {
-  border: 0px;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  font-size: 25px;
-  background: #00000000;
-  color: #ffbc79;
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 100px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color:#eabbd2;
+  border: none;
+  
 }
 .action_button_half:hover {
-  color: #fccea0;
+  background-color: #e8c7d7;
 }
 
 .action_button_empty {
-  border: 0px;
-  width: auto;
-  height: auto;
-  cursor: pointer;
-  font-size: 25px;
-  background: #00000000;
-  color: #ac7474;
+  text-align: center;
+  overflow-x: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 120px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  background-color:#d8d8d8;
+  border: none;
+
 }
 .action_button_empty:hover {
-  color: #e79d9d;
+  background-color: #f1eeee;
 }
 
 .searchbar {

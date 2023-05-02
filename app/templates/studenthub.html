@@ -137,21 +137,21 @@ style %}
             <form action="/statusassignment" method="post">
               {% if assignment['status'] == true %}
               <button class="action_button_half">
-                <i class="fa fa-battery-half"></i>
+               in progress
               </button>
               <input hidden name="status" value="FALSE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
               {% elif assignment['status'] == false %}
               <button class="action_button_full">
-                <i class="fa fa-battery-full"></i>
+                done
               </button>
               <input hidden name="status" value="NONE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
               {% else %}
               <button class="action_button_empty">
-                <i class="fa fa-battery-empty"></i>
+                not started
               </button>
               <input hidden name="status" value="TRUE" />
               <input hidden name="id" value="{{assignment['id']}}" />
