@@ -63,7 +63,7 @@ hr {
   background: #acbdeb;
 }
 
-#preloaded-tab {
+#public-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -76,7 +76,7 @@ hr {
   cursor: pointer;
 }
 
-#preloaded-tab:hover {
+#public-tab:hover {
   background: #acbdeb;
 }
 
@@ -151,7 +151,7 @@ hr {
   background: #bbda93;
 }
 
-#pre_preloaded_tab {
+#pre_public_tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -163,7 +163,7 @@ hr {
   cursor: pointer;
   background: #798d5f;
 }
-#pre_preloaded_tab:hover {
+#pre_public_tab:hover {
   background: #bbda93;
 }
 
@@ -175,7 +175,7 @@ hr {
   text-align: center;
 }
 
-#preloaded-window {
+#public-window {
   display: flex;
   flex-direction: column;
   background: #abc787;
