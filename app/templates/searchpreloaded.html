@@ -4,13 +4,12 @@
 </tr>
 
 {% else %}
-
 <tr id="table_header">
   <th></th>
   <th align="left">Course Code</th>
   <th align="left">Course Name</th>
   <th align="left">Author</th>
-  <th>Staff Certified</th>
+  <th>Certified</th>
   <th>Last Updated</th>
 </tr>
 
@@ -52,11 +51,12 @@
     </td>
 
     <td width="20%" align="center">
-      datetime
+      {{course['last_updated']}}
     </td>
   </tr>
   <tr>
     <td height="2px"></td>
   </tr>
-  {%endfor%} {%endif%}
 </div>
+{%endfor%}
+{%endif%}
