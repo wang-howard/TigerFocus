@@ -303,7 +303,7 @@ def import_courses():
         course_ids = request.form.get('selected_courses')
         # when nothing is selected to be imported this is where we catch
         if course_ids == '':
-            return redirect(url_for(".preloaded"))
+            return redirect(url_for(".public_courses"))
 
         course_list = course_ids.split(",")
         netid = session["netid"]
@@ -389,7 +389,6 @@ def add_assignment():
 @login_required
 def instructor_add_assignment():
     try:
-        
         course_id = request.form.get("current_id")        
         due = request.form.get("due_date")
         title = request.form.get("title")
@@ -407,7 +406,7 @@ def instructor_add_assignment():
         db.session.add(new_assignment)
         db.session.commit()
 
-        return redirect(url_for(".assignment", courseid=course_id))
+        return redirect(url_for(".instructor_assignments", courseid=course_id))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -433,7 +432,8 @@ def edit_assignment():
         if(user.user_type == "Student"):
             return redirect(url_for(".hub"))
         else:
-            return redirect(url_for(".assignment", courseid=course_id))
+            return redirect(url_for(".instructor_assignments",
+                                    courseid=course_id))
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
@@ -453,7 +453,8 @@ def delete_assignment():
         if user.user_type == "student":
             return redirect(url_for(".hub"))
         elif user.user_type == "instructor":
-            return redirect(url_for(".assignment", courseid=course_id))
+            return redirect(url_for(".instructor_assignments",
+                                    courseid=course_id))
         else:
             return render_template("error.html",
                                    message="User type error when \
@@ -477,31 +478,34 @@ def status_assignment():
             assignment.status = None
         
         db.session.commit()
-
         return redirect(url_for(".hub"))
-      
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/preloaded")
-def preloaded():
-    netid = session["netid"]
-    user = User.query.get(netid)
-    first = user.first_name
-    
-    return render_template("preloaded.html",
-                           first_name=first, 
-                           user_type=user.user_type)
+@bp.route("/publiccourses")
+def public_courses():
+    try:
+        netid = session["netid"]
+        user = User.query.get(netid)
+        first = user.first_name
+        
+        return render_template("publiccourses.html",
+                            first_name=first, 
+                            user_type=user.user_type)
+    except Exception as ex:
+        print(ex, file=sys.stderr)
+        return render_template("error.html", message=ex)
 
-
-@bp.route("/searchpreloaded")
-def searchpreloaded():
+@bp.route("/searchpubliccourses")
+def search_public_courses():
     title = request.args.get('title')
     code = request.args.get('code')
     title = "%{}%".format(title)
     code = "%{}%".format(code)
-    courses = Public_Course.query.filter(Public_Course.course_name.ilike(title)).filter(Public_Course.course_code.ilike(code))
+    courses = Public_Course.query\
+                .filter(Public_Course.course_name.ilike(title))\
+                .filter(Public_Course.course_code.ilike(code))
 
     # create list of dict of course codes
     course_codes = []
@@ -525,12 +529,12 @@ def searchpreloaded():
                              "last_updated": last_updated})
         course_ids.append(course.id)
 
-    return render_template("searchpreloaded.html",
+    return render_template("searchpubliccourses.html",
                            courses=course_codes)
 
-@bp.route("/assignment", methods=["GET", "POST"])
+@bp.route("/instructorassignments", methods=["GET", "POST"])
 @login_required
-def assignment():
+def instructor_assignments():
     netid = session["netid"]
     try:
         user = User.query.get(netid)
@@ -551,7 +555,7 @@ def assignment():
                                     "due_date": due,
                                     "course_code": course.course_code,
                                     "color": course.color})
-        return render_template("assignment.html",
+        return render_template("instructorassignments.html",
                                first_name=first,
                                assignments=assignment_data, 
                                course_code=course_code,
@@ -560,9 +564,9 @@ def assignment():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/preloadedassignment", methods=["GET", "POST"])
+@bp.route("/publicassignments", methods=["GET", "POST"])
 @login_required
-def preloadedassignment():
+def public_assignments():
     netid = session["netid"]
     try:
         user = User.query.get(netid)
@@ -570,10 +574,9 @@ def preloadedassignment():
         id = request.args.get("courseid")
         print(id)
 
-        
         assignments = Public_Assignment.query.filter_by(course_id=id)\
                             .order_by(Public_Assignment.due_date).all()
-        
+
         assignment_data = []
         course = Public_Course.query.get(id)
         course_code = course.course_code
@@ -585,7 +588,7 @@ def preloadedassignment():
                                     "title": a.title,
                                     "due_date": due,
                                     "course_code": course.course_code})
-        return render_template("preloadedassignment.html",
+        return render_template("publicassignments.html",
                                author=author,
                                assignments=assignment_data, 
                                course_code=course_code,

@@ -4,7 +4,6 @@
 
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
 {% endblock %}
 
@@ -25,7 +24,7 @@
       </button>
     </div>
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="pre_preloaded_tab">
+      <button style="color: #fef9ee;" onclick="window.location.href='/publiccourses';" id="pre_preloaded_tab">
         public courses
       </button>
     </div>
@@ -62,7 +61,7 @@
   </div>
 </div>
 
-<script src="{{url_for('static', filename='script/preloaded.js')}}"></script>
+<script src="{{url_for('static', filename='script/publiccourses.js')}}"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -81,7 +80,7 @@
     let code = $("#searchCode").val();
     code = encodeURIComponent(code);
 
-    let url = "/searchpreloaded?title=" + title + "&code=" + code;
+    let url = "/searchpubliccourses?title=" + title + "&code=" + code;
 
     if (request != null) request.abort();
 

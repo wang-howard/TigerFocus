@@ -28,7 +28,7 @@
       </button>
     </div>
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="admin_assignments_tab">
+      <button style="color: #fef9ee;" onclick="window.location.href='/publiccourses';" id="admin_assignments_tab">
         public courses
       </button>
     </div>
@@ -91,7 +91,7 @@
               </label>
             </td>
             <td>
-              <form action="/assignment" method="get">
+              <form action="/instructorassignments" method="get">
                 <button class="view">view assignments</button>
                 <input hidden name="courseid" value="{{course['id']}}" />
               </form>

@@ -10,12 +10,8 @@ course_span.onclick = function () {
 
 var editcourse_modal = document.getElementById("instructor_edit_course_modal");
 var edit_course = document.getElementsByName("instructor_edited_course_id")[0];
-var editcourse_btn = document.getElementsByName(
-  "instructor_edit_course_button"
-);
-var editcourse_span = document.getElementsByClassName(
-  "instructoreditcourse_close"
-)[0];
+var editcourse_btn = document.getElementsByName("instructor_edit_course_button");
+var editcourse_span = document.getElementsByClassName("instructoreditcourse_close")[0];
 
 editcourse_btn.forEach(
   (element) =>
@@ -44,14 +40,9 @@ function exportCourses() {
     selectedCourses.push(course_id);
   });
 
-
-  if (selectedCourses.length === 0){
+  if (selectedCourses.length === 0) {
     alert("Please mark off courses to import");
-   }
-  else
-    confirm("The selected courses will be made public to all users. Would you like to continue?");
-
-
+  } else confirm("The selected courses will be made public to all users. Would you like to continue?");
 
   // log the selected assignments
   console.log("Selected Courses:", selectedCourses);

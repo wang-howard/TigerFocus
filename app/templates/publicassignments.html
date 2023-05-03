@@ -4,7 +4,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="{{url_for('static', filename='css/assignment.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/instructorassignments.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}" />
 {% endblock %}
@@ -23,7 +23,7 @@
 <div id="admin-window">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="admin_assignments_tab">
+      <button style="color: #fef9ee;" onclick="window.location.href='/publiccourses';" id="admin_assignments_tab">
        back
       </button>
     </div>
