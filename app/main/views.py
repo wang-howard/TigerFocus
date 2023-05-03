@@ -227,9 +227,9 @@ def export_course():
             print(ex, file=sys.stderr)
             return render_template("error.html", message=ex)
 
-@bp.route("/instructorexportcourse", methods=["GET", "POST"])
+@bp.route("/instructorexportcourses", methods=["GET", "POST"])
 @login_required
-def instructor_export_course():
+def instructor_export_courses():
     try:
         course_ids = request.form.get('selected_courses')
         if course_ids == '':
