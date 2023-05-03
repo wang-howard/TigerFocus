@@ -59,9 +59,7 @@ var span = document.getElementsByClassName("close")[0];
 var course_span = document.getElementsByClassName("course_close")[0];
 var coursenew_span = document.getElementsByClassName("coursenew_close")[0];
 var editcourse_span = document.getElementsByClassName("editcourse_close")[0];
-var edit_assignment_span = document.getElementsByClassName(
-  "edit_assignment_close"
-)[0];
+var edit_assignment_span = document.getElementsByClassName("edit_assignment_close")[0];
 
 // var list = {};
 // var checked_list = {};
@@ -111,9 +109,7 @@ function startSession() {
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute("value");
-    const assignmentTitle = document.querySelector(
-      `#assignment_element_${assignmentId} .assignment_text`
-    ).innerText;
+    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 

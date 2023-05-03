@@ -16,9 +16,7 @@ assignment_span.onclick = function () {
 var edit_assignment_modal = document.getElementById("edit_assignment_modal");
 var edit_assignment = document.getElementsByName("edited_assignment_id")[0];
 var edit_assignment_btn = document.getElementsByName("edit_assignment_button");
-var edit_assignment_span = document.getElementsByClassName(
-  "edit_assignment_close"
-)[0];
+var edit_assignment_span = document.getElementsByClassName("edit_assignment_close")[0];
 
 edit_assignment_btn.forEach(
   (element) =>
