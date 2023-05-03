@@ -6,6 +6,7 @@ var pd_btn = document.getElementsByName("pd")
 var sb_btn = document.getElementsByName("sb")
 var lb_btn = document.getElementsByName("lb")
 
+videoframe.setAttribute("src", "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1");
 var pomodoro = {
   started : false,
   minutes : 0,
@@ -80,6 +81,7 @@ function pd_button_clicked() {
   timer.textContent = 25
   setTime = 25
   screen.style.background = "#a6b5de"
+  videoframe.setAttribute("src", "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1");
   document.querySelector('#stop').click()
 }
 
@@ -87,6 +89,7 @@ function sb_button_clicked() {
   timer.textContent = 5
   setTime = 5
   screen.style.background = "#ABC787"
+  videoframe.setAttribute("src", "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1");
   document.querySelector('#stop').click()
 
 }
@@ -95,6 +98,7 @@ function lb_button_clicked() {
   timer.textContent = 10
   setTime = 10
   screen.style.background = "#D9C1B9"
+  videoframe.setAttribute("src", "https://www.youtube.com/embed/FqKjFMr28rA?autoplay=1&mute=1");
   document.querySelector('#stop').click()
 
 }
