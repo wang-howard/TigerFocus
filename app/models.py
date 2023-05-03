@@ -56,6 +56,7 @@ class Public_Course(db.Model):
     staff_cert = db.Column(db.Boolean)
     course_code = db.Column(db.String)
     course_name = db.Column(db.String)
+    last_updated = db.Column(db.DateTime)
     assignments = db.relationship("Public_Assignment",
                                   backref="public_course",
                                   order_by="asc(Public_Assignment.due_date)",

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}TigerFocus Hub{% endblock %}
+{% block title %}{{course_code}} Assignments{% endblock %}
 
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -15,7 +15,7 @@
 <div id="welcome_wrapper">
   <table>
     <td width="88%" style="padding-top: 50px; padding-left: 30px;">
-      <div id="welcome">Assignment Created by:  {{author}}!</div>
+      <div id="welcome">Assignment Created by: {{author}}!</div>
     </td>
   </table>
 </div>

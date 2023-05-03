@@ -5,33 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    {% block style %} {% endblock %}
-    <link
-      rel="stylesheet"
-      href="{{url_for('static', filename='css/index.css')}}"
-    />
+    {% block style %}
+    {% endblock %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}" />
   </head>
-  <body style="background: #fef9ee">
+  <body style="background: #fef9ee;">
     <div id="page">
       <div id="banner">
-        <div style="padding-left: 8px">
-          <a href="/" style="color: #f9aa5b; font-size: 37.5px">TigerFocus</a>
+        <div style="padding-left: 8px;">
+          <a href="/" style="color: #f9aa5b; font-size: 37.5px;">TigerFocus</a>
         </div>
         <div id="menu">
-          <div style="padding-right: 8px">
+          <div style="padding-right: 8px;">
             <a id="menu-button" href="/about">about</a>
           </div>
-          <div style="padding-right: 8px">
-            <a id="menu-button" href="https://forms.gle/MMuid6xdZVXu7JpZA"
-              >feedback</a
-            >
+          <div style="padding-right: 8px;">
+            <a id="menu-button" href="https://forms.gle/MMuid6xdZVXu7JpZA">feedback</a>
           </div>
-          <div style="padding-right: 8px">
+          <div style="padding-right: 8px;">
             <a id="menu-button" href="/hub">hub</a>
           </div>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
         {% block body %} {% endblock %}
       </div>
     </div>

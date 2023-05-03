@@ -1,23 +1,17 @@
-{% extends "base.html" %} {% block title %}TigerFocus Public Courses{% endblock
-%} {% block style %}
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='css/preloaded.css') }}"
-/>
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="{{ url_for('static', filename='css/studenthub.css') }}"
-/>
-{% endblock %} {% block body %}
+{% extends "base.html" %}
+
+{% block title %}Public Courses{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/preloaded.css') }}" />
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
+{% endblock %}
+
+{% block body %}
 <div id="welcome_wrapper">
   <table>
-    <td width="88%" style="padding-top: 50px; padding-left: 30px">
+    <td width="88%" style="padding-top: 50px; padding-left: 30px;">
       <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
     </td>
   </table>
@@ -26,20 +20,12 @@
 <div id="preloaded-window">
   <div id="tabs">
     <div>
-      <button
-        style="color: #fef9ee"
-        onclick="window.location.href='/hub';"
-        id="pre_assignments_tab"
-      >
+      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="pre_assignments_tab">
         my hub
       </button>
     </div>
     <div>
-      <button
-        style="color: #fef9ee"
-        onclick="window.location.href='/preloaded';"
-        id="pre_preloaded_tab"
-      >
+      <button style="color: #fef9ee;" onclick="window.location.href='/preloaded';" id="pre_preloaded_tab">
         public courses
       </button>
     </div>
@@ -52,51 +38,26 @@
   <hr />
   <table>
     <td>
-      <div style="margin-left: 30px">
-        <input
-          id="searchTitle"
-          class="searchbar"
-          size="30"
-          type="text"
-          placeholder="   search by title..."
-        />
-        <input
-          id="searchCode"
-          class="searchbar"
-          size="30"
-          type="text"
-          placeholder="   search by course code..."
-        />
+      <div style="margin-left: 30px;">
+        <input id="searchTitle" class="searchbar" size="30" type="text" placeholder="   search by title..." />
+        <input id="searchCode" class="searchbar" size="30" type="text" placeholder="   search by course code..." />
       </div>
     </td>
-    <td align="right" style="padding-right: 30px">
+    <td align="right" style="padding-right: 30px;">
       <form action="\importcourses" method="post">
-        <button
-          style="width: 200px"
-          type="submit"
-          class="small-button"
-          onclick="importCourses()"
-        >
+        <button style="width: 200px;" type="submit" class="small-button" onclick="importCourses()">
           add to your hub
         </button>
-        <input
-          type="hidden"
-          id="selected_courses"
-          name="selected_courses"
-          value=""
-        />
+        <input type="hidden" id="selected_courses" name="selected_courses" value="" />
       </form>
     </td>
   </table>
 
   <hr />
   <!-- INSERT AJAX + COURSES HERE -->
-  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px">
+  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
     <div>
-      <table
-        id="resultsTable"
-        style="margin-left: 30px; margin-right: 30px; border-collapse: collapse"
-      ></table>
+      <table id="resultsTable" style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;"></table>
     </div>
   </div>
 </div>
@@ -104,6 +65,7 @@
 <script src="{{url_for('static', filename='script/preloaded.js')}}"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
   "use strict";
 
@@ -139,5 +101,4 @@
 
   $("document").ready(setup);
 </script>
-
 {% endblock %}

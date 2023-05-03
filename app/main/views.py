@@ -5,6 +5,7 @@ including processing requests and interfacing with the database.
 """
 
 import sys, random
+from datetime import date
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
@@ -58,10 +59,13 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
+            date = a.due_date.strftime("%b %d, %Y")
+            time = a.due_date.strftime("%I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
-                                    "due_date": a.due_date,
+                                    "date": date,
+                                    "time": time,
                                     "course_code":course.course_code,
                                     "color": course.color})
 
@@ -183,24 +187,23 @@ def export_course():
 
         id = request.form.get("export_course")
         course = Course.query.get(id)
+
         course_code = course.course_code
         course_name = course.course_name
         assignments = course.assignments
-
-        new_course_id = str(random.randint(0, 999999)).zfill(6)
-        while True:
-                query = Course.query.get(new_course_id)
-                if query is None:
-                    break
-                else:
-                    new_course_id = str(random.randint(0, 999999)).zfill(6)
-
-        exported_course = Public_Course(id=new_course_id,
+        
+        query_course = Public_Course.query.get(id)
+        if query_course != None:
+            query_course.course_code = course_code
+            query_course.course_name = course_name
+            query_course.assignments = assignments
+        exported_course = Public_Course(id=id,
                                         author = netid,
                                         show_author=True,
                                         staff_cert=is_staff,
                                         course_code=course_code,
-                                        course_name=course_name)
+                                        course_name=course_name,
+                                        last_updated=date.today())
 
         db.session.add(exported_course)
 
@@ -262,7 +265,8 @@ def instructor_export_courses():
                                             show_author = True,
                                             staff_cert = is_staff,
                                             course_code=course_code,
-                                            course_name=course_name)
+                                            course_name=course_name,
+                                            last_updated=date.today())
 
             db.session.add(exported_course)
 
@@ -464,8 +468,7 @@ def status_assignment():
     try:
         status = request.form.get("status")
         id = request.form.get("id")
-        assignment = Assignment.query.filter_by(id=id).first()
-        print(status)
+        assignment = Assignment.query.get(id)
         if status == "FALSE":
             assignment.status = False
         elif status == "TRUE":
@@ -511,18 +514,19 @@ def searchpreloaded():
         staff_cert = course.staff_cert
         course_code = course.course_code
         course_name = course.course_name
+        last_updated = course.last_updated.strftime("%b %d, %Y")
 
         course_codes.append({"course_code": course_code,
                              "course_name": course_name,
                              "author": author,
                              "show_author": show_author,
                              "staff_cert": staff_cert,
-                             "id": id})
+                             "id": id,
+                             "last_updated": last_updated})
         course_ids.append(course.id)
 
     return render_template("searchpreloaded.html",
                            courses=course_codes)
-
 
 @bp.route("/assignment", methods=["GET", "POST"])
 @login_required
@@ -540,10 +544,11 @@ def assignment():
         course = Course.query.get(id)
         course_code = course.course_code
         for a in assignments:
+            due = a.due_date.strftime("%b %d, %Y %I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
-                                    "due_date": a.due_date,
+                                    "due_date": due,
                                     "course_code": course.course_code,
                                     "color": course.color})
         return render_template("assignment.html",
@@ -574,10 +579,11 @@ def preloadedassignment():
         course_code = course.course_code
         author = course.author
         for a in assignments:
+            due = a.due_date.strftime("%b %d, %Y %I:%M %p")
             assignment_data.append({
                                     "id": a.id,
                                     "title": a.title,
-                                    "due_date": a.due_date,
+                                    "due_date": due,
                                     "course_code": course.course_code})
         return render_template("preloadedassignment.html",
                                author=author,
