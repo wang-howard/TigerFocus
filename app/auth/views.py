@@ -25,8 +25,6 @@ def login():
             cas_login_url = cas_client.get_login_url()
             return redirect(cas_login_url)
         
-        print('ticket: %s', ticket)
-        print('next: %s', next)
         netid, _, _ = cas_client.verify_ticket(ticket)
         if not netid:
             return render_template("error.html",

@@ -90,7 +90,7 @@
 
         {% if assignment['status'] == false %}
         opacity: 0.5;
-        {%endif%}"
+        {% endif %}"
       >
         <tr>
           <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
@@ -102,14 +102,14 @@
 
           <td width="5%" align="left">
             <form action="/statusassignment" method="post">
-              {% if assignment['status'] == true %}
+              {% if assignment["status"] == true %}
               <button class="action_button_half">
                 in progress
               </button>
               <input hidden name="status" value="FALSE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
-              {% elif assignment['status'] == false %}
+              {% elif assignment["status"] == false %}
               <button class="action_button_full">
                 done
               </button>
@@ -127,18 +127,6 @@
             </form>
           </td>
 
-          {% if assignment['status'] == false %}
-          <td style="padding-left: 30px;" width="40%" align="left">
-            <div class="assignment_text">{{ assignment["title"] }}</div>
-          </td>
-
-          <td width="40%" align="left">
-            <div class="assignment_text">
-              {{ assignment["due_date"] }}
-            </div>
-          </td>
-
-          {% else %}
           <td style="padding-left: 30px;" width="40%" align="left">
             <div class="assignment_text">{{ assignment["title"] }}</div>
           </td>
@@ -149,7 +137,6 @@
               {{assignment["time"]}}
             </div>
           </td>
-          {% endif %}
 
           <td style="padding-left: 10px;" width="15%" align="left">
             <div class="class_chip" style="background-color: {{assignment['color']}}">
