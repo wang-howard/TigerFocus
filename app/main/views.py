@@ -197,15 +197,15 @@ def export_course():
             query_course.course_code = course_code
             query_course.course_name = course_name
             query_course.assignments = assignments
-        exported_course = Public_Course(id=id,
-                                        author = netid,
-                                        show_author=True,
-                                        staff_cert=is_staff,
-                                        course_code=course_code,
-                                        course_name=course_name,
-                                        last_updated=date.today())
-
-        db.session.add(exported_course)
+        else:
+            query_course = Public_Course(id=id,
+                                            author = netid,
+                                            show_author=True,
+                                            staff_cert=is_staff,
+                                            course_code=course_code,
+                                            course_name=course_name,
+                                            last_updated=date.today())
+            db.session.add(query_course)
 
         assignments = list(course.assignments)
         for assignment in assignments:
@@ -221,7 +221,7 @@ def export_course():
                                         id=new_assignment_id,
                                         title=assignment.title,
                                         due_date=assignment.due_date,
-                                        course_id=new_course_id)
+                                        course_id=id)
             db.session.add(public_assignment)
         
         db.session.commit()
