@@ -71,11 +71,21 @@
           {% for course in courses %}
           <tr>
             <td width="20%" style="padding-left: 10px; padding-right: 10px;" align="center">
-              <form action="/exportcourse" method="post" onsubmit="return confirm('The selected courses will be made public to all users. Would you like to continue?');">
+              {% if not course["is_public"] %}
+              <form action="/toggleexportcourse" method="post" onsubmit="return confirm('The selected courses will be made public to all users. Would you like to continue?');">
                 <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
                   <i class="fa fa-globe"></i>
                   <i style="font-size: 10px;">make public</i>
                 </button>
+              </form>
+              {% else %}
+              <form action="/toggleexportcourse" method="post">
+                <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
+                  <i class="fa fa-lock"></i>
+                  <i style="font-size: 10px;">make private</i>
+                </button>
+              </form>
+              {% endif %}
               </form>
             </td>
             <td width="15%">

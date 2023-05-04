@@ -7,7 +7,7 @@
   min-width: 90vw;
 }
 
-#instructor-assignments-tab {
+#instructor-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -19,25 +19,16 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#instructor-assignments-tab:hover {
-  background: #9a9a9a;
-}
-
-#instructor-public-tab {
-  border: 0px;
-  text-align: center;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: 700;
-  width: 200px;
-  height: auto;
-  border-radius: 19.2px 19.2px 19.2px 19.2px;
-  cursor: pointer;
-  background: #4e4e4e;
-}
-
 #instructor-tab:hover {
   background: #9a9a9a;
+}
+
+.instructor-assignment-wrapper {
+  background: #fef9ee;
+  border-radius: 10px;
+  height: 70px;
+  margin-left: 10px;
+  min-width: 85vw;
 }
 
 #input-title {
@@ -76,14 +67,6 @@
 }
 .view:hover {
   background: #d8d8d8;
-}
-
-.instructor-assignment-wrapper {
-  background: #fef9ee;
-  border-radius: 10px;
-  height: 70px;
-  margin-left: 10px;
-  min-width: 85vw;
 }
 
 #shift {

@@ -4,7 +4,7 @@
 
 {% block style %}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="{{url_for('static', filename='css/instructorassignments.css')}}" />
+<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}" />
 {% endblock %}
@@ -30,7 +30,7 @@
   </div>
 
   <div id="assignments-header">
-    <div id="instructor-current-assignments-title">Course Code: {{course_code}}</div>
+    <div id="instructor-current-assignments-title">Assignments for {{course_code}}</div>
   </div>
 
   <hr />
@@ -44,8 +44,8 @@
       {% else %}
       <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
         <tr id="table-header" style="color: black;">
-          <th align="center">course name</th>
-          <th align="center">date</th>
+          <th align="center">Assignment</th>
+          <th align="center">Due Date</th>
           <th></th>
         </tr>
     
@@ -73,5 +73,5 @@
   </div>
 </div>
 
-<script src="{{url_for('static', filename='script/instructorassignments.js')}}"></script>
+<script src="{{url_for('static', filename='script/instructorviewassignments.js')}}"></script>
 {% endblock %}

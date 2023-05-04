@@ -50,35 +50,6 @@ class Assignment(db.Model):
     def __repr__(self):
         return self.title + " (" + str(self.id) + ")"
 
-class Public_Course(db.Model):
-    __tablename__ = "public_courses"
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    author = db.Column(db.String)
-    show_author = db.Column(db.Boolean)
-    staff_cert = db.Column(db.Boolean)
-    course_code = db.Column(db.String)
-    course_name = db.Column(db.String)
-    last_updated = db.Column(db.DateTime)
-    assignments = db.relationship("Public_Assignment",
-                                  backref="public_course",
-                                  order_by="asc(Public_Assignment.due_date)",
-                                  lazy="dynamic")
-    
-    def __repr__(self):
-        return "[PUBLIC] " + self.course_code + ": " + self.course_name\
-            + " (" + str(self.id) + ")"
-
-class Public_Assignment(db.Model):
-    __tablename__ = "public_assignments"
-    id = db.Column(db.Integer, primary_key=True, unique=True)
-    title = db.Column(db.String)
-    due_date = db.Column(db.DateTime)
-    course_id = db.Column(db.Integer, db.ForeignKey("public_courses.id"))
-
-    def __repr__(self):
-        return "[PUBLIC] " + self.title + " (" + str(self.id) + ")"
-
-
 @login_manager.user_loader
 def load_user(netid):
     return User.query.get(netid)

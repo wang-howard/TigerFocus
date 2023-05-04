@@ -4,14 +4,13 @@ for the flask App. This file represents the bulk of the application,
 including processing requests and interfacing with the database.
 """
 
-import sys, random
-from datetime import date
+import sys
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
 from . import bp
 from .. import db
-from ..models import User, Course, Assignment, Public_Course, Public_Assignment
+from ..models import User, Course, Assignment
 
 @bp.route("/", methods=["GET"])
 def index():
@@ -41,14 +40,11 @@ def hub():
         course_data = []
         course_ids = []
         for course in courses:
-            color = course.color
-            code = course.course_code
-            id = course.id
-            name = course.course_name
-            course_data.append({"course_code": code,
-                                 "course_name": name,
-                                 "color": color,
-                                 "id": id})
+            course_data.append({"course_code": course.course_code,
+                                 "course_name": course.course_name,
+                                 "color": course.color,
+                                 "id": course.id,
+                                 "is_public": course.is_public})
             course_ids.append(course.id)
 
         # create list of dicts containing assignment information

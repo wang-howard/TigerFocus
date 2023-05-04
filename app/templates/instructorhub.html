@@ -23,12 +23,12 @@
 <div id="instructor-window" style="width: 900px;">
   <div id="tabs">
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="instructor-assignments-tab">
+      <button id="instructor-tab" style="color: #fef9ee;" onclick="window.location.href='/hub';">
         my hub
       </button>
     </div>
     <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/publiccourses';" id="instructor-assignments-tab">
+      <button id="instructor-tab" style="color: #fef9ee;" onclick="window.location.href='/publiccourses';">
         public courses
       </button>
     </div>
@@ -60,62 +60,63 @@
 
   {%else%}
   <!-- INSERT COURSES HERE -->
-  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
-    <div>
-      <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
-        <tr id="table-header">
-          <th align="center">course code</th>
-          <th align="left">course name</th>
-          <th>select to make public</th>
-        </tr>
+  <div style="overflow-y: scroll; height: 90%; max-height: 525px;">
+    <table id="table-header">
+      <tr>
+        <th align="center">course code</th>
+        <th align="left">course name</th>
+        <th>select to make public</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
 
-        {% for course in courses %}
-        <tr class="instructor-assignment-wrapper">
-          <td width="25%" align="center">
-            <div class="class-chip" style="background-color: rgb(155, 160, 217);">
-              {{course["course_code"]}}
-            </div>
-          </td>
+      {% for course in courses %}
+      <tr class="instructor-assignment-wrapper">
+        <td width="25%" align="center">
+          <div class="class-chip" style="background-color: rgb(155, 160, 217);">
+            {{course["course_code"]}}
+          </div>
+        </td>
 
-          <td width="30%" align="left">
-            <div class="assignment-text">{{course["course_name"]}}</div>
-          </td>
+        <td width="30%" align="left">
+          <div class="assignment-text">{{course["course_name"]}}</div>
+        </td>
 
-          <td width="25%" style="padding-bottom: 30px;" align="center">
-            <label class="checkbox-button">
-              <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
-              <div class="checkmark"></div>
-            </label>
-          </td>
+        <td width="25%" style="padding-bottom: 30px;" align="center">
+          <label class="checkbox-button">
+            <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
+            <div class="checkmark"></div>
+          </label>
+        </td>
 
-          <td width="15%" style="padding-right: 15px;">
-            <form action="/instructorassignments" method="get">
-              <button class="view">view assignments</button>
-              <input hidden name="courseid" value="{{course['id']}}" />
-            </form>
-          </td>
+        <td width="15%" style="padding-right: 15px;">
+          <form action="/instructorviewassignments" method="get">
+            <button class="view">view assignments</button>
+            <input hidden name="courseid" value="{{course['id']}}" />
+          </form>
+        </td>
 
-          <td width="2.5%">
-            <button name="instructor_edit_course_button" class="action-button" value="{{course['id']}}">
-              <i class="fa fa-edit"></i>
+        <td width="2.5%">
+          <button name="instructor_edit_course_button" class="action-button" value="{{course['id']}}">
+            <i class="fa fa-edit"></i>
+          </button>
+        </td>
+        
+        <td width="2.5%" style="padding-right: 20px">
+          <form action="/deletecourse" method="post">
+            <button class="action-button">
+              <input hidden name="course_del_id" value="{{course['id']}}" />
+              <i class="fa fa-trash"></i>
             </button>
-          </td>
-          
-          <td width="2.5%">
-            <form action="/deletecourse" method="post">
-              <button class="action-button">
-                <input hidden name="course_del_id" value="{{course['id']}}" />
-                <i class="fa fa-trash"></i>
-              </button>
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td height="2px"></td>
-        </tr>
-        {% endfor %}
-      </table>
-    </div>
+          </form>
+        </td>
+      </tr>
+      <tr>
+        <td height="2px"></td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
   {% endif %}
 </div>

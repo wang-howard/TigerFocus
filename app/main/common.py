@@ -2,6 +2,7 @@
 Commonly used functions in code to avoid repitition
 """
 import random
+from .. import db
 from ..models import User, Course, Assignment
 
 def generate_course_id():

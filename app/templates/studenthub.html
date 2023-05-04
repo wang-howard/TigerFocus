@@ -52,7 +52,7 @@
   </div>
 
   <hr>
-  <table style="margin-left: 30px;" id="table-header">
+  <table id="table-header">
     {% if courses == [] %}
     <tr>
       <div style="padding: 30px; color: #fef9ee;" class="assignment-text">
@@ -125,13 +125,11 @@
 
         <td width="20%" align="center">
           <div class="assignment-text">
-            {{assignment["date"]}}
-            <br />
-            {{assignment["time"]}}
+            {{assignment["date"]}} {{assignment["time"]}}
           </div>
         </td>
 
-        <td width="15%" align="left" style="padding-left: 10px;">
+        <td width="15%" align="center">
           <div class="class-chip" style="background-color: {{assignment['color']}}">
             {{assignment["course_code"]}}
           </div>
