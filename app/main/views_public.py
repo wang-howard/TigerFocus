@@ -1,5 +1,4 @@
-import sys, random
-from datetime import date
+import sys
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
