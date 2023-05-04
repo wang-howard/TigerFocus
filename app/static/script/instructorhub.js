@@ -1,5 +1,5 @@
-var course_create_modal = document.getElementById("admincourse_modal");
-var course_create_btn = document.getElementById("admincourse_button");
+var course_create_modal = document.getElementById("instructor-course-modal");
+var course_create_btn = document.getElementById("instructor-course-button");
 var course_span = document.getElementsByClassName("instructor-course-close")[0];
 course_create_btn.onclick = function () {
   course_create_modal.style.display = "block";
