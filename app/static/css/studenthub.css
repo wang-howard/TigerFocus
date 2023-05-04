@@ -119,7 +119,7 @@ hr {
   background: #83736d;
 }
 
-#table_header {
+#table-header {
   color: #fef9ee;
   text-align: center;
   font-family: inherit;
@@ -127,7 +127,7 @@ hr {
   font-weight: bold;
 }
 
-.assignment_wrapper {
+.assignment-wrapper {
   background: #fef9ee;
   border-radius: 30px;
   height: 70px;
@@ -135,7 +135,7 @@ hr {
   margin-left: 25px;
 }
 
-#pre_assignments_tab {
+#pre-assignments-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -147,11 +147,11 @@ hr {
   cursor: pointer;
   background: #798d5f;
 }
-#pre_assignments_tab:hover {
+#pre-assignments-tab:hover {
   background: #bbda93;
 }
 
-#pre_public_tab {
+#pre-public-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -163,11 +163,11 @@ hr {
   cursor: pointer;
   background: #798d5f;
 }
-#pre_public_tab:hover {
+#pre-public-tab:hover {
   background: #bbda93;
 }
 
-#input_title {
+#input-title {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 600;
   font-size: 30px;
@@ -183,7 +183,7 @@ hr {
   border: 3px solid #798d5f;
 }
 
-.class_chip {
+.class-chip {
   text-align: center;
   overflow-x: hidden;
   font-family: "Anek Bangla", sans-serif;
@@ -196,7 +196,7 @@ hr {
   border-radius: 30px;
   text-transform: uppercase;
 }
-.preclass_chip {
+.pre-class-chip {
   text-align: center;
   overflow-x: hidden;
   font-family: "Anek Bangla", sans-serif;
@@ -211,12 +211,12 @@ hr {
   border-color: rgb(155, 160, 217);
   background-color: rgb(155, 160, 217)
 }
-.preclass_chip:hover
+.pre-class-chip:hover
 {
   background: #d9d9d9;
   border-color: rgb(155, 160, 217);
 }
-.assignment_text {
+.assignment-text {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -224,7 +224,7 @@ hr {
   margin-bottom: 0px;
 }
 
-.status_button {
+.status-button {
   border: 0px;
   width: 20px;
   height: 20px;
@@ -234,7 +234,7 @@ hr {
   cursor: pointer;
 }
 
-.checkbox_button input {
+.checkbox-button input {
   opacity: 0;
   cursor: pointer;
   height: 0px;
@@ -254,7 +254,7 @@ hr {
   background: #aaa7a7;
 }
 
-.checkbox_button input:checked ~ .checkmark {
+.checkbox-button input:checked ~ .checkmark {
   background: #d9d9d9;
 }
 
@@ -264,12 +264,12 @@ hr {
 }
 
 /* Show the checkmark when checked */
-.checkbox_button input:checked ~ .checkmark:after {
+.checkbox-button input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkbox_button .checkmark:after {
+.checkbox-button .checkmark:after {
   padding-bottom: 100px;
   width: auto;
   color: #000000;
@@ -289,7 +289,7 @@ th:last-child {
   border-radius: 0 30px 30px 0;
 }
 
-.action_button {
+.action-button {
   border: 0px;
   width: auto;
   height: auto;
@@ -298,11 +298,11 @@ th:last-child {
   background: #00000000;
   color: #4e4e4e;
 }
-.action_button:hover {
+.action-button:hover {
   color: #7b7b7b;
 }
 
-.action_button_full {
+.action-button-full {
  
   text-align: center;
   overflow-x: hidden;
@@ -318,11 +318,11 @@ th:last-child {
   background-color: #94ac74;
   border: none;
 }
-.action_button_full:hover {
+.action-button-full:hover {
   background: #c7e69e;
 }
 
-.action_button_half {
+.action-button-half {
   text-align: center;
   overflow-x: hidden;
   font-family: "Anek Bangla", sans-serif;
@@ -338,11 +338,11 @@ th:last-child {
   border: none;
   
 }
-.action_button_half:hover {
+.action-button-half:hover {
   background-color: #e8c7d7;
 }
 
-.action_button_empty {
+.action-button-empty {
   text-align: center;
   overflow-x: hidden;
   font-family: "Anek Bangla", sans-serif;
@@ -358,7 +358,7 @@ th:last-child {
   border: none;
 
 }
-.action_button_empty:hover {
+.action-button-empty:hover {
   background-color: #f1eeee;
 }
 

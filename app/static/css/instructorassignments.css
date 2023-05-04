@@ -11,14 +11,14 @@
   font-size: 40px;
   color: #4e4e4e;
 }
-#admintable_header {
+#admintable-header {
   color: #4e4e4e;
   text-align: center;
   font-family: inherit;
   font-size: 20px;
   font-weight: bold;
 }
-#admin_assignments_tab {
+#admin-assignments-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -30,11 +30,11 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#admin_assignments_tab:hover {
+#admin-assignments-tab:hover {
   background: #9a9a9a;
 }
 
-#admin_public_tab {
+#admin-public-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -46,11 +46,11 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#admin_tab:hover {
+#admin-tab:hover {
   background: #9a9a9a;
 }
 
-#input_title {
+#input-title {
   font-family: "Anek Bangla", sans-serif;
   font-weight: 600;
   font-size: 30px;
@@ -58,7 +58,7 @@
   text-align: center;
 }
 
-.adminsmall-button {
+.instructor-small-button {
   font-family: inherit;
   font-size: 20px;
   font-weight: 800;
@@ -72,7 +72,7 @@
   margin-bottom: 0px;
   cursor: pointer;
 }
-.adminsmall-button:hover {
+.instructor-small-button:hover {
   background: #9a9a9a;
 }
 
@@ -84,7 +84,7 @@
   border: 1px solid #000000;
   border-radius: 40px;
 }
-.adminassignment_wrapper {
+.instructor-assignment-wrapper {
   background: #fef9ee;
   border-radius: 30px;
   height: 70px;

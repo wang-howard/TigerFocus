@@ -14,7 +14,7 @@ var course_btn = document.getElementById("add_course_button");
 var coursenew_btn = document.getElementById("add_coursenew_button");
 var editcourse_btn = document.getElementsByName("edit_course_button");
 var edit_assignment_btn = document.getElementsByName("edit_assignment_button");
-var status_btn = document.getElementsByName("status_button");
+var status_btn = document.getElementsByName("status-button");
 
 status_btn.forEach((element) => {
   let isClicked = false;
@@ -22,14 +22,14 @@ status_btn.forEach((element) => {
     if (isClicked) {
       element.style.background = "#94AC74";
       var id = element.id;
-      var str = "assignment_wrapper_" + id;
+      var str = "assignment-wrapper-" + id;
       var wrapper_div = document.getElementById(str);
       wrapper_div.style.opacity = 0.5;
       element.value = false;
     } else {
       element.style.background = "#FFBC79";
       var id = element.id;
-      var str = "assignment_wrapper_" + id;
+      var str = "assignment-wrapper-" + id;
       var wrapper_div = document.getElementById(str);
       wrapper_div.style.opacity = 1;
       element.value = true;
@@ -109,7 +109,7 @@ function startSession() {
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute("value");
-    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment_text`).innerText;
+    const assignmentTitle = document.querySelector(`#assignment_element_${assignmentId} .assignment-text`).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 

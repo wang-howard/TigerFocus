@@ -6,7 +6,7 @@
         <span class="close">&times;</span>
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Pick Your Course</h1>
+          <h1 id="input-title">Pick Your Course</h1>
           <select name="course_code" id="course_code" required>
             {% for course in courses %}
             <option value="{{course['course_code']}}">
@@ -17,12 +17,12 @@
         </div>
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Assignment Title</h1>
+          <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Due Date</h1>
+          <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <div style="padding-left: 375px;">
@@ -43,12 +43,12 @@
         <input hidden type="number" name="edited_assignment_id" />
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Assignment Title</h1>
+          <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Due Date</h1>
+          <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <span style="padding-top: 30px; padding-right: 30px; float: right;"><button class="modal_btn" type="submit">update</button> </span>
@@ -63,7 +63,7 @@
     <div class="modal_window">
       <span class="course_close">&times;</span>
       <div class="modal_input_wrapper">
-        <h1 id="input_title">Current Courses</h1>
+        <h1 id="input-title">Current Courses</h1>
       </div>
       <div class="courselist_window">
         <!--COURSE CHIP-->
@@ -72,19 +72,19 @@
           <tr>
             <td width="20%" style="padding-left: 10px; padding-right: 10px;" align="center">
               <form action="/exportcourse" method="post" onsubmit="return confirm('The selected courses will be made public to all users. Would you like to continue?');">
-                <button name="export_course" id="export_course" class="action_button" value="{{course['id']}}">
+                <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
                   <i class="fa fa-globe"></i>
                   <i style="font-size: 10px;">make public</i>
                 </button>
               </form>
             </td>
             <td width="15%">
-              <div class="class_chip" style="background-color: {{course['color']}}">
+              <div class="class-chip" style="background-color: {{course['color']}}">
                 {{course['course_code']}}
               </div>
             </td>
             <td width="5%">
-              <button name="edit_course_button" class="action_button" value="{{course['id']}}">
+              <button name="edit_course_button" class="action-button" value="{{course['id']}}">
                 <i class="fa fa-edit"></i>
               </button>
             </td>
@@ -92,7 +92,7 @@
             <form action="/deletecourse" method="post">
               <td width="5%">
                 <input type="hidden" name="course_del_id" value="{{course['id']}}" />
-                <button onclick="window.location.href='/deletecourse';" class="action_button">
+                <button onclick="window.location.href='/deletecourse';" class="action-button">
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
@@ -118,7 +118,7 @@
     <span class="coursenew_close">&times;</span>
 
     <div class="modal_input_wrapper">
-      <h1 id="input_title">Add Course</h1>
+      <h1 id="input-title">Add Course</h1>
     </div>
 
     <div>
@@ -156,7 +156,7 @@
       <span class="editcourse_close">&times;</span>
 
       <div class="modal_input_wrapper">
-        <h1 id="input_title">Edit Course</h1>
+        <h1 id="input-title">Edit Course</h1>
       </div>
 
       <div>
@@ -198,7 +198,7 @@
       <span class="admincourse_close">&times;</span>
 
       <div class="modal_input_wrapper">
-        <h1 id="input_title">Add Course</h1>
+        <h1 id="input-title">Add Course</h1>
       </div>
 
       <div style="margin-left: 30px;">
@@ -232,7 +232,7 @@
       <span class="instructoreditcourse_close">&times;</span>
 
       <div class="modal_input_wrapper">
-        <h1 id="input_title">Edit Course</h1>
+        <h1 id="input-title">Edit Course</h1>
       </div>
 
       <div class="col-lg-12 login-form">
@@ -267,12 +267,12 @@
 
         <input hidden name="current_id" id="current_id" />
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Assignment Title</h1>
+          <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
         <div class="modal_input_wrapper">
-          <h1 id="input_title">Due Date</h1>
+          <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
         <div style="padding-left: 375px;">

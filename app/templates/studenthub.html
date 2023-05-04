@@ -67,13 +67,13 @@
 
   {% if courses == [] %}
 
-  <div style="padding: 30px; color: #fef9ee;" class="assignment_text">
+  <div style="padding: 30px; color: #fef9ee;" class="assignment-text">
     Go to "view courses" to add courses!
   </div>
 
   {% elif courses != [] and assignments == [] %}
 
-  <div style="padding: 30px; color: #fef9ee;" class="assignment_text">
+  <div style="padding: 30px; color: #fef9ee;" class="assignment-text">
     Click "new task" to add assignments!
   </div>
 
@@ -82,10 +82,10 @@
   <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
     {% for assignment in assignments %}
 
-    <div id="assignment_element_{{assignment['id']}}">
+    <div id="assignment_element-{{assignment['id']}}">
       <table
-        class="assignment_wrapper"
-        id="assignment_wrapper_{{assignment['id']}}"
+        class="assignment-wrapper"
+        id="assignment-wrapper-{{assignment['id']}}"
         style="margin-bottom: 5px;
 
         {% if assignment['status'] == false %}
@@ -94,7 +94,7 @@
       >
         <tr>
           <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
-            <label class="checkbox_button">
+            <label class="checkbox-button">
               <input type="checkbox" class="assignment_checkbox" value="{{assignment['id']}}" />
               <div class="checkmark"></div>
             </label>
@@ -103,21 +103,21 @@
           <td width="5%" align="left">
             <form action="/statusassignment" method="post">
               {% if assignment["status"] == true %}
-              <button class="action_button_half">
+              <button class="action-button-half">
                 in progress
               </button>
               <input hidden name="status" value="FALSE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
               {% elif assignment["status"] == false %}
-              <button class="action_button_full">
+              <button class="action-button-full">
                 done
               </button>
               <input hidden name="status" value="NONE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
               {% else %}
-              <button class="action_button_empty">
+              <button class="action-button-empty">
                 not started
               </button>
               <input hidden name="status" value="TRUE" />
@@ -128,10 +128,10 @@
           </td>
 
           <td style="padding-left: 30px;" width="40%" align="left">
-            <div class="assignment_text">{{ assignment["title"] }}</div>
+            <div class="assignment-text">{{ assignment["title"] }}</div>
           </td>
           <td width="40%" align="center">
-            <div class="assignment_text">
+            <div class="assignment-text">
               {{assignment["date"]}}
               <br />
               {{assignment["time"]}}
@@ -139,12 +139,12 @@
           </td>
 
           <td style="padding-left: 10px;" width="15%" align="left">
-            <div class="class_chip" style="background-color: {{assignment['color']}}">
+            <div class="class-chip" style="background-color: {{assignment['color']}}">
               {{assignment["course_code"]}}
             </div>
           </td>
           <td style="padding-left: 20px;" width="5%">
-            <button name="edit_assignment_button" class="action_button" value="{{assignment['id']}}">
+            <button name="edit_assignment_button" class="action-button" value="{{assignment['id']}}">
               <i class="fa fa-edit"></i>
             </button>
           </td>
@@ -152,7 +152,7 @@
           <form action="/deleteassignment" method="post">
             <td style="padding-right: 30px;" width="5%">
               <input type="hidden" name="assignment_id" value="{{assignment['id']}}" />
-              <button onclick="window.location.href='/deleteassignment';" class="action_button">
+              <button onclick="window.location.href='/deleteassignment';" class="action-button">
                 <i class="fa fa-trash"></i>
               </button>
             </td>

@@ -1,10 +1,10 @@
 {% if courses == [] %}
 <tr>
-  <td><div style="padding: 30px; color: #fef9ee;" class="assignment_text">No course found ...</div></td>
+  <td><div style="padding: 30px; color: #fef9ee;" class="assignment-text">No course found ...</div></td>
 </tr>
 
 {% else %}
-<tr id="table_header">
+<tr id="table-header">
   <th></th>
   <th align="left">Course Code</th>
   <th align="left">Course Name</th>
@@ -17,14 +17,14 @@
 <div id="course_element_{{course['id']}}">
   <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
     <td width="5%" style="padding-left: 30px; padding-bottom: 30px; padding-right: 50px;" align="center">
-      <label class="checkbox_button">
+      <label class="checkbox-button">
         <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
         <div class="checkmark"></div>
       </label>
     </td>
     <td width="20%" align="left">
       <form action="/publicassignments" method="get">
-        <button class="preclass_chip">
+        <button class="pre-class-chip">
           {{course['course_code']}}
 
           <input hidden name="courseid" value="{{course['id']}}" />
@@ -33,11 +33,11 @@
     </td>
 
     <td width="35%" align="left">
-      <div class="assignment_text">{{course['course_name']}}</div>
+      <div class="assignment-text">{{course['course_name']}}</div>
     </td>
 
     <td width="10%" align="center">
-      <div class="assignment_text">
+      <div class="assignment-text">
         {% if course['show_author']%} {{course['author']}} {% endif %}
       </div>
     </td>
