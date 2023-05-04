@@ -1,4 +1,4 @@
-#admin-window {
+#instructor-window {
   display: flex;
   flex-direction: column;
   background: #7a7a7a;
@@ -6,7 +6,7 @@
   border: 3px solid #5a5a5a;
 }
 
-#admin-assignments-tab {
+#instructor-assignments-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -18,11 +18,11 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#admin-assignments-tab:hover {
+#instructor-assignments-tab:hover {
   background: #9a9a9a;
 }
 
-#admin-public-tab {
+#instructor-public-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -35,7 +35,7 @@
   background: #4e4e4e;
 }
 
-#admin-tab:hover {
+#instructor-tab:hover {
   background: #9a9a9a;
 }
 

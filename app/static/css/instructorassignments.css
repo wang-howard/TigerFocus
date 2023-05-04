@@ -1,24 +1,19 @@
-#admin-window {
+#instructor-window {
   display: flex;
   flex-direction: column;
   background: #fef9ee;
   border-radius: 40px;
   border: 3px solid #5a5a5a;
 }
-#admincurrent-assignments-title {
+
+#instructor-current-assignments-title {
   font-family: inherit;
   font-weight: 700;
   font-size: 40px;
   color: #4e4e4e;
 }
-#admintable-header {
-  color: #4e4e4e;
-  text-align: center;
-  font-family: inherit;
-  font-size: 20px;
-  font-weight: bold;
-}
-#admin-assignments-tab {
+
+#instructor-assignments-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -30,11 +25,11 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#admin-assignments-tab:hover {
+#instructor-assignments-tab:hover {
   background: #9a9a9a;
 }
 
-#admin-public-tab {
+#instructor-public-tab {
   border: 0px;
   text-align: center;
   font-family: inherit;
@@ -46,7 +41,7 @@
   cursor: pointer;
   background: #4e4e4e;
 }
-#admin-tab:hover {
+#instructor-tab:hover {
   background: #9a9a9a;
 }
 
@@ -84,6 +79,7 @@
   border: 1px solid #000000;
   border-radius: 40px;
 }
+
 .instructor-assignment-wrapper {
   background: #fef9ee;
   border-radius: 30px;
@@ -91,6 +87,7 @@
   width: 98%;
   margin-left: 10px;
 }
+
 #shift {
   padding-left: 15px;
 }
