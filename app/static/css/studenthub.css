@@ -18,6 +18,14 @@ hr {
   width: 95%;
 }
 
+tr, td {
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
 #welcome-wrapper {
   display: flex;
   justify-content: space-between;
@@ -37,6 +45,7 @@ hr {
   background: #919fc7;
   border-radius: 40px;
   border: 3px solid #6c7896;
+  min-width: 90vw;
 }
 
 #tabs {
@@ -131,8 +140,7 @@ hr {
   background: #fef9ee;
   border-radius: 30px;
   height: 70px;
-  width: 95%;
-  margin-left: 25px;
+  width: 90%;
 }
 
 #pre-assignments-tab {
@@ -185,7 +193,7 @@ hr {
 
 .class-chip {
   text-align: center;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -198,7 +206,7 @@ hr {
 }
 .pre-class-chip {
   text-align: center;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: "Anek Bangla", sans-serif;
   font-weight: 700;
   font-size: 20px;
@@ -306,7 +314,7 @@ th:last-child {
 .action-button-half,
 .action-button-empty {
   text-align: center;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: "Anek Bangla", sans-serif;
   font-weight: 300;
   font-size: 16px;

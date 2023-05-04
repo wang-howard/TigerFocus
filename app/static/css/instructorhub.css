@@ -4,6 +4,7 @@
   background: #7a7a7a;
   border-radius: 40px;
   border: 3px solid #5a5a5a;
+  min-width: 90vw;
 }
 
 #instructor-assignments-tab {
@@ -55,10 +56,10 @@
   background-color: #4e4e4e;
   color: #fef9ee;
   text-align: center;
+  vertical-align: center;
   border-radius: 20px;
   height: 40px;
   width: 145px;
-  margin-bottom: 0px;
   cursor: pointer;
 }
 .instructor-small-button:hover {
@@ -76,13 +77,15 @@
 .view:hover {
   background: #d8d8d8;
 }
+
 .instructor-assignment-wrapper {
   background: #fef9ee;
-  border-radius: 30px;
+  border-radius: 10px;
   height: 70px;
-  width: 98%;
   margin-left: 10px;
+  min-width: 85vw;
 }
+
 #shift {
   padding-left: 15px;
 }

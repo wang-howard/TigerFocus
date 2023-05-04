@@ -6,11 +6,11 @@
 {% else %}
 <tr id="table-header">
   <th></th>
-  <th align="left">Course Code</th>
+  <th align="center" style="margin-right: 10px;">Course Code</th>
   <th align="left">Course Name</th>
-  <th align="left">Author</th>
-  <th>Certified</th>
-  <th>Last Updated</th>
+  <th align="center">Author</th>
+  <th></th>
+  <th align="center">Last Updated</th>
 </tr>
 
 {% for course in courses %}
@@ -22,7 +22,7 @@
         <div class="checkmark"></div>
       </label>
     </td>
-    <td width="20%" align="left">
+    <td width="20%" align="center" style="margin-right: 10px;>
       <form action="/publicassignments" method="get">
         <button class="pre-class-chip">
           {{course["course_code"]}}

@@ -1,0 +1,70 @@
+<tr
+class="assignment-wrapper"
+id="assignment-wrapper-{{assignment['id']}}"
+style="margin-bottom: 5px;"
+
+{% if assignment["status"] == 2 %}
+opacity: 0.5;
+{% endif %}
+>
+<td width="5%" style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px;" align="center">
+  <label class="checkbox-button">
+    <input type="checkbox" class="assignment_checkbox" value="{{assignment['id']}}" />
+    <div class="checkmark"></div>
+  </label>
+</td>
+
+<td width="10%" align="center">
+  <form hx-post="/statusassignment" hx-target="this">
+    {% if assignment["status"] == 0 %}
+    <button class="action-button-empty">
+      not started
+    </button>
+    <input hidden name="id" value="{{assignment['id']}}" />
+
+    {% elif assignment["status"] == 1 %}
+    <button class="action-button-half">
+      in progress
+    </button>
+    <input hidden name="id" value="{{assignment['id']}}" />
+
+    {% else %}
+    <button class="action-button-full">
+      done
+    </button>
+    <input hidden name="id" value="{{assignment['id']}}" />
+    {% endif %}
+  </form>
+</td>
+
+<td width="45%" align="left" style="padding-left: 30px;">
+  <div class="assignment-text">{{ assignment["title"] }}</div>
+</td>
+
+<td width="20%" align="center">
+  <div class="assignment-text">
+    {{assignment["date"]}}
+    <br />
+    {{assignment["time"]}}
+  </div>
+</td>
+
+<td width="15%" align="left" style="padding-left: 10px;">
+  <div class="class-chip" style="background-color: {{assignment['color']}}">
+    {{assignment["course_code"]}}
+  </div>
+</td>
+<td width="2.5%">
+  <button name="edit_assignment_button" class="action-button" value="{{assignment['id']}}">
+    <i class="fa fa-edit"></i>
+  </button>
+</td>
+
+<td style="padding-right: 30px;" width="2.5%">
+  <form action="/deleteassignment" method="post">
+    <input type="hidden" name="assignment_id" value="{{assignment['id']}}" />
+    <button onclick="window.location.href='/deleteassignment';" class="action-button">
+      <i class="fa fa-trash"></i>
+    </button>
+  </form>
+</td>

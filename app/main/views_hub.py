@@ -174,21 +174,38 @@ def delete_assignment():
 @bp.route("/statusassignment", methods=["GET", "POST"])
 @login_required
 def status_assignment():
-    try:
-        id = request.form.get("id")
-        assignment = Assignment.query.get(id)
-        if assignment.status == 0:
-            assignment.status = 1
-        elif assignment.status == 1:
-            assignment.status = 2
-        else:
-            assignment.status = 0
-
-        db.session.commit()
-        return redirect(url_for(".hub"))
-    except Exception as ex:
-        print(ex, file=sys.stderr)
-        return render_template("error.html", message=ex)
+    id = request.form.get("id")
+    assignment = Assignment.query.get(id)
+    html = ""
+    if assignment.status == 0:
+        assignment.status = 1
+        html = \
+        f"""
+        <button class="action-button-half">
+          in progress
+        </button>
+        <input hidden name="id" value="{id}" />
+        """
+    elif assignment.status == 1:
+        assignment.status = 2
+        html = \
+        f"""
+        <button class="action-button-full">
+          done
+        </button>
+        <input hidden name="id" value="{id}" />
+        """
+    else:
+        assignment.status = 0
+        html = \
+        f"""
+        <button class="action-button-empty">
+          not started
+        </button>
+        <input hidden name="id" value="{id}" />
+        """
+    db.session.commit()
+    return html
 
 @bp.route("/instructorexportcourses", methods=["GET", "POST"])
 @login_required
