@@ -33,15 +33,14 @@
     <div id="instructor-current-assignments-title">Assignments for {{course_code}}</div>
   </div>
 
-  <hr />
+  <hr>
   <div>
     <button style="width: 175px; float: right; margin-right: 30px; margin-bottom: 10px;" id="instructor-new-assignment-button" type="submit" class="instructor-small-button">
       add new
     </button>
     <input hidden value="{{id}}" id="current_course_id" />
   </div>
-
-  <hr />
+  <hr>
 
   {% if assignments == [] %}
   <div style="width: 900px; padding: 30px;">click "add new" to add assignments to this course</div>
