@@ -1,6 +1,6 @@
 var assignment_create_modal = document.getElementById("admin_create_new_modal");
 var assignment_create_btn = document.getElementById("admin_create_new_button");
-var assignment_span = document.getElementsByClassName("admin_create_close")[0];
+var assignment_span = document.getElementsByClassName("instructor-create-assignment-close")[0];
 var id = document.getElementById("current_id");
 var current = document.getElementById("current_course_id");
 

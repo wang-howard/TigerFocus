@@ -56,9 +56,9 @@ edit_assignment_btn.forEach(
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var course_span = document.getElementsByClassName("course_close")[0];
-var coursenew_span = document.getElementsByClassName("coursenew_close")[0];
-var editcourse_span = document.getElementsByClassName("editcourse_close")[0];
+var course_span = document.getElementsByClassName("course-close")[0];
+var coursenew_span = document.getElementsByClassName("add-course-close")[0];
+var editcourse_span = document.getElementsByClassName("edit-course-close")[0];
 var edit_assignment_span = document.getElementsByClassName("edit_assignment_close")[0];
 
 // var list = {};

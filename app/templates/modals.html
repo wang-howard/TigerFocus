@@ -1,11 +1,11 @@
-<!--MODAL: CREATE NEW -->
+<!--MODAL: CREATE NEW ASSIGNMENT -->
 <div id="create_new_modal" class="modal">
   <div class="modal_content">
     <form action="/addassignment" method="post">
-      <div style="height: 450px;" class="modal_window">
+      <div style="height: 450px;" class="modal-window">
         <span class="close">&times;</span>
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Pick Your Course</h1>
           <select name="course_code" id="course_code" required>
             {% for course in courses %}
@@ -16,12 +16,12 @@
           </select>
         </div>
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
@@ -37,17 +37,17 @@
 <div id="edit_assignment_modal" class="modal">
   <div class="modal_content">
     <form action="/editassignment" method="post">
-      <div style="height: 350px;" class="modal_window">
+      <div style="height: 350px;" class="modal-window">
         <span class="edit_assignment_close">&times;</span>
 
         <input hidden type="number" name="edited_assignment_id" />
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
@@ -60,12 +60,12 @@
 <!--MODAL: CURRENT COURSES -->
 <div id="add_course_modal" class="modal">
   <div class="modal_content">
-    <div class="modal_window">
-      <span class="course_close">&times;</span>
-      <div class="modal_input_wrapper">
+    <div class="modal-window">
+      <span class="course-close">&times;</span>
+      <div class="modal-input-wrapper">
         <h1 id="input-title">Current Courses</h1>
       </div>
-      <div class="courselist_window">
+      <div class="courselist-window">
         <!--COURSE CHIP-->
         <table style="margin-top: 20px;">
           {% for course in courses %}
@@ -114,10 +114,10 @@
 
 <!--MODAL: ADD COURSE -->
 <div id="add_coursenew_modal" class="modal" style="background-color: rgba(0, 0, 0, 0);">
-  <div class="modal_within_window">
-    <span class="coursenew_close">&times;</span>
+  <div class="modal-within-window">
+    <span class="add-course-close">&times;</span>
 
-    <div class="modal_input_wrapper">
+    <div class="modal-input-wrapper">
       <h1 id="input-title">Add Course</h1>
     </div>
 
@@ -152,10 +152,10 @@
 <!--MODAL: EDIT COURSE -->
 <div id="edit_course_modal" class="modal" style="background-color: rgba(0, 0, 0, 0);">
   <div class="modal_content">
-    <div class="modal_within_window">
-      <span class="editcourse_close">&times;</span>
+    <div class="modal-within-window">
+      <span class="edit-course-close">&times;</span>
 
-      <div class="modal_input_wrapper">
+      <div class="modal-input-wrapper">
         <h1 id="input-title">Edit Course</h1>
       </div>
 
@@ -194,10 +194,10 @@
 <!--MODAL: INSTRUCTOR ADD COURSE -->
 <div id="admincourse_modal" class="modal">
   <div class="modal_content">
-    <div style="height: 300px;" class="modal_window">
-      <span class="admincourse_close">&times;</span>
+    <div style="height: 300px;" class="modal-window">
+      <span class="instructor-course-close">&times;</span>
 
-      <div class="modal_input_wrapper">
+      <div class="modal-input-wrapper">
         <h1 id="input-title">Add Course</h1>
       </div>
 
@@ -228,10 +228,10 @@
 <!--MODAL: INSTRUCTOR EDIT COURSE -->
 <div id="instructor_edit_course_modal" class="modal">
   <div class="modal_content">
-    <div style="height: 300px;" class="modal_window">
-      <span class="instructoreditcourse_close">&times;</span>
+    <div style="height: 300px;" class="modal-window">
+      <span class="instructor-edit-course-close">&times;</span>
 
-      <div class="modal_input_wrapper">
+      <div class="modal-input-wrapper">
         <h1 id="input-title">Edit Course</h1>
       </div>
 
@@ -258,20 +258,20 @@
   </div>
 </div>
 
-<!--MODAL: INSTRUCTOR CREATE NEW -->
+<!--MODAL: INSTRUCTOR CREATE NEW ASSIGNMENT -->
 <div id="admin_create_new_modal" class="modal">
   <div class="modal_content">
     <form action="/instructoraddassignment" method="post">
-      <div style="height: 325px;" class="modal_window">
-        <span class="admin_create_close">&times;</span>
+      <div style="height: 325px;" class="modal-window">
+        <span class="instructor-create-assignment-close">&times;</span>
 
         <input hidden name="current_id" id="current_id" />
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Assignment Title</h1>
           <input class="searchbar" type="text" name="title" id="title" required />
         </div>
 
-        <div class="modal_input_wrapper">
+        <div class="modal-input-wrapper">
           <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>

@@ -30,22 +30,14 @@
   font-size: 28px;
   font-weight: bold;
 }
-.admincourse_close {
-  color: #aaa;
-  float: right;
-  margin-top: 10px;
-  margin-right: 20px;
-  font-size: 28px;
-  font-weight: bold;
-}
-.admincourse_close:hover,
-.admincourse_close:focus {
+.close:hover,
+.close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-.admin_create_close {
+.course-close {
   color: #aaa;
   float: right;
   margin-top: 10px;
@@ -53,8 +45,14 @@
   font-size: 28px;
   font-weight: bold;
 }
+.course-close:hover,
+.course-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-.course_close {
+.instructor-course-close {
   color: #aaa;
   float: right;
   margin-top: 10px;
@@ -62,8 +60,14 @@
   font-size: 28px;
   font-weight: bold;
 }
+.instructor-course-close:hover,
+.instructor-course-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-.coursenew_close {
+.instructor-create-assignment-close {
   color: #aaa;
   float: right;
   margin-top: 10px;
@@ -71,8 +75,14 @@
   font-size: 28px;
   font-weight: bold;
 }
+.instructor-create-assignment-close:hover,
+.instructor-create-assignment-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-.editcourse_close {
+.add-course-close {
   color: #aaa;
   float: right;
   margin-top: 10px;
@@ -80,14 +90,41 @@
   font-size: 28px;
   font-weight: bold;
 }
+.add-course-close:hover,
+.add-course-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-.instructoreditcourse_close {
+.edit-course-close {
   color: #aaa;
   float: right;
   margin-top: 10px;
   margin-right: 20px;
   font-size: 28px;
   font-weight: bold;
+}
+.edit-course-close:hover,
+.edit-course-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.instructor-edit-course-close {
+  color: #aaa;
+  float: right;
+  margin-top: 10px;
+  margin-right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+.instructor-edit-course-close:hover,
+.instructor-edit-course-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .edit_assignment_close {
@@ -98,8 +135,14 @@
   font-size: 28px;
   font-weight: bold;
 }
+.edit_assignment_close:hover,
+.edit_assignment_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
-.submitbutton {
+.submit-button {
   font-family: "Anek Bangla", sans-serif;
   font-size: 20px;
   font-weight: 800;
@@ -114,7 +157,7 @@
   margin-right: 20px;
 }
 
-.modal_window {
+.modal-window {
   width: 500px;
   height: 400px;
   background: #fef9ee;
@@ -127,7 +170,7 @@
   box-shadow: 0px 5px 10px #00000080;
 }
 
-.modal_within_window {
+.modal-within-window {
   width: 500px;
   height: 400px;
   
@@ -140,7 +183,7 @@
   transform: translate(-50%, -50%);
 }
 
-.courselist_window {
+.courselist-window {
   width: 400px;
   height: 250px;
   background: #ffffff;
@@ -154,78 +197,9 @@
   overflow-y: scroll;
 }
 
-.modal_input_wrapper {
+.modal-input-wrapper {
   margin: auto;
   width: 50%;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.course_close:hover,
-.course_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.coursenew_close:hover,
-.coursenew_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.admin_create_close:hover,
-.admin_create_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.editcourse_close:hover,
-.editcourse_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.instructoreditcourse_close:hover,
-.instructoreditcourse_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.edit_assignment_close:hover,
-.edit_assignment_close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-#assignmentbar {
-  width: 1007.16px;
-  height: 61.6px;
-  left: 116.17px;
-  top: 227.72px;
-  margin: auto;
-  background: #ffffff;
-  border-radius: 26.4px;
-}
-
-#assignmentcourse {
-  margin-left: 30px;
-  width: 118.8px;
-  height: 40.59px;
-  left: 198.6px;
-  top: 237.57px;
-  background: #919fc7;
-  border-radius: 29.7px;
 }
 
 .modal_btn{
@@ -235,7 +209,6 @@
   border-radius:10px;
   color:#fef9ee;
 }
-
 .modal_btn:hover{
    background-color: #93837c;
 }
