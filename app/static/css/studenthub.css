@@ -293,55 +293,17 @@ th:last-child {
   border: 0px;
   width: auto;
   height: auto;
-  cursor: pointer;
   font-size: 25px;
   background: #00000000;
   color: #4e4e4e;
 }
 .action-button:hover {
   color: #7b7b7b;
+  cursor: pointer;
 }
 
-.action-button-full {
- 
-  text-align: center;
-  overflow-x: hidden;
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  color: #000000;
-  margin-bottom: 0px;
-  width: 75px;
-  height: 30px;
-  border-radius: 30px;
-  text-transform: uppercase;
-  background-color: #94ac74;
-  border: none;
-}
-.action-button-full:hover {
-  background: #c7e69e;
-}
-
-.action-button-half {
-  text-align: center;
-  overflow-x: hidden;
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  color: #000000;
-  margin-bottom: 0px;
-  width: 100px;
-  height: 30px;
-  border-radius: 30px;
-  text-transform: uppercase;
-  background-color:#eabbd2;
-  border: none;
-  
-}
-.action-button-half:hover {
-  background-color: #e8c7d7;
-}
-
+.action-button-full,
+.action-button-half,
 .action-button-empty {
   text-align: center;
   overflow-x: hidden;
@@ -350,16 +312,38 @@ th:last-child {
   font-size: 16px;
   color: #000000;
   margin-bottom: 0px;
-  width: 120px;
   height: 30px;
   border-radius: 30px;
   text-transform: uppercase;
-  background-color:#d8d8d8;
   border: none;
+}
 
+.action-button-full {
+  width: 75px;
+  background-color: #94ac74;
+}
+.action-button-full:hover {
+  background: #c7e69e;
+  cursor: pointer;
+}
+
+.action-button-half {
+  width: 100px;
+  background-color:#eabbd2;
+  border: none;
+}
+.action-button-half:hover {
+  background-color: #e8c7d7;
+  cursor: pointer;
+}
+
+.action-button-empty {
+  width: 120px;
+  background-color:#d8d8d8;
 }
 .action-button-empty:hover {
   background-color: #f1eeee;
+  cursor: pointer;
 }
 
 .searchbar {

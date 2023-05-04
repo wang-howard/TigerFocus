@@ -10,9 +10,9 @@ from . import login_manager
 class User(UserMixin, db.Model):
     __tablename__ = "users"
     netid = db.Column(db.String, primary_key=True, unique=True)
-    first_name = db.Column(db.String)
-    last_name = db.Column(db.String)
-    user_type = db.Column(db.String)
+    first_name = db.Column(db.String, nullable=False)
+    last_name = db.Column(db.String, nullable=False)
+    user_type = db.Column(db.String, nullable=False)
     courses = db.relationship("Course", backref="user", lazy="dynamic")
 
     def __repr__(self):
@@ -25,10 +25,12 @@ class User(UserMixin, db.Model):
 class Course(db.Model):
     __tablename__ = "courses"
     id = db.Column(db.Integer, primary_key=True, unique=True)
-    course_code = db.Column(db.String)
-    course_name = db.Column(db.String)
-    color = db.Column(db.String)
+    course_code = db.Column(db.String, nullable=False)
+    course_name = db.Column(db.String, nullable=False)
+    color = db.Column(db.String, nullable=False) 
     user_netid = db.Column(db.String, db.ForeignKey("users.netid"))
+    is_public = db.Column(db.Boolean, default=False)
+    last_updated = db.Column(db.DateTime)
     assignments = db.relationship("Assignment", backref="course",
                                   order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")
@@ -40,9 +42,9 @@ class Course(db.Model):
 class Assignment(db.Model):
     __tablename__ = "assignments"
     id = db.Column(db.Integer, primary_key=True, unique=True)
-    title = db.Column(db.String)
-    due_date = db.Column(db.DateTime)
-    status = db.Column(db.Boolean)
+    title = db.Column(db.String, nullable=False)
+    due_date = db.Column(db.DateTime, nullable=False)
+    status = db.Column(db.Integer, default=0)
     course_id = db.Column(db.Integer, db.ForeignKey("courses.id"))
 
     def __repr__(self):

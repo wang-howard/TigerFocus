@@ -25,25 +25,24 @@
     <td width="20%" align="left">
       <form action="/publicassignments" method="get">
         <button class="pre-class-chip">
-          {{course['course_code']}}
-
+          {{course["course_code"]}}
           <input hidden name="courseid" value="{{course['id']}}" />
         </button>
       </form>
     </td>
 
     <td width="35%" align="left">
-      <div class="assignment-text">{{course['course_name']}}</div>
+      <div class="assignment-text">{{course["course_name"]}}</div>
     </td>
 
     <td width="10%" align="center">
       <div class="assignment-text">
-        {% if course['show_author']%} {{course['author']}} {% endif %}
+        {{course["author"]}}
       </div>
     </td>
 
     <td width="5%" align="center">
-      {% if course['staff_cert']%}
+      {% if course["staff_cert"]%}
       <i style="color: #acceed; font-size: 30px;" class="fa fa-certificate"></i>
       {%else%}
       <i style="color: #fef9ee; font-size: 30px;" class="fa fa-certificate"></i>
@@ -51,7 +50,7 @@
     </td>
 
     <td width="20%" align="center">
-      {{course['last_updated']}}
+      {{course["last_updated"]}}
     </td>
   </tr>
   <tr>

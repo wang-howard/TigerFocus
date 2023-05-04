@@ -7,10 +7,10 @@
 
         <div class="modal-input-wrapper">
           <h1 id="input-title">Pick Your Course</h1>
-          <select name="course_code" id="course_code" required>
+          <select name="course_id" id="course_id" required>
             {% for course in courses %}
-            <option value="{{course['course_code']}}">
-              {{course['course_code']}}
+            <option value="{{course['id']}}">
+              {{course["course_code"]}}
             </option>
             {% endfor %}
           </select>
@@ -51,7 +51,7 @@
           <h1 id="input-title">Due Date</h1>
           <input type="datetime-local" name="due_date" id="due_date" required />
         </div>
-        <span style="padding-top: 30px; padding-right: 30px; float: right;"><button class="modal_btn" type="submit">update</button> </span>
+        <span style="padding-top: 30px; padding-right: 30px; float: right;"><button class="modal_btn" type="submit">update</button></span>
       </div>
     </form>
   </div>
@@ -80,7 +80,7 @@
             </td>
             <td width="15%">
               <div class="class-chip" style="background-color: {{course['color']}}">
-                {{course['course_code']}}
+                {{course["course_code"]}}
               </div>
             </td>
             <td width="5%">
@@ -101,7 +101,7 @@
           <tr>
             <td height="5px"></td>
           </tr>
-          {%endfor%}
+          {% endfor %}
         </table>
       </div>
 

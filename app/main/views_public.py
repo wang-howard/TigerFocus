@@ -3,9 +3,10 @@ from datetime import date
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
+from .common import generate_course_id, generate_assignment_id
 from . import bp
 from .. import db
-from ..models import User, Course, Assignment, Public_Course, Public_Assignment
+from ..models import User, Course, Assignment
 
 @bp.route("/publiccourses")
 def public_courses():
@@ -23,35 +24,33 @@ def public_courses():
 
 @bp.route("/searchpubliccourses")
 def search_public_courses():
-    title = request.args.get('title')
-    code = request.args.get('code')
+    netid = session["netid"]
+    user = User.query.get(netid)
+
+    title = request.args.get("title")
+    code = request.args.get("code")
     title = "%{}%".format(title)
     code = "%{}%".format(code)
-    courses = Public_Course.query\
-                .filter(Public_Course.course_name.ilike(title))\
-                .filter(Public_Course.course_code.ilike(code))
+    courses = Course.query\
+                .filter_by(is_public=True)\
+                .filter(Course.course_name.ilike(title))\
+                .filter(Course.course_code.ilike(code))
 
-    # create list of dict of course codes
+    # create list of dict of course information
     course_codes = []
-    course_ids = []
-
     for course in courses:
         id = course.id
-        author = course.author
-        show_author = course.show_author
-        staff_cert = course.staff_cert
+        author = str(course.user_netid)
+        staff_cert = False if user.user_type == "student" else True
         course_code = course.course_code
         course_name = course.course_name
-        last_updated = course.last_updated.strftime("%b %d, %Y")
-
+        last_updated = course.last_updated.strftime("%m/%d/%y %I:%M%p")
         course_codes.append({"course_code": course_code,
                              "course_name": course_name,
                              "author": author,
-                             "show_author": show_author,
                              "staff_cert": staff_cert,
                              "id": id,
                              "last_updated": last_updated})
-        course_ids.append(course.id)
 
     return render_template("searchpubliccourses.html",
                            courses=course_codes)
@@ -61,17 +60,15 @@ def search_public_courses():
 def public_assignments():
     try:
         id = request.args.get("courseid")
-        print(id)
 
-        assignments = Public_Assignment.query.filter_by(course_id=id)\
-                            .order_by(Public_Assignment.due_date).all()
+        course = Course.query.get(id)
+        assignments = course.assignments
 
         assignment_data = []
-        course = Public_Course.query.get(id)
         course_code = course.course_code
-        author = course.author
+        author = course.user_netid
         for a in assignments:
-            due = a.due_date.strftime("%b %d, %Y %I:%M %p")
+            due = a.due_date.strftime("%b %d, %Y %I:%M%p")
             assignment_data.append({
                                     "id": a.id,
                                     "title": a.title,
@@ -90,9 +87,9 @@ def public_assignments():
 @login_required
 def import_courses():
     try:
-        course_ids = request.form.get('selected_courses')
+        course_ids = request.form.get("selected_courses")
         # when nothing is selected to be imported this is where we catch
-        if course_ids == '':
+        if course_ids == "":
             return redirect(url_for(".public_courses"))
 
         course_list = course_ids.split(",")
@@ -100,19 +97,12 @@ def import_courses():
         user = User.query.get(netid)
 
         for id in course_list:
-            course = Public_Course.query.get(id)
+            course = Course.query.get(id)
             course_code = course.course_code
             course_name = course.course_name
             assignments = course.assignments
 
-            new_id = str(random.randint(0, 999999)).zfill(6)
-            while True:
-                query = Course.query.get(new_id)
-                if query is None:
-                    break
-                else:
-                    new_id = str(random.randint(0, 999999)).zfill(6)
-            
+            new_id = generate_course_id()
             new_course = Course(id=new_id, course_code=course_code,
                                 course_name=course_name, color="#FFC78F",
                                 user_netid=netid)
@@ -124,18 +114,11 @@ def import_courses():
 
             assignments = list(course.assignments)
             for a in assignments:
-                assignment_id = str(random.randint(0, 999999)).zfill(6)
-                while True:
-                    query = Assignment.query.get(assignment_id)
-                    if query is None:
-                        break
-                    else:
-                        assignment_id = str(random.randint(0, 999999)).zfill(6)
-
+                assignment_id = generate_assignment_id()
                 import_assignment = Assignment(id=assignment_id,
                                                title=a.title,
                                                due_date=a.due_date,
-                                               status=None,
+                                               status=0,
                                                course_id=new_id)
                 db.session.add(import_assignment)
 

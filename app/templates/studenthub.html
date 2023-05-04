@@ -88,7 +88,7 @@
         id="assignment-wrapper-{{assignment['id']}}"
         style="margin-bottom: 5px;
 
-        {% if assignment['status'] == false %}
+        {% if assignment['status'] == 2 %}
         opacity: 0.5;
         {% endif %}"
       >
@@ -101,28 +101,24 @@
           </td>
 
           <td width="5%" align="left">
-            <form action="/statusassignment" method="post">
-              {% if assignment["status"] == true %}
-              <button class="action-button-half">
-                in progress
-              </button>
-              <input hidden name="status" value="FALSE" />
-              <input hidden name="id" value="{{assignment['id']}}" />
-
-              {% elif assignment["status"] == false %}
-              <button class="action-button-full">
-                done
-              </button>
-              <input hidden name="status" value="NONE" />
-              <input hidden name="id" value="{{assignment['id']}}" />
-
-              {% else %}
+            <form action="/statusassignment" method="get">
+              {% if assignment["status"] == 0 %}
               <button class="action-button-empty">
                 not started
               </button>
-              <input hidden name="status" value="TRUE" />
               <input hidden name="id" value="{{assignment['id']}}" />
 
+              {% elif assignment["status"] == 1 %}
+              <button class="action-button-half">
+                in progress
+              </button>
+              <input hidden name="id" value="{{assignment['id']}}" />
+
+              {% else %}
+              <button class="action-button-full">
+                done
+              </button>
+              <input hidden name="id" value="{{assignment['id']}}" />
               {% endif %}
             </form>
           </td>

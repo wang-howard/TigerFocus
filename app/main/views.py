@@ -51,7 +51,7 @@ def hub():
                                  "id": id})
             course_ids.append(course.id)
 
-        # create list of dicts containing course information
+        # create list of dicts containing assignment information
         assignments = Assignment.query.filter(Assignment.course_id\
                         .in_(course_ids))\
                         .order_by(Assignment.due_date).all()
@@ -80,7 +80,7 @@ def hub():
                                    assignments=assignment_data)
         else:
             return render_template("error.html",
-                                   message = "undefined user type")
+                                   message="undefined user type")
     except Exception as ex:
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)

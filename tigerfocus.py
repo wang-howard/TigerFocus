@@ -19,8 +19,12 @@ migrate = Migrate(app, db)
 
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, User=User, Course=Course, Assignment=Assignment,
-                Public_Course=Public_Course, Public_Assignment=Public_Assignment)
+    return dict(db=db,
+                User=User,
+                Course=Course,
+                Assignment=Assignment,
+                Public_Course=Public_Course,
+                Public_Assignment=Public_Assignment)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port="5553", debug=True)
