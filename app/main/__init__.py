@@ -8,4 +8,4 @@ from flask import Blueprint
 
 bp = Blueprint("main", __name__)
 
-from . import views, errors
+from . import views, views_hub, views_public, errors
