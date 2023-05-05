@@ -106,7 +106,7 @@ function startSession() {
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute("value");
-    const assignmentTitle = document.querySelector("#assignment-element-${assignmentId} #assignment-title").innerText;
+    const assignmentTitle = document.querySelector(`#assignment-wrapper-${assignmentId} .assignment-text`).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 
