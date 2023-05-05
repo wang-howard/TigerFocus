@@ -34,9 +34,10 @@
   </p>
 
   <div id="taskrectangle">
-    <h2 id="h2font">Tasks ToDo</h2>
-
-    <p id="center">{{assignments}}</p>
+    <h2 id="h2font">Current Tasks</h2>
+    {% for a in assignments %}
+    <p id="center">{{a}}</p>
+    {% endfor %}
   </div>
   <div>
     <button class="end" onclick="window.location.href='/hub';">

@@ -100,16 +100,6 @@ def start_session():
         print(ex, file=sys.stderr)
         return render_template("error.html", message=ex)
 
-@bp.route("/timer")
-def timer():
-    style = url_for("static", filename="css/timerStyles.css")
-    id = "pomodoro-app"
-    link = "https://www.youtube.com/embed/Kz1QJ4-lerk?autoplay=1&mute=1"
-    script = url_for("static", filename="script/timer.js")
-
-    return render_template("timer.html", style=style, id=id, mins=25,
-                           source=link, script=script )
-
 @bp.route("/shortBreak")
 def shortBreak():
     id = "short-app"
