@@ -96,25 +96,27 @@ edit_assignment_span.onclick = function () {
 };
 
 function startSession() {
-  // get all checked checkboxes
+
   console.log("Start Session button clicked");
   const checkboxes = document.querySelectorAll(".assignment-checkbox:checked");
 
-  // create an array to store the titles of the checked assignments
   const selectedAssignments = [];
 
-  // iterate over each checked checkbox and add its corresponding assignment title to the array
+  
+
+  
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute("value");
     const assignmentTitle = document.querySelector(`#assignment-wrapper-${assignmentId} .assignment-text`).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 
-  // log the selected assignments
-  console.log("Selected Assignments:", selectedAssignments);
+
 
   const hiddenInput = document.getElementById("selected_assignments");
-  hiddenInput.value = selectedAssignments;
+  hiddenInput.value = selectedAssignments.join('\n');
 
-  console.log("Hidden Input Value:", hiddenInput.value);
+  if(selectedAssignments.length === 0)
+    alert("You have not selected any assignments!") 
+
 }

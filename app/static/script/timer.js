@@ -11,7 +11,7 @@ var pomodoro = {
   started: false,
   minutes: 0,
   seconds: 0,
-
+  audio: null, 
   interval: null,
   minutesDom: null,
   secondsDom: null,
@@ -28,6 +28,7 @@ var pomodoro = {
     document.querySelector("#stop").onclick = function () {
       self.stopTimer.apply(self);
     };
+   
   },
   resetVariables: function (mins, secs, started) {
     this.minutes = mins;
@@ -67,7 +68,15 @@ var pomodoro = {
   },
   timerComplete: function () {
     this.started = false;
+    this.audio = new Audio('static/mixkit-classic-alarm-995 (1).mp3');
+    this.audio.play();
+    this.audio.onended = function() {
+      window.alert('done! <3');
+    }
+    this.audio.play();
+    
   },
+  
 };
 
 window.onload = function () {
@@ -83,8 +92,8 @@ function pd_button_clicked() {
 }
 
 function sb_button_clicked() {
-  timer.textContent = 5;
-  setTime = 5;
+  timer.textContent = 1;
+  setTime = 1;
   screen.style.background = "#ABC787";
   videoframe.setAttribute("src", "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1");
   document.querySelector("#stop").click();
