@@ -61,9 +61,6 @@ var coursenew_span = document.getElementsByClassName("add-course-close")[0];
 var editcourse_span = document.getElementsByClassName("edit-course-close")[0];
 var edit_assignment_span = document.getElementsByClassName("edit_assignment_close")[0];
 
-// var list = {};
-// var checked_list = {};
-
 // When the user clicks on the button, open the modal
 create_btn.onclick = function () {
   create_modal.style.display = "block";
@@ -101,7 +98,7 @@ edit_assignment_span.onclick = function () {
 function startSession() {
   // get all checked checkboxes
   console.log("Start Session button clicked");
-  const checkboxes = document.querySelectorAll(".assignment_checkbox:checked");
+  const checkboxes = document.querySelectorAll(".assignment-checkbox:checked");
 
   // create an array to store the titles of the checked assignments
   const selectedAssignments = [];
@@ -109,7 +106,7 @@ function startSession() {
   // iterate over each checked checkbox and add its corresponding assignment title to the array
   checkboxes.forEach((checkbox) => {
     const assignmentId = checkbox.getAttribute("value");
-    const assignmentTitle = document.querySelector(`#assignment-element_${assignmentId} .assignment-text`).innerText;
+    const assignmentTitle = document.querySelector(`#assignment-wrapper-${assignmentId} .assignment-text`).innerText;
     selectedAssignments.push(assignmentTitle);
   });
 
