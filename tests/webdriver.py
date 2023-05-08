@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 driver = webdriver.Chrome('/path/to/chromedriver')  # Optional argument, if not specified will search path.
-driver.get('https://tigerfocus.onrender.com/hub')
+driver.get('https://tigerfocus.onrender.com/testlogin/student')
 
 time.sleep(30) # Let the user actually see something!
 
