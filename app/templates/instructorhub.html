@@ -74,7 +74,7 @@
 
         <td align="center" style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-top: 15px;" >
           {% if not course["is_public"] %}
-          <form action="/toggleexportcourse" method="post" onsubmit="return confirm('The selected courses will be made public to all users. Would you like to continue?');">
+          <form action="/toggleexportcourse" method="post" onsubmit="return confirm('This course will be made public to all users. Would you like to continue?');">
             <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
               <i class="fa fa-globe"></i>
               <i style="font-size: 16px;">make public</i>
