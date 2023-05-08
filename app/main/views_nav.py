@@ -4,8 +4,7 @@ for the flask App. This file represents the bulk of the application,
 including processing requests and interfacing with the database.
 """
 
-import sys
-from dateutil import tzlocal
+import sys, pytz
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
@@ -55,8 +54,9 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
-            date = a.due_date.astimezone(tzlocal())\
-                .strftime("%b %d %I:%M %p")
+            date = a.due_date.astimezone(
+                pytz.timezone("America/New_York"))\
+                    .strftime("%b %d %I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,

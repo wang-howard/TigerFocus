@@ -1,4 +1,4 @@
-import sys
+import sys, pytz
 from datetime import datetime
 from flask import render_template, redirect, url_for
 from flask import session, request
@@ -110,7 +110,7 @@ def add_assignment():
 
         assignment_id = generate_assignment_id()
         assignment = Assignment(id=assignment_id, title=title,
-                                due_date=due, status=None,
+                                due_date=due.astimezone("UTC"), status=None,
                                 course_id=course_id)
         course.last_updated = datetime.utcnow()
         course.assignments.append(assignment)
@@ -229,7 +229,9 @@ def instructor_view_assignments():
         course = Course.query.get(id)
         course_code = course.course_code
         for a in assignments:
-            due = a.due_date.strftime("%b %d %I:%M %p")
+            due = a.due_date.astimezone(
+                pytz.timezone("America/New_York"))\
+                    .strftime("%b %d %I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,

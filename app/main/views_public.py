@@ -1,4 +1,4 @@
-import sys
+import sys, pytz
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
@@ -42,7 +42,9 @@ def search_public_courses():
         staff_cert = False if type == "student" else True
         course_code = course.course_code
         course_name = course.course_name
-        last_updated = course.last_updated.strftime("%m/%d %I:%M%p")
+        last_updated = course.last_updated.astimezone(
+                pytz.timezone("America/New_York"))\
+                    .strftime("%b %d %I:%M %p")
         public_info.append({"course_code": course_code,
                         "course_name": course_name,
                         "author": author,
@@ -65,7 +67,9 @@ def public_assignments():
         course_code = course.course_code
         author = course.user_netid
         for a in assignments:
-            due = a.due_date.strftime("%b %d, %Y %I:%M%p")
+            due = a.due_date.astimezone(
+                pytz.timezone("America/New_York"))\
+                    .strftime("%b %d %I:%M %p")
             assignment_data.append({
                                     "id": a.id,
                                     "title": a.title,
