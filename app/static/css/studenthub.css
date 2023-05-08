@@ -58,6 +58,7 @@ th:last-child {
   border-radius: 40px;
   border: 3px solid #6c7896;
   min-width: 90vw;
+  width: 700px;
 }
 
 #tabs {
@@ -80,6 +81,15 @@ th:last-child {
   cursor: pointer;
 }
 
+#assignments-header {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+}
+
 #assignments-tab:hover {
   background: #acbdeb;
 }
@@ -92,12 +102,30 @@ th:last-child {
   margin-bottom: 0px;
 }
 
+#current-assignments-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 40px;
+  color: #fef9ee;
+}
+
+/* Public Courses window */
 #public-window {
   display: flex;
   flex-direction: column;
   background: #abc787;
   border-radius: 40px;
   border: 3px solid #798d5f;
+  min-width: 90vw;
+  width: 800px;
+}
+
+.public-course-wrapper {
+  padding-bottom: 5px;
+  border-radius: 10px;
+  background: #fef9ee;
+  min-width: 85vw;
+  width: 600px;
 }
 
 #public-tab {
@@ -112,25 +140,24 @@ th:last-child {
   border-radius: 19.2px 19.2px 19.2px 19.2px;
   cursor: pointer;
 }
-
 #public-tab:hover {
   background: #acbdeb;
 }
 
-#assignments-header {
-  margin-top: 15px;
-  margin-bottom: 0px;
+#public-course-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 24px;
 }
 
-#current-assignments-title {
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 40px;
-  color: #fef9ee;
+#results-wrapper {
+  overflow-y: scroll;
+  height: 90%;
+  max-height: 525px;
+}
+
+#public-course-wrapper {
+
 }
 
 #edit-button-wrapper {

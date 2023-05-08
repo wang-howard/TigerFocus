@@ -16,8 +16,8 @@
 </tr>
 
 {% for course in courses %}
-<div id="course_element_{{course['id']}}">
-  <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
+<div id="course_element_{{course['id']}}" class="public-course-wrapper">
+  <tr class="public-course-wrapper">
     <td width="5%" align="center" style="padding-left: 30px; padding-bottom: 30px; padding-right: 20px;">
       <label class="checkbox-button">
         <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />

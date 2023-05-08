@@ -214,26 +214,6 @@ def status_assignment():
     db.session.commit()
     return html
 
-@bp.route("/instructorexportcourses", methods=["GET", "POST"])
-@login_required
-def instructor_export_courses():
-    try:
-        course_ids = request.form.get('selected_courses')
-        if course_ids == '':
-            return redirect(url_for(".hub"))
-
-        course_list = course_ids.split(",")
-        for id in course_list:
-            course = Course.query.get(id)
-            course.is_public = True
-            course.last_updated = get_time()
-            db.session.commit()
-
-        return redirect(url_for(".hub"))
-    except Exception as ex:
-            print(ex, file=sys.stderr)
-            return render_template("error.html", message=ex)
-
 @bp.route("/instructorviewassignments", methods=["GET", "POST"])
 @login_required
 def instructor_view_assignments():
