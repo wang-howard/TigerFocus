@@ -11,7 +11,7 @@
   <th align="center" style="margin-right: 10px;">Course Code</th>
   <th align="left">Course Name</th>
   <th align="center">Author</th>
-  <th></th>
+  <th align="center">Certified</th>
   <th align="center">Last Updated</th>
 </tr>
 
@@ -44,10 +44,8 @@
     </td>
 
     <td width="5%" align="center">
-      {% if course["staff_cert"]%}
+      {% if course["staff_cert"] %}
       <i style="color: #acceed; font-size: 30px;" class="fa fa-certificate"></i>
-      {%else%}
-      <i style="color: #fef9ee; font-size: 30px;" class="fa fa-certificate"></i>
       {%endif%}
     </td>
 

@@ -1,9 +1,9 @@
 import sys
-from datetime import datetime
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
 from .common import generate_course_id, generate_assignment_id
+from .common import get_time
 from . import bp
 from .. import db
 from ..models import User, Course, Assignment
@@ -28,7 +28,7 @@ def create_course():
                             color=course_color,
                             user_netid=netid,
                             is_public=False,
-                            last_updated=datetime.now())
+                            last_updated=get_time())
         user = User.query.get(netid)
         user.courses.append(new_course)
         db.session.add(new_course)
@@ -58,7 +58,7 @@ def edit_course():
         edited_course.course_code = course_code
         edited_course.course_name = course_name
         edited_course.color = course_color
-        edited_course.last_updated = datetime.now()
+        edited_course.last_updated = get_time()
 
         db.session.commit()
         return redirect(url_for(".hub"))
@@ -113,7 +113,7 @@ def add_assignment():
         assignment = Assignment(id=assignment_id, title=title,
                                 due_date=due, status=None,
                                 course_id=course_id)
-        course.last_updated = datetime.now()
+        course.last_updated = get_time()
         course.assignments.append(assignment)
         db.session.add(assignment)
         db.session.commit()
@@ -138,7 +138,7 @@ def edit_assignment():
         edited_assignment.title = title
 
         course_id = edited_assignment.course_id
-        Course.query.get(course_id).last_updated = datetime.now()
+        Course.query.get(course_id).last_updated = get_time()
 
         db.session.commit()
 
@@ -160,7 +160,7 @@ def delete_assignment():
         course_id = assignment.course_id
         Assignment.query.filter_by(id=id).delete()
 
-        Course.query.get(course_id).last_updated = datetime.now()
+        Course.query.get(course_id).last_updated = get_time()
 
         db.session.commit()
 
@@ -226,7 +226,7 @@ def instructor_export_courses():
         for id in course_list:
             course = Course.query.get(id)
             course.is_public = True
-            course.last_updated = datetime.now()
+            course.last_updated = get_time()
             db.session.commit()
 
         return redirect(url_for(".hub"))

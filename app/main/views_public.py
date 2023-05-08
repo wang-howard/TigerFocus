@@ -23,9 +23,6 @@ def public_courses():
 
 @bp.route("/searchpubliccourses")
 def search_public_courses():
-    netid = session["netid"]
-    user = User.query.get(netid)
-
     title = request.args.get("title")
     code = request.args.get("code")
     title = "%{}%".format(title)
@@ -33,26 +30,27 @@ def search_public_courses():
     courses = Course.query\
                 .filter_by(is_public=True)\
                 .filter(Course.course_name.ilike(title))\
-                .filter(Course.course_code.ilike(code))
+                .filter(Course.course_code.ilike(code))\
+                .order_by(Course.course_code).all()
 
     # create list of dict of course information
-    course_codes = []
+    public_info = []
     for course in courses:
         id = course.id
         author = str(course.user_netid)
-        staff_cert = False if user.user_type == "student" else True
+        type = User.query.get(course.user_netid).user_type
+        staff_cert = False if type == "student" else True
         course_code = course.course_code
         course_name = course.course_name
         last_updated = course.last_updated.strftime("%m/%d/%y %I:%M%p")
-        course_codes.append({"course_code": course_code,
-                             "course_name": course_name,
-                             "author": author,
-                             "staff_cert": staff_cert,
-                             "id": id,
-                             "last_updated": last_updated})
-
+        public_info.append({"course_code": course_code,
+                        "course_name": course_name,
+                        "author": author,
+                        "staff_cert": staff_cert,
+                        "last_updated": last_updated,
+                        "id": id})
     return render_template("searchpubliccourses.html",
-                           courses=course_codes)
+                           courses=public_info)
 
 @bp.route("/publicassignments", methods=["GET", "POST"])
 @login_required
