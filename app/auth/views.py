@@ -107,7 +107,7 @@ def test_login_student():
     return redirect(url_for("main.hub"))
 
 @auth.route("/testlogin/instructor")
-def test_login_student():
+def test_login_instructor():
     user = User.query.get("testinstructor")
     session["netid"] = "testinstructor"
     login_user(user)
