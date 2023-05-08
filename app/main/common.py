@@ -26,8 +26,3 @@ def generate_assignment_id():
         else:
             assignment_id = str(random.randint(1000000, 9999999))
     return assignment_id
-
-def get_time():
-    stamp = datetime.now()
-    tz = timezone("America/New_York")
-    return tz.localize(stamp)

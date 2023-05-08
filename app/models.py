@@ -5,6 +5,7 @@ interface with the PostgresSQL database. Models represents the
 
 from app import db
 from flask_login import UserMixin
+from datetime import datetime
 from . import login_manager
 
 class User(UserMixin, db.Model):
@@ -30,7 +31,7 @@ class Course(db.Model):
     color = db.Column(db.String, nullable=False) 
     user_netid = db.Column(db.String, db.ForeignKey("users.netid"))
     is_public = db.Column(db.Boolean, default=False)
-    last_updated = db.Column(db.DateTime)
+    last_updated = db.Column(db.DateTime, default=datetime.utcnow)
     assignments = db.relationship("Assignment", backref="course",
                                   order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")

@@ -95,13 +95,13 @@ def import_courses():
 
         for id in course_list:
             course = Course.query.get(id)
-            course_code = course.course_code
-            course_name = course.course_name
-            assignments = course.assignments
 
             new_id = generate_course_id()
-            new_course = Course(id=new_id, course_code=course_code,
-                                course_name=course_name, color="#FFC78F",
+            new_course = Course(id=new_id,
+                                course_code=course.course_code,
+                                course_name=course.course_name,
+                                color="#FFC78F",
+                                last_updated=course.last_updated,
                                 user_netid=netid)
             user.courses.append(new_course)
             db.session.add(new_course)

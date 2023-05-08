@@ -3,15 +3,14 @@
 {% block title %}{{course_code}} Assignments{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/studenthub.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/createNew.css') }}">
 {% endblock %}
 
 {% block body %}
 {% include "modals.html" %}
-
 <div id="welcome_wrapper">
   <table>
     <td width="88%" style="padding-top: 50px; padding-left: 30px;">
@@ -22,11 +21,9 @@
 
 <div id="instructor-window">
   <div id="tabs">
-    <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="instructor-assignments-tab">
-        my hub
-      </button>
-    </div>
+    <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="instructor-assignments-tab">
+      my hub
+    </button>
   </div>
 
   <div id="assignments-header">
@@ -35,15 +32,17 @@
 
   <hr>
   <div>
-    <button style="width: 175px; float: right; margin-right: 30px; margin-bottom: 10px;" id="instructor-new-assignment-button" type="submit" class="instructor-small-button">
+    <button type="submit" class="instructor-small-button" id="instructor-new-assignment-button" style="width: 175px; float: right; margin-right: 30px; margin-bottom: 10px;">
       add new
     </button>
-    <input hidden value="{{id}}" id="current_course_id" />
+    <input type="hidden" id="current_course_id" value="{{id}}">
   </div>
   <hr>
 
   {% if assignments == [] %}
-  <div style="width: 900px; padding: 30px;">click "add new" to add assignments to this course</div>
+  <div style="width: 900px; padding: 30px;">
+    click "add new" to add assignments to this course
+  </div>
 
   {% else %}
   <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
@@ -70,9 +69,9 @@
             </td>
 
             <form action="/deleteassignment" method="post">
-              <td style="padding-right: 30px;" width="5%">
-                <input type="hidden" name="assignment_id" value="{{a['id']}}" />
-                <button onclick="window.location.href='/deleteassignment';" class="action-button">
+              <td width="5%" style="padding-right: 30px;">
+                <input type="hidden" name="assignment_id" value="{{a['id']}}">
+                <button  class="action-button" onclick="window.location.href='/deleteassignment';">
                   <i class="fa fa-trash"></i>
                 </button>
               </td>
@@ -88,7 +87,5 @@
   </div>
   {%endif%}
 </div>
-
-
 <script src="{{url_for('static', filename='script/instructorviewassignments.js')}}"></script>
 {% endblock %}

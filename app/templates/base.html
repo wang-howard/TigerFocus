@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     {% block style %}
     {% endblock %}
-    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
   </head>
   <body style="background: #fef9ee;">
     <div id="page">
@@ -31,7 +31,8 @@
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 8px;">
-        {% block body %} {% endblock %}
+        {% block body %}
+        {% endblock %}
       </div>
     </div>
   </body>
