@@ -97,7 +97,7 @@ edit_assignment_span.onclick = function () {
 
 function startSession() {
 
-  console.log("Start Session button clicked");
+  console.log("button clicked ");
   const checkboxes = document.querySelectorAll(".assignment-checkbox:checked");
 
   const selectedAssignments = [];
@@ -117,6 +117,6 @@ function startSession() {
   hiddenInput.value = selectedAssignments.join(',');
 
   if(selectedAssignments.length === 0)
-    alert("You have not selected any assignments!") 
+    confirm("You have not selected any assignments!") 
 
 }
