@@ -117,6 +117,6 @@ function startSession() {
   hiddenInput.value = selectedAssignments.join(',');
 
   if(selectedAssignments.length === 0)
-    confirm("You have not selected any assignments!") 
+    alert("You have not selected any assignments!") 
 
 }
