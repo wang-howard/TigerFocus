@@ -80,7 +80,7 @@
 
     {% for assignment in assignments %}
     <div class id="assignment-element-{{assignment['id']}}">
-      <tr class="assignment-wrapper" id="assignment-wrapper-{{assignment['id']}}" style="margin-bottom: 5px; {% if assignment['status'] == 2 %}opacity: 0.5;{% endif %}">
+      <tr class="assignment-wrapper" id="assignment-wrapper-{{assignment['id']}}" >
         <td width="5%" style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px;" align="center">
           <label class="checkbox-button">
             <input type="checkbox" class="assignment-checkbox" value="{{assignment['id']}}" />

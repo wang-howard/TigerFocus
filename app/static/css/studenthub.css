@@ -329,15 +329,15 @@ th:last-child {
 
 .action-button-full {
   width: 75px;
-  background-color: #94ac74;
+  background-color: #c7e49f;
 }
 .action-button-full:hover {
-  background: #c7e69e;
+  background: #e6f7cf;
   cursor: pointer;
 }
 
 .action-button-half {
-  width: 100px;
+  width: 120px;
   background-color:#eabbd2;
   border: none;
 }

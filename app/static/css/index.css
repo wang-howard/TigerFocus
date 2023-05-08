@@ -108,3 +108,21 @@ a:hover {
   height: 375px;
   margin-top: 30px;
 }
+
+#logout {
+  display: flex;
+  gap: 8px;
+}
+
+#logout-button {
+  background-color: #ffffff00;
+  border-color: #564b47;
+  border-bottom: #fef9ee;
+  border-top: #fef9ee;
+  height: 32px;
+  width: 80px;
+  border-radius: 10px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #4e4e4e;
+}
