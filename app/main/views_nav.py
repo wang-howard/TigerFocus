@@ -104,6 +104,7 @@ def start_session():
         return render_template("error.html", message=ex)
 
 @bp.route("/shortBreak")
+@login_required
 def shortBreak():
     id = "short-app"
     link = "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1"
@@ -113,6 +114,7 @@ def shortBreak():
                            source=link, script=script)
 
 @bp.route("/longBreak")
+@login_required
 def longBreak():
     style = url_for("static", filename="css/longbreakStyles.css")
     id = "long-app"
