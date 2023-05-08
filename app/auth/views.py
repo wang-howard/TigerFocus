@@ -102,11 +102,13 @@ def logout_callback():
 @auth.route("/testlogin/student")
 def test_login_student():
     user = User.query.get("teststudent")
+    session["netid"] = "teststudent"
     login_user(user)
     return redirect(url_for("main.hub"))
 
 @auth.route("/testlogin/instructor")
 def test_login_student():
     user = User.query.get("testinstructor")
+    session["netid"] = "testinstructor"
     login_user(user)
     return redirect(url_for("main.hub"))
