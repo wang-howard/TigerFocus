@@ -34,7 +34,7 @@ def hub():
     try:
         user = User.query.get(netid)
         first = user.first_name
-        courses = list(user.courses)
+        courses = list(user.courses.order_by(Course.course_code))
         
         # create list of dict of course info and their colors
         course_data = []

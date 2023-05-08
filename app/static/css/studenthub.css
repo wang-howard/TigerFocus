@@ -84,6 +84,22 @@ th:last-child {
   background: #acbdeb;
 }
 
+.assignment-text {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+}
+
+#public-window {
+  display: flex;
+  flex-direction: column;
+  background: #abc787;
+  border-radius: 40px;
+  border: 3px solid #798d5f;
+}
+
 #public-tab {
   border: 0px;
   text-align: center;
@@ -196,14 +212,6 @@ th:last-child {
   text-align: center;
 }
 
-#public-window {
-  display: flex;
-  flex-direction: column;
-  background: #abc787;
-  border-radius: 40px;
-  border: 3px solid #798d5f;
-}
-
 .class-chip {
   text-align: center;
   overflow: hidden;
@@ -237,13 +245,6 @@ th:last-child {
   background: #d9d9d9;
   border-color: rgb(155, 160, 217);
 }
-.assignment-text {
-  font-family: "Anek Bangla", sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: #000000;
-  margin-bottom: 0px;
-}
 
 .status-button {
   border: 0px;
@@ -261,6 +262,21 @@ th:last-child {
   height: 0px;
   width: 0px;
 }
+/* Show the checkmark when checked */
+.checkbox-button input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.checkbox-button .checkmark:after {
+  padding-bottom: 100px;
+  width: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+}
+.checkbox-button input:checked ~ .checkmark {
+  background: #d9d9d9;
+}
 
 .checkmark {
   border: 0px;
@@ -270,32 +286,12 @@ th:last-child {
   border-radius: 5px;
   cursor: pointer;
 }
-
 .checkmark:hover {
   background: #aaa7a7;
 }
-
-.checkbox-button input:checked ~ .checkmark {
-  background: #d9d9d9;
-}
-
 .checkmark:after {
   content: "X";
   display: none;
-}
-
-/* Show the checkmark when checked */
-.checkbox-button input:checked ~ .checkmark:after {
-  display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkbox-button .checkmark:after {
-  padding-bottom: 100px;
-  width: auto;
-  color: #000000;
-  font-size: 20px;
-  font-weight: bold;
 }
 
 .action-button {

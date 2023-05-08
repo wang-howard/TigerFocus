@@ -36,26 +36,15 @@
 
   <div id="assignments-header">
     <div id="current-assignments-title">Current Courses</div>
-  </div>
-
-  <hr />
-  <div style="padding-bottom: 10px; padding-right: 30px;">
     <button id="instructor-course-button" style="width: 175px; float: right; margin-left: 10px;" type="submit" class="instructor-small-button">
       add courses
     </button>
-
-    <form action="/instructorexportcourses" method="post">
-      <button type="submit" class="instructor-small-button" style="width: 175px; float: right;" onclick="exportCourses()">
-        make public
-      </button>
-      <input type="hidden" id="selected_courses" name="selected_courses" value="" />
-    </form>
   </div>
-  <hr />
+  <hr>
 
   {% if courses == [] %}
   <div style="padding: 30px; color: #fef9ee;" class="assignment-text">
-    Click "add courses" to add courses!
+    Click "add courses" to create your first course!
   </div>
 
   {%else%}
@@ -65,7 +54,7 @@
       <tr>
         <th align="center">course code</th>
         <th align="left">course name</th>
-        <th>select to make public</th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -83,11 +72,22 @@
           <div class="assignment-text">{{course["course_name"]}}</div>
         </td>
 
-        <td width="25%" style="padding-bottom: 30px;" align="center">
-          <label class="checkbox-button">
-            <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
-            <div class="checkmark"></div>
-          </label>
+        <td align="center" style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding-top: 15px;" >
+          {% if not course["is_public"] %}
+          <form action="/toggleexportcourse" method="post" onsubmit="return confirm('The selected courses will be made public to all users. Would you like to continue?');">
+            <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
+              <i class="fa fa-globe"></i>
+              <i style="font-size: 16px;">make public</i>
+            </button>
+          </form>
+          {% else %}
+          <form action="/toggleexportcourse" method="post">
+            <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
+              <i class="fa fa-lock"></i>
+              <i style="font-size: 16px;">make private</i>
+            </button>
+          </form>
+          {% endif %}
         </td>
 
         <td width="15%" style="padding-right: 15px;">
