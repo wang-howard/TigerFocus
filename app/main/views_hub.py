@@ -230,7 +230,7 @@ def instructor_view_assignments():
         course = Course.query.get(id)
         course_code = course.course_code
         for a in assignments:
-            due = a.due_date.strftime("%b %d, %Y %I:%M %p")
+            due = a.due_date.strftime("%b %d %I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,

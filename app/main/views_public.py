@@ -42,7 +42,7 @@ def search_public_courses():
         staff_cert = False if type == "student" else True
         course_code = course.course_code
         course_name = course.course_name
-        last_updated = course.last_updated.strftime("%m/%d/%y %I:%M%p")
+        last_updated = course.last_updated.strftime("%m/%d %I:%M%p")
         public_info.append({"course_code": course_code,
                         "course_name": course_name,
                         "author": author,

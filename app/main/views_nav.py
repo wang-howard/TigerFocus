@@ -54,13 +54,11 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
-            date = a.due_date.strftime("%b %d, %Y")
-            time = a.due_date.strftime("%I:%M %p")
+            date = a.due_date.strftime("%b %d %I:%M %p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
-                                    "date": date,
-                                    "time": time,
+                                    "due_date": date,
                                     "course_code":course.course_code,
                                     "color": course.color})
 
