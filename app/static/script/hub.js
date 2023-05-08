@@ -114,7 +114,7 @@ function startSession() {
 
 
   const hiddenInput = document.getElementById("selected_assignments");
-  hiddenInput.value = selectedAssignments.join('\n');
+  hiddenInput.value = selectedAssignments.join(',');
 
   if(selectedAssignments.length === 0)
     alert("You have not selected any assignments!") 
