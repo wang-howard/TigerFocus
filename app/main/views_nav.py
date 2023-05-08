@@ -61,6 +61,7 @@ def hub():
                                     "title": a.title,
                                     "date": date,
                                     "time": time,
+                                    "due_date": a.due_date,
                                     "course_code":course.course_code,
                                     "color": course.color})
 
