@@ -92,8 +92,8 @@ function pd_button_clicked() {
 }
 
 function sb_button_clicked() {
-  timer.textContent = 1;
-  setTime = 1;
+  timer.textContent = 5;
+  setTime = 5;
   screen.style.background = "#ABC787";
   videoframe.setAttribute("src", "https://www.youtube.com/embed/g1WfKpFQdOg?autoplay=1&mute=1");
   document.querySelector("#stop").click();
