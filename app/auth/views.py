@@ -104,4 +104,9 @@ def test_login_student():
     user = User.query.get("teststudent")
     login_user(user)
     return redirect(url_for("main.hub"))
-    
+
+@auth.route("/testlogin/instructor")
+def test_login_student():
+    user = User.query.get("testinstructor")
+    login_user(user)
+    return redirect(url_for("main.hub"))
