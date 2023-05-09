@@ -1,4 +1,4 @@
-import sys, pytz
+import sys
 from datetime import datetime, timezone
 from flask import render_template, redirect, url_for
 from flask import session, request
@@ -57,8 +57,7 @@ def edit_course():
         edited_course.course_code = course_code
         edited_course.course_name = course_name
         edited_course.color = course_color
-        edited_course.last_updated = \
-            datetime.now(timezone.utc).isoformat()
+        edited_course.last_updated = datetime.now(timezone.utc)
 
         db.session.commit()
         return redirect(url_for(".hub"))
@@ -117,7 +116,7 @@ def add_assignment():
                                 due_date=due_dt,
                                 status=None,
                                 course_id=course_id)
-        course.last_updated = datetime.now(timezone.utc).isoformat()
+        course.last_updated = datetime.now(timezone.utc)
         course.assignments.append(assignment)
         db.session.add(assignment)
         db.session.commit()
@@ -137,13 +136,15 @@ def edit_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
 
+        due_dt = datetime.strptime(due, "%Y-%m-%dT%H:%M")
+
         edited_assignment = Assignment.query.get(assignment_id)
-        edited_assignment.due_date = due
+        edited_assignment.due_date = due_dt
         edited_assignment.title = title
 
         course_id = edited_assignment.course_id
         Course.query.get(course_id).last_updated =\
-            datetime.now(timezone.utc).isoformat()
+            datetime.now(timezone.utc)
 
         db.session.commit()
 
@@ -166,7 +167,7 @@ def delete_assignment():
         Assignment.query.filter_by(id=id).delete()
 
         Course.query.get(course_id).last_updated =\
-            datetime.now(timezone.utc).isoformat()
+            datetime.now(timezone.utc)
 
         db.session.commit()
 
@@ -236,9 +237,7 @@ def instructor_view_assignments():
         course = Course.query.get(id)
         course_code = course.course_code
         for a in assignments:
-            due = a.due_date.astimezone(
-                pytz.timezone("America/New_York"))\
-                    .strftime("%b %d %I:%M %p")
+            due = a.due_date.strftime("%b %d %I:%M%p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
@@ -262,13 +261,15 @@ def instructor_add_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
 
+        due_dt = datetime.strptime(due, "%Y-%m-%dT%H:%M")
+
         Course.query.get(course_id).last_updated =\
-            datetime.now(timezone.utc).isoformat()
+            datetime.now(timezone.utc)
 
         assignment_id = generate_assignment_id()
         new_assignment = Assignment(id=assignment_id,
                                     title=title,
-                                    due_date=due,
+                                    due_date=due_dt,
                                     course_id=course_id)
         db.session.add(new_assignment)
         db.session.commit()

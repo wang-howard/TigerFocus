@@ -4,12 +4,12 @@ for the flask App. This file represents the bulk of the application,
 including processing requests and interfacing with the database.
 """
 
-import sys, pytz
+import sys
+from datetime import datetime, timezone
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
 from . import bp
-from .. import db
 from ..models import User, Course, Assignment
 
 @bp.route("/", methods=["GET"])
@@ -54,9 +54,8 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
-            date = a.due_date.astimezone(
-                pytz.timezone("America/New_York"))\
-                    .strftime("%b %d %I:%M %p")
+            print(type(a.due_date))
+            date = a.due_date.astimezone().strftime("%b %d %I:%M%p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,
