@@ -5,7 +5,6 @@ including processing requests and interfacing with the database.
 """
 
 import sys
-from datetime import datetime, timezone
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
@@ -54,7 +53,7 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
-            date = a.due_date.astimezone().strftime("%b %d %I:%M%p")
+            date = a.due_date.strftime("%b %d %I:%M%p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,
                                     "title": a.title,

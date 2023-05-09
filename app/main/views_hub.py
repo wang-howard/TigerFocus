@@ -242,7 +242,6 @@ def instructor_view_assignments():
                                     "id": a.id,
                                     "title": a.title,
                                     "due_date": due,
-                                    "course_code": course.course_code,
                                     "color": course.color})
         return render_template("instructorviewassignments.html",
                                first_name=first,

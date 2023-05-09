@@ -43,7 +43,8 @@ def search_public_courses():
         course_code = course.course_code
         course_name = course.course_name
 
-        time = pytz.UTC.localize(course.last_updated).astimezone(pytz.timezone("America/New_York"))
+        time = pytz.UTC.localize(course.last_updated)\
+            .astimezone(pytz.timezone("America/New_York"))
         last_updated = time.strftime("%b %d %I:%M%p")
         public_info.append({"course_code": course_code,
                         "course_name": course_name,

@@ -31,9 +31,8 @@ class Course(db.Model):
     color = db.Column(db.String, nullable=False) 
     user_netid = db.Column(db.String, db.ForeignKey("users.netid"))
     is_public = db.Column(db.Boolean, default=False)
-    last_updated = db.Column(
-        db.DateTime,
-        default=datetime.now(timezone.utc).astimezone().isoformat())
+    last_updated = db.Column(db.DateTime,
+                             default=datetime.now(timezone.utc))
     assignments = db.relationship("Assignment", backref="course",
                                   order_by="asc(Assignment.due_date)",
                                   lazy="dynamic")
