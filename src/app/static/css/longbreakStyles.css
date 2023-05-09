@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+#TigerFocusbanner {
+  height: 70px;
+
+  font-family: "Anek Bangla", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 37.5px;
+  line-height: 70px;
+  color: #f9aa5b;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #4e4e4e;
+}
+
+a:hover {
+  color: #747272;
+}
+
+.headerbutton {
+  border: 0px;
+  background-color: #33333300;
+  height: 26px;
+  font-family: "Anek Bangla", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 22.5px;
+  line-height: 26px;
+  color: #4e4e4e;
+}
+
+#border {
+  position: absolute;
+  width: 1257px;
+  height: 2px;
+  left: 87px;
+  top: 103px;
+
+  background: #4e4e4e;
+  border-radius: 50px;
+}
+
+#screen {
+  margin: auto;
+  margin-top: 115px;
+  width: 779.52px;
+  height: 942.26px;
+  left: 298px;
+  top: 901.52px;
+
+  background: #d9c1b9;
+  border-radius: 40px;
+}
+
+#pomodoro {
+  margin-top: 15px;
+  margin-right: 50px;
+  margin-left: 105px;
+  width: 300 px;
+  height: 32.35px;
+  left: 257px;
+  top: 72.35px;
+
+  background: #fef9ee;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
+}
+
+#body {
+  font-size: 75px;
+  color: #fef9ee;
+  font-family: "Anek Bangla";
+}
+#timeContainer {
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 70px;
+  text-align: center;
+  width: 200px;
+  height: 70px;
+  border-radius: 18px;
+  background-color: #564b47;
+}
+
+#time {
+  color: #fef9ee;
+  font-size: 50px;
+  margin-top: 10px;
+  padding-top: 9px;
+  padding-bottom: 10px;
+}
+
+#buttons button {
+  width: 80px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
+}
+
+#buttons button#stop {
+  width: 80px;
+  height: 30px;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0px 2.22231px 2.22231px rgba(0, 0, 0, 0.25);
+  border-radius: 16.6673px;
+  font-family: "Anek Bangla";
+}
+#taskrectangle {
+  margin: auto;
+  width: 421px;
+  height: 180px;
+  left: 295px;
+  top: 559px;
+  background: #fef9ee;
+  border-radius: 40px;
+}
+
+#h2font {
+  margin: auto;
+  font-family: "Anek Bangla";
+  color: #564b47;
+  text-align: center;
+}
+
+#videoframe {
+  border-radius: 18px;
+}
+#beforeClick {
+  text-decoration: none;
+}
+#beforeClick:after {
+  text-decoration: none;
+}

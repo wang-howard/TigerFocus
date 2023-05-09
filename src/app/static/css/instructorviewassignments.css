@@ -1,0 +1,96 @@
+#instructor-window {
+  display: flex;
+  flex-direction: column;
+  background: #fef9ee;
+  border-radius: 40px;
+  border: 3px solid #5a5a5a;
+}
+
+#instructor-current-assignments-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 40px;
+  color: #4e4e4e;
+}
+
+#instructor-assignments-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+  background: #4e4e4e;
+}
+#instructor-assignments-tab:hover {
+  background: #9a9a9a;
+}
+
+#instructor-public-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+  background: #4e4e4e;
+}
+#instructor-tab:hover {
+  background: #9a9a9a;
+}
+
+#input-title {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: #4e4e4e;
+  text-align: center;
+}
+
+.instructor-small-button {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #4e4e4e;
+  color: #fef9ee;
+  text-align: center;
+  border-radius: 20px;
+  height: 40px;
+  width: 145px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.instructor-small-button:hover {
+  background: #9a9a9a;
+}
+
+#view {
+  box-sizing: border-box;
+  width: 130px;
+  height: 35px;
+  background: #fef9ee;
+  border: 1px solid #000000;
+  border-radius: 40px;
+}
+
+.instructor-assignment-wrapper {
+  background: #fef9ee;
+  border-radius: 30px;
+  height: 70px;
+  width: 98%;
+  margin-left: 10px;
+}
+
+#shift {
+  padding-left: 15px;
+}
+#shift2 {
+  padding-left: 120px;
+}

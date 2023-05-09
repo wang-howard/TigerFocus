@@ -1,0 +1,385 @@
+@import url("https://fonts.googleapis.com/css?family=Anek+Bangla&display=swap");
+
+a {
+  text-decoration: none;
+  color: #fef9ee;
+}
+a:visited {
+  text-decoration: none;
+  color: #fef9ee;
+}
+a:hover {
+  color: #fef9ee;
+}
+
+hr {
+  color: #fef9ee;
+  margin-top: 0px;
+  width: 95%;
+}
+
+table, tr, td {
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/*Set border-radius on the top-left and bottom-left of the first table data on the table row*/
+td:first-child,
+th:first-child {
+  border-radius: 30px 0 0 30px;
+}
+
+/* Set border-radius on the top-right and bottom-right of the last table data on the table row*/
+td:last-child,
+th:last-child {
+  border-radius: 0 30px 30px 0;
+}
+
+#welcome-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0px;
+}
+
+#welcome {
+  font-weight: 600;
+  font-size: 37.5px;
+  color: #4e4e4e;
+}
+
+#assignments-window {
+  display: flex;
+  flex-direction: column;
+  background: #919fc7;
+  border-radius: 40px;
+  border: 3px solid #6c7896;
+  min-width: 90vw;
+  width: 700px;
+}
+
+#tabs {
+  display: flex;
+  gap: 16px;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+#assignments-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+
+#assignments-header {
+  margin-top: 15px;
+  margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 24px;
+}
+
+#assignments-tab:hover {
+  background: #acbdeb;
+}
+
+.assignment-text {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+}
+
+#current-assignments-title {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 40px;
+  color: #fef9ee;
+}
+
+/* Public Courses window */
+#public-window {
+  display: flex;
+  flex-direction: column;
+  background: #abc787;
+  border-radius: 40px;
+  border: 3px solid #798d5f;
+  min-width: 90vw;
+  width: 800px;
+}
+
+.public-course-wrapper {
+  padding-bottom: 5px;
+  border-radius: 10px;
+  background: #fef9ee;
+  min-width: 85vw;
+  width: 600px;
+}
+
+#public-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  background: #6c7896;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+}
+#public-tab:hover {
+  background: #acbdeb;
+}
+
+#public-course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#results-wrapper {
+  overflow-y: scroll;
+  height: 90%;
+  max-height: 525px;
+}
+
+#public-course-wrapper {
+
+}
+
+#edit-button-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.small-button {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 800;
+  border: 3px solid rgba(0, 0, 0, 0.25);
+  background-color: #564b47;
+  color: #fef9ee;
+  text-align: center;
+  border-radius: 20px;
+  height: 50px;
+  width: 145px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.small-button:hover {
+  background: #83736d;
+}
+
+#table-header {
+  color: #fef9ee;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 30px;
+}
+
+.assignment-wrapper {
+  background: #fef9ee;
+  border-radius: 30px;
+  height: 70px;
+  width: 90%;
+}
+
+#pre-assignments-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+  background: #798d5f;
+}
+#pre-assignments-tab:hover {
+  background: #bbda93;
+}
+
+#pre-public-tab {
+  border: 0px;
+  text-align: center;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  width: 200px;
+  height: auto;
+  border-radius: 19.2px 19.2px 19.2px 19.2px;
+  cursor: pointer;
+  background: #798d5f;
+}
+#pre-public-tab:hover {
+  background: #bbda93;
+}
+
+#input-title {
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  color: #4e4e4e;
+  text-align: center;
+}
+
+.class-chip {
+  text-align: center;
+  overflow: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 125px;
+  height: 40px;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+.pre-class-chip {
+  text-align: center;
+  overflow: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 0px;
+  width: 125px;
+  height: 40px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  border-color: rgb(155, 160, 217);
+  background-color: rgb(155, 160, 217)
+}
+.pre-class-chip:hover
+{
+  background: #d9d9d9;
+  border-color: rgb(155, 160, 217);
+}
+
+.status-button {
+  border: 0px;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 7px;
+  border-radius: 100%;
+  background: #807f7f;
+  cursor: pointer;
+}
+
+.checkbox-button input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0px;
+  width: 0px;
+}
+/* Show the checkmark when checked */
+.checkbox-button input:checked ~ .checkmark:after {
+  display: block;
+}
+/* Style the checkmark/indicator */
+.checkbox-button .checkmark:after {
+  padding-bottom: 100px;
+  width: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+}
+.checkbox-button input:checked ~ .checkmark {
+  background: #d9d9d9;
+}
+
+.checkmark {
+  border: 0px;
+  width: 35px;
+  height: 35px;
+  background: #d9d9d9;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.checkmark:hover {
+  background: #aaa7a7;
+}
+.checkmark:after {
+  content: "X";
+  display: none;
+}
+
+.action-button {
+  border: 0px;
+  width: auto;
+  height: auto;
+  font-size: 25px;
+  background: #00000000;
+  color: #4e4e4e;
+}
+.action-button:hover {
+  color: #7b7b7b;
+  cursor: pointer;
+}
+
+.action-button-full,
+.action-button-half,
+.action-button-empty {
+  text-align: center;
+  overflow: hidden;
+  font-family: "Anek Bangla", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 0px;
+  height: 30px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  border: none;
+}
+
+.action-button-full {
+  width: 75px;
+  background-color: #c7e49f;
+}
+.action-button-full:hover {
+  background: #e6f7cf;
+  cursor: pointer;
+}
+
+.action-button-half {
+  width: 120px;
+  background-color:#eabbd2;
+  border: none;
+}
+.action-button-half:hover {
+  background-color: #e8c7d7;
+  cursor: pointer;
+}
+
+.action-button-empty {
+  width: 120px;
+  background-color:#d8d8d8;
+}
+.action-button-empty:hover {
+  background-color: #f1eeee;
+  cursor: pointer;
+}
+
+.searchbar {
+  border: 3px solid rgb(164, 160, 160);
+  border-radius: 20px;
+  height: 30px;
+}

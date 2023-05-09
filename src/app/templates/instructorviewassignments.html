@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}{{course_code}} Assignments{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/studenthub.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/createNew.css') }}">
+{% endblock %}
+
+{% block body %}
+{% include "modals.html" %}
+<div id="welcome_wrapper">
+  <table>
+    <td width="88%" style="padding-top: 50px; padding-left: 30px;">
+      <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
+    </td>
+  </table>
+</div>
+
+<div id="instructor-window">
+  <div id="tabs">
+    <button style="color: #fef9ee;" onclick="window.location.href='/hub';" id="instructor-assignments-tab">
+      my hub
+    </button>
+  </div>
+
+  <div id="assignments-header">
+    <div id="instructor-current-assignments-title">Assignments for {{course_code}}</div>
+  </div>
+
+  <hr>
+  <div>
+    <button type="submit" class="instructor-small-button" id="instructor-new-assignment-button" style="width: 175px; float: right; margin-right: 30px; margin-bottom: 10px;">
+      add new
+    </button>
+    <input type="hidden" id="current_course_id" value="{{id}}">
+  </div>
+  <hr>
+
+  {% if assignments == [] %}
+  <div style="width: 900px; padding: 30px;">
+    click "add new" to add assignments to this course
+  </div>
+
+  {% else %}
+  <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
+    <div>
+      <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
+        <tr id="table-header" style="color: black;">
+          <th align="center">Assignment</th>
+          <th align="center">Due Date</th>
+          <th></th>
+        </tr>
+        {% for a in assignments %}
+        <div id="assignment-element_{{a['id']}}">
+          <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
+            <td width="50%" align="center">
+              <div>{{a["title"]}}</div>
+            </td>
+            <td width="50%" align="center">
+              <div>{{a["due_date"]}}</div>
+            </td>
+            <td>
+              <button name="edit_assignment_button" class="action-button" value="{{a['id']}}">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+
+            <form action="/deleteassignment" method="post">
+              <td width="5%" style="padding-right: 30px;">
+                <input type="hidden" name="assignment_id" value="{{a['id']}}">
+                <button  class="action-button" onclick="window.location.href='/deleteassignment';">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </form>
+          </tr>
+          <tr>
+            <td height="2px"></td>
+          </tr>
+        </div>
+        {%endfor%}
+      </table>
+    </div>
+  </div>
+  {%endif%}
+</div>
+<script src="{{url_for('static', filename='script/instructorviewassignments.js')}}"></script>
+{% endblock %}

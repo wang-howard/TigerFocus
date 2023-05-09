@@ -1,0 +1,289 @@
+<!--MODAL: CREATE NEW ASSIGNMENT -->
+<div id="create_new_modal" class="modal">
+  <div class="modal_content">
+    <form action="/addassignment" method="post">
+      <div class="modal-window" style="height: 450px;">
+        <span class="close">&times;</span>
+
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Pick Your Course</h1>
+          <select name="course_id" id="course_id" required>
+            {% for course in courses %}
+            <option value="{{course['id']}}">{{course["course_code"]}}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Assignment Title</h1>
+          <input class="searchbar" type="text" name="title" id="title" required>
+        </div>
+
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date" required>
+        </div>
+        <div style="padding-left: 375px;">
+          <button class="modal_btn" type="submit">create</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--MODAL: EDIT ASSIGNMENT -->
+<div id="edit_assignment_modal" class="modal">
+  <div class="modal_content">
+    <form action="/editassignment" method="post">
+      <div class="modal-window" style="height: 350px;">
+        <span class="edit_assignment_close">&times;</span>
+        <input type="hidden" type="number" name="edited_assignment_id">
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Assignment Title</h1>
+          <input class="searchbar" type="text" name="title" id="modal_edit_assignment_title_input" required>
+        </div>
+
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="modal_edit_assignment_due_input" required>
+        </div>
+        <span style="padding-top: 30px; padding-right: 30px; float: right;"><button class="modal_btn" type="submit">update</button></span>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!--MODAL: CURRENT COURSES -->
+<div id="add_course_modal" class="modal">
+  <div class="modal_content">
+    <div class="modal-window">
+      <span class="course-close">&times;</span>
+      <div class="modal-input-wrapper">
+        <h1 id="input-title">Current Courses</h1>
+      </div>
+      <div class="courselist-window">
+        <!--COURSE CHIP-->
+        <table style="margin-top: 20px;">
+          {% for course in courses %}
+          <tr>
+            <td align="center" width="20%" style="padding-left: 10px; padding-right: 10px;">
+              {% if not course["is_public"] %}
+              <form action="/toggleexportcourse" method="post" onsubmit="return confirm('This course will be made public to all users. Would you like to continue?');">
+                <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
+                  <i class="fa fa-globe"></i>
+                  <i style="font-size: 10px;">make public</i>
+                </button>
+              </form>
+              {% else %}
+              <form action="/toggleexportcourse" method="post">
+                <button name="export_course" id="export_course" class="action-button" value="{{course['id']}}">
+                  <i class="fa fa-lock"></i>
+                  <i style="font-size: 10px;">make private</i>
+                </button>
+              </form>
+              {% endif %}
+            </td>
+            <td width="15%">
+              <div class="class-chip" style="background-color: {{course['color']}}">
+                {{course["course_code"]}}
+              </div>
+            </td>
+            <td width="5%">
+              <button name="edit_course_button" class="action-button" value="{{course['id']}}" id="{{course['course_code']}}!@#zzawelju#@!{{course['course_name']}}!@#zzawelju#@!{{course['color']}}">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+
+            <form action="/deletecourse" method="post">
+              <td width="5%">
+                <input type="hidden" name="course_del_id" value="{{course['id']}}">
+                <button class="action-button" onclick="window.location.href='/deletecourse';">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </form>
+          </tr>
+          <tr>
+            <td height="5px"></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+
+      <button id="add_coursenew_button" class="modal_btn" style="margin-top: 240px; margin-left: 190px;">
+        add new course
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: ADD COURSE -->
+<div id="add_coursenew_modal" class="modal" style="background-color: rgba(0, 0, 0, 0);">
+  <div class="modal-within-window">
+    <span class="add-course-close">&times;</span>
+
+    <div class="modal-input-wrapper">
+      <h1 id="input-title">Add Course</h1>
+    </div>
+
+    <div>
+      <form action="/createcourse" method="post">
+        <div class="form-group" style="padding-bottom: 10px;">
+          <label class="form-control-label">Course Code</label>
+          <input type="text" class="searchbar form-control" name="course_code" required>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Course Name</label>
+          <input type="text" class="searchbar form-control" name="course_name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-control-label">Color</label>
+          <select name="color" id="course_color" required>
+            <option value="#EA9C9C">Red</option>
+            <option value="#FFC78F">Orange</option>
+            <option value="#F8DE9D">Yellow</option>
+            <option value="#A6DCA8">Green</option>
+            <option value="#ACCEED">Blue</option>
+            <option value="#BDB4D9">Purple</option>
+            <option value="#F4CAEB">Pink</option>
+          </select>
+        </div>
+        <button type="submit" class="modal_btn">add course</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: EDIT COURSE -->
+<div id="edit_course_modal" class="modal" style="background-color: rgba(0, 0, 0, 0);">
+  <div class="modal_content">
+    <div class="modal-within-window">
+      <span class="edit-course-close">&times;</span>
+
+      <div class="modal-input-wrapper">
+        <h1 id="input-title">Edit Course</h1>
+      </div>
+
+      <div>
+        <form action="/editcourse" method="post">
+          <input type="hidden" name="edited_course_id" value="">
+          <div>
+            <label>Course Code</label>
+            <input id="modal_edit_course_code_input" class="searchbar" type="text" name="course_code" class="form-control" required>
+          </div>
+          <div>
+            <label>Course Name</label>
+            <input id="modal_edit_course_name_input" class="searchbar" type="text" name="course_name" required>
+          </div>
+          <div>
+            <label>Color</label>
+            <select name="color" id="course_color_input" required>
+              <option value="#EA9C9C">Red</option>
+              <option value="#FFC78F">Orange</option>
+              <option value="#F8DE9D">Yellow</option>
+              <option value="#A6DCA8">Green</option>
+              <option value="#ACCEED">Blue</option>
+              <option value="#BDB4D9">Purple</option>
+              <option value="#F4CAEB">Pink</option>
+            </select>
+          </div>
+          <div>
+            <button type="submit" class="modal_btn">update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: INSTRUCTOR ADD COURSE -->
+<div id="instructor-course-modal" class="modal">
+  <div class="modal_content">
+    <div class="modal-window" style="height: 300px;">
+      <span class="instructor-course-close">&times;</span>
+
+      <div class="modal-input-wrapper">
+        <h1 id="input-title">Add Course</h1>
+      </div>
+
+      <div style="margin-left: 30px;">
+        <form action="/createcourse" method="post">
+          <div style="padding-bottom: 10px;">
+            <label class="form-control-label">Course Code</label>
+            <input type="text" name="course_code" class="searchbar form-control" required>
+          </div>
+          <div>
+            <label>Course Name</label>
+            <input type="text" name="course_name" class="searchbar form-control" required>
+          </div>
+          <input type="hidden" name="color" value="#FFC78F">
+
+          <div>
+            <button type="submit" class="modal_btn" style="margin-top: 10px;">
+              add course
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: INSTRUCTOR EDIT COURSE -->
+<div id="instructor_edit_course_modal" class="modal">
+  <div class="modal_content">
+    <div class="modal-window" style="height: 300px;">
+      <span class="instructor-edit-course-close">&times;</span>
+
+      <div class="modal-input-wrapper">
+        <h1 id="input-title">Edit Course</h1>
+      </div>
+
+      <div class="col-lg-12 login-form">
+        <form action="/editcourse" method="post">
+          <input type="hidden" type="number" name="instructor_edited_course_id">
+          <div class="form-group">
+            <label class="form-control-label">Course Code</label>
+            <input type="text" name="course_code" class="searchbar form-control" required>
+          </div>
+          <input type="hidden" name="color" value="#FFC78F">
+
+          <div class="form-group">
+            <label class="form-control-label">Course Name</label>
+            <input type="text" name="course_name" class="searchbar form-control" required>
+          </div>
+          <div class="col-12 login-btm login-button justify-content-center d-flex">
+            <button type="submit" class="modal_btn" style="margin-top: 20px;">
+              update course
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL: INSTRUCTOR CREATE NEW ASSIGNMENT -->
+<div id="instructor-new-assignment-modal" class="modal">
+  <div class="modal_content">
+    <form action="/instructoraddassignment" method="post">
+      <div class="modal-window" style="height: 325px;">
+        <span class="instructor-create-assignment-close">&times;</span>
+
+        <input type="hidden" name="current_id" id="current_id">
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Assignment Title</h1>
+          <input type="text" name="title" class="searchbar" id="title" required>
+        </div>
+
+        <div class="modal-input-wrapper">
+          <h1 id="input-title">Due Date</h1>
+          <input type="datetime-local" name="due_date" id="due_date" required>
+        </div>
+        <div style="padding-left: 375px;">
+          <button type="submit" class="modal_btn">create</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

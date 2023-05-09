@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>500 Internal Server Error</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+  </head>
+  <body>
+    <div id="page">
+      <div id="banner">
+        <div style="padding-left: 8px;">
+          <a href="/" style="color: #f9aa5b; font-size: 37.5px;">TigerFocus</a>
+        </div>
+        <div style="padding-right: 8px;">
+          <a class="menu-button" href="/about">about</a>
+        </div>
+      </div>
+      <div class="error-msg">
+        I'm sorry, there appears to be an internal server error. We are working on fixing this issue.
+        <br>
+        Click <a href="/hub">here</a> to return to your hub.
+      </div>
+      <div class="footer">
+        <div>
+          <a class="menu-button footer-button" href="/FAQ">FAQ</a>
+        </div>
+        <div style="font-size: 32px;">&bull;</div>
+        <div>
+          <a class="menu-button footer-button" href="/about">about</a>
+        </div>
+        <div style="font-size: 28px;">&bull;</div>
+        <div>
+          <a class="menu-button footer-button" href="https://forms.gle/MMuid6xdZVXu7JpZA">feedback</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
