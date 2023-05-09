@@ -190,7 +190,7 @@ def status_assignment():
         <button class="action-button-half">
           in progress
         </button>
-        <input hidden name="id" value="{id}" />
+        <input type="hidden" name="id" value="{id}" />
         """
     elif assignment.status == 1:
         assignment.status = 2
@@ -199,7 +199,7 @@ def status_assignment():
         <button class="action-button-full">
           done
         </button>
-        <input hidden name="id" value="{id}" />
+        <input type="hidden" name="id" value="{id}" />
         """
     else:
         assignment.status = 0
@@ -208,7 +208,7 @@ def status_assignment():
         <button class="action-button-empty">
           not started
         </button>
-        <input hidden name="id" value="{id}" />
+        <input type="hidden" name="id" value="{id}" />
         """
     db.session.commit()
     return html
