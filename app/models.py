@@ -8,7 +8,6 @@ from flask_login import UserMixin
 from datetime import datetime
 from pytz import timezone
 from . import login_manager
-from app.main.common import local_now
 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
