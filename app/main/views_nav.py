@@ -126,3 +126,8 @@ def longBreak():
 @bp.route("/about")
 def about():
     return render_template("about.html")
+
+@bp.route("/FAQ")
+def FAQ():
+    return render_template("FAQ.html")
+
