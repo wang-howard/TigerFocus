@@ -1,41 +1,27 @@
-{% extends "base.html" %} {% block title %}Student Hub{% endblock %} {% block
-style %}
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-<link
-  rel="stylesheet"
-  href="{{url_for('static', filename='css/studenthub.css')}}"
-/>
-<link
-  rel="stylesheet"
-  href="{{url_for('static', filename='css/createNew.css')}}"
-/>
-{% endblock %} {% block body %} {% include "modals.html" %}
+{% extends "base.html" %}
 
+{% block title %}Student Hub{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/studenthub.css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='css/createNew.css')}}">
+{% endblock %}
+
+{% block body %}
+{% include "modals.html" %}
 <div id="welcome_wrapper">
   <table>
-    <td width="88%" style="padding-top: 50px; padding-left: 30px">
+    <td width="88%" style="padding-top: 50px; padding-left: 30px;">
       <div id="welcome">Welcome back, {{first_name|capitalize}}!</div>
     </td>
-    <td style="padding-right: 30px; padding-top: 50px" width="12%" align="left">
+    <td width="12%" align="left" style="padding-right: 30px; padding-top: 50px;">
       <div>
         <form action="/start" method="post">
-          <button
-            type="submit"
-            class="small-button"
-            onclick="startSession()"
-            style="height: auto; padding: 3px; width: 200px"
-          >
+          <button type="submit" class="small-button" onclick="startSession()" style="height: auto; padding: 3px; width: 200px;">
             START SESSION
           </button>
-          <input
-            type="hidden"
-            id="selected_assignments"
-            name="selected_assignments"
-            value=""
-          />
+          <input type="hidden" id="selected_assignments" name="selected_assignments" value="">
         </form>
       </div>
     </td>
@@ -45,20 +31,12 @@ style %}
 <div id="assignments-window">
   <div id="tabs">
     <div>
-      <button
-        style="color: #fef9ee"
-        onclick="window.location.href='/hub';"
-        id="assignments-tab"
-      >
+      <button id="assignments-tab" style="color: #fef9ee;" onclick="window.location.href='/hub';">
         my hub
       </button>
     </div>
     <div>
-      <button
-        style="color: #fef9ee"
-        onclick="window.location.href='/publiccourses';"
-        id="public-tab"
-      >
+      <button id="public-tab" style="color: #fef9ee;" onclick="window.location.href='/publiccourses';">
         public courses
       </button>
     </div>
@@ -72,18 +50,18 @@ style %}
     </div>
   </div>
 
-  <hr />
+  <hr>
   <table id="table-header">
     {% if courses == [] %}
     <tr>
-      <div style="padding: 30px; color: #fef9ee" class="assignment-text">
-        Go to "view courses" to add courses!
+      <div class="assignment-text" style="padding: 30px; color: #fef9ee;">
+        Go to "view courses" to add a new course!
       </div>
     </tr>
 
     {% elif courses != [] and assignments == [] %}
     <tr>
-      <div style="padding: 30px; color: #fef9ee" class="assignment-text">
+      <div class="assignment-text" style="padding: 30px; color: #fef9ee;">
         Click "new task" to add an assignment!
       </div>
     </tr>
@@ -92,7 +70,7 @@ style %}
     <tr>
       <th></th>
       <th align="center">Status</th>
-      <th align="left" style="padding-left: 30px">Assignment</th>
+      <th align="left" style="padding-left: 30px;">Assignment</th>
       <th align="center">Due Date</th>
       <th align="center">Class</th>
       <th></th>
@@ -102,7 +80,7 @@ style %}
     {% for assignment in assignments %}
     <div class id="assignment-element-{{assignment['id']}}">
       <tr class="assignment-wrapper" id="assignment-wrapper-{{assignment['id']}}">
-        <td width="5%" style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px;" align="center">
+        <td width="5%" align="center" style="padding-left: 30px; padding-bottom: 35px; padding-right: 30px;">
           <label class="checkbox-button">
             <input type="checkbox" class="assignment-checkbox" value="{{assignment['id']}}">
             <div class="checkmark"></div>
@@ -113,20 +91,20 @@ style %}
           <form hx-post="/statusassignment" hx-target="this">
             {% if assignment["status"] == 0 %}
             <button class="action-button-empty">not started</button>
-            <input hidden name="id" value="{{assignment['id']}}" />
+            <input type="hidden" name="id" value="{{assignment['id']}}">
 
             {% elif assignment["status"] == 1 %}
             <button class="action-button-half">in progress</button>
-            <input hidden name="id" value="{{assignment['id']}}" />
+            <input type="hidden" name="id" value="{{assignment['id']}}">
 
             {% else %}
             <button class="action-button-full">done</button>
-            <input hidden name="id" value="{{assignment['id']}}" />
+            <input type="hidden" name="id" value="{{assignment['id']}}">
             {% endif %}
           </form>
         </td>
 
-        <td width="45%" align="left" style="padding-left: 30px">
+        <td width="45%" align="left" style="padding-left: 30px;">
           <div class="assignment-text">{{assignment["title"]}}</div>
         </td>
 
@@ -137,35 +115,20 @@ style %}
         </td>
 
         <td width="15%" align="center">
-          <div
-            class="class-chip"
-            style="background-color: {{assignment['color']}}"
-          >
+          <div class="class-chip" style="background-color: {{assignment['color']}}">
             {{assignment["course_code"]}}
           </div>
         </td>
         <td width="2.5%">
-          <button
-            name="edit_assignment_button"
-            id="{{assignment['title']}}!@#zzawelju#@!{{assignment['due_date']}}"
-            class="action-button"
-            value="{{assignment['id']}}"
-          >
+          <button class="action-button" name="edit_assignment_button" id="{{assignment['title']}}!@#zzawelju#@!{{assignment['due_date']}}" value="{{assignment['id']}}">
             <i class="fa fa-edit"></i>
           </button>
         </td>
 
-        <td width="2.5%" style="padding-right: 30px">
+        <td width="2.5%" style="padding-right: 30px;">
           <form action="/deleteassignment" method="post">
-            <input
-              type="hidden"
-              name="assignment_id"
-              value="{{assignment['id']}}"
-            />
-            <button
-              onclick="window.location.href='/deleteassignment';"
-              class="action-button"
-            >
+            <input type="hidden" name="assignment_id" value="{{assignment['id']}}">
+            <button class="action-button" onclick="window.location.href='/deleteassignment';">
               <i class="fa fa-trash"></i>
             </button>
           </form>
@@ -175,14 +138,10 @@ style %}
         <td height="2px"></td>
       </tr>
     </div>
-    {% endfor %} {% endif %}
+    {% endfor %}
+    {% endif %}
   </table>
 </div>
-
 <script src="{{url_for('static', filename='script/hub.js')}}"></script>
-<script
-  src="https://unpkg.com/htmx.org@1.9.2"
-  integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h"
-  crossorigin="anonymous"
-></script>
+<script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script>
 {% endblock %}

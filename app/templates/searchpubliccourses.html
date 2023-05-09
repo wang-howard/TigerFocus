@@ -1,7 +1,7 @@
 {% if courses == [] %}
 <tr>
   <td>
-    <div style="padding: 30px; color: #fef9ee;" class="assignment-text">No public courses ...</div>
+    <div class="assignment-text" style="padding: 30px; color: #fef9ee;">No public courses ...</div>
   </td>
 </tr>
 
@@ -20,7 +20,7 @@
   <tr class="public-course-wrapper">
     <td width="5%" align="center" style="padding-left: 30px; padding-bottom: 30px; padding-right: 20px;">
       <label class="checkbox-button">
-        <input type="checkbox" class="course_checkbox" value="{{course['id']}}" />
+        <input type="checkbox" class="course_checkbox" value="{{course['id']}}">
         <div class="checkmark"></div>
       </label>
     </td>
@@ -28,8 +28,8 @@
       <form action="/publicassignments" method="get">
         <button class="pre-class-chip">
           {{course["course_code"]}}
-          <input hidden name="courseid" value="{{course['id']}}" />
         </button>
+        <input type="hidden" name="courseid" value="{{course['id']}}">
       </form>
     </td>
 

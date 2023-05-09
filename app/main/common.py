@@ -26,3 +26,7 @@ def generate_assignment_id():
         else:
             assignment_id = str(random.randint(1000000, 9999999))
     return assignment_id
+
+def local_now():
+    nytz = timezone("America/New_York")
+    return timezone.now(nytz)
