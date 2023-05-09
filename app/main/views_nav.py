@@ -54,7 +54,6 @@ def hub():
         assignment_data = []
         for a in assignments:
             course = Course.query.get(a.course_id)
-            print(type(a.due_date))
             date = a.due_date.astimezone().strftime("%b %d %I:%M%p")
             assignment_data.append({"status": a.status,
                                     "id": a.id,

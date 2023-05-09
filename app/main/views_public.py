@@ -1,5 +1,4 @@
-import sys
-from datetime import datetime, timezone
+import sys, pytz
 from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
@@ -43,8 +42,9 @@ def search_public_courses():
         staff_cert = False if type == "student" else True
         course_code = course.course_code
         course_name = course.course_name
-        last_updated =\
-            course.last_updated.astimezone().strftime("%b %d %I:%M%p")
+
+        time = pytz.UTC.localize(course.last_updated).astimezone(pytz.timezone("America/New_York"))
+        last_updated = time.strftime("%b %d %I:%M%p")
         public_info.append({"course_code": course_code,
                         "course_name": course_name,
                         "author": author,
