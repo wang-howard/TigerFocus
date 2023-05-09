@@ -1,85 +1,71 @@
-#mission {
-  margin: auto;
-  text-align: center;
-  width: 910px;
-  height: 127px;
-  left: 265px;
-  top: 252px;
+.about-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+}
 
+#mission {
   font-family: "Anek Bangla";
-  font-style: normal;
+  text-align: center;
   font-weight: 600;
   font-size: 60px;
-  line-height: 112px;
-  text-align: center;
-
   color: #4e4e4e;
 }
 
-#para {
-  margin: auto;
+.para {
+  font-family: "Helvetica";
   text-align: center;
-  width: 910px;
-  height: 127px;
-  left: 265px;
-  top: 379px;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 40px;
+  padding: 0px 24px 24px;
+  color: #4e4e4e;
+}
 
+.para2 {
+  text-align: center;
   font-family: "Helvetica";
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
   line-height: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 16px;
 
   color: #4e4e4e;
 }
 
-#pic {
+.pfp-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding: 5px;
+}
+
+img {
   margin: auto;
   width: 250px;
   height: 300px;
   border-radius: 250px;
 }
 
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 33.33%;
-  padding: 5px;
-}
-
 .name {
-  width: 272px;
-  height: 35px;
-  left: 169px;
-  top: 1379px;
+  margin-top: 16px;
+  margin-bottom: 8px;
   font-family: "Helvetica";
   font-style: normal;
   font-weight: 300;
   font-size: 20px;
-  line-height: 34px;
+  line-height: 24px;
   color: #000000;
   text-align: center;
 }
 
-.team {
-  text-align: center;
-}
-
-#para2 {
-  margin: auto;
-  text-align: center;
-  font-family: "Helvetica";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 40px;
-  padding-bottom: 30px;
-
-  color: #4e4e4e;
-}
 #slide {
   margin: auto;
   border-radius: 10px;
