@@ -4,6 +4,7 @@ from flask import render_template, redirect, url_for
 from flask import session, request
 from flask_login import login_required
 from .common import generate_course_id, generate_assignment_id
+from .common import local_now
 from . import bp
 from .. import db
 from ..models import User, Course, Assignment
@@ -57,7 +58,7 @@ def edit_course():
         edited_course.course_code = course_code
         edited_course.course_name = course_name
         edited_course.color = course_color
-        edited_course.last_updated = datetime.utcnow()
+        edited_course.last_updated = local_now()
 
         db.session.commit()
         return redirect(url_for(".hub"))
@@ -110,9 +111,9 @@ def add_assignment():
 
         assignment_id = generate_assignment_id()
         assignment = Assignment(id=assignment_id, title=title,
-                                due_date=due.astimezone("UTC"), status=None,
+                                due_date=due, status=None,
                                 course_id=course_id)
-        course.last_updated = datetime.utcnow()
+        course.last_updated = local_now()
         course.assignments.append(assignment)
         db.session.add(assignment)
         db.session.commit()
@@ -137,7 +138,7 @@ def edit_assignment():
         edited_assignment.title = title
 
         course_id = edited_assignment.course_id
-        Course.query.get(course_id).last_updated = datetime.utcnow()
+        Course.query.get(course_id).last_updated = local_now()
 
         db.session.commit()
 
@@ -159,7 +160,7 @@ def delete_assignment():
         course_id = assignment.course_id
         Assignment.query.filter_by(id=id).delete()
 
-        Course.query.get(course_id).last_updated = datetime.utcnow()
+        Course.query.get(course_id).last_updated = local_now()
 
         db.session.commit()
 
@@ -255,7 +256,7 @@ def instructor_add_assignment():
         due = request.form.get("due_date")
         title = request.form.get("title")
 
-        Course.query.get(course_id).last_updated = datetime.utcnow()
+        Course.query.get(course_id).last_updated = local_now()
 
         assignment_id = generate_assignment_id()
         new_assignment = Assignment(id=assignment_id,
