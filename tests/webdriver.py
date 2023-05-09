@@ -7,7 +7,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-
 def add_course_test(course):
     try:
         driver = webdriver.Chrome('/path/to/chromedriver')
@@ -92,9 +91,9 @@ def add_assignment_test(course, assignment, due, time):
 
     driver.close()
 
-
-#STUDENT TESTS
-course = "COS126"
-assignment = "assignment"
-add_course_test(course)
-add_assignment_test(assignment, course, "0401", "1159P")
+if __name__ == "__main__":
+    #STUDENT TESTS
+    course = "COS126"
+    assignment = "assignment"
+    add_course_test(course)
+    add_assignment_test(assignment, course, "0401", "1159P")
