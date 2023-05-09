@@ -3,15 +3,14 @@
 {% block title %}{{course_code}} Assignments{% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}" />
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url_for('static', filename='css/instructorviewassignments.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/studenthub.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/createNew.css') }}">
 {% endblock %}
 
 {% block body %}
 {% include "modals.html" %}
-
 <div id="welcome_wrapper">
   <table>
     <td width="88%" style="padding-top: 50px; padding-left: 30px;">
@@ -22,25 +21,21 @@
 
 <div id="instructor-window">
   <div id="tabs">
-    <div>
-      <button style="color: #fef9ee;" onclick="window.location.href='/publiccourses';" id="instructor-assignments-tab">
-       back
-      </button>
-    </div>
+    <button id="instructor-assignments-tab" style="color: #fef9ee;" onclick="window.location.href='/publiccourses';">
+      back
+    </button>
   </div>
 
   <div id="assignments-header">
     <div id="instructor-current-assignments-title">Assignments for {{course_code}}</div>
   </div>
-
-  <hr />
-
+  <hr>
+  
   <div style="overflow-y: scroll; height: 90%; max-height: 525px; width: 900px;">
     <div>
       {% if assignments == [] %}
-
       <div style="width: 900px; padding: 30px;">NO ASSIGNMENTS</div>
-    
+
       {% else %}
       <table style="margin-left: 30px; margin-right: 30px; border-collapse: collapse;">
         <tr id="table-header" style="color: black;">
@@ -48,7 +43,7 @@
           <th align="center">Due Date</th>
           <th></th>
         </tr>
-    
+
         {% for a in assignments %}
         <div id="assignment-element_{{a['id']}}">
           <tr style="padding-bottom: 5px; border-radius: 10px; background: #fef9ee;">
@@ -58,9 +53,7 @@
             <td width="50%" align="center">
               <div>{{a["due_date"]}}</div>
             </td>
-            <td>
-              
-            </td>
+            <td></td>
           </tr>
           <tr>
             <td height="2px"></td>

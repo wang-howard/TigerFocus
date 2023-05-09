@@ -8,9 +8,15 @@
 
 {% block body%}
 <div id="screen">
-  <button name="pd" id="pomodoro"><a onclick="pd_button_clicked()">pomodoro</a></button>
-  <button name="sb" id="pomodoro"><a onclick="sb_button_clicked()">short break</a></button>
-  <button name="lb" id="pomodoro"><a onclick="lb_button_clicked()"> long break</a></button>
+  <button name="pd" id="pomodoro">
+    <a onclick="pd_button_clicked()">pomodoro</a>
+  </button>
+  <button name="sb" id="pomodoro">
+    <a onclick="sb_button_clicked()">short break</a>
+  </button>
+  <button name="lb" id="pomodoro">
+    <a onclick="lb_button_clicked()"> long break</a>
+  </button>
 
   <div id="{{id}}">
     <div id="timeContainer">
@@ -30,7 +36,7 @@
   </div>
 
   <p align="center">
-    <iframe id="videoframe" width="700" height="400" ></iframe>
+    <iframe id="videoframe" width="700" height="400"></iframe>
   </p>
 
   <div id="taskrectangle">
