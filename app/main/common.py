@@ -2,8 +2,7 @@
 Commonly used functions in code to avoid repitition
 """
 import random
-from datetime import datetime
-from pytz import timezone
+from datetime import datetime, timezone
 from .. import db
 from ..models import User, Course, Assignment
 
@@ -27,6 +26,5 @@ def generate_assignment_id():
             assignment_id = str(random.randint(1000000, 9999999))
     return assignment_id
 
-def local_now():
-    nytz = timezone("America/New_York")
-    return timezone.now(nytz)
+def get_utc():
+    return timezone.now(timezone.utc)
